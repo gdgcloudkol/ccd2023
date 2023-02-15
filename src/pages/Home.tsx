@@ -1,7 +1,5 @@
-import React from 'react'
-
 const Home = () => {
-  return <div>Welcome to CCD23</div>
+  return <></>
 }
 
 export default Home
