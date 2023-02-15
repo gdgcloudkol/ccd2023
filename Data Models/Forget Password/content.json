@@ -1,0 +1,8 @@
+{
+  "accountType": "Account Type",
+  "email": "Email",
+  "button": {
+    "submit": "Click To Reset",
+    "cancel": "Goto Login"
+  }
+}

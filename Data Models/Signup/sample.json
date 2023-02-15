@@ -1,0 +1,27 @@
+{
+  "accountType": "professional",
+  "profile": {
+    "fullName": "Md Nasirul Haque",
+    "displayName": "Nasir",
+    "email": "talk2lurisan@gmail.com",
+    "password": "123@abcD",
+    "confirmPassword": "123@abcD",
+    "countryCode": "+91",
+    "phNo": "9007767313",
+    "college": "NSEC",
+    "course": "CSE",
+    "graduation": "2018",
+    "company": "TCS",
+    "role": "SE"
+  },
+  "social": {
+    "cloudskillboost": "",
+    "linkedin": "mdnasirulhaque",
+    "github": "lurisan",
+    "website": "lurisan.web.app"
+  },
+  "misc": {
+    "foodPref": "Veg",
+    "thisrt": "XL"
+  }
+}
