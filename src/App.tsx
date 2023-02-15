@@ -4,7 +4,7 @@ import Loading from './components/Loader/Loader'
 import Home from './pages/Home'
 
 function App() {
-  const [initialLoad, setLoad] = React.useState(true)
+  const [initialLoad, setLoad] = React.useState<boolean>(true)
   React.useEffect(() => {
     setTimeout(() => {
       setLoad(false)
