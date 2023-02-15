@@ -1,0 +1,27 @@
+{
+  "accountType": "",
+  "profile": {
+    "fullName": "",
+    "displayName": "",
+    "email": "",
+    "password": "",
+    "confirmPassword": "",
+    "countryCode": "",
+    "phNo": "",
+    "college": "",
+    "course": "",
+    "graduation": "",
+    "company": "",
+    "role": ""
+  },
+  "social": {
+    "cloudskillboost": "",
+    "linkedin": "",
+    "github": "",
+    "website": ""
+  },
+  "misc": {
+    "foodPref": "",
+    "thisrt": ""
+  }
+}
