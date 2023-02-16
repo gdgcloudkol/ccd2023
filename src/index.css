@@ -18,3 +18,9 @@ h2 {
 h3 {
   @apply text-lg;
 }
+
+.img-border {
+  border: 1px solid #ddd;
+  @apply rounded-lg;
+  @apply p-5;
+}

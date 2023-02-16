@@ -1,5 +1,11 @@
+import CommunityPartners from '../components/CommunityPartners/CommunityPartners'
+
 const Home = () => {
-  return <>Home</>
+  return (
+    <>
+      <CommunityPartners />
+    </>
+  )
 }
 
 export default Home
