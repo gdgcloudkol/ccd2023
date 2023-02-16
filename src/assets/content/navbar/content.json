@@ -1,0 +1,48 @@
+{
+  "navbar_permanent": [
+    {
+      "title": "Home",
+      "link": "home"
+    },
+    {
+      "title": "Speakers",
+      "link": "speakers"
+    },
+    {
+      "title": "Schedule",
+      "link": "schedule"
+    },
+    {
+      "title": "Buy Tickets",
+      "link": "tickets"
+    },
+    {
+      "title": "FAQ",
+      "link": "faq"
+    },
+    {
+      "title": "Code of Conduct",
+      "link": "coc"
+    }
+  ],
+  "navbar_spatial_loggedin": [
+    {
+      "title": "Profile",
+      "link": "profile"
+    },
+    {
+      "title": "Dashboard",
+      "link": "dashboard"
+    }
+  ],
+  "navbar_spatial_not_loggedin": [
+    {
+      "title": "Join Us",
+      "link": "signup"
+    },
+    {
+      "title": "Login",
+      "link": "login"
+    }
+  ]
+}
