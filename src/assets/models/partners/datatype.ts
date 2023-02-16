@@ -1,6 +1,6 @@
 export interface SponsorContent {
   sponsorId: string;
-  sponsor: string;
+  sponsorName: string;
   hyperlink: string;
 }
 
@@ -13,5 +13,5 @@ export interface PartnersContent {
   title: string;
   description: string;
   partners: [PartnerContent];
-  community_partners: [PartnerContent];
+  community_partners: PartnerContent;
 }

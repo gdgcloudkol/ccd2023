@@ -1,7 +1,7 @@
 export interface NavbarContent {
-  navbar_permanent: NavbarItemContent[];
-  navbar_spatial_loggedin: NavbarItemContent[];
-  navbar_spatial_not_loggedin: NavbarItemContent[];
+  navbarPermanent: NavbarItemContent[];
+  navbarSpatialLoggedIn: NavbarItemContent[];
+  navbarSpatialNotLoggedIn: NavbarItemContent[];
 }
 
 export interface NavbarItemContent {
