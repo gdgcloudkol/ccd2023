@@ -1,50 +1,75 @@
-import { useLocation } from 'react-router-dom'
+import { Disclosure } from '@headlessui/react'
+import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import Router from '../../Router'
+import { randomColor } from '../../services/common.service'
 import {
   ACTIVE_CLASS_DESKTOP,
   ACTIVE_CLASS_MOBILE,
   INACTIVE_CLASS_DESKTOP,
   INACTIVE_CLASS_MOBILE
 } from './constants'
-import { Link } from 'react-router-dom'
-import { Disclosure } from '@headlessui/react'
 
 interface NavlinkProps {
   variant?: 'desktop' | 'mobile'
   path: string
   label: string
+  type?: 'none' | 'button'
 }
 
-const Navlink = ({ variant = 'desktop', path, label }: NavlinkProps) => {
+const Navlink = ({ variant = 'desktop', path, label, type = 'none' }: NavlinkProps) => {
   const location = useLocation()
 
   const isActive = location.pathname === path
 
+  const [underlyingColor, setColor] = React.useState<string>('text-google-gray-3')
+  
+  React.useEffect(() => {
+    return setColor(randomColor())
+  }, [])
+
   const getVariant = (): JSX.Element => {
     switch (variant) {
       case 'desktop':
-        return (
-          <Link
-            to={path}
-            className={`${
-              isActive ? ACTIVE_CLASS_DESKTOP : INACTIVE_CLASS_DESKTOP
-            }  inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
-          >
-            {label}
-          </Link>
-        )
+        switch (type) {
+          case 'none':
+            return (
+              <Link
+                to={path}
+                className={`${isActive ? ACTIVE_CLASS_DESKTOP : INACTIVE_CLASS_DESKTOP
+                  } hover:border-${underlyingColor}  inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+              >
+                {label}
+              </Link>
+            )
+          case 'button':
+            return (
+              <div className="flex space-x-2 py-3.5">
+                <button type="button" onClick={Router} className="inline-block px-6 py-2.5 bg-google-blue text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{label}</button>
+              </div>
+            )
+        }
       case 'mobile':
-        return (
-          <Link to={path}>
-            <Disclosure.Button
-              as="span"
-              className={`${
-                isActive ? ACTIVE_CLASS_MOBILE : INACTIVE_CLASS_MOBILE
-              } `}
-            >
-              {label}
-            </Disclosure.Button>
-          </Link>
-        )
+        switch (type) {
+          case 'none':
+            return (
+              <Link to={path}>
+                <Disclosure.Button
+                  as="span"
+                  className={`${isActive ? ACTIVE_CLASS_MOBILE : INACTIVE_CLASS_MOBILE
+                    } `}
+                >
+                  {label}
+                </Disclosure.Button>
+              </Link>
+            )
+          case 'button':
+            return (
+              <div className="flex space-x-2 pl-3 py-2">
+                <button type="button" onClick={Router} className="inline-block px-6 py-2.5 bg-google-blue text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{label}</button>
+              </div>
+            )
+        }
     }
   }
 

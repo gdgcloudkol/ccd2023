@@ -25,12 +25,12 @@ const NavbarPage = () => {
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
                   <img
-                    className="block lg:hidden h-10 w-auto"
+                    className="block lg:hidden h-12 w-auto mt-2"
                     src="/logo.svg"
                     alt="GDG Cloud Kolkata Logo"
                   />
                   <img
-                    className="hidden lg:block h-10 w-auto"
+                    className="hidden lg:block h-12 w-auto mt-3"
                     src="/logo.svg"
                     alt="GDG Cloud Kolkata Logo"
                   />
@@ -50,6 +50,7 @@ const NavbarPage = () => {
                       key={item.title}
                       label={item.title}
                       path={item.link}
+                      type='button'
                     />
                   ))}
                 </div>
@@ -77,6 +78,15 @@ const NavbarPage = () => {
                   label={item.title}
                   path={item.link}
                   variant="mobile"
+                />
+              ))}
+              {navigation.navbar_additional.map((item) => (
+                <Navlink
+                  key={item.title}
+                  label={item.title}
+                  path={item.link}
+                  variant= "mobile"
+                  type='button'
                 />
               ))}
             </div>

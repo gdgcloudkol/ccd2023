@@ -2,47 +2,47 @@
   "navbar_permanent": [
     {
       "title": "Home",
-      "link": "home"
+      "link": "/home"
     },
     {
       "title": "Speakers",
-      "link": "speakers"
+      "link": "/speakers"
     },
     {
       "title": "Schedule",
-      "link": "schedule"
+      "link": "/schedule"
     },
     {
       "title": "Buy Tickets",
-      "link": "tickets"
+      "link": "/tickets"
     },
     {
       "title": "FAQ",
-      "link": "faq"
+      "link": "/faq"
     },
     {
       "title": "Code of Conduct",
-      "link": "coc"
+      "link": "/coc"
     }
   ],
   "navbar_spatial_loggedin": [
     {
       "title": "Profile",
-      "link": "profile"
+      "link": "/profile"
     },
     {
       "title": "Dashboard",
-      "link": "dashboard"
+      "link": "/dashboard"
     }
   ],
   "navbar_spatial_not_loggedin": [
     {
       "title": "Join Us",
-      "link": "signup"
+      "link": "/signup"
     },
     {
       "title": "Login",
-      "link": "login"
+      "link": "/login"
     }
   ]
 }
