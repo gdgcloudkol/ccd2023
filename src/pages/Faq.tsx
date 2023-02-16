@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-import React from 'react'
-import * as Content from '../assets/content/faq/content.json'
-import { FAQContent } from '../assets/models/faq/datatype'
-import { randomColor } from '../services/common.service'
-=======
 import React from 'react';
 import * as Content from '../assets/content/faq/content.json';
 import { FAQContent } from '../assets/models/faq/datatype';
->>>>>>> 7f5020b (feat: schedule and transparent blur nav)
+import { randomColor } from '../services/common.service';
 
 const content = Content;
 
@@ -19,45 +13,24 @@ const FAQ: FAQContent = {
   faq: content.faq
 };
 const FaqPage = () => {
-<<<<<<< HEAD
-  const [selectedQuestion, setSelectedQuestion] = React.useState<number>(FAQ.faq.length)
-  const [borderOpen, setOpen] = React.useState<boolean>(false)
-  const [headingColor, setColor] = React.useState<string>('text-google-gray-3')
-=======
-  const [selectedQuestion, setSelectedQuestion] = React.useState<number>(5);
+  const [selectedQuestion, setSelectedQuestion] = React.useState<number>(
+    FAQ.faq.length
+  );
   const [borderOpen, setOpen] = React.useState<boolean>(false);
   const [headingColor, setColor] = React.useState<string>('text-google-gray-3');
->>>>>>> 7f5020b (feat: schedule and transparent blur nav)
+
   const openAQuestion = (index: number) => {
     setSelectedQuestion(index);
     setOpen(true);
   };
 
-<<<<<<< HEAD
-=======
-  const randomColor = () => {
-    let color = [
-      'text-google-blue',
-      'text-google-red',
-      'text-google-green',
-      'text-google-yellow'
-    ];
-    setColor(color[Math.floor(Math.random() * color.length)]);
-  };
-
->>>>>>> 7f5020b (feat: schedule and transparent blur nav)
   const questionSelector = (index: number) => {
     openAQuestion(index);
   };
 
   React.useEffect(() => {
-<<<<<<< HEAD
-    return setColor(randomColor())
-  }, [])
-=======
-    return randomColor();
+    return setColor(randomColor());
   }, []);
->>>>>>> 7f5020b (feat: schedule and transparent blur nav)
 
   return (
     <div>
@@ -76,10 +49,11 @@ const FaqPage = () => {
         {FAQ.faq.map((el, i) => {
           return (
             <div
-              className={` border-2 ${borderOpen && selectedQuestion === i
-                ? 'border-b-google-blue border-t-google-red border-r-google-yellow border-l-google-green'
-                : 'border-g-gray-3'
-                }  rounded-md p-3 text-g-gray-7 hover:text-g-gray-9 hover:bg-g-gray-1`}
+              className={` border-2 ${
+                borderOpen && selectedQuestion === i
+                  ? 'border-b-google-blue border-t-google-red border-r-google-yellow border-l-google-green'
+                  : 'border-g-gray-3'
+              }  rounded-md p-3 text-g-gray-7 hover:text-g-gray-9 hover:bg-g-gray-1`}
               onClick={() => questionSelector(i)}
               key={i}
             >
@@ -89,8 +63,9 @@ const FaqPage = () => {
                 </div>
               </div>
               <div
-                className={`relative ${selectedQuestion === i ? 'max-h-72' : 'max-h-0'
-                  } overflow-hidden transition-all duration-700`}
+                className={`relative ${
+                  selectedQuestion === i ? 'max-h-72' : 'max-h-0'
+                } overflow-hidden transition-all duration-700`}
               >
                 <div className="text-g-gray-8 pl-3 text-md font-normal md:pl-4 lg:pl-6 py-2 space-y-3">
                   <div>
