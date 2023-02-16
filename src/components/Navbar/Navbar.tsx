@@ -10,12 +10,13 @@ type Navigation = {
 const navigation: Navigation[] = [
   { label: 'Home', path: '/' },
   { label: 'Speakers', path: '#speakers' },
-  { label: 'Schedule', path: '/schedule' }
+  { label: 'Schedule', path: '/schedule' },
+  { label: 'FAQ', path: '/faq' }
 ]
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-transparent fixed w-full z-10">
+    <Disclosure as="nav" className="bg-transparent w-full z-10">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
