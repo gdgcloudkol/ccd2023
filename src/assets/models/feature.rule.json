@@ -1,0 +1,35 @@
+{
+  "signup": {
+    "accountType": true,
+    "fullName": true,
+    "displayName": true,
+    "email": true,
+    "countryCode": true,
+    "phNo": true,
+    "college": true,
+    "course": true,
+    "graduation": true,
+    "company": true,
+    "role": true,
+    "cloudskillboost": true,
+    "linkedin": true,
+    "github": true,
+    "website": true,
+    "foodPref": false,
+    "thisrt": true,
+    "submit": true,
+    "reset": true
+  },
+  "login": {
+    "accountType": true,
+    "email": true,
+    "password": true,
+    "oneTimeLink": false
+  },
+  "forgetPassword": {
+    "accountType": true,
+    "email": true,
+    "submit": true,
+    "cancel": true
+  }
+}

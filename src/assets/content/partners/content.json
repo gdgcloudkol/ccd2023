@@ -1,0 +1,166 @@
+{
+  "title": "Partners",
+  "description": "~!~We're thankful to all our sponsors who are making CCD 2022 Kolkata amazing. <br>To become a sponsor, please email as at <a href=\"mailto:partners@gdgcloud.kolkata.dev\">partners@gdgcloud.kolkata.dev</a>",
+  "partners": [
+    {
+      "title": "Title Sponsor",
+      "sponsors": [
+        {
+          "sponsorId": "google_developers",
+          "sponsorName": "Google Developers",
+          "hyperlink": "https://developers.google.com"
+        }
+      ]
+    },
+    {
+      "title": "Gold Sponsor",
+      "sponsors": [
+        {
+          "sponsorId": "weight_and_biases",
+          "sponsorName": "Weight and Biases",
+          "hyperlink": "https://wandb.ai"
+        }
+      ]
+    },
+    {
+      "title": "Silver Sponsor",
+      "sponsors": [
+        {
+          "sponsorId": "dynopii",
+          "sponsorName": "Dynopii",
+          "hyperlink": "https://dynopii.com"
+        }
+      ]
+    },
+    {
+      "title": "Also Backed By",
+      "sponsors": [
+        {
+          "sponsorId": "sessonize",
+          "sponsorName": "Sessonize",
+          "hyperlink": "https://sessonize.com"
+        }
+      ]
+    }
+  ],
+  "community_partners": {
+    "title": "Community Partners",
+    "sponsors": [
+      {
+        "sponsorId": "h4b",
+        "sponsorName": "Hack 4 Bengal",
+        "hyperlink": "https://www.hack4bengal.tech/"
+      },
+      {
+        "sponsorId": "wtm",
+        "sponsorName": "Women Techmakers",
+        "hyperlink": "https://developers.google.com/womentechmakers"
+      },
+      {
+        "sponsorId": "devorld",
+        "sponsorName": "Developers Wold Innovating The Future",
+        "hyperlink": "#"
+      },
+      {
+        "sponsorId": "devdungeos",
+        "sponsorName": "DEV's Dungeon",
+        "hyperlink": "https://devs-dungeon.github.io/bio/"
+      },
+      {
+        "sponsorId": "flutter_kolkata",
+        "sponsorName": "Flutter Kolkata",
+        "hyperlink": "https://flutterkolkata.dev"
+      },
+      {
+        "sponsorId": "celt",
+        "sponsorName": "CELT Open Source",
+        "hyperlink": "https://gceltopensource.web.app/"
+      },
+      {
+        "sponsorId": "dsc_rcciit",
+        "sponsorName": "Developers Students Club RCC Institute of Information Technology",
+        "hyperlink": "https://dscrcciit.com/"
+      },
+      {
+        "sponsorId": "dsc_gce",
+        "sponsorName": "Developers Students Club Gaya College of Engineering",
+        "hyperlink": "https://gdsc.community.dev/gaya-college-of-engineering-gaya/"
+      },
+      {
+        "sponsorId": "dsc_gcect",
+        "sponsorName": "Developers Students Club GCECT",
+        "hyperlink": "https://gdsc-gcect.web.app/"
+      },
+      {
+        "sponsorId": "dsc_iiitk",
+        "sponsorName": "Developers Students Club Indian Institute of Information Technology Kalyani",
+        "hyperlink": "https://gdsc.community.dev/indian-institute-of-information-technology-kalyani/"
+      },
+      {
+        "sponsorId": "dsc_jis",
+        "sponsorName": "Developers Students Club JIS University",
+        "hyperlink": "https://gdsc.community.dev/jis-university-kolkata/"
+      },
+      {
+        "sponsorId": "dsc_tiu",
+        "sponsorName": "Developers Students Club Techno India University",
+        "hyperlink": "#"
+      },
+      {
+        "sponsorId": "dsc_nsec",
+        "sponsorName": "Developers Students Club Netaji Subhash Engineering College",
+        "hyperlink": "https://dscnsec.com/"
+      },
+      {
+        "sponsorId": "dsc_uemk",
+        "sponsorName": "Developers Students Club UEM Kolkata",
+        "hyperlink": "#"
+      },
+      {
+        "sponsorId": "dsc_dbcrecd",
+        "sponsorName": "Developers Students Club Dr. B.C.Roy Engineering College Durgapur",
+        "hyperlink": "https://gdsc.community.dev/dr-bc-roy-engineering-college-durgapur/"
+      },
+      {
+        "sponsorId": "dsc_ciem",
+        "sponsorName": "Developers Students Club Calcutta Institute of Engineering and Management",
+        "hyperlink": "https://dscciem.github.io/"
+      },
+      {
+        "sponsorId": "dsc_gecb",
+        "sponsorName": "Developers Students Club Government Engineering College Bilaspur",
+        "hyperlink": "https://gdsc.community.dev/government-engineering-college-bilaspur/"
+      },
+      {
+        "sponsorId": "dsc_sit",
+        "sponsorName": "Developers Students Club Siliguri Institute of Technology",
+        "hyperlink": "https://gdsc.community.dev/siliguri-institute-of-technology-darjeeling/"
+      },
+      {
+        "sponsorId": "dsc_bppimt",
+        "sponsorName": "Developers Students B.P.Poddar Institue of Management and Technology",
+        "hyperlink": "https://dscbppimt.tech/"
+      },
+      {
+        "sponsorId": "dsc_bwu",
+        "sponsorName": "Developers Students Brainware University",
+        "hyperlink": "https://gdsc.community.dev/brainware-university-kolkata/"
+      },
+      {
+        "sponsorId": "dsc_sxc",
+        "sponsorName": "Developers Students St.Xavier's College Kolkata",
+        "hyperlink": "https://gdsc.community.dev/st-xaviers-college-kolkata/"
+      },
+      {
+        "sponsorId": "dsc_snu",
+        "sponsorName": "Developers Students Sister Nivedita University",
+        "hyperlink": "https://gdsc.community.dev/sister-nivedita-university-kolkata/"
+      },
+      {
+        "sponsorId": "dsc_iem",
+        "sponsorName": "Developers Students Institute of Engineering and Management Kolkata",
+        "hyperlink": "https://gdsc.community.dev/institute-of-engineering-management-kolkata/"
+      }
+    ]
+  }
+}

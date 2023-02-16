@@ -1,0 +1,32 @@
+{
+  "accountType": "Account Type",
+  "profile": {
+    "fullName": "Full Name",
+    "displayName": "Display Name",
+    "email": "Email",
+    "countryCode": "Country Code",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "phNo": "Phone Number",
+    "college": "College",
+    "course": "Course",
+    "graduation": "Year of Graduation",
+    "company": "Company",
+    "role": "Designation"
+  },
+  "social": {
+    "cloudskillboost": "Cloud Skill Boost URL",
+    "linkedin": "LinkedIn Id",
+    "github": "Github Username",
+    "website": "Website"
+  },
+  "misc": {
+    "foodPref": "Food Preference",
+    "thisrt": "T Shirt Size"
+  },
+  "button": {
+    "submit": "Sign Up",
+    "reset": "Reset",
+    "cancel": "Goto Home"
+  }
+}

@@ -1,20 +1,18 @@
-import { Disclosure } from '@headlessui/react'
-import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
-import Navlink from './Navlink'
+import { Disclosure } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import * as Content from '../../assets/content/navbar/content.json';
+import { NavbarItemContent } from '../../assets/models/navbar/datatype';
+import { loggedIn } from '../../services/state.service';
+import Navlink from './Navlink';
 
-type Navigation = {
-  label: string
-  path: string
-}
-
-const navigation: Navigation[] = [
-  { label: 'Home', path: '/' },
-  { label: 'Speakers', path: '#speakers' },
-  { label: 'Schedule', path: '/schedule' },
-  { label: 'FAQ', path: '/faq' }
-]
-
-export default function Navbar() {
+const NavbarPage = () => {
+  const content = Content;
+  const navigation: { navbar_permanent: NavbarItemContent[], navbar_additional: NavbarItemContent[] } = { navbar_permanent: content.navbar_permanent, navbar_additional: [] }
+  if (loggedIn) {
+    navigation.navbar_additional = content.navbar_spatial_loggedin;
+  } else {
+    navigation.navbar_additional = content.navbar_spatial_not_loggedin;
+  }
   return (
     <Disclosure as="nav" className="bg-transparent w-full z-10">
       {({ open }) => (
@@ -37,11 +35,18 @@ export default function Navbar() {
               </div>
               <div className="flex">
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  {navigation.map((item) => (
+                  {navigation.navbar_permanent.map((item) => (
                     <Navlink
-                      key={item.label}
-                      label={item.label}
-                      path={item.path}
+                      key={item.title}
+                      label={item.title}
+                      path={item.link}
+                    />
+                  ))}
+                  {navigation.navbar_additional.map((item) => (
+                    <Navlink
+                      key={item.title}
+                      label={item.title}
+                      path={item.link}
                     />
                   ))}
                 </div>
@@ -63,11 +68,11 @@ export default function Navbar() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
+              {navigation.navbar_permanent.map((item) => (
                 <Navlink
-                  key={item.label}
-                  label={item.label}
-                  path={item.path}
+                  key={item.title}
+                  label={item.title}
+                  path={item.link}
                   variant="mobile"
                 />
               ))}
@@ -78,3 +83,5 @@ export default function Navbar() {
     </Disclosure>
   )
 }
+
+export default NavbarPage
