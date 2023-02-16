@@ -1,17 +1,20 @@
-import { Disclosure } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import * as Content from '../../assets/content/navbar/content.json';
-import { NavbarItemContent } from '../../assets/models/navbar/datatype';
-import { loggedIn } from '../../services/state.service';
-import Navlink from './Navlink';
+import { Disclosure } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import * as Content from '../../assets/content/navbar/content.json'
+import { NavbarItemContent } from '../../assets/models/navbar/datatype'
+import { loggedIn } from '../../services/state.service'
+import Navlink from './Navlink'
 
 const NavbarPage = () => {
-  const content = Content;
-  const navigation: { navbar_permanent: NavbarItemContent[], navbar_additional: NavbarItemContent[] } = { navbar_permanent: content.navbar_permanent, navbar_additional: [] }
+  const content = Content
+  const navigation: {
+    navbar_permanent: NavbarItemContent[]
+    navbar_additional: NavbarItemContent[]
+  } = { navbar_permanent: content.navbar_permanent, navbar_additional: [] }
   if (loggedIn) {
-    navigation.navbar_additional = content.navbar_spatial_loggedin;
+    navigation.navbar_additional = content.navbar_spatial_loggedin
   } else {
-    navigation.navbar_additional = content.navbar_spatial_not_loggedin;
+    navigation.navbar_additional = content.navbar_spatial_not_loggedin
   }
   return (
     <Disclosure as="nav" className="bg-transparent w-full z-10">
