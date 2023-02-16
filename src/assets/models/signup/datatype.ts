@@ -13,18 +13,18 @@ export interface SignupData {
     college: string;
     course: string;
     graduation: string;
-    company: string;
-    role: string;
+    company?: string;
+    role?: string;
   },
   social: {
-    cloudskillboost: string;
-    linkedin: string;
-    github: string;
-    website: string;
+    cloudskillboost?: string;
+    linkedin?: string;
+    github?: string;
+    website?: string;
   },
   misc: {
-    foodPref: string;
-    thisrt: string;
+    foodPref?: string;
+    thisrt?: string;
   }
 }
 
@@ -41,18 +41,18 @@ export interface SignupContent {
     college: string;
     course: string;
     graduation: string;
-    company: string;
-    role: string;
+    company?: string;
+    role?: string;
   },
   social: {
-    cloudskillboost: string;
-    linkedin: string;
-    github: string;
-    website: string;
+    cloudskillboost?: string;
+    linkedin?: string;
+    github?: string;
+    website?: string;
   },
   misc: {
-    foodPref: string;
-    thisrt: string;
+    foodPref?: string;
+    thisrt?: string;
   },
   button: {
     submit: string;
