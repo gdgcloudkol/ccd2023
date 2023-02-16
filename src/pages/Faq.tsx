@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 import React from 'react'
 import * as Content from '../assets/content/faq/content.json'
 import { FAQContent } from '../assets/models/faq/datatype'
 import { randomColor } from '../services/common.service'
+=======
+import React from 'react';
+import * as Content from '../assets/content/faq/content.json';
+import { FAQContent } from '../assets/models/faq/datatype';
+>>>>>>> 7f5020b (feat: schedule and transparent blur nav)
 
-const content = Content
+const content = Content;
 
 const FAQ: FAQContent = {
   title: content.title,
@@ -11,23 +17,47 @@ const FAQ: FAQContent = {
   subHeading1: content.subHeading1,
   subheading2: content.subheading2,
   faq: content.faq
-}
+};
 const FaqPage = () => {
+<<<<<<< HEAD
   const [selectedQuestion, setSelectedQuestion] = React.useState<number>(FAQ.faq.length)
   const [borderOpen, setOpen] = React.useState<boolean>(false)
   const [headingColor, setColor] = React.useState<string>('text-google-gray-3')
+=======
+  const [selectedQuestion, setSelectedQuestion] = React.useState<number>(5);
+  const [borderOpen, setOpen] = React.useState<boolean>(false);
+  const [headingColor, setColor] = React.useState<string>('text-google-gray-3');
+>>>>>>> 7f5020b (feat: schedule and transparent blur nav)
   const openAQuestion = (index: number) => {
-    setSelectedQuestion(index)
-    setOpen(true)
-  }
+    setSelectedQuestion(index);
+    setOpen(true);
+  };
 
+<<<<<<< HEAD
+=======
+  const randomColor = () => {
+    let color = [
+      'text-google-blue',
+      'text-google-red',
+      'text-google-green',
+      'text-google-yellow'
+    ];
+    setColor(color[Math.floor(Math.random() * color.length)]);
+  };
+
+>>>>>>> 7f5020b (feat: schedule and transparent blur nav)
   const questionSelector = (index: number) => {
-    openAQuestion(index)
-  }
+    openAQuestion(index);
+  };
 
   React.useEffect(() => {
+<<<<<<< HEAD
     return setColor(randomColor())
   }, [])
+=======
+    return randomColor();
+  }, []);
+>>>>>>> 7f5020b (feat: schedule and transparent blur nav)
 
   return (
     <div>
@@ -77,11 +107,11 @@ const FaqPage = () => {
                 </div>
               </div>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FaqPage
+export default FaqPage;
