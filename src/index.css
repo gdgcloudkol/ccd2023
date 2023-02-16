@@ -7,3 +7,14 @@
     scroll-behavior: smooth;
   }
 }
+
+h1 {
+  @apply text-2xl;
+  @apply font-extrabold;
+}
+h2 {
+  @apply text-xl;
+}
+h3 {
+  @apply text-lg;
+}
