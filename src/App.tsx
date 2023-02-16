@@ -4,12 +4,12 @@ import Loading from './components/Loader/Loader'
 import Router from './Router'
 
 function App() {
-  const [initialLoad, setLoad] = React.useState<boolean>(true)
-  React.useEffect(() => {
-    setTimeout(() => {
-      setLoad(false)
-    }, 3500)
-  }, [])
+  const [initialLoad, setLoad] = React.useState<boolean>(false)
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoad(false)
+  //   }, 3500)
+  // }, [])
   return <div className="App">{initialLoad ? <Loading /> : <Router />}</div>
 }
 
