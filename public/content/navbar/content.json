@@ -1,5 +1,5 @@
 {
-  "navbar_permanent": [
+  "navbarPermanent": [
     {
       "title": "Home",
       "link": "/home"
@@ -22,10 +22,10 @@
     },
     {
       "title": "Code of Conduct",
-      "link": "/coc"
+      "link": "/code-of-conduct"
     }
   ],
-  "navbar_spatial_loggedin": [
+  "navbarSpatialLoggedIn": [
     {
       "title": "Profile",
       "link": "/profile"
@@ -35,11 +35,7 @@
       "link": "/dashboard"
     }
   ],
-  "navbar_spatial_not_loggedin": [
-    {
-      "title": "Join Us",
-      "link": "/signup"
-    },
+  "navbarSpatialNotLoggedIn": [
     {
       "title": "Login",
       "link": "/login"

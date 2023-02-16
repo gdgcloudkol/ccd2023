@@ -1,0 +1,95 @@
+{
+  "signup": {
+    "accountType": true,
+    "fullName": true,
+    "displayName": true,
+    "email": true,
+    "countryCode": true,
+    "phNo": true,
+    "college": true,
+    "course": true,
+    "graduation": true,
+    "company": true,
+    "role": true,
+    "cloudskillboost": true,
+    "linkedin": true,
+    "github": true,
+    "website": true,
+    "foodPref": false,
+    "thisrt": true,
+    "submit": true,
+    "reset": true
+  },
+  "login": {
+    "accountType": true,
+    "email": true,
+    "password": true,
+    "oneTimeLink": false
+  },
+  "forgetPassword": {
+    "accountType": true,
+    "email": true,
+    "submit": true,
+    "cancel": true
+  },
+  "navbar": {
+    "navbarPermanent": true,
+    "navbarSpatialLoggedIn": true,
+    "navbarSpatialNotLoggedIn": true
+  },
+  "disabledRoutes": [
+    "/dashboard",
+    "/tickets",
+    "/speakers",
+    "/schedule",
+    "/login",
+    "/profile"
+  ],
+  "disabledCommunityPartners": [
+    "h4b",
+    "wtm",
+    "devorld",
+    "devdungeos",
+    "flutter_kolkata",
+    "celt",
+    "dsc_rcciit",
+    "dsc_gce",
+    "dsc_gcect",
+    "dsc_iiitk",
+    "dsc_jis",
+    "dsc_tiu",
+    "dsc_nsec",
+    "dsc_uemk",
+    "dsc_dbcrecd",
+    "dsc_ciem",
+    "dsc_gecb",
+    "dsc_sit",
+    "dsc_bppimt",
+    "dsc_bwu",
+    "dsc_sxc",
+    "dsc_snu",
+    "dsc_iem"
+  ],
+  "home": {
+    "buttonLeftStateNotLogin": "cs",
+    "buttonLeftStateLogin": "bt",
+    "disabledLeftButton": [
+      "gs",
+      "bt",
+      "vt",
+      "rt"
+    ],
+    "buttonRightStateNotLogin": "cfscs",
+    "buttonRightStateLogin": "cfs",
+    "disabledRightButton": [
+      "cfscs",
+      "cfs",
+      "cfsc"
+    ],
+    "timer": false,
+    "cfs": true,
+    "location": true,
+    "date": true,
+    "showCommunityPartners": false
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "presents": "Presents",
+  "event": "Cloud Community Days 2023",
+  "description": "An event organized by the community that features industry experts presenting on exciting cloud topics. The shared belief powering this conference is that when developers come together to exchange ideas, amazing things can happen.",
+  "dateTitle": "Date",
+  "date": "TBD",
+  "locationTitle": "Venue",
+  "location": "TBD",
+  "buttonLeft": [
+    {
+      "id": "cs",
+      "title": "Coming Soon",
+      "color": "green",
+      "hoverColor": "blue",
+      "hyperlink": ""
+    },
+    {
+      "id": "gs",
+      "title": "Get Started",
+      "color": "red",
+      "hoverColor": "blue",
+      "hyperlink": ""
+    },
+    {
+      "id": "bt",
+      "title": "Buy Ticket",
+      "color": "yellow",
+      "hoverColor": "green",
+      "hyperlink": ""
+    },
+    {
+      "id": "vt",
+      "title": "View Ticket",
+      "color": "green",
+      "hoverColor": "yellow",
+      "hyperlink": ""
+    },
+    {
+      "id": "rt",
+      "title": "Request Ticket",
+      "color": "blue",
+      "hoverColor": "yellow",
+      "hyperlink": ""
+    }
+  ],
+  "buttonRight": [
+    {
+      "id": "cfscs",
+      "title": "CFS Coming Soon",
+      "color": "green",
+      "hoverColor": "blue",
+      "hyperlink": ""
+    },
+    {
+      "id": "cfs",
+      "title": "CFS",
+      "color": "red",
+      "hoverColor": "blue",
+      "hyperlink": ""
+    },
+    {
+      "id": "cfsc",
+      "title": "CFS Closed",
+      "color": "yellow",
+      "hoverColor": "red",
+      "hyperlink": ""
+    }
+  ]
+}

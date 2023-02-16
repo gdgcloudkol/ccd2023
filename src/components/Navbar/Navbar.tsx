@@ -1,21 +1,43 @@
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import * as Content from '../../assets/content/navbar/content.json'
-import { NavbarItemContent } from '../../assets/models/navbar/datatype'
+import { useEffect, useState } from 'react'
+import { NavbarContent, NavbarItemContent } from '../../assets/models/navbar/datatype'
+import { getContent } from '../../services/content.service'
+import { getFeature } from '../../services/feature.service'
 import { loggedIn } from '../../services/state.service'
 import Navlink from './Navlink'
 
 const NavbarPage = () => {
-  const content = Content
+  const [content, setContent] = useState({} as NavbarContent);
+  useEffect(() => {
+    getContent<NavbarContent>('navbar').then((data: void | NavbarContent) => {
+      if (data)
+        setContent(data);
+    })
+  }, [content]);
+
+  const [feature, setFeature] = useState({ navbarPermanent: false, navbarSpatialLoggedIn: false, navbarSpatialNotLoggedIn: false });
+  const [disabledRoutes, setDisabledRoutes] = useState([]);
+  useEffect(() => {
+    getFeature().then((data) => {
+      if (data) {
+        setFeature(data.navbar);
+        setDisabledRoutes(data.disabledRoutes);
+      }
+    })
+  }, [feature, disabledRoutes]);
+
   const navigation: {
-    navbar_permanent: NavbarItemContent[]
+    navbarPermanent: NavbarItemContent[]
     navbar_additional: NavbarItemContent[]
-  } = { navbar_permanent: content.navbar_permanent, navbar_additional: [] }
+  } = { navbarPermanent: feature?.navbarPermanent ? content?.navbarPermanent : [], navbar_additional: [] }
+
   if (loggedIn) {
-    navigation.navbar_additional = content.navbar_spatial_loggedin
+    navigation.navbar_additional = feature?.navbarSpatialLoggedIn ? content?.navbarSpatialLoggedIn : []
   } else {
-    navigation.navbar_additional = content.navbar_spatial_not_loggedin
+    navigation.navbar_additional = feature?.navbarSpatialNotLoggedIn ? content?.navbarSpatialNotLoggedIn : []
   }
+
   return (
     <Disclosure as="nav" className="bg-transparent w-full z-10">
       {({ open }) => (
@@ -38,20 +60,22 @@ const NavbarPage = () => {
               </div>
               <div className="flex">
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  {navigation.navbar_permanent.map((item) => (
-                    <Navlink
-                      key={item.title}
-                      label={item.title}
-                      path={item.link}
-                    />
+                  {navigation?.navbarPermanent?.map((item) => (
+                    disabledRoutes?.every(i => item.link !== i) ?
+                      <Navlink
+                        key={item.title}
+                        label={item.title}
+                        path={item.link}
+                      /> : null
                   ))}
-                  {navigation.navbar_additional.map((item) => (
-                    <Navlink
-                      key={item.title}
-                      label={item.title}
-                      path={item.link}
-                      type='button'
-                    />
+                  {navigation?.navbar_additional?.map((item) => (
+                    disabledRoutes?.every(i => item.link !== i) ?
+                      <Navlink
+                        key={item.title}
+                        label={item.title}
+                        path={item.link}
+                        type='button'
+                      /> : null
                   ))}
                 </div>
               </div>
@@ -72,22 +96,24 @@ const NavbarPage = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="pt-2 pb-3 space-y-1">
-              {navigation.navbar_permanent.map((item) => (
-                <Navlink
-                  key={item.title}
-                  label={item.title}
-                  path={item.link}
-                  variant="mobile"
-                />
+              {navigation?.navbarPermanent?.map((item) => (
+                disabledRoutes?.every(i => item.link !== i) ?
+                  <Navlink
+                    key={item.title}
+                    label={item.title}
+                    path={item.link}
+                    variant="mobile"
+                  /> : null
               ))}
-              {navigation.navbar_additional.map((item) => (
-                <Navlink
-                  key={item.title}
-                  label={item.title}
-                  path={item.link}
-                  variant= "mobile"
-                  type='button'
-                />
+              {navigation?.navbar_additional?.map((item) => (
+                disabledRoutes?.every(i => item.link !== i) ?
+                  <Navlink
+                    key={item.title}
+                    label={item.title}
+                    path={item.link}
+                    variant="mobile"
+                    type='button'
+                  /> : null
               ))}
             </div>
           </Disclosure.Panel>
