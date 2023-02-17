@@ -14,7 +14,7 @@ const NavbarPage = () => {
       if (data)
         setContent(data);
     })
-  }, [content]);
+  }, []);
 
   const [feature, setFeature] = useState({ navbarPermanent: false, navbarSpatialLoggedIn: false, navbarSpatialNotLoggedIn: false });
   const [disabledRoutes, setDisabledRoutes] = useState([]);
@@ -25,7 +25,7 @@ const NavbarPage = () => {
         setDisabledRoutes(data.disabledRoutes);
       }
     })
-  }, [feature, disabledRoutes]);
+  }, []);
 
   const navigation: {
     navbarPermanent: NavbarItemContent[]

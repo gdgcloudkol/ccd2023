@@ -12,7 +12,7 @@ const Coc = () => {
       if (data)
         setContent(data);
     })
-  }, [content]);
+  }, []);
 
   const [headingColor, setColor] = useState<string>('text-google-gray-3')
   useEffect(() => {

@@ -20,7 +20,7 @@ const Home = () => {
       if (data)
         setContent(data);
     })
-  }, [content]);
+  }, []);
 
   const [buttonLeft, setButtonLeft] = useState({} as HomeButtonContent)
   const [buttonRight, setButtonRight] = useState({} as HomeButtonContent)
@@ -38,28 +38,31 @@ const Home = () => {
     date: false,
     showCommunityPartners: false
   });
+
   useEffect(() => {
-    getFeature().then((data) => {
-      if (data) {
-        setHome(data.home);
-        if (content?.buttonLeft)
-          for (let i of content?.buttonLeft) {
-            if ((loggedIn && i?.id === data.home.buttonLeftStateLogin) || (!loggedIn && i?.id === data.home.buttonLeftStateNotLogin)) {
-              if (data.home.disabledLeftButton.every((item: string) => i.id !== item))
-                i.state = 'active'
-              setButtonLeft(i)
+    if (!buttonLeft?.id || !buttonRight?.id)
+      getFeature().then((data) => {
+        console.log(data)
+        if (data) {
+          setHome(data.home);
+          if (content?.buttonLeft)
+            for (let i of content?.buttonLeft) {
+              if ((loggedIn && i?.id === data.home.buttonLeftStateLogin) || (!loggedIn && i?.id === data.home.buttonLeftStateNotLogin)) {
+                if (data.home.disabledLeftButton.every((item: string) => i.id !== item))
+                  i.state = 'active'
+                setButtonLeft(i)
+              }
             }
-          }
-        if (content?.buttonRight)
-          for (let i of content?.buttonRight) {
-            if ((loggedIn && i?.id === data.home.buttonRightStateLogin) || (!loggedIn && i?.id === data.home.buttonRightStateNotLogin)) {
-              if (data.home.disabledRightButton.every((item: string) => i.id !== item))
-                i.state = 'active'
-              setButtonRight(i)
+          if (content?.buttonRight)
+            for (let i of content?.buttonRight) {
+              if ((loggedIn && i?.id === data.home.buttonRightStateLogin) || (!loggedIn && i?.id === data.home.buttonRightStateNotLogin)) {
+                if (data.home.disabledRightButton.every((item: string) => i.id !== item))
+                  i.state = 'active'
+                setButtonRight(i)
+              }
             }
-          }
-      }
-    })
+        }
+      })
   }, [features]);
 
   const [headingColor, setColor] = useState<string>('text-google-gray-3')
