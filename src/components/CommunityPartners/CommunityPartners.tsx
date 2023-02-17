@@ -20,7 +20,7 @@ const CommunityPartners = () => {
         setdisabledCommunityPartners(data.disabledCommunityPartners);
       }
     })
-  }, [disabledCommunityPartners]);
+  }, []);
 
   const image = useRef(null);
   const [valid, setValid] = useState(true);

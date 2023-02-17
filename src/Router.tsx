@@ -20,7 +20,7 @@ const Router = () => {
       if (data)
         setFeature(data.disabledRoutes);
     })
-  }, [feature]);
+  }, []);
 
   return (
     <BrowserRouter>
