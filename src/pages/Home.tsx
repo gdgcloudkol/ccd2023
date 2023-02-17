@@ -6,6 +6,7 @@ import { randomColor } from '../services/common.service'
 import { getContent } from '../services/content.service'
 import { getFeature } from '../services/feature.service'
 import { loggedIn } from '../services/state.service'
+import Footer from '../components/Footer/Footer'
 
 const Home = () => {
   // const [applied, setApplied] = useState(false)
@@ -122,6 +123,7 @@ const Home = () => {
       {features?.showCommunityPartners ?
         <CommunityPartners />
         : null}
+        <Footer />
     </>
   );
 };
