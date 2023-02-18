@@ -1,7 +1,12 @@
 import React from 'react';
 import { BsArrowUpSquareFill } from 'react-icons/bs';
 
-const GoTop: React.FC<any> = (props) => {
+interface PropsType {
+  showGoTop: string;
+  scrollUp: () => void;
+}
+
+const GoTop: React.FC<PropsType> = (props) => {
   return (
     <div>
       <>
