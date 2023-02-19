@@ -7,19 +7,22 @@ import GdscBanner from '../GdscBanner/GdscBanner';
 const CommunityPartners = () => {
   const [content, setContent] = useState({} as PartnersContent);
   useEffect(() => {
-    getContent<PartnersContent>('partners').then((data: void | PartnersContent) => {
-      if (data)
-        setContent(data);
-    })
+    getContent<PartnersContent>('partners').then(
+      (data: void | PartnersContent) => {
+        if (data) setContent(data);
+      }
+    );
   }, [content]);
 
-  const [disabledCommunityPartners, setdisabledCommunityPartners] = useState([]);
+  const [disabledCommunityPartners, setdisabledCommunityPartners] = useState(
+    []
+  );
   useEffect(() => {
     getFeature().then((data) => {
       if (data) {
         setdisabledCommunityPartners(data.disabledCommunityPartners);
       }
-    })
+    });
   }, []);
 
   const image = useRef(null);
@@ -28,7 +31,7 @@ const CommunityPartners = () => {
   const checkValid = () => {
     //@ts-ignore
     if (image.current.complete) setValid(true);
-  }
+  };
 
   return (
     <section
@@ -70,11 +73,11 @@ const CommunityPartners = () => {
                 )}
               </a>
             </div>
-          )
+          );
         })}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default CommunityPartners
+export default CommunityPartners;

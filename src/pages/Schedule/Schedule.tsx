@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeState } from '../../components/utils/ThemeState';
 import sessionData from './schedule.json';
 const Schedule = () => {
   const [day, setDay] = React.useState(1);
@@ -34,12 +35,14 @@ const Schedule = () => {
   return (
     <>
       <div
-        className="w-full max-w-6xl items-center justify-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-12 lg:pb-[62px] px-4"
+        className={` ${
+          ThemeState() === 'white' ? 'text-white' : ''
+        } w-full max-w-6xl items-center justify-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-12 lg:pb-[62px] px-4`}
         data-aos="fade-up"
         data-aos-delay="100"
       >
         <div className="w-full">
-          <div className="text-5xl font-medium text-g-gray-8 mb-8">
+          <div className="text-5xl font-medium text-g-gray-8 dark:text-white mb-8">
             Schedule
           </div>
           <div className="h-10 lg:h-14 w-full border-b-[1px] border-g-gray-3 flex gap-5 my-5">
@@ -114,7 +117,7 @@ const Schedule = () => {
                             data-aos="fade-right"
                             data-aos-delay="100"
                           >
-                            <div className="text-xs bg-green-100 px-2 py-1 mb-2 w-fit">
+                            <div className="text-xs bg-green-100 dark:bg-red-100 dark:text-black px-2 py-1 mb-2 w-fit">
                               {name === 'Lunch' ? 'Cafeteria' : 'Workshop Hall'}
                             </div>
                             <div className="text-2xl font-light">{name}</div>
@@ -150,7 +153,7 @@ const Schedule = () => {
                               <div className="flex items-center flex-wrap gap-2 my-2">
                                 {technologies.map((tech: any) => {
                                   return (
-                                    <div className="text-xs border-1 border-g-gray-5 bg-g-gray-1 rounded-full px-2 py-1 w-fit">
+                                    <div className="text-xs border-1 border-g-gray-5 bg-g-gray-1 dark:bg-black rounded-full px-2 py-1 w-fit">
                                       {tech.name}
                                     </div>
                                   );
@@ -209,7 +212,7 @@ const Schedule = () => {
                             data-aos="fade-right"
                             data-aos-delay="100"
                           >
-                            <div className="text-xs bg-green-100 px-2 py-1 mb-2 w-fit">
+                            <div className="text-xs bg-green-100 dark:bg-red-100 dark:text-black px-2 py-1 mb-2 w-fit">
                               Hall: {info.room}
                             </div>
                             <div className="text-2xl font-light">{name}</div>

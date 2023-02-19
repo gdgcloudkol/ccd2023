@@ -1,22 +1,29 @@
-import { Disclosure } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useEffect, useState } from 'react'
-import { NavbarContent, NavbarItemContent } from '../../assets/models/navbar/datatype'
-import { getContent } from '../../services/content.service'
-import { getFeature } from '../../services/feature.service'
-import { loggedIn } from '../../services/state.service'
-import Navlink from './Navlink'
+import { Disclosure } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useEffect, useState } from 'react';
+import {
+  NavbarContent,
+  NavbarItemContent
+} from '../../assets/models/navbar/datatype';
+import { getContent } from '../../services/content.service';
+import { getFeature } from '../../services/feature.service';
+import { loggedIn } from '../../services/state.service';
+import Toggle from '../Theme/ThemeToggle';
+import Navlink from './Navlink';
 
 const NavbarPage = () => {
   const [content, setContent] = useState({} as NavbarContent);
   useEffect(() => {
     getContent<NavbarContent>('navbar').then((data: void | NavbarContent) => {
-      if (data)
-        setContent(data);
-    })
+      if (data) setContent(data);
+    });
   }, []);
 
-  const [feature, setFeature] = useState({ navbarPermanent: false, navbarSpatialLoggedIn: false, navbarSpatialNotLoggedIn: false });
+  const [feature, setFeature] = useState({
+    navbarPermanent: false,
+    navbarSpatialLoggedIn: false,
+    navbarSpatialNotLoggedIn: false
+  });
   const [disabledRoutes, setDisabledRoutes] = useState([]);
   useEffect(() => {
     getFeature().then((data) => {
@@ -24,18 +31,25 @@ const NavbarPage = () => {
         setFeature(data.navbar);
         setDisabledRoutes(data.disabledRoutes);
       }
-    })
+    });
   }, []);
 
   const navigation: {
-    navbarPermanent: NavbarItemContent[]
-    navbar_additional: NavbarItemContent[]
-  } = { navbarPermanent: feature?.navbarPermanent ? content?.navbarPermanent : [], navbar_additional: [] }
+    navbarPermanent: NavbarItemContent[];
+    navbar_additional: NavbarItemContent[];
+  } = {
+    navbarPermanent: feature?.navbarPermanent ? content?.navbarPermanent : [],
+    navbar_additional: []
+  };
 
   if (loggedIn) {
-    navigation.navbar_additional = feature?.navbarSpatialLoggedIn ? content?.navbarSpatialLoggedIn : []
+    navigation.navbar_additional = feature?.navbarSpatialLoggedIn
+      ? content?.navbarSpatialLoggedIn
+      : [];
   } else {
-    navigation.navbar_additional = feature?.navbarSpatialNotLoggedIn ? content?.navbarSpatialNotLoggedIn : []
+    navigation.navbar_additional = feature?.navbarSpatialNotLoggedIn
+      ? content?.navbarSpatialNotLoggedIn
+      : [];
   }
 
   return (
@@ -60,23 +74,28 @@ const NavbarPage = () => {
               </div>
               <div className="flex">
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  {navigation?.navbarPermanent?.map((item) => (
-                    disabledRoutes?.every(i => item.link !== i) ?
+                  {navigation?.navbarPermanent?.map((item) =>
+                    disabledRoutes?.every((i) => item.link !== i) ? (
                       <Navlink
                         key={item.title}
                         label={item.title}
                         path={item.link}
-                      /> : null
-                  ))}
-                  {navigation?.navbar_additional?.map((item) => (
-                    disabledRoutes?.every(i => item.link !== i) ?
+                      />
+                    ) : null
+                  )}
+                  {navigation?.navbar_additional?.map((item) =>
+                    disabledRoutes?.every((i) => item.link !== i) ? (
                       <Navlink
                         key={item.title}
                         label={item.title}
                         path={item.link}
-                        type='button'
-                      /> : null
-                  ))}
+                        type="button"
+                      />
+                    ) : null
+                  )}
+                </div>
+                <div className=" hidden sm:flex items-center pl-4 -mr-4">
+                  <Toggle />
                 </div>
               </div>
 
@@ -96,31 +115,36 @@ const NavbarPage = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="pt-2 pb-3 space-y-1">
-              {navigation?.navbarPermanent?.map((item) => (
-                disabledRoutes?.every(i => item.link !== i) ?
+              {navigation?.navbarPermanent?.map((item) =>
+                disabledRoutes?.every((i) => item.link !== i) ? (
                   <Navlink
                     key={item.title}
                     label={item.title}
                     path={item.link}
                     variant="mobile"
-                  /> : null
-              ))}
-              {navigation?.navbar_additional?.map((item) => (
-                disabledRoutes?.every(i => item.link !== i) ?
+                  />
+                ) : null
+              )}
+              {navigation?.navbar_additional?.map((item) =>
+                disabledRoutes?.every((i) => item.link !== i) ? (
                   <Navlink
                     key={item.title}
                     label={item.title}
                     path={item.link}
                     variant="mobile"
-                    type='button'
-                  /> : null
-              ))}
+                    type="button"
+                  />
+                ) : null
+              )}
+              <div className="pl-2 pr-3 ">
+                <Toggle />
+              </div>
             </div>
           </Disclosure.Panel>
         </>
       )}
     </Disclosure>
-  )
-}
+  );
+};
 
-export default NavbarPage
+export default NavbarPage;
