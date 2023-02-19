@@ -38,7 +38,7 @@ const CommunityPartners = () => {
       id="partners"
       className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 space-y-8"
     >
-      <h2 className="text-center text-3xl font-bold text-gray-900">
+      <h2 className="text-center text-3xl font-bold text-gray-900 dark:text-white">
         {content?.community_partners?.title}
       </h2>
 
