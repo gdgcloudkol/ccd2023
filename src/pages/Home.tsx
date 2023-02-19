@@ -7,6 +7,7 @@ import { getContent } from '../services/content.service'
 import { getFeature } from '../services/feature.service'
 import { loggedIn } from '../services/state.service'
 import Footer from '../components/Footer/Footer'
+import Sponsors from '../components/Sponsors/Sponsors'
 
 const Home = () => {
   // const [applied, setApplied] = useState(false)
@@ -76,15 +77,21 @@ const Home = () => {
     <>
       <div
         // w-full max-w-7xl items-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-28 lg:pb-[62px] px-4
-        className={`w-full ${features?.timer ? 'max-w-7xl' : ''} justify-center items-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-28 lg:pb-[62px] px-4`}
+        className={`w-full ${
+          features?.timer ? 'max-w-7xl' : ''
+        } justify-center items-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-28 lg:pb-[62px] px-4`}
         id="home-grid"
       >
         <div className="w-full lg:w-1/2">
           <div>
             <div className="flex flex-col items-center ">
               <img className="w-2/4" src="/logo.png" alt="Logo" />
-              <p className="text-2xl pt-4 pb-5 mb-0 text-g-gray-8">{content?.presents}</p>
-              <p className={`text-4xl font-normal text-google-blue mb-6 text-center`}>
+              <p className="text-2xl pt-4 pb-5 mb-0 text-g-gray-8">
+                {content?.presents}
+              </p>
+              <p
+                className={`text-4xl font-normal text-google-blue mb-6 text-center`}
+              >
                 {content?.event}
               </p>
 
@@ -93,19 +100,37 @@ const Home = () => {
               </p>
 
               <p className="text-xl mb-6 text-g-gray-8">
-                {features?.date ? content?.dateTitle + ' : ' + content.date : ''}<sup className="mr-0.5"></sup> &nbsp;
-                {features?.location ? content?.locationTitle + ' : ' + content.location : ''}<sup className="mr-0.5"></sup>
+                {features?.date
+                  ? content?.dateTitle + ' : ' + content.date
+                  : ''}
+                <sup className="mr-0.5"></sup> &nbsp;
+                {features?.location
+                  ? content?.locationTitle + ' : ' + content.location
+                  : ''}
+                <sup className="mr-0.5"></sup>
               </p>
 
               <div className="flex flex-row items-center justify-center min-w-full">
-                <button className={`transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded bg-google-${buttonLeft?.color} hover:bg-google-${buttonLeft?.hoverColor} cursor:${buttonLeft?.state === 'disabled' ? 'not-allowed' : 'timer'}`}>
+                <button
+                  className={`transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded bg-google-${
+                    buttonLeft?.color
+                  } hover:bg-google-${buttonLeft?.hoverColor} cursor:${
+                    buttonLeft?.state === 'disabled' ? 'not-allowed' : 'timer'
+                  }`}
+                >
                   {buttonLeft?.title}
                 </button>
 
                 <a
-                  className={`transition ease-in-out ml-6 duration-300 text-center w-fit rounded bg-google-${buttonRight?.color} hover:bg-google-${buttonRight?.hoverColor} cursor:${buttonRight?.state === 'disabled' ? 'not-allowed' : 'timer'}`}
+                  className={`transition ease-in-out ml-6 duration-300 text-center w-fit rounded bg-google-${
+                    buttonRight?.color
+                  } hover:bg-google-${buttonRight?.hoverColor} cursor:${
+                    buttonRight?.state === 'disabled' ? 'not-allowed' : 'timer'
+                  }`}
                   href={buttonRight?.hyperLink}
-                  aria-disabled={buttonLeft?.state === 'disabled' ? true : false}
+                  aria-disabled={
+                    buttonLeft?.state === 'disabled' ? true : false
+                  }
                 >
                   <button className="text-white h-fit w-fit text-base py-2 px-4 rounded ">
                     {buttonRight?.title}
@@ -115,15 +140,19 @@ const Home = () => {
             </div>
           </div>
         </div>
-        {features?.timer ?
+        {features?.timer ? (
           <div className="w-full lg:w-1/2 ">
             <Countdown />
-          </div> : null}
+          </div>
+        ) : null}
       </div>
-      {features?.showCommunityPartners ?
-        <CommunityPartners />
-        : null}
-        <Footer />
+      {features?.showCommunityPartners ? (
+        <>
+          <Sponsors />
+          <CommunityPartners />
+        </>
+      ) : null}
+      <Footer />
     </>
   );
 };

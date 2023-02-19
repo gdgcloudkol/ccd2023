@@ -90,6 +90,6 @@
     "cfs": true,
     "location": true,
     "date": true,
-    "showCommunityPartners": false
+    "showCommunityPartners": true
   }
 }
