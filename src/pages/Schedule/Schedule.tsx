@@ -78,18 +78,14 @@ const Schedule = () => {
               id="fade-in-1"
               className={'box' + (day === 1 ? '' : ' inactive')}
             >
-              {dayOneSessionData.timeSlots.map((slot: any) => {
+              {dayOneSessionData.timeSlots.map((slot: any, key) => {
                 const startTime = getTime(slot['rooms'][0].session.startsAt);
                 const endTime = getTime(slot['rooms'][0].session.endsAt);
                 const rooms = slot['rooms'];
 
                 return (
-                  <div className="flex w-full lg:w-auto ">
-                    <div
-                      className="w-3/10 lg:w-1/5 border-b-[1px]  lg:border-r-[1px] border-g-gray-3 flex flex-col items-end px-3 py-3 text-right lg:text-start"
-                      data-aos="fade-left"
-                      data-aos-delay="100"
-                    >
+                  <div key={key} className="flex w-full lg:w-auto ">
+                    <div className="w-3/10 lg:w-1/5 border-b-[1px]  lg:border-r-[1px] border-g-gray-3 flex flex-col items-end px-3 py-3 text-right lg:text-start">
                       <div className="text-base lg:text-xl"> {startTime}</div>
                       <div className="text-xs lg:text-sm font-light">
                         {endTime}
