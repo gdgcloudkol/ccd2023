@@ -3,6 +3,8 @@ import './App.css';
 import GoTop from './components/GoTop/GoTop';
 import Loading from './components/Loader/Loader';
 import Router from './Router';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
   const [initialLoad, setLoad] = React.useState<boolean>(false);
@@ -27,6 +29,18 @@ function App() {
     const event = window.addEventListener('scroll', handleGoTopButton);
     return () => window.removeEventListener('scroll', handleGoTopButton);
   }, [scrollPosition]);
+
+  React.useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    return () => {
+      AOS.refresh();
+    };
+  }, []);
+
   // React.useEffect(() => {
   //   setTimeout(() => {
   //     setLoad(false)
