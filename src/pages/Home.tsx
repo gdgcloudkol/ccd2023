@@ -132,7 +132,7 @@ const Home = () => {
                     buttonLeft?.state === 'disabled' ? true : false
                   }
                 >
-                  <button className="text-white h-fit w-fit text-base py-2 px-4 rounded ">
+                  <button className="text-white h-fit w-fit img-borde text-base py-2 px-4 rounded ">
                     {buttonRight?.title}
                   </button>
                 </a>

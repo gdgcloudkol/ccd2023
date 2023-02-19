@@ -45,8 +45,8 @@ const Sponsors = () => {
         Title Sponsor
       </div>
       <div className="flex flex-wrap justify-evenly items-center ">
-        <div className="box-border p-3.75 w-2/5 h-[8rem] min-h-80 min-w-230 bg-white border-solid border-[2px] border-black rounded-lg relative mt-4 hover:scale-105 hover:ease-in duration-300">
-          <div className="absolute -top-1.25 left-1/2 -translate-x-1/2 -translate-y-[0.35rem] rounded-full bg-[#db3236] h-full w-1/3 w-3.14 h-2.5 z-0 "></div>
+        <div className="box-border p-3.75 w-2/5 h-[8rem] min-h-80 min-w-230 bg-white img-border rounded-lg relative mt-4 hover:scale-105 hover:ease-in duration-100">
+          {/* <div className="absolute -top-1.25 left-1/2 -translate-x-1/2 -translate-y-[0.35rem] rounded-full bg-[#db3236] h-full w-1/3 w-3.14 h-2.5 z-0 "></div> */}
           <div className="h-full w-fill justify-center">
             <a
               href="https://developers.google.com/"
@@ -67,8 +67,8 @@ const Sponsors = () => {
         GOLD Sponsor
       </div>
       <div className="flex flex-wrap justify-evenly items-center">
-        <div className="box-border p-3.75 w-2/5 h-[8rem] min-h-80 min-w-230 bg-white border-solid border-[2px] border-black rounded-lg relative mt-4 hover:scale-105 hover:ease-in duration-300">
-          <div className="absolute -top-1.25 left-1/2 -translate-x-1/2 -translate-y-[0.35rem] rounded-full bg-[#f4c20d] h-full w-1/3 w-3.14 h-2.5 z-0"></div>
+        <div className="box-border p-3.75 w-2/5 h-[8rem] min-h-80 min-w-230 bg-white img-border rounded-lg relative mt-4 hover:scale-105 hover:ease-in duration-300">
+          {/* <div className="absolute -top-1.25 left-1/2 -translate-x-1/2 -translate-y-[0.35rem] rounded-full bg-[#f4c20d] h-full w-1/3 w-3.14 h-2.5 z-0"></div> */}
           <a
             href="https://developers.google.com/"
             className="no-underline"
@@ -87,8 +87,8 @@ const Sponsors = () => {
         SILVER Sponsor
       </div>
       <div className="flex flex-wrap justify-evenly items-center">
-        <div className="box-border p-3.75 w-2/5 h-[8rem] min-h-80 min-w-230 bg-white border-solid border-[2px] border-black rounded-lg relative mt-4 hover:scale-105 hover:ease-in duration-300">
-          <div className="absolute -top-1.25 left-1/2 -translate-x-1/2 -translate-y-[0.35rem] rounded-full bg-[#9CA3AF] h-full w-1/3 w-3.14 h-2.5 z-0"></div>
+        <div className="box-border p-3.75 w-2/5 h-[8rem] min-h-80 min-w-230 bg-white img-border rounded-lg relative mt-4 hover:scale-105 hover:ease-in duration-300">
+          {/* <div className="absolute -top-1.25 left-1/2 -translate-x-1/2 -translate-y-[0.35rem] rounded-full bg-[#9CA3AF] h-full w-1/3 w-3.14 h-2.5 z-0"></div> */}
           <a
             href="https://developers.google.com/"
             className="no-underline"
@@ -107,8 +107,8 @@ const Sponsors = () => {
         MEDIA Partners
       </div>
       <div className="flex flex-wrap justify-evenly items-center ">
-        <div className="box-border p-3.75 w-2/5 h-[8rem] min-h-80 min-w-230 bg-white border-solid border-[2px] border-black rounded-lg relative mt-4 hover:scale-105 hover:ease-in duration-300">
-          <div className="absolute -top-1.25 left-1/2 -translate-x-1/2 -translate-y-[0.35rem] rounded-full bg-[#4885ed] h-full w-1/3 w-3.14 h-2.5 z-0"></div>
+        <div className="box-border p-3.75 w-2/5 h-[8rem] min-h-80 min-w-230 bg-white img-border rounded-lg relative mt-4 hover:scale-105 hover:ease-in duration-300">
+          {/* <div className="absolute -top-1.25 left-1/2 -translate-x-1/2 -translate-y-[0.35rem] rounded-full bg-[#4885ed] h-full w-1/3 w-3.14 h-2.5 z-0"></div> */}
           <a
             href="https://developers.google.com/"
             className="no-underline"
