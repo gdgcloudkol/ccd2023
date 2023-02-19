@@ -33,7 +33,11 @@ const Schedule = () => {
 
   return (
     <>
-      <div className="w-full max-w-6xl items-center justify-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-12 lg:pb-[62px] px-4">
+      <div
+        className="w-full max-w-6xl items-center justify-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-12 lg:pb-[62px] px-4"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
         <div className="w-full">
           <div className="text-5xl font-medium text-g-gray-8 mb-8">
             Schedule
@@ -78,7 +82,11 @@ const Schedule = () => {
 
                 return (
                   <div className="flex w-full lg:w-auto ">
-                    <div className="w-3/10 lg:w-1/5 border-b-[1px]  lg:border-r-[1px] border-g-gray-3 flex flex-col items-end px-3 py-3 text-right lg:text-start">
+                    <div
+                      className="w-3/10 lg:w-1/5 border-b-[1px]  lg:border-r-[1px] border-g-gray-3 flex flex-col items-end px-3 py-3 text-right lg:text-start"
+                      data-aos="fade-left"
+                      data-aos-delay="100"
+                    >
                       <div className="text-base lg:text-xl"> {startTime}</div>
                       <div className="text-xs lg:text-sm font-light">
                         {endTime}
@@ -103,6 +111,8 @@ const Schedule = () => {
                                 ? 'mt-4 pt-4 border-t-[1px] border-g-gray-3'
                                 : ''
                             }
+                            data-aos="fade-right"
+                            data-aos-delay="100"
                           >
                             <div className="text-xs bg-green-100 px-2 py-1 mb-2 w-fit">
                               {name === 'Lunch' ? 'Cafeteria' : 'Workshop Hall'}
@@ -167,7 +177,11 @@ const Schedule = () => {
 
                 return (
                   <div className="flex w-full lg:w-auto ">
-                    <div className="w-3/10 lg:w-1/5 border-b-[1px] lg:border-r-[0px] lg:border-r-[1px] border-g-gray-3 flex flex-col items-end px-3 py-3 text-right lg:text-start">
+                    <div
+                      className="w-3/10 lg:w-1/5 border-b-[1px] lg:border-r-[1px] border-g-gray-3 flex flex-col items-end px-3 py-3 text-right lg:text-start"
+                      data-aos="fade-left"
+                      data-aos-delay="100"
+                    >
                       <div className="text-base lg:text-xl"> {startTime}</div>
                       <div className="text-xs lg:text-sm font-light">
                         {endTime}
@@ -192,6 +206,8 @@ const Schedule = () => {
                                 ? 'mt-4 pt-4 border-t-[1px] border-g-gray-3'
                                 : ''
                             }
+                            data-aos="fade-right"
+                            data-aos-delay="100"
                           >
                             <div className="text-xs bg-green-100 px-2 py-1 mb-2 w-fit">
                               Hall: {info.room}
