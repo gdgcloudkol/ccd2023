@@ -10,6 +10,7 @@ export interface HomeButtonContent {
 export interface HomeContent {
   presents: string;
   event: string;
+  hashtagEventName: string;
   description: string;
   dateTitle: string;
   date: string;
