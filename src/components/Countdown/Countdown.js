@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import style from './style.css'
 
 function Countdown() {
-  const [isReset, setIsReset] = useState(false)
+  const [isReset] = useState(false)
 
   const [loaded, setLoaded] = useState(false)
 
@@ -15,7 +15,7 @@ function Countdown() {
       tempController.reset(isReset)
       tempController.init()
     }
-  }, [loaded])
+  }, [loaded, isReset])
 
   return (
     <div className="countdownContainer" id="timer">
