@@ -88,8 +88,18 @@
     ],
     "timer": false,
     "cfs": true,
-    "location": true,
-    "date": true,
+    "location": false,
+    "date": false,
     "showCommunityPartners": true
+  },
+  "disabledFooterContent": {
+    "footer": true,
+    "section": [
+      {
+        "title": "About",
+        "hide": false,
+        "nOI": 3
+      }
+    ]
   }
 }

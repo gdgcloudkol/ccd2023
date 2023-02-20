@@ -48,7 +48,7 @@ const Sponsors = () => {
         >
           <path
             stroke="#db3236"
-            stroke-width="9"
+            strokeWidth="9"
             d="M1.00061 11.9939C39.5016 5.88017 70.8093 4.74491 80.3785 4.82192C89.9477 4.89892 136.465 6.78043 170.019 14.4154"
             opacity=".6"
             className="colorStroke4AE5EF svgStroke"

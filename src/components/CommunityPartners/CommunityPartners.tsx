@@ -45,35 +45,36 @@ const CommunityPartners = () => {
       <div className="grid grid-cols-1 gap-8 md:grid-cols-6 lg:grid-cols-4 place-items-center">
         {content?.community_partners?.sponsors?.map((sponsor) => {
           return (
-            <div
-              className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 img-border h-full w-full"
-              key={sponsor.sponsorId}
-            >
-              <a
-                className="w-fit rounded cursor-pointer flex justify-center items-center"
-                href={sponsor.hyperlink}
-                target="_blank"
-                rel="noreferrer"
+            (disabledCommunityPartners.every(i => i !== sponsor.sponsorId)) ? (
+              <div
+                className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 img-border h-full w-full"
+                key={sponsor.sponsorId}
               >
-                {/* Put all images in the assets/images/communityPartners/ */}
-                {sponsor.sponsorId.startsWith('dsc') ? (
-                  <GdscBanner label={sponsor?.sponsorName} />
-                ) : valid ? (
-                  <img
-                    src={`../../assets/images/communityPartners/${sponsor.sponsorId}.png`}
-                    onLoad={checkValid}
-                    onError={() => setValid(false)}
-                    ref={image}
-                    alt={`${sponsor.sponsorName} logo`}
-                    className="w-full h-20 object-contain"
-                    aria-label={`${sponsor.sponsorName} logo`}
-                  />
-                ) : (
-                  <p>{sponsor?.sponsorName}</p>
-                )}
-              </a>
-            </div>
-          );
+                <a
+                  className="w-fit rounded cursor-pointer flex justify-center items-center"
+                  href={sponsor.hyperlink}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {/* Put all images in the assets/images/communityPartners/ */}
+                  {sponsor.sponsorId.startsWith('dsc') ? (
+                    <GdscBanner label={sponsor?.sponsorName} />
+                  ) : valid ? (
+                    <img
+                      src={`../../assets/images/communityPartners/${sponsor.sponsorId}.png`}
+                      onLoad={checkValid}
+                      onError={() => setValid(false)}
+                      ref={image}
+                      alt={`${sponsor.sponsorName} logo`}
+                      className="w-full h-20 object-contain"
+                      aria-label={`${sponsor.sponsorName} logo`}
+                    />
+                  ) : (
+                    <p>{sponsor?.sponsorName}</p>
+                  )}
+                </a>
+              </div>
+            ) : null)
         })}
       </div>
     </section>

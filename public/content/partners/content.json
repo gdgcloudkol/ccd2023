@@ -47,6 +47,11 @@
     "title": "Community Partners",
     "sponsors": [
       {
+        "sponsorId": "dsc_test",
+        "sponsorName": "Test test TeSt tEsT",
+        "hyperlink": "/"
+      },
+      {
         "sponsorId": "h4b",
         "sponsorName": "Hack 4 Bengal",
         "hyperlink": "https://www.hack4bengal.tech/"
