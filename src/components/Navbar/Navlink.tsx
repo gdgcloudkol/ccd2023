@@ -1,7 +1,7 @@
 import { Disclosure } from '@headlessui/react'
 import React, { useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { randomColor } from '../../services/common.service'
+import { textRandomColor } from '../../services/common.service'
 import {
   ACTIVE_CLASS_DESKTOP,
   ACTIVE_CLASS_MOBILE,
@@ -25,7 +25,7 @@ const Navlink = ({ variant = 'desktop', path, label, type = 'none' }: NavlinkPro
   const [underlyingColor, setColor] = React.useState<string>('text-google-gray-3')
 
   useEffect(() => {
-    return setColor(randomColor())
+    return setColor(textRandomColor())
   }, [])
 
   const getVariant = (): JSX.Element => {
@@ -71,7 +71,7 @@ const Navlink = ({ variant = 'desktop', path, label, type = 'none' }: NavlinkPro
               <Link
                 to={path}
                 className={`${isActive ? ACTIVE_CLASS_DESKTOP : INACTIVE_CLASS_DESKTOP
-                  } hover:border-${underlyingColor}  inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                  } hover:border-${underlyingColor}  inline-flex items-center px-1 pt-4 border-b-2 text-sm font-medium h-12`}
               >
                 {label}
               </Link>

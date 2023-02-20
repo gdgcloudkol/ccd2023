@@ -1,6 +1,6 @@
 import React from 'react';
 import { BsArrowUpSquareFill } from 'react-icons/bs';
-import { ThemeState } from '../utils/ThemeState';
+import { CurrentTheme } from '../../services/common.service';
 
 interface PropsType {
   showGoTop: string;
@@ -14,7 +14,7 @@ const GoTop: React.FC<PropsType> = (props) => {
         <div className={`${props.showGoTop}`} onClick={props.scrollUp}>
           <button className=" block">
             <div className=" block fixed w-10 h-10 rounded-3xl right-4 bottom-4  cursor-pointer leading-7 text-center ">
-              <BsArrowUpSquareFill color={ThemeState()} size={30} />
+              <BsArrowUpSquareFill color={CurrentTheme()} size={30} />
             </div>
           </button>
         </div>

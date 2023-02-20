@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { COCContent } from '../assets/models/coc/datatype';
-import { randomColor } from '../services/common.service';
+import { textRandomColor } from '../services/common.service';
 import { getContent } from '../services/content.service';
 
 const Coc = () => {
@@ -14,7 +14,7 @@ const Coc = () => {
 
   const [headingColor, setColor] = useState<string>('text-google-gray-3');
   useEffect(() => {
-    return setColor(randomColor());
+    return setColor(textRandomColor());
   }, []);
 
   return (

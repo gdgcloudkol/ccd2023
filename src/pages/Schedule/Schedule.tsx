@@ -1,6 +1,7 @@
 import React from 'react';
-import { ThemeState } from '../../components/utils/ThemeState';
+import { CurrentTheme } from '../../services/common.service';
 import sessionData from './schedule.json';
+
 const Schedule = () => {
   const [day, setDay] = React.useState(1);
   const [containerHeight, setContainerHeight] = React.useState('auto');
@@ -16,8 +17,8 @@ const Schedule = () => {
       d.getHours() === 0
         ? 12
         : d.getHours() > 12
-        ? d.getHours() - 12
-        : d.getHours();
+          ? d.getHours() - 12
+          : d.getHours();
     const min = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();
     const ampm = d.getHours() < 12 ? 'AM' : 'PM';
     const time = hour + ':' + min + ' ' + ampm;
@@ -35,9 +36,8 @@ const Schedule = () => {
   return (
     <>
       <div
-        className={` ${
-          ThemeState() === 'white' ? 'text-white' : ''
-        } w-full max-w-6xl items-center justify-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-12 lg:pb-[62px] px-4`}
+        className={` ${CurrentTheme() === 'white' ? 'text-white' : ''
+          } w-full max-w-6xl items-center justify-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-12 lg:pb-[62px] px-4`}
         data-aos="fade-up"
         data-aos-delay="100"
       >

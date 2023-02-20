@@ -1,5 +1,12 @@
 {
   "accountType": "Account Type",
+  "speaker": "Speaker Profile",
+  "speakerDetails": {
+    "bio": "Bio",
+    "city": "City",
+    "accomodation": "Accomodation Required",
+    "sampleRecordings": "Sample Recordings"
+  },
   "profile": {
     "fullName": "Full Name",
     "displayName": "Display Name",
@@ -21,6 +28,7 @@
     "website": "Website"
   },
   "misc": {
+    "theme": "Default Theme",
     "foodPref": "Food Preference",
     "thisrt": "T Shirt Size"
   },

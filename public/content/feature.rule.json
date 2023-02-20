@@ -45,6 +45,12 @@
     "/login",
     "/profile"
   ],
+  "disabledPartnerTitles": [
+    "Also Backed By"
+  ],
+  "disabledPartners": [
+    "sessonize"
+  ],
   "disabledCommunityPartners": [
     "h4b",
     "wtm",
@@ -101,5 +107,6 @@
         "nOI": 3
       }
     ]
-  }
+  },
+  "disabledSocial": []
 }
