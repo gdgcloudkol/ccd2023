@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FAQContent } from '../assets/models/faq/datatype';
-import { randomColor } from '../services/common.service';
+import { textRandomColor } from '../services/common.service';
 import { getContent } from '../services/content.service';
 
 const FaqPage = () => {
@@ -12,29 +12,23 @@ const FaqPage = () => {
     });
   }, []);
 
-  const FAQ: FAQContent = {
-    title: content?.title,
-    description: content?.description,
-    faq: content?.faq
-  };
-
   const [selectedQuestion, setSelectedQuestion] = useState<number>(
-    FAQ?.faq?.length
+    content?.faq?.length
   );
   const [borderOpen, setOpen] = useState<boolean>(false);
-  const [headingColor, setColor] = useState<string>('text-google-gray-3');
-
+  
   const openAQuestion = (index: number) => {
     setSelectedQuestion(index);
     setOpen(true);
   };
-
+  
   const questionSelector = (index: number) => {
     openAQuestion(index);
   };
-
+  
+  const [headingColor, setColor] = useState<string>('text-google-gray-3');
   useEffect(() => {
-    return setColor(randomColor());
+    return setColor(textRandomColor());
   }, []);
 
   return (
@@ -44,17 +38,17 @@ const FaqPage = () => {
         data-aos="fade-in"
       >
         <div className={`text-4xl font-bold ${headingColor} mb-4`}>
-          {FAQ?.title}
+          {content?.title}
         </div>
         <div>
           <p
             className=" text-lg text-justify lg:text-clip text-g-gray-7 dark:text-white"
-            dangerouslySetInnerHTML={{ __html: FAQ?.description?.substring(3) }}
+            dangerouslySetInnerHTML={{ __html: content?.description?.substring(3) }}
           ></p>
         </div>
       </div>
       <div className="lg:max-w-5xl md:px-10 px-6 my-10 lg:my-12 md:my-16 mx-auto space-y-2">
-        {FAQ?.faq?.map((el, i) => {
+        {content?.faq?.map((el, i) => {
           return (
             <div data-aos="fade-in" data-aos-delay={i * 100} key={el.question}>
               <div

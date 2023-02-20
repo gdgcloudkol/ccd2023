@@ -4,11 +4,10 @@ import CommunityPartners from '../components/CommunityPartners/CommunityPartners
 import Countdown from '../components/Countdown/Countdown'
 import Footer from '../components/Footer/Footer'
 import Sponsors from '../components/Sponsors/Sponsors'
-import { ThemeState } from '../components/utils/ThemeState'
+import { textRandomColor } from '../services/common.service'
 import { getContent } from '../services/content.service'
 import { getFeature } from '../services/feature.service'
 import { loggedIn } from '../services/state.service'
-import { randomColor } from '../services/common.service'
 
 const Home = () => {
   // const [applied, setApplied] = useState(false)
@@ -82,7 +81,7 @@ const Home = () => {
 
   const [headingColor, setColor] = useState<string>('text-google-gray-3')
   useEffect(() => {
-    return setColor(randomColor());
+    return setColor(textRandomColor());
   }, []);
 
   return (
@@ -96,12 +95,11 @@ const Home = () => {
       >
         <div className="w-full lg:w-1/2">
           <div>
-            <div className="flex flex-col items-start pl-10">
+            <div className="flex flex-col lg:items-start lg:pl-10">
               <img
-                className={`w-2/4 ${ThemeState() === 'white' ? ' filter invert invisible-1' : ' '
-                  }`}
-                src="/logo.png"
-                alt="Logo"
+                className={`lg:w-2/4`}
+                src="/images/logos/logo.svg"
+                alt="GDG Cloud Kolkata Logo"
               />
               <p
                 className={`text-4xl font-normal text-google-blue mb-6 text-center`}

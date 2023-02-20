@@ -36,26 +36,26 @@ const Footer = () => {
           <hr className="my-6 border-gray-200 dark:border-g-gray-9 sm:mx-auto lg:my-8" />
           <div className="md:flex md:justify-start">
             <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-              {content?.sections?.map((el, i) => {
+              {content?.sections?.map((sec, i) => {
                 return (
-                  ((disabledFooterContent?.section[i]?.title === el.title &&
+                  ((disabledFooterContent?.section[i]?.title === sec.title &&
                     !disabledFooterContent?.section[i]?.hide) ||
                     !disabledFooterContent?.section[i]?.hide) ? (
                     <div key={'section-' + i}>
                       <h2 className="mb-6 text-sm font-semibold text-gray-900 dark:text-white uppercase ">
-                        {el.title}
+                        {sec.title}
                       </h2>
                       <ul className="text-gray-600 dark:text-g-gray-4  ">
-                        {el?.list.map((el, j) => {
+                        {sec?.list.map((li, j) => {
                           return (
                             (!disabledFooterContent?.section[i]?.nOI ||
                               disabledFooterContent?.section[i]?.nOI - 1 >= j) ? (
                               <li key={'list-' + j} className="mb-2">
                                 <a
-                                  href={el?.hyperlink}
+                                  href={li?.hyperlink}
                                   className="hover:underline"
                                 >
-                                  {el?.title}
+                                  {li?.title}
                                 </a>
                               </li>
                             ) : null

@@ -19,7 +19,7 @@ const NavbarPage = () => {
     });
   }, []);
 
-  const [feature, setFeature] = useState({
+  const [rule, setFeature] = useState({
     navbarPermanent: false,
     navbarSpatialLoggedIn: false,
     navbarSpatialNotLoggedIn: false
@@ -38,16 +38,16 @@ const NavbarPage = () => {
     navbarPermanent: NavbarItemContent[];
     navbar_additional: NavbarItemContent[];
   } = {
-    navbarPermanent: feature?.navbarPermanent ? content?.navbarPermanent : [],
+    navbarPermanent: rule?.navbarPermanent ? content?.navbarPermanent : [],
     navbar_additional: []
   };
 
   if (loggedIn) {
-    navigation.navbar_additional = feature?.navbarSpatialLoggedIn
+    navigation.navbar_additional = rule?.navbarSpatialLoggedIn
       ? content?.navbarSpatialLoggedIn
       : [];
   } else {
-    navigation.navbar_additional = feature?.navbarSpatialNotLoggedIn
+    navigation.navbar_additional = rule?.navbarSpatialNotLoggedIn
       ? content?.navbarSpatialNotLoggedIn
       : [];
   }
@@ -56,18 +56,18 @@ const NavbarPage = () => {
     <Disclosure as="nav" className="bg-transparent w-full z-10">
       {({ open }) => (
         <>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
+          <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-20">
+            <div className="flex justify-between">
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-12 w-auto mt-2"
-                    src="/logo.svg"
+                    src="/images/logos/cloud_kol_logo.svg"
                     alt="GDG Cloud Kolkata Logo"
                   />
                   <img
                     className="hidden lg:block h-12 w-auto mt-3"
-                    src="/logo.svg"
+                    src="/images/logos/cloud_kol_logo.svg"
                     alt="GDG Cloud Kolkata Logo"
                   />
                 </div>

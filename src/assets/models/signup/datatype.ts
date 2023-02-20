@@ -2,12 +2,18 @@ import { AccountType } from "../datatype";
 
 export interface SignupData {
   accountType: AccountType;
+  speaker: boolean,
+  speakerDetails: {
+    bio: string,
+    city: string,
+    accomodation: boolean,
+    sampleRecordings: string[];
+  },
   profile: {
     fullName: string;
     displayName: string;
     email: string;
     password: string;
-    confirmPassword: string;
     countryCode: string;
     phNo: string;
     college: string;
@@ -23,13 +29,21 @@ export interface SignupData {
     website?: string;
   },
   misc: {
-    foodPref?: string;
-    thisrt?: string;
+    theme?: 'light' | 'dark';
+    foodPref?: 'veg' | 'non-veg';
+    thisrt?: 's' | 'm' | 'xl' | 'xxl';
   }
 }
 
 export interface SignupContent {
   accountType: string;
+  speaker: string,
+  speakerDetails: {
+    bio: string,
+    city: string,
+    accomodation: string,
+    sampleRecordings: string;
+  },
   profile: {
     fullName: string;
     displayName: string;
@@ -41,18 +55,19 @@ export interface SignupContent {
     college: string;
     course: string;
     graduation: string;
-    company?: string;
-    role?: string;
+    company: string;
+    role: string;
   },
   social: {
-    cloudskillboost?: string;
-    linkedin?: string;
-    github?: string;
-    website?: string;
+    cloudskillboost: string;
+    linkedin: string;
+    github: string;
+    website: string;
   },
   misc: {
-    foodPref?: string;
-    thisrt?: string;
+    theme: string;
+    foodPref: string;
+    thisrt: string;
   },
   button: {
     submit: string;
