@@ -47,7 +47,7 @@ function App() {
   //   }, 3500)
   // }, [])
   return (
-    <div className="App">
+    <div className="App min-h-screen">
       <div ref={refScrollUp}>
         <GoTop showGoTop={showGoTop} scrollUp={handleScrollUp} />
       </div>

@@ -7,19 +7,22 @@ import GdscBanner from '../GdscBanner/GdscBanner';
 const CommunityPartners = () => {
   const [content, setContent] = useState({} as PartnersContent);
   useEffect(() => {
-    getContent<PartnersContent>('partners').then((data: void | PartnersContent) => {
-      if (data)
-        setContent(data);
-    })
+    getContent<PartnersContent>('partners').then(
+      (data: void | PartnersContent) => {
+        if (data) setContent(data);
+      }
+    );
   }, [content]);
 
-  const [disabledCommunityPartners, setdisabledCommunityPartners] = useState([]);
+  const [disabledCommunityPartners, setdisabledCommunityPartners] = useState(
+    []
+  );
   useEffect(() => {
     getFeature().then((data) => {
       if (data) {
         setdisabledCommunityPartners(data.disabledCommunityPartners);
       }
-    })
+    });
   }, []);
 
   const image = useRef(null);
@@ -28,14 +31,14 @@ const CommunityPartners = () => {
   const checkValid = () => {
     //@ts-ignore
     if (image.current.complete) setValid(true);
-  }
+  };
 
   return (
     <section
       id="partners"
       className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 space-y-8"
     >
-      <h2 className="text-center text-3xl font-bold text-gray-900">
+      <h2 className="text-center text-3xl font-bold text-gray-900 dark:text-white">
         {content?.community_partners?.title}
       </h2>
 
@@ -70,11 +73,11 @@ const CommunityPartners = () => {
                 )}
               </a>
             </div>
-          )
+          );
         })}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default CommunityPartners
+export default CommunityPartners;

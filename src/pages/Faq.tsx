@@ -38,7 +38,7 @@ const FaqPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className=" h-full flex flex-col flex-1 dark:bg-black">
       <div
         className="lg:max-w-5xl md:px-10 px-6 mx-auto my-6"
         data-aos="fade-in"
@@ -48,7 +48,7 @@ const FaqPage = () => {
         </div>
         <div>
           <p
-            className=" text-lg text-justify lg:text-clip text-g-gray-7"
+            className=" text-lg text-justify lg:text-clip text-g-gray-7 dark:text-white"
             dangerouslySetInnerHTML={{ __html: FAQ?.description?.substring(3) }}
           ></p>
         </div>
@@ -61,8 +61,8 @@ const FaqPage = () => {
                 className={` border-2 ${
                   borderOpen && selectedQuestion === i
                     ? 'border-b-google-blue border-t-google-red border-r-google-yellow border-l-google-green'
-                    : 'border-g-gray-3'
-                }  rounded-md p-3 text-g-gray-7 hover:text-g-gray-9 hover:bg-g-gray-1 transition-all duration-400 ease-in-out`}
+                    : 'border-g-gray-3 dark:border'
+                }  rounded-md p-3 text-g-gray-7 dark:text-white hover:text-g-gray-9 hover:bg-g-gray-1 transition-all duration-400 ease-in-out dark:hover:bg-g-gray-9`}
                 onClick={() => questionSelector(i)}
               >
                 <div className="flex items-center cursor-pointer ">
@@ -75,7 +75,7 @@ const FaqPage = () => {
                     selectedQuestion === i ? 'max-h-72' : 'max-h-0'
                   } overflow-hidden transition-all duration-700`}
                 >
-                  <div className="text-g-gray-8 pl-3 text-md font-normal md:pl-4 lg:pl-6 py-2 space-y-3">
+                  <div className="text-g-gray-8 dark:text-g-gray-4 pl-3 text-md font-normal md:pl-4 lg:pl-6 py-2 space-y-3">
                     <div>
                       {el.answer.substring(0, 3) === '~!~' ? (
                         <p

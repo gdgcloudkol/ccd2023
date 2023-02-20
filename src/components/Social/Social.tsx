@@ -10,7 +10,9 @@ import RandomColorWrapper from '../utils/RandomColorWrapper';
 const Social = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full space-y-4">
-      <div className="text-sm text-gray-600 ">Connect with us</div>
+      <div className="text-sm text-gray-600 dark:text-white ">
+        Connect with us
+      </div>
 
       <div className="flex flex-row items-center justify-center space-x-4">
         <a

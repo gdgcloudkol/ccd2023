@@ -34,7 +34,7 @@ const Sponsors = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-6xl flex justify-center font-normal mt-12 text-g-gray-8">
+      <div className="text-6xl flex justify-center font-normal mt-12 text-g-gray-8 dark:text-white">
         Partners
       </div>
       <div className=" flex justify-center">
@@ -56,7 +56,7 @@ const Sponsors = () => {
         </svg>
       </div>
 
-      <p className="mb-4 lg:mb-16 font-light text-center text-black mt-8 sm:text-xl ">
+      <p className="mb-4 lg:mb-16 font-light text-center text-black dark:text-white mt-8 sm:text-xl ">
         We're thankful to all our sponsors who are making CCD 2023 Kolkata
         amazing. <br />
         To become a sponsor, please email as at{' '}

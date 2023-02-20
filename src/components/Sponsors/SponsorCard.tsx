@@ -1,3 +1,5 @@
+import { ThemeState } from '../utils/ThemeState';
+
 interface ISponsorCardProps {
   name: string;
   image: string;
@@ -8,7 +10,7 @@ interface ISponsorCardProps {
 const SponsorCard = ({ name, image, link, type }: ISponsorCardProps) => {
   return (
     <div className="flex flex-col items-center justify-center space-y-4 max-w-xs">
-      <p className="text-2xl font-bold text-gray-900 uppercase tracking-widest leading-loose">
+      <p className="text-2xl font-bold text-gray-900 dark:text-white uppercase tracking-widest leading-loose">
         {type}
       </p>
       <a
@@ -18,9 +20,11 @@ const SponsorCard = ({ name, image, link, type }: ISponsorCardProps) => {
         rel="noreferrer"
       >
         <img
+          className={`w-full h-32 object-contain img-border ${
+            ThemeState() === 'white' ? ' filter invert invisible-1' : ' '
+          }`}
           src={image}
           alt={`${name} logo`}
-          className="w-full h-32 object-contain img-border"
           aria-label={`${name} logo`}
         />
       </a>

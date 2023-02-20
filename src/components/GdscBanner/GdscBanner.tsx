@@ -7,14 +7,14 @@ const GdscBanner = ({ label }: { label: string }) => {
         alt={`${label} logo`}
         aria-label={`${label} logo`}
       />
-      <p className="flex flex-col items-center justify-center space-y-1 text-center text-[#757575]">
+      <p className="flex flex-col items-center justify-center space-y-1 text-center text-[#757575] dark:text-g-gray-4">
         <span className="flex font-medium text-sm">
           Google Developer Student Clubs
         </span>
         <span className="text-[0.6rem]">{label}</span>
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default GdscBanner
+export default GdscBanner;

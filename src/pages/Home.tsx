@@ -7,6 +7,7 @@ import { getContent } from '../services/content.service';
 import { getFeature } from '../services/feature.service';
 import { loggedIn } from '../services/state.service';
 import Footer from '../components/Footer/Footer';
+import { ThemeState } from '../components/utils/ThemeState';
 import Sponsors from '../components/Sponsors/Sponsors';
 
 const Home = () => {
@@ -97,14 +98,20 @@ const Home = () => {
         <div className="w-full lg:w-1/2">
           <div>
             <div className="flex flex-col items-start pl-10">
-              <img className="w-2/4" src="/logo.png" alt="Logo" />
+              <img
+                className={`w-2/4 ${
+                  ThemeState() === 'white' ? ' filter invert invisible-1' : ' '
+                }`}
+                src="/logo.png"
+                alt="Logo"
+              />
               <p
                 className={`text-4xl font-normal text-google-blue mb-6 text-center`}
               >
                 {content?.event}
               </p>
 
-              <p className="text-base text-g-gray-6 mb-0 text-center text-justify pb-6">
+              <p className="text-base text-g-gray-6 dark:text-white mb-0 text-center text-justify pb-6">
                 <a className="text-base text-yellow-600 mb-0 text-center text-justify pb-6">
                   {content?.hashtagEventName}
                   {' - '}
@@ -112,14 +119,18 @@ const Home = () => {
                 {content?.description}
               </p>
 
-              <p className="text-xl mb-6 text-g-gray-8">
+              <p className="text-xl mb-6 text-g-gray-8 dark:text-g-gray-4">
                 {features?.date
                   ? content?.dateTitle + ' : ' + content.date
                   : ''}
+
                 {/* <sup className="mr-0.5"></sup> &nbsp;
                 {features?.location
+                 
                   ? content?.locationTitle + ' : ' + content.location
+                 
                   : ''}
+                
                 <sup className="mr-0.5"></sup> */}
               </p>
 
