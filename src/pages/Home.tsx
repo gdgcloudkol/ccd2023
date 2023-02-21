@@ -4,7 +4,7 @@ import CommunityPartners from '../components/CommunityPartners/CommunityPartners
 import Countdown from '../components/Countdown/Countdown';
 import Footer from '../components/Footer/Footer';
 import Sponsors from '../components/Sponsors/Sponsors';
-import { textRandomColor } from '../services/common.service';
+import { CurrentTheme, textRandomColor } from '../services/common.service';
 import { getContent } from '../services/content.service';
 import { getFeature } from '../services/feature.service';
 import { loggedIn } from '../services/state.service';
@@ -98,7 +98,11 @@ const Home = () => {
           <div>
             <div className="flex flex-col lg:items-start lg:pl-10">
               <img
-                className={`lg:w-2/4`}
+                className={`lg:w-2/4 ${
+                  CurrentTheme() === 'white'
+                    ? ' filter invert brightness-0 '
+                    : ' '
+                }`}
                 src="/images/logos/logo.svg"
                 alt="GDG Cloud Kolkata Logo"
               />
@@ -108,9 +112,9 @@ const Home = () => {
                 {content?.event}
               </p>
 
-              <p className="text-base text-g-gray-6 dark:text-white mb-0 text-center text-justify pb-6">
+              <p className="text-base text-g-gray-6 dark:text-white mb-0 text-justify pb-6">
                 <span
-                  className={`text-base mb-0 text-center text-justify pb-6 ${headingColor}`}
+                  className={`text-base mb-0 text-justify pb-6 ${headingColor}`}
                 >
                   {content?.hashtagEventName}
                 </span>

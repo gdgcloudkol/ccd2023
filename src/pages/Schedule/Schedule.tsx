@@ -1,5 +1,4 @@
 import React from 'react';
-import { CurrentTheme } from '../../services/common.service';
 import sessionData from './schedule.json';
 
 const Schedule = () => {
@@ -17,8 +16,8 @@ const Schedule = () => {
       d.getHours() === 0
         ? 12
         : d.getHours() > 12
-          ? d.getHours() - 12
-          : d.getHours();
+        ? d.getHours() - 12
+        : d.getHours();
     const min = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();
     const ampm = d.getHours() < 12 ? 'AM' : 'PM';
     const time = hour + ':' + min + ' ' + ampm;
@@ -36,8 +35,7 @@ const Schedule = () => {
   return (
     <>
       <div
-        className={` ${CurrentTheme() === 'white' ? 'text-white' : ''
-          } w-full max-w-6xl items-center justify-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-12 lg:pb-[62px] px-4`}
+        className={` dark:text-white w-full max-w-6xl items-center justify-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-12 lg:pb-[62px] px-4`}
         data-aos="fade-up"
         data-aos-delay="100"
       >
@@ -149,7 +147,7 @@ const Schedule = () => {
                               <div className="flex items-center flex-wrap gap-2 my-2">
                                 {technologies.map((tech: any) => {
                                   return (
-                                    <div className="text-xs border-1 border-g-gray-5 bg-g-gray-1 dark:bg-black rounded-full px-2 py-1 w-fit">
+                                    <div className="text-xs border-1 border-g-gray-5  bg-g-gray-1 dark:bg-g-gray-7 rounded-full px-2 py-1 w-fit">
                                       {tech.name}
                                     </div>
                                   );
@@ -244,7 +242,7 @@ const Schedule = () => {
                               <div className="flex items-center flex-wrap gap-2 my-2">
                                 {technologies.map((tech: any) => {
                                   return (
-                                    <div className="text-xs border-1 border-g-gray-5 bg-g-gray-1 rounded-full px-2 py-1 w-fit">
+                                    <div className="text-xs border-1 border-g-gray-5 bg-g-gray-1 dark:bg-g-gray-7 rounded-full px-2 py-1 w-fit">
                                       {tech.name}
                                     </div>
                                   );
