@@ -41,7 +41,6 @@
     "/dashboard",
     "/tickets",
     "/speakers",
-    "/schedule",
     "/login"
   ],
   "disabledPartnerTitles": [

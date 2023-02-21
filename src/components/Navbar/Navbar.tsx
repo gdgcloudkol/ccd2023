@@ -61,7 +61,7 @@ const NavbarPage = () => {
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
                   <img
-                    className="block lg:hidden h-12 w-auto mt-2"
+                    className={`block lg:hidden h-12 w-auto mt-2`}
                     src="/images/logos/cloud_kol_logo.svg"
                     alt="GDG Cloud Kolkata Logo"
                   />
@@ -94,7 +94,7 @@ const NavbarPage = () => {
                     ) : null
                   )}
                 </div>
-                <div className=" hidden sm:flex items-center pl-4 -mr-4">
+                <div className=" hidden select-none sm:flex items-center pl-4 -mr-4">
                   <Toggle />
                 </div>
               </div>
