@@ -184,7 +184,6 @@ const Home = () => {
           <CommunityPartners />
         </>
       ) : null}
-      <Footer />
     </>
   );
 };
