@@ -12,9 +12,11 @@ h1 {
   @apply text-2xl;
   @apply font-extrabold;
 }
+
 h2 {
   @apply text-xl;
 }
+
 h3 {
   @apply text-lg;
 }
@@ -24,8 +26,9 @@ h3 {
   @apply rounded-lg;
   @apply p-5;
 }
-.schedule-container{
-  position: relative; 
+
+.schedule-container {
+  position: relative;
   overflow: hidden;
   height: fit-content;
   width: inherit;
@@ -37,7 +40,7 @@ h3 {
   left: 0;
   height: auto;
   width: inherit;
-  transition: .3s cubic-bezier(.25,.8,.5,1);
+  transition: .3s cubic-bezier(.25, .8, .5, 1);
   transform: translateX(0);
   background: transparent;
 }
@@ -46,13 +49,30 @@ h3 {
   height: auto;
   width: inherit;
   background: transparent;
-  transition: .3s cubic-bezier(.25,.8,.5,1);
+  transition: .3s cubic-bezier(.25, .8, .5, 1);
   transform: translateX(100%);
 }
 
-#fade-in-1.inactive{
+#fade-in-1.inactive {
   transform: translateX(-100%);
 }
+
 #fade-in-2.active {
   transform: translateX(0);
+}
+
+.event-sec-2 {
+  font-weight: 500;
+  font-size: 54px;
+  line-height: 65.35px;
+  color: black;
+}
+
+.strokeme {
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.zoom-120 {
+  zoom: 130%;
 }

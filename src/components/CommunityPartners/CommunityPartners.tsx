@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { PartnersContent } from '../../assets/models/partners/datatype';
-import { rawRandomColor } from '../../services/common.service';
+import { CurrentTheme, rawRandomColor } from '../../services/common.service';
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
 import GdscBanner from '../GdscBanner/GdscBanner';
@@ -13,7 +13,7 @@ const CommunityPartners = () => {
         if (data) setContent(data);
       }
     );
-  }, [content]);
+  }, []);
 
   const [disabledCommunityPartners, setdisabledCommunityPartners] = useState(
     []

@@ -5,6 +5,7 @@ import {
   NavbarContent,
   NavbarItemContent
 } from '../../assets/models/navbar/datatype';
+import { CurrentTheme } from '../../services/common.service';
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
 import { loggedIn } from '../../services/state.service';
@@ -61,12 +62,12 @@ const NavbarPage = () => {
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
                   <img
-                    className={`block lg:hidden h-12 w-auto mt-2`}
+                    className={`block lg:hidden h-12 w-auto mt-2 ${CurrentTheme() === 'white' ? 'filter brightness-0 invert' : ''}`}
                     src="/images/logos/cloud_kol_logo.svg"
                     alt="GDG Cloud Kolkata Logo"
                   />
                   <img
-                    className="hidden lg:block h-12 w-auto mt-3"
+                    className={`hidden lg:block h-12 w-auto mt-3 ${CurrentTheme() === 'white' ? 'filter brightness-0 invert' : ''}`}
                     src="/images/logos/cloud_kol_logo.svg"
                     alt="GDG Cloud Kolkata Logo"
                   />
