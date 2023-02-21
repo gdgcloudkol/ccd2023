@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
-import { HomeButtonContent, HomeContent } from '../assets/models/home/datatype'
-import CommunityPartners from '../components/CommunityPartners/CommunityPartners'
-import Countdown from '../components/Countdown/Countdown'
-import Footer from '../components/Footer/Footer'
-import Sponsors from '../components/Sponsors/Sponsors'
-import { textRandomColor } from '../services/common.service'
-import { getContent } from '../services/content.service'
-import { getFeature } from '../services/feature.service'
-import { loggedIn } from '../services/state.service'
+import { useEffect, useState } from 'react';
+import { HomeButtonContent, HomeContent } from '../assets/models/home/datatype';
+import CommunityPartners from '../components/CommunityPartners/CommunityPartners';
+import Countdown from '../components/Countdown/Countdown';
+import Footer from '../components/Footer/Footer';
+import Sponsors from '../components/Sponsors/Sponsors';
+import { textRandomColor } from '../services/common.service';
+import { getContent } from '../services/content.service';
+import { getFeature } from '../services/feature.service';
+import { loggedIn } from '../services/state.service';
+import Profile from './Profile';
 
 const Home = () => {
   // const [applied, setApplied] = useState(false)
@@ -76,10 +77,10 @@ const Home = () => {
               }
             }
         }
-      })
+      });
   }, [buttonLeft, buttonRight, content]);
 
-  const [headingColor, setColor] = useState<string>('text-google-gray-3')
+  const [headingColor, setColor] = useState<string>('text-google-gray-3');
   useEffect(() => {
     return setColor(textRandomColor());
   }, []);
@@ -108,27 +109,32 @@ const Home = () => {
               </p>
 
               <p className="text-base text-g-gray-6 dark:text-white mb-0 text-center text-justify pb-6">
-                <span className={`text-base mb-0 text-center text-justify pb-6 ${headingColor}`}>
+                <span
+                  className={`text-base mb-0 text-center text-justify pb-6 ${headingColor}`}
+                >
                   {content?.hashtagEventName}
-                  {' - '}
                 </span>
-                {content?.description}
+                {' - '} {content?.description}
               </p>
 
               <p className="text-xl mb-6 text-g-gray-8 dark:text-g-gray-4">
                 {features?.date ? (
                   <>
                     {content?.dateTitle + ' : ' + content.date}
-                    < sup className="mr-0.5"></sup> &nbsp;
+                    <sup className="mr-0.5"></sup> &nbsp;
                   </>
-                ) : ''}
+                ) : (
+                  ''
+                )}
 
                 {features?.location ? (
                   <>
                     {content?.locationTitle + ' : ' + content.location}
                     <sup className="mr-0.5"></sup>
                   </>
-                ) : ''}
+                ) : (
+                  ''
+                )}
               </p>
 
               <div className="flex flex-row items-center justify-center min-w-2/3">
@@ -136,15 +142,19 @@ const Home = () => {
                   className={`transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
                   bg-google-${buttonLeft?.color}  
                   hover:bg-google-${buttonLeft?.hoverColor} 
-                  cursor:${buttonLeft?.state === 'disabled' ? 'not-allowed' : 'timer'} `}
+                  cursor:${
+                    buttonLeft?.state === 'disabled' ? 'not-allowed' : 'timer'
+                  } `}
                 >
                   {buttonLeft?.title}
                 </button>
 
                 <a
-                  className={`transition ease-in-out ml-6 duration-300 text-center w-fit rounded bg-google-${buttonRight?.color
-                    } hover:bg-google-${buttonRight?.hoverColor} cursor:${buttonRight?.state === 'disabled' ? 'not-allowed' : 'timer'
-                    }`}
+                  className={`transition ease-in-out ml-6 duration-300 text-center w-fit rounded bg-google-${
+                    buttonRight?.color
+                  } hover:bg-google-${buttonRight?.hoverColor} cursor:${
+                    buttonRight?.state === 'disabled' ? 'not-allowed' : 'timer'
+                  }`}
                   href={buttonRight?.hyperLink}
                   aria-disabled={
                     buttonLeft?.state === 'disabled' ? true : false
@@ -164,14 +174,12 @@ const Home = () => {
           </div>
         ) : null}
       </div>
-      {
-        features?.showCommunityPartners ? (
-          <>
-            <Sponsors />
-            <CommunityPartners />
-          </>
-        ) : null
-      }
+      {features?.showCommunityPartners ? (
+        <>
+          <Sponsors />
+          <CommunityPartners />
+        </>
+      ) : null}
       <Footer />
     </>
   );
