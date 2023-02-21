@@ -42,8 +42,7 @@
     "/tickets",
     "/speakers",
     "/schedule",
-    "/login",
-    "/profile"
+    "/login"
   ],
   "disabledPartnerTitles": [
     "Also Backed By"
