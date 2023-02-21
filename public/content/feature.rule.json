@@ -40,8 +40,7 @@
   "disabledRoutes": [
     "/dashboard",
     "/tickets",
-    "/speakers",
-    "/login"
+    "/speakers"
   ],
   "disabledPartnerTitles": [
     "Also Backed By"
@@ -94,7 +93,8 @@
     "cfs": true,
     "location": false,
     "date": false,
-    "showCommunityPartners": true
+    "showCommunityPartners": true,
+    "showSponsors": true
   },
   "disabledFooterContent": {
     "footer": true,

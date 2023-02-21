@@ -1,13 +1,12 @@
-import React from 'react';
-import './App.css';
-import GoTop from './components/GoTop/GoTop';
-import Loading from './components/Loader/Loader';
-import Router from './Router';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import React from 'react';
+import './App.css';
+import Footer from './components/Footer/Footer';
+import GoTop from './components/GoTop/GoTop';
+import Router from './Router';
 
 function App() {
-  const [initialLoad, setLoad] = React.useState<boolean>(false);
   const [scrollPosition, setSrollPosition] = React.useState<number>(0);
   const [showGoTop, setshowGoTop] = React.useState<string>('goTopHidden');
 
@@ -41,17 +40,13 @@ function App() {
     };
   }, []);
 
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoad(false)
-  //   }, 3500)
-  // }, [])
   return (
     <div className="App min-h-screen">
       <div ref={refScrollUp}>
         <GoTop showGoTop={showGoTop} scrollUp={handleScrollUp} />
       </div>
-      {initialLoad ? <Loading /> : <Router />}
+      <Router />
+      <Footer />
     </div>
   );
 }

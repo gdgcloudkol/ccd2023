@@ -1,9 +1,11 @@
+import { CurrentTheme } from "../../services/common.service";
+
 const GdscBanner = ({ label }: { label: string }) => {
   return (
     <div className="w-full flex justify-center items-center px-2 flex-col">
       <img
         src="/images/logos/gdsc-logo.svg"
-        className="w-20 object-contain"
+        className={`w-20 object-contain  ${CurrentTheme() === 'white' ? 'filter brightness-0 invert' : ''}`}
         alt={`${label} logo`}
         aria-label={`${label} logo`}
       />

@@ -59,7 +59,6 @@ const Router = () => {
         ) : null}
         <Route path="/*" element={<Home />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 };

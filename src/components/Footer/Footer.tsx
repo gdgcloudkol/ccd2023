@@ -12,7 +12,7 @@ const Footer = () => {
         if (data) setContent(data);
       }
     );
-  }, [content]);
+  }, []);
 
   const [disabledFooterContent, setdisabledFooterContent] = useState({
     footer: true,
