@@ -13,7 +13,7 @@ const GoTop: React.FC<PropsType> = (props) => {
       <>
         <div className={`${props.showGoTop}`} onClick={props.scrollUp}>
           <button className=" block">
-            <div className=" block fixed w-10 h-10 rounded-3xl right-4 bottom-4  cursor-pointer leading-7 text-center ">
+            <div className=" block z-50 fixed w-10 h-10 rounded-3xl right-4 bottom-4  cursor-pointer leading-7 text-center ">
               <BsArrowUpSquareFill color={CurrentTheme()} size={30} />
             </div>
           </button>
