@@ -24,5 +24,14 @@ export interface HomeEventContent {
 export interface LandingPageContent {
   subTitle1: string;
   description1: string;
+  subTitle2: string;
   description2: string;
+  subTitle3: string;
+  description3: string;
+  subTitle4: string;
+  description4: string;
+  subTitle5: string;
+  description5: string;
+  youtubeLink: string;
+  youtubeLinkTitle: string;
 }

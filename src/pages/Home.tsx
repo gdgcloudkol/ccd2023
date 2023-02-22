@@ -52,17 +52,16 @@ const Home = () => {
         id="home-grid"
       >
         <HomeEvent />
-        <div className="flex flex-col justify-between">
-          <div className="flex flex-wrap justify-around">
-            <div className="w-6/12 sm:w-4/12 px-4">
+        <div className="flex flex-col justify-between pic-cont">
+          <div className="flex flex-wrap">
+            <div className="w-6/12 px-4">
               <img
-              
                 src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
                 alt=""
                 className="shadow rounded-full max-w-full h-auto align-middle border-none"
               />
             </div>
-            <div className="w-6/12 sm:w-4/12 px-4">
+            <div className="w-4/12 px-4 pic2">
               <img
                 src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
                 alt=""
@@ -71,7 +70,7 @@ const Home = () => {
             </div>
           </div>
           <div className="flex flex-wrap justify-center">
-            <div className="w-6/12 sm:w-4/12 px-4">
+            <div className="w-4/12 px-4 pic3">
               <img
                 src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
                 alt=""
@@ -81,81 +80,85 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="hidden lg:block opacity-50 lg:-mt-80 relative lg: zoom-120">
-        <img
-          src="images/background/victoria.svg"
-          alt="Victoria Memorial Picture"
-        />
+      <div className='hidden lg:block opacity-50 white-sec relative -z-0 lg: zoom-120'>
+        <img src="images/background/victoria.svg" alt="Victoria Memorial Picture" />
       </div>
-      <div
-        className={`hidden lg:block h-72 text-center event-sec-2 strokeme pl-52 pr-52 pt-10 text-white ${
-          CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
-        }`}
-      >
+      <div className={`hidden lg:block h-72 text-center event-sec-2 strokeme pl-52 pr-52 pt-10 text-white ${CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'}`}>
         {landingPageContent?.subTitle1}
         <p
-          className={`no-shadow ${
-            CurrentTheme() === 'white' ? 'text-black' : 'text-white'
-          }`}
+          className={`no-shadow ${CurrentTheme() === 'white' ? 'text-black' : 'text-white'
+            }`}
         >
           {landingPageContent?.description1}
         </p>
       </div>
-      <div className="hidden lg:block h-40">
-        <div className="grid grid-cols-4 text-white text-left">
-          <div className="event-sec-3 strokeme-w text-black pl-28 pt-5">
-            2
-            <p
-              className={`no-shadow ${
-                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
-              }`}
-            >
-              Fun Filled Days
+      <div className='hidden lg:block h-44 -mt-120'>
+        <div className='grid grid-cols-4 text-white text-left'>
+          <div className='event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5'>
+            {landingPageContent?.subTitle2}
+            <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-white' : 'text-black'}`}>
+              {landingPageContent?.description2}
             </p>
           </div>
-          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
-            2500+
-            <p
-              className={`no-shadow ${
-                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
-              }`}
-            >
-              Excited Attnedees
+          <div className='event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5'>
+            {landingPageContent?.subTitle3}
+            <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-white' : 'text-black'}`}>
+              {landingPageContent?.description3}
             </p>
           </div>
-          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
-            20+
-            <p
-              className={`no-shadow ${
-                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
-              }`}
-            >
-              Expert Speakers
+          <div className='event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5'>
+            {landingPageContent?.subTitle4}
+            <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-white' : 'text-black'}`}>
+              {landingPageContent?.description4}
             </p>
           </div>
-          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
-            4
-            <p
-              className={`no-shadow ${
-                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
-              }`}
-            >
-              Speciality Track
+          <div className='event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5'>
+            {landingPageContent?.subTitle5}
+            <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-white' : 'text-black'}`}>
+              {landingPageContent?.description5}
             </p>
           </div>
         </div>
       </div>
-      <div
-        className={`hidden lg:block h-80 ${
-          CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
-        }`}
-      ></div>
-      {features?.showCommunityPartners ? (
-        <>
-          <Sponsors />
-          <CommunityPartners />
-        </>
-      ) : null}
+      <div className={`hidden lg:block h-80 ${CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'}`}>
+      </div>
+      <div className="text-center lg:-mt-60 mt-20 object-fill pl-10 pr-10 lg:pl-32 lg:pr-32 yt max-h-fit">
+        <iframe
+          width="100%"
+          height="100%"
+          className='iframe'
+          src={landingPageContent?.youtubeLink}
+          title={landingPageContent?.youtubeLinkTitle}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        ></iframe>
+      </div>
+      <div className='hidden lg:block opacity-50 relative lg: zoom-120'>
+        <img src="images/background/howrahBridge.svg" alt="Howrah Bridge Picture" />
+      </div>
+      <div className={`hidden lg:block h-72 text-center event-sec-2 pl-52 pr-52 pt-10 text-white bg-transparent cfs`}>
+        <div
+          className='grid grid-rows-3 grid-col-4'
+        >
+          <div className='row-span-2 col-span-1'>
+            Call for Speakers
+          </div>
+          <div className='row-span-2 col-span-1'>
+            Details goes here
+          </div>
+          <div className=''>
+            Button
+          </div>
+        </div>
+      </div>
+      {
+        features?.showCommunityPartners ? (
+          <>
+            <Sponsors />
+            <CommunityPartners />
+          </>
+        ) : null
+      }
     </>
   );
 };
