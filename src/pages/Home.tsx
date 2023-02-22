@@ -4,6 +4,7 @@ import HomeEvent from '../components/HomeEvent/HomeEvent';
 import Sponsors from '../components/Sponsors/Sponsors';
 import { CurrentTheme } from '../services/common.service';
 import { getFeature } from '../services/feature.service';
+import { postTestLogin } from '../services/rest.service';
 
 const Home = () => {
   // const [applied, setApplied] = useState(false)
@@ -21,7 +22,6 @@ const Home = () => {
     // if (features.showCommunityPartners === null || features.showCommunityPartners === undefined)
     getFeature().then((data) => {
       if (data) {
-        console.log(data.home.showCommunityPartners)
         setHome({ showCommunityPartners: data.home?.showCommunityPartners, showSponsors: data.home?.showSponsors })
       }
     });

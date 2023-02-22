@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Footer from './components/Footer/Footer';
 import NavbarPage from './components/Navbar/Navbar';
 import Coc from './pages/Coc';
 import Dashboard from './pages/Dashboard';
@@ -15,7 +14,7 @@ import Tickets from './pages/Tickets';
 import { getFeature } from './services/feature.service';
 
 const Router = () => {
-  const [feature, setFeature] = useState([]);
+  const [feature, setFeature] = useState(['']);
   useEffect(() => {
     getFeature().then((data) => {
       if (data) setFeature(data.disabledRoutes);
