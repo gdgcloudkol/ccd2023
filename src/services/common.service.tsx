@@ -26,3 +26,7 @@ export const CurrentTheme = () => {
   if (theme === 'dark') return 'white';
   return 'black';
 }
+
+export const CurrentThemeLS = () => {
+  return localStorage.getItem('color-theme')
+}

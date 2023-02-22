@@ -7,7 +7,7 @@ export interface HomeButtonContent {
   state?: 'disabled' | 'active';
 }
 
-export interface HomeContent {
+export interface HomeEventContent {
   presents: string;
   event: string;
   hashtagEventName: string;
@@ -18,4 +18,11 @@ export interface HomeContent {
   location: string;
   buttonLeft: HomeButtonContent[];
   buttonRight: HomeButtonContent[];
+  landingPage: LandingPageContent;
+}
+
+export interface LandingPageContent {
+  subTitle1: string;
+  description1: string;
+  description2: string;
 }

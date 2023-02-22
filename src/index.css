@@ -64,13 +64,25 @@ h3 {
 .event-sec-2 {
   font-weight: 500;
   font-size: 54px;
-  line-height: 65.35px;
-  color: black;
+  line-height: 65px;
+}
+
+.event-sec-3 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 42px;
 }
 
 .strokeme {
-  color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.strokeme-w {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+.no-shadow {
+  text-shadow: none;
 }
 
 .zoom-120 {

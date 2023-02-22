@@ -105,5 +105,8 @@
       }
     ]
   },
-  "disabledSocial": []
+  "disabledSocial": [],
+  "disabledSpeakers": [
+    "Md Nasirul Haque"
+  ]
 }
