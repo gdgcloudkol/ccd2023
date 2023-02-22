@@ -4,8 +4,8 @@ import { CurrentTheme } from '../../services/common.service';
 import { getFeature } from '../../services/feature.service';
 
 const SponsorCard = ({ title, sponsors }: PartnerContent) => {
-  const [disabledPartners, setdisabledPartners] = useState([]);
-  const [disabledPartnerTitles, setdisabledPartnerTitles] = useState([]);
+  const [disabledPartners, setdisabledPartners] = useState(['']);
+  const [disabledPartnerTitles, setdisabledPartnerTitles] = useState(['']);
   useEffect(() => {
     getFeature().then((data) => {
       if (data) {
@@ -30,11 +30,8 @@ const SponsorCard = ({ title, sponsors }: PartnerContent) => {
             key={i}
           >
             <img
-              className={`w-full h-32 object-contain img-border ${
-                CurrentTheme() === 'white'
-                  ? ' filter invert brightness-0 '
-                  : ' '
-              }`}
+              className={`w-full h-32 object-contain img-border 
+              ${CurrentTheme() === 'white' ? ' filter invert brightness-0 ' : ''}`}
               src={sponsor?.imgSrc}
               alt={`${sponsor?.sponsorName} logo`}
               aria-label={`${sponsor?.sponsorName} logo`}

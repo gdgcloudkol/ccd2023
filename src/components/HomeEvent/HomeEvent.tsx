@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { HomeContent, HomeButtonContent } from "../../assets/models/home/datatype";
+import { useEffect, useState } from "react";
+import { HomeRule } from "../../assets/models/datatype";
+import { HomeButtonContent, HomeContent } from "../../assets/models/home/datatype";
 import { CurrentTheme, textRandomColor } from "../../services/common.service";
 import { getContent } from "../../services/content.service";
 import { getFeature } from "../../services/feature.service";
@@ -13,33 +14,21 @@ const HomeEvent = () => {
     });
   }, []);
 
-  const [buttonLeft, setButtonLeft] = useState({} as HomeButtonContent);
-  const [buttonRight, setButtonRight] = useState({} as HomeButtonContent);
+  const [buttonLeftRule, setButtonLeft] = useState({} as HomeButtonContent);
+  const [buttonRightRule, setButtonRight] = useState({} as HomeButtonContent);
 
-  const [features, setHome] = useState({
-    buttonLeftStateNotLogin: 'gs',
-    buttonLeftStateLogin: 'bt',
-    disabledLeftButton: [],
-    buttonRightStateNotLogin: 'cfscs',
-    buttonRightStateLogin: 'cfs',
-    disabledRightButton: [],
-    timer: false,
-    cfs: false,
-    location: false,
-    date: false,
-    showCommunityPartners: false
-  });
+  const [homeRules, setHome] = useState({} as HomeRule);
 
   useEffect(() => {
-    if (!buttonLeft?.id || !buttonRight?.id)
+    if (!buttonLeftRule?.id || !buttonRightRule?.id)
       getFeature().then((data) => {
         if (data) {
           setHome(data.home);
           if (content?.buttonLeft)
             for (let i of content?.buttonLeft) {
               if (
-                (loggedIn && i?.id === data.home.buttonLeftStateLogin) ||
-                (!loggedIn && i?.id === data.home.buttonLeftStateNotLogin)
+                (loggedIn && i?.id === data.home?.buttonLeftStateLogin) ||
+                (!loggedIn && i?.id === data.home?.buttonLeftStateNotLogin)
               ) {
                 if (
                   data.home.disabledLeftButton.every(
@@ -53,8 +42,8 @@ const HomeEvent = () => {
           if (content?.buttonRight)
             for (let i of content?.buttonRight) {
               if (
-                (loggedIn && i?.id === data.home.buttonRightStateLogin) ||
-                (!loggedIn && i?.id === data.home.buttonRightStateNotLogin)
+                (loggedIn && i?.id === data.home?.buttonRightStateLogin) ||
+                (!loggedIn && i?.id === data.home?.buttonRightStateNotLogin)
               ) {
                 if (
                   data.home.disabledRightButton.every(
@@ -67,7 +56,7 @@ const HomeEvent = () => {
             }
         }
       });
-  }, [buttonLeft, buttonRight, content]);
+  }, [buttonLeftRule, buttonRightRule, content]);
 
   const [headingColor, setColor] = useState<string>('text-google-gray-3');
   useEffect(() => {
@@ -97,7 +86,7 @@ const HomeEvent = () => {
           </p>
 
           <p className="text-xl mb-6 text-g-gray-8 dark:text-g-gray-4">
-            {features?.date ? (
+            {homeRules?.date ? (
               <>
                 {content?.dateTitle + ' : ' + content.date}
                 <sup className="mr-0.5"></sup> &nbsp;
@@ -106,7 +95,7 @@ const HomeEvent = () => {
               ''
             )}
 
-            {features?.location ? (
+            {homeRules?.location ? (
               <>
                 {content?.locationTitle + ' : ' + content.location}
                 <sup className="mr-0.5"></sup>
@@ -119,24 +108,24 @@ const HomeEvent = () => {
           <div className="flex flex-row items-center justify-center min-w-3/4">
             <a
               className={`transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
-                  bg-google-${buttonLeft?.color}  
-                  hover:bg-google-${buttonLeft?.hoverColor} 
-                  cursor:${buttonLeft?.state === 'disabled' ? 'not-allowed' : 'timer'} `}
-              href={buttonRight?.hyperLink}
-              aria-disabled={buttonLeft?.state === 'disabled' ? true : false}
+                  bg-google-${buttonLeftRule?.color}  
+                  hover:bg-google-${buttonLeftRule?.hoverColor} 
+                  cursor:${buttonLeftRule?.state === 'disabled' ? 'not-allowed' : 'timer'} `}
+              href={buttonRightRule?.hyperLink}
+              aria-disabled={buttonLeftRule?.state === 'disabled' ? true : false}
             >
-              {buttonLeft?.title}
+              {buttonLeftRule?.title}
             </a>
 
             <a
               className={`transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded
-                  bg-google-${buttonRight?.color} 
-                  hover:bg-google-${buttonRight?.hoverColor} 
-                  cursor:${buttonRight?.state === 'disabled' ? 'not-allowed' : 'timer'}`}
-              href={buttonRight?.hyperLink}
-              aria-disabled={buttonRight?.state === 'disabled' ? true : false}
+                  bg-google-${buttonRightRule?.color} 
+                  hover:bg-google-${buttonRightRule?.hoverColor} 
+                  cursor:${buttonRightRule?.state === 'disabled' ? 'not-allowed' : 'timer'}`}
+              href={buttonRightRule?.hyperLink}
+              aria-disabled={buttonRightRule?.state === 'disabled' ? true : false}
             >
-              {buttonRight?.title}
+              {buttonRightRule?.title}
             </a>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { FeatureRule } from '../../assets/models/datatype';
 import { PartnersContent } from '../../assets/models/partners/datatype';
-import { CurrentTheme, rawRandomColor } from '../../services/common.service';
+import { rawRandomColor } from '../../services/common.service';
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
 import GdscBanner from '../GdscBanner/GdscBanner';
@@ -15,11 +16,9 @@ const CommunityPartners = () => {
     );
   }, []);
 
-  const [disabledCommunityPartners, setdisabledCommunityPartners] = useState(
-    []
-  );
+  const [disabledCommunityPartners, setdisabledCommunityPartners] = useState(['']);
   useEffect(() => {
-    getFeature().then((data) => {
+    getFeature().then((data: FeatureRule) => {
       if (data) {
         setdisabledCommunityPartners(data.disabledCommunityPartners);
       }

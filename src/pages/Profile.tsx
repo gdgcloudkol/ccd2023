@@ -1,3 +1,5 @@
+import { logout } from "../services/rest.service";
+
 const Profile = () => {
   return (
     // <div className="w-full justify-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-28 lg:pb-[62px] px-4">
@@ -67,8 +69,10 @@ const Profile = () => {
               className='transition ease-in-out ml-6 duration-300 text-center w-fit rounded bg-google-red  cursor:timer'
               href="/"
             >
-              <button className="text-white h-fit w-fit img-borde text-base py-2 px-4 rounded ">
-                Log-out
+              <button className="text-white h-fit w-fit img-borde text-base py-2 px-4 rounded "
+                onClick={() => { logout() }}
+              >
+                Logout
               </button>
             </a>
           </div>

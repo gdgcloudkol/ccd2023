@@ -25,7 +25,7 @@ const NavbarPage = () => {
     navbarSpatialLoggedIn: false,
     navbarSpatialNotLoggedIn: false
   });
-  const [disabledRoutes, setDisabledRoutes] = useState([]);
+  const [disabledRoutes, setDisabledRoutes] = useState(['']);
   useEffect(() => {
     getFeature().then((data) => {
       if (data) {

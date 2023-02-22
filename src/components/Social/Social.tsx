@@ -18,7 +18,7 @@ const Social = () => {
     });
   }, []);
 
-  const [disabledSocial, setdisabledSocial] = useState([]);
+  const [disabledSocial, setdisabledSocial] = useState(['']);
   useEffect(() => {
     getFeature().then(data => {
       if (data) setdisabledSocial(data.disabledSocial);
