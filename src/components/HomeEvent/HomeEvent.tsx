@@ -115,7 +115,7 @@ const HomeEvent = () => {
 
           <div className="flex flex-row items-center justify-center min-w-3/4">
             <a
-              className={`transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded cursor-pointer hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+              className={`transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded cursor-pointer hover:shadow-xl hover:scale-105 hover:ease-in duration-300 rounded-3xl
                           bg-google-${buttonLeftColor}
                           cursor:${buttonLeftRule?.state === 'disabled' ? 'not-allowed' : 'timer'} `}
               href={buttonRightRule?.hyperLink}
@@ -127,7 +127,7 @@ const HomeEvent = () => {
             </a>
 
             <a
-              className={`transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded cursor-pointer hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+              className={`transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded cursor-pointer hover:shadow-xl hover:scale-105 hover:ease-in duration-300 rounded-3xl
                           bg-google-${buttonRightColor}
                           cursor:${buttonRightRule?.state === 'disabled' ? 'not-allowed' : 'timer'}`}
               href={buttonRightRule?.hyperLink}

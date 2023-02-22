@@ -88,3 +88,70 @@ h3 {
 .zoom-120 {
   zoom: 130%;
 }
+
+.yt {
+  height: 50rem
+}
+
+.white-sec {
+  margin-top: -400px;
+}
+
+.cfs {
+  margin-top: -400px;
+  height: 500px;
+}
+
+.pic1{
+  height: 350px;
+  width: 350px;
+}
+
+.pic2 {
+  height: 220px;
+  width: 220px;
+  margin-left: -30px;
+  margin-top: 100px;
+}
+
+.pic3 {
+  height: 220px;
+  width: 220px;
+  margin-left: -100px;
+  margin-top: -75px;
+}
+
+@media screen and (max-width:400px) {
+  .yt {
+    height: 400px;
+  }
+
+  .iframe {
+    width: 300px;
+    height: 350px;
+  }
+
+  .pic1{
+    height: 200px;
+    width: 200px;
+  }
+
+  .pic2 {
+    height: 110px;
+    width: 110px;
+    margin-left: -30px;
+    margin-top: 60px;
+  }
+
+  .pic3 {
+    height: 150px;
+    width: 150px;
+    margin-left: 50px;
+    margin-top: -80px;
+  }
+
+  .pic-cont {
+    margin-left: 40px;
+    height: 200px;
+  }
+}
