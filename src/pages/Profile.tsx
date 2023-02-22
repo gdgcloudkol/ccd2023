@@ -1,23 +1,10 @@
-import { logout } from "../services/rest.service";
+import { useState } from 'react';
+import { logout } from '../services/rest.service';
 
 const Profile = () => {
+  const [type, setType] = useState('Speaker');
+
   return (
-    // <div className="w-full justify-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-28 lg:pb-[62px] px-4">
-    //   {/* <div className="w-[75%] h-[50vh] ml-[12.5%] mr-[12.5%] mt-2 items-center ">
-    //     <img
-    //       src={`https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80`}
-    //       className="bg-no-repeat w-full h-full rounded-lg"
-    //       alt="background"
-    //     />
-    //   </div> */}
-    //   <img
-    //     className="top-12 rounded-full"
-    //     src={
-    //       'https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80'
-    //     }
-    //     alt="profile pic"
-    //   />
-    // </div>
     <div>
       <img
         className="h-32 w-full object-cover lg:h-72"
@@ -38,6 +25,10 @@ const Profile = () => {
       <div className="lg:text-2xl text-5xl flex justify-center font-normal mt-4 text-g-gray-8 dark:text-white">
         Hello, User!
       </div>
+      <div className="lg:text-2xl text-5xl flex justify-center font-normal mt-1 text-g-gray-8 dark:text-white">
+        We are excited for your {type === 'Speaker' ? 'talk' : 'participation'}{' '}
+        at #CCDKol 2023!
+      </div>
       <section className="flex max-w-screen-xl mx-auto py-4 px-4 sm:px-8 justify-center items-center">
         <div className="max-w-xl ">
           <div className="py-4 ">
@@ -54,27 +45,45 @@ const Profile = () => {
               buy your tickets as soon as possible to secure your attendance at
               the event.
             </p>
+            {type === 'Speaker' ? (
+              <p className="text-gray-800 text-xl leading-relaxed mt-3">
+                Speakers accomodation will be provided by us on an approval
+                basis. If you are interested in accomodation, please fill out the form here.
+              </p>
+            ) : null}
           </div>
+
           <div className="flex flex-row items-center justify-center min-w-2/3">
             <button
-              className={`transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
+              className="transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
                   bg-google-blue
                   hover:bg-google-green 
-                  cursor:timer `}
+                  cursor:timer"
             >
               Apply Now
             </button>
-
-            <a
-              className='transition ease-in-out ml-6 duration-300 text-center w-fit rounded bg-google-red  cursor:timer'
-              href="/"
+            <button
+              className="transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
+                  bg-google-red
+                  hover:bg-google-green 
+                  cursor:timer "
+              onClick={() => {
+                logout();
+              }}
             >
-              <button className="text-white h-fit w-fit img-borde text-base py-2 px-4 rounded "
-                onClick={() => { logout() }}
-              >
-                Logout
-              </button>
-            </a>
+              Logout
+            </button>
+            <button
+              className="transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
+                  bg-black
+                  hover:bg-google-green 
+                  cursor:timer "
+              onClick={() => {
+                logout();
+              }}
+            >
+              Edit Account
+            </button>
           </div>
         </div>
       </section>
@@ -83,3 +92,20 @@ const Profile = () => {
 };
 
 export default Profile;
+
+// <div className="w-full justify-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-28 lg:pb-[62px] px-4">
+//   {/* <div className="w-[75%] h-[50vh] ml-[12.5%] mr-[12.5%] mt-2 items-center ">
+//     <img
+//       src={`https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80`}
+//       className="bg-no-repeat w-full h-full rounded-lg"
+//       alt="background"
+//     />
+//   </div> */}
+//   <img
+//     className="top-12 rounded-full"
+//     src={
+//       'https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80'
+//     }
+//     alt="profile pic"
+//   />
+// </div>
