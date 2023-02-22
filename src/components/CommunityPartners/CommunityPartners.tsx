@@ -69,7 +69,7 @@ const CommunityPartners = () => {
           return (
             (disabledCommunityPartners.every(i => i !== sponsor.sponsorId)) ? (
               <div
-                className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 img-border h-full w-full"
+                className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 img-border h-full w-full hover:shadow-xl hover:scale-105 hover:ease-in duration-300"
                 key={sponsor.sponsorId}
               >
                 <a

@@ -14,10 +14,10 @@ import Tickets from './pages/Tickets';
 import { getFeature } from './services/feature.service';
 
 const Router = () => {
-  const [feature, setFeature] = useState(['']);
+  const [navRule, setNavRule] = useState(['']);
   useEffect(() => {
     getFeature().then((data) => {
-      if (data) setFeature(data.disabledRoutes);
+      if (data) setNavRule(data.disabledRoutes);
     });
   }, []);
 
@@ -29,31 +29,31 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        {feature?.every((item) => '/schedule' !== item) ? (
+        {navRule?.every((item) => '/schedule' !== item) ? (
           <Route path="/schedule" element={<Schedule />} />
         ) : null}
-        {feature?.every((item) => '/speakers' !== item) ? (
+        {navRule?.every((item) => '/speakers' !== item) ? (
           <Route path="/speakers" element={<Speakers />} />
         ) : null}
-        {feature?.every((item) => '/faq' !== item) ? (
+        {navRule?.every((item) => '/faq' !== item) ? (
           <Route path="/faq" element={<FaqPage />} />
         ) : null}
-        {feature?.every((item) => '/tickets' !== item) ? (
+        {navRule?.every((item) => '/tickets' !== item) ? (
           <Route path="/tickets" element={<Tickets />} />
         ) : null}
-        {feature?.every((item) => '/codeofconduct' !== item) ? (
+        {navRule?.every((item) => '/codeofconduct' !== item) ? (
           <Route path="/code-of-conduct" element={<Coc />} />
         ) : null}
-        {feature?.every((item) => '/signup' !== item) ? (
+        {navRule?.every((item) => '/signup' !== item) ? (
           <Route path="/signup" element={<Signup />} />
         ) : null}
-        {feature?.every((item) => '/login' !== item) ? (
+        {navRule?.every((item) => '/login' !== item) ? (
           <Route path="/login" element={<Login />} />
         ) : null}
-        {feature?.every((item) => '/profile' !== item) ? (
+        {navRule?.every((item) => '/profile' !== item) ? (
           <Route path="/profile" element={<Profile />} />
         ) : null}
-        {feature?.every((item) => '/dashboard' !== item) ? (
+        {navRule?.every((item) => '/dashboard' !== item) ? (
           <Route path="/dashboard" element={<Dashboard />} />
         ) : null}
         <Route path="/*" element={<Home />} />
