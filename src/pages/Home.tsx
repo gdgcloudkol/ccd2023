@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { HomeEventContent, LandingPageContent } from '../assets/models/home/datatype';
+import {
+  HomeEventContent,
+  LandingPageContent
+} from '../assets/models/home/datatype';
 import CommunityPartners from '../components/CommunityPartners/CommunityPartners';
 import HomeEvent from '../components/HomeEvent/HomeEvent';
 import Sponsors from '../components/Sponsors/Sponsors';
@@ -14,11 +17,15 @@ const Home = () => {
 
   // const navigate = useNavigate();
 
-  const [landingPageContent, setLandingPageContent] = useState({} as LandingPageContent);
+  const [landingPageContent, setLandingPageContent] = useState(
+    {} as LandingPageContent
+  );
   useEffect(() => {
-    getContent<HomeEventContent>('home').then((data: void | HomeEventContent) => {
-      if (data) setLandingPageContent(data.landingPage);
-    });
+    getContent<HomeEventContent>('home').then(
+      (data: void | HomeEventContent) => {
+        if (data) setLandingPageContent(data.landingPage);
+      }
+    );
   }, []);
 
   const [features, setHome] = useState({
@@ -30,56 +37,119 @@ const Home = () => {
     // if (features.showCommunityPartners === null || features.showCommunityPartners === undefined)
     getFeature().then((data) => {
       if (data) {
-        setHome({ showCommunityPartners: data.home?.showCommunityPartners, showSponsors: data.home?.showSponsors })
+        setHome({
+          showCommunityPartners: data.home?.showCommunityPartners,
+          showSponsors: data.home?.showSponsors
+        });
       }
     });
   }, []);
 
   return (
     <>
-      <div className={`relative z-10 w-full justify-between items-start flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-26 lg:pb-[62px] px-4`} id="home-grid">
-        <HomeEvent
+      <div
+        className={`relative z-10 w-full justify-between items-start flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-26 lg:pb-[62px] px-4`}
+        id="home-grid"
+      >
+        <HomeEvent />
+        <div className="flex flex-col justify-between">
+          <div className="flex flex-wrap justify-around">
+            <div className="w-6/12 sm:w-4/12 px-4">
+              <img
+              
+                src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
+                alt=""
+                className="shadow rounded-full max-w-full h-auto align-middle border-none"
+              />
+            </div>
+            <div className="w-6/12 sm:w-4/12 px-4">
+              <img
+                src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
+                alt=""
+                className="shadow rounded-full max-w-full h-auto align-middle border-none"
+              />
+            </div>
+          </div>
+          <div className="flex flex-wrap justify-center">
+            <div className="w-6/12 sm:w-4/12 px-4">
+              <img
+                src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
+                alt=""
+                className="shadow rounded-full max-w-full h-auto align-middle border-none"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="hidden lg:block opacity-50 lg:-mt-80 relative lg: zoom-120">
+        <img
+          src="images/background/victoria.svg"
+          alt="Victoria Memorial Picture"
         />
       </div>
-      <div className='hidden lg:block opacity-50 lg:-mt-80 relative lg: zoom-120'>
-        <img src="images/background/victoria.svg" alt="Victoria Memorial Picture" />
-      </div>
-      <div className={`hidden lg:block h-72 text-center event-sec-2 strokeme pl-52 pr-52 pt-10 text-white ${CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'}`}>
+      <div
+        className={`hidden lg:block h-72 text-center event-sec-2 strokeme pl-52 pr-52 pt-10 text-white ${
+          CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
+        }`}
+      >
         {landingPageContent?.subTitle1}
-        <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-black' : 'text-white'}`}>
+        <p
+          className={`no-shadow ${
+            CurrentTheme() === 'white' ? 'text-black' : 'text-white'
+          }`}
+        >
           {landingPageContent?.description1}
         </p>
       </div>
-      <div className='hidden lg:block h-40'>
-        <div className='grid grid-cols-4 text-white text-left'>
-          <div className='event-sec-3 strokeme-w text-black pl-28 pt-5'>
+      <div className="hidden lg:block h-40">
+        <div className="grid grid-cols-4 text-white text-left">
+          <div className="event-sec-3 strokeme-w text-black pl-28 pt-5">
             2
-            <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-white' : 'text-black'}`}>
+            <p
+              className={`no-shadow ${
+                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
+              }`}
+            >
               Fun Filled Days
             </p>
           </div>
-          <div className='event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5'>
+          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
             2500+
-            <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-white' : 'text-black'}`}>
+            <p
+              className={`no-shadow ${
+                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
+              }`}
+            >
               Excited Attnedees
             </p>
           </div>
-          <div className='event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5'>
+          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
             20+
-            <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-white' : 'text-black'}`}>
+            <p
+              className={`no-shadow ${
+                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
+              }`}
+            >
               Expert Speakers
             </p>
           </div>
-          <div className='event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5'>
+          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
             4
-            <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-white' : 'text-black'}`}>
+            <p
+              className={`no-shadow ${
+                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
+              }`}
+            >
               Speciality Track
             </p>
           </div>
         </div>
       </div>
-      <div className={`hidden lg:block h-80 ${CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'}`}>
-      </div>
+      <div
+        className={`hidden lg:block h-80 ${
+          CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
+        }`}
+      ></div>
       {features?.showCommunityPartners ? (
         <>
           <Sponsors />
