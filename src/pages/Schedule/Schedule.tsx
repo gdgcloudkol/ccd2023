@@ -103,6 +103,7 @@ const Schedule = () => {
                         )?.categoryItems;
                         return (
                           <div
+                            key={index}
                             className={
                               index > 0
                                 ? 'mt-4 pt-4 border-t-[1px] border-g-gray-3'
@@ -117,24 +118,29 @@ const Schedule = () => {
                             <div className="text-2xl font-light">{name}</div>
                             {info.speakers && (
                               <div className="flex items-center gap-2">
-                                {info.speakers?.map((speaker: any) => {
-                                  const speakerName = speaker.name;
-                                  const speakerImage = speaker.profilePicture;
-                                  return (
-                                    speakerName && (
-                                      <div className="flex items-center my-2 p-1 border-1 border-g-blue-3 w-fit rounded-full bg-g-blue-3 text-white">
-                                        <img
-                                          className="inline-block h-5 w-5 rounded-full ring-2 ring-white"
-                                          src={speakerImage}
-                                          alt=""
-                                        />
-                                        <span className="text-xs ml-2  ">
-                                          {speakerName}
-                                        </span>
-                                      </div>
-                                    )
-                                  );
-                                })}
+                                {info.speakers?.map(
+                                  (speaker: any, key: number) => {
+                                    const speakerName = speaker.name;
+                                    const speakerImage = speaker.profilePicture;
+                                    return (
+                                      speakerName && (
+                                        <div
+                                          key={key}
+                                          className="flex items-center my-2 p-1 border-1 border-g-blue-3 w-fit rounded-full bg-g-blue-3 text-white"
+                                        >
+                                          <img
+                                            className="inline-block h-5 w-5 rounded-full ring-2 ring-white"
+                                            src={speakerImage}
+                                            alt=""
+                                          />
+                                          <span className="text-xs ml-2  ">
+                                            {speakerName}
+                                          </span>
+                                        </div>
+                                      )
+                                    );
+                                  }
+                                )}
                               </div>
                             )}
 
@@ -145,9 +151,12 @@ const Schedule = () => {
                             )}
                             {technologies && (
                               <div className="flex items-center flex-wrap gap-2 my-2">
-                                {technologies.map((tech: any) => {
+                                {technologies.map((tech: any, key: number) => {
                                   return (
-                                    <div className="text-xs border-1 border-g-gray-5  bg-g-gray-1 dark:bg-g-gray-7 rounded-full px-2 py-1 w-fit">
+                                    <div
+                                      key={key}
+                                      className="text-xs border-1 border-g-gray-5  bg-g-gray-1 dark:bg-g-gray-7 rounded-full px-2 py-1 w-fit"
+                                    >
                                       {tech.name}
                                     </div>
                                   );
@@ -167,13 +176,13 @@ const Schedule = () => {
               id="fade-in-2"
               className={'box' + (day === 2 ? ' active' : '')}
             >
-              {dayTwoSessionData.timeSlots.map((slot: any) => {
+              {dayTwoSessionData.timeSlots.map((slot: any, key: number) => {
                 const startTime = getTime(slot['rooms'][0].session.startsAt);
                 const endTime = getTime(slot['rooms'][0].session.endsAt);
                 const rooms = slot['rooms'];
 
                 return (
-                  <div className="flex w-full lg:w-auto ">
+                  <div key={key} className="flex w-full lg:w-auto ">
                     <div
                       className="w-3/10 lg:w-1/5 border-b-[1px] lg:border-r-[1px] border-g-gray-3 flex flex-col items-end px-3 py-3 text-right lg:text-start"
                       data-aos="fade-left"
@@ -198,6 +207,7 @@ const Schedule = () => {
                         )?.categoryItems;
                         return (
                           <div
+                            key={index}
                             className={
                               index > 0
                                 ? 'mt-4 pt-4 border-t-[1px] border-g-gray-3'
@@ -212,24 +222,29 @@ const Schedule = () => {
                             <div className="text-2xl font-light">{name}</div>
                             {info.speakers && (
                               <div className="flex items-center gap-2">
-                                {info.speakers?.map((speaker: any) => {
-                                  const speakerName = speaker.name;
-                                  const speakerImage = speaker.profilePicture;
-                                  return (
-                                    speakerName && (
-                                      <div className="flex items-center my-2 p-1 border-1 border-g-blue-3 w-fit rounded-full bg-g-blue-3 text-white">
-                                        <img
-                                          className="inline-block h-5 w-5 rounded-full ring-2 ring-white"
-                                          src={speakerImage}
-                                          alt=""
-                                        />
-                                        <span className="text-xs ml-2  ">
-                                          {speakerName}
-                                        </span>
-                                      </div>
-                                    )
-                                  );
-                                })}
+                                {info.speakers?.map(
+                                  (speaker: any, key: number) => {
+                                    const speakerName = speaker.name;
+                                    const speakerImage = speaker.profilePicture;
+                                    return (
+                                      speakerName && (
+                                        <div
+                                          key={key}
+                                          className="flex items-center my-2 p-1 border-1 border-g-blue-3 w-fit rounded-full bg-g-blue-3 text-white"
+                                        >
+                                          <img
+                                            className="inline-block h-5 w-5 rounded-full ring-2 ring-white"
+                                            src={speakerImage}
+                                            alt=""
+                                          />
+                                          <span className="text-xs ml-2  ">
+                                            {speakerName}
+                                          </span>
+                                        </div>
+                                      )
+                                    );
+                                  }
+                                )}
                               </div>
                             )}
 
@@ -240,9 +255,12 @@ const Schedule = () => {
                             )}
                             {technologies && (
                               <div className="flex items-center flex-wrap gap-2 my-2">
-                                {technologies.map((tech: any) => {
+                                {technologies.map((tech: any, key: number) => {
                                   return (
-                                    <div className="text-xs border-1 border-g-gray-5 bg-g-gray-1 dark:bg-g-gray-7 rounded-full px-2 py-1 w-fit">
+                                    <div
+                                      key={key}
+                                      className="text-xs border-1 border-g-gray-5 bg-g-gray-1 dark:bg-g-gray-7 rounded-full px-2 py-1 w-fit"
+                                    >
                                       {tech.name}
                                     </div>
                                   );

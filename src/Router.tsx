@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Footer from './components/Footer/Footer';
 import NavbarPage from './components/Navbar/Navbar';
 import Coc from './pages/Coc';
 import Dashboard from './pages/Dashboard';

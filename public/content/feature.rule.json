@@ -39,8 +39,7 @@
   },
   "disabledRoutes": [
     "/dashboard",
-    "/tickets",
-    "/speakers"
+    "/tickets"
   ],
   "disabledPartnerTitles": [
     "Also Backed By"
