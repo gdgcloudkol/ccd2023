@@ -21,8 +21,9 @@
     "reset": true
   },
   "login": {
-    "accountType": true,
-    "email": true,
+    "accountType": false,
+    "username": true,
+    "email": false,
     "password": true,
     "oneTimeLink": false
   },

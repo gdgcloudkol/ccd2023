@@ -3,7 +3,7 @@ import { AccountType } from "../datatype";
 export interface SignupData {
   accountType: AccountType;
   speaker: boolean,
-  speakerDetails: {
+  speakerDetails?: {
     bio: string,
     city: string,
     accomodation: boolean,
@@ -14,6 +14,7 @@ export interface SignupData {
     displayName: string;
     email: string;
     password: string;
+    confirmPassword: string;
     countryCode: string;
     phNo: string;
     college: string;
@@ -31,7 +32,7 @@ export interface SignupData {
   misc: {
     theme?: 'light' | 'dark';
     foodPref?: 'veg' | 'non-veg';
-    thisrt?: 's' | 'm' | 'xl' | 'xxl';
+    thisrt?: 's' | 'm' | 'l' |'xl' | 'xxl';
   }
 }
 
