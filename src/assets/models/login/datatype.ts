@@ -2,6 +2,7 @@ import { AccountType } from "../datatype";
 
 export interface LoginData {
   accountType: AccountType;
+  username: string;
   email: string;
   password: string;
 }
