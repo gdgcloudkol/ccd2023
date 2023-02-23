@@ -80,85 +80,132 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className='hidden lg:block opacity-50 white-sec relative -z-0 lg: zoom-120'>
-        <img src="images/background/victoria.svg" alt="Victoria Memorial Picture" />
+      <div className="hidden lg:block opacity-50 white-sec relative -z-0 lg: zoom-120">
+        <img
+          src="images/background/victoria.svg"
+          alt="Victoria Memorial Picture"
+        />
       </div>
-      <div className={`hidden lg:block h-72 text-center event-sec-2 strokeme pl-52 pr-52 pt-10 text-white ${CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'}`}>
+      <div
+        className={`hidden lg:block h-72 text-center event-sec-2 strokeme pl-52 pr-52 pt-10 text-white ${
+          CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
+        }`}
+      >
         {landingPageContent?.subTitle1}
         <p
-          className={`no-shadow ${CurrentTheme() === 'white' ? 'text-black' : 'text-white'
-            }`}
+          className={`no-shadow ${
+            CurrentTheme() === 'white' ? 'text-black' : 'text-white'
+          }`}
         >
           {landingPageContent?.description1}
         </p>
       </div>
-      <div className='hidden lg:block h-44 -mt-120'>
-        <div className='grid grid-cols-4 text-white text-left'>
-          <div className='event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5'>
+      <div className="hidden lg:block h-44 -mt-120">
+        <div className="grid grid-cols-4 text-white text-left">
+          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
             {landingPageContent?.subTitle2}
-            <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-white' : 'text-black'}`}>
+            <p
+              className={`no-shadow ${
+                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
+              }`}
+            >
               {landingPageContent?.description2}
             </p>
           </div>
-          <div className='event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5'>
+          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
             {landingPageContent?.subTitle3}
-            <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-white' : 'text-black'}`}>
+            <p
+              className={`no-shadow ${
+                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
+              }`}
+            >
               {landingPageContent?.description3}
             </p>
           </div>
-          <div className='event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5'>
+          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
             {landingPageContent?.subTitle4}
-            <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-white' : 'text-black'}`}>
+            <p
+              className={`no-shadow ${
+                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
+              }`}
+            >
               {landingPageContent?.description4}
             </p>
           </div>
-          <div className='event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5'>
+          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
             {landingPageContent?.subTitle5}
-            <p className={`no-shadow ${CurrentTheme() === 'white' ? 'text-white' : 'text-black'}`}>
+            <p
+              className={`no-shadow ${
+                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
+              }`}
+            >
               {landingPageContent?.description5}
             </p>
           </div>
         </div>
       </div>
-      <div className={`hidden lg:block h-80 ${CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'}`}>
-      </div>
+      <div
+        className={`hidden lg:block h-80 ${
+          CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
+        }`}
+      ></div>
       <div className="text-center lg:-mt-60 mt-20 object-fill pl-10 pr-10 lg:pl-32 lg:pr-32 yt max-h-fit">
         <iframe
           width="100%"
           height="100%"
-          className='iframe'
+          className="iframe"
           src={landingPageContent?.youtubeLink}
           title={landingPageContent?.youtubeLinkTitle}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         ></iframe>
       </div>
-      <div className='hidden lg:block opacity-50 relative lg: zoom-120'>
-        <img src="images/background/howrahBridge.svg" alt="Howrah Bridge Picture" />
+      <div className="hidden lg:block opacity-50 relative lg: zoom-120 z-0">
+        <img
+          src="images/background/howrahBridge.svg"
+          alt="Howrah Bridge Picture"
+        />
       </div>
-      <div className={`hidden lg:block h-72 text-center event-sec-2 pl-52 pr-52 pt-10 text-white bg-transparent cfs`}>
-        <div
-          className='grid grid-rows-3 grid-col-4'
-        >
-          <div className='row-span-2 col-span-1'>
-            Call for Speakers
+      <div
+        className={`hidden lg:block h-72 text-center event-sec-2 pl-52 pr-52 pt-10 text-white bg-transparent cfs`}
+      >
+        {/* <div className="grid grid-rows-1 grid-col-2 flex flex-row">
+          <div className="row-span-1 col-span-1"></div>
+          <div className="row-span-1 col-span-2">Details goes here</div>
+          <div className="">Button</div>
+        </div> */}
+        <div className="flex flex-row justify-center items-center">
+          <div className="flex flex-col justify-center items-center">
+            <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5 uppercase z-10">
+              Call for Speakers
+            </div>
+            <p className="no-shadow text-white uppercase z-10">Speakers</p>
           </div>
-          <div className='row-span-2 col-span-1'>
-            Details goes here
-          </div>
-          <div className=''>
-            Button
+          <div className="flex flex-col justify-start items-start">
+            <p className=" text-lg text-start lg:text-clip text-g-gray-7 pb-6 dark:text-white z-10">
+              Each Google Cloud Community Days event brings you an opportunity
+              to learn about Cloud Technology and Google Cloud Certifications
+              from the industry experts. Our experts will tell you how Google
+              Cloud Platform and Google Cloud
+            </p>
+            <button
+              className="transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
+                  bg-red-500 
+                  hover:bg-google-green 
+                  cursor:timer z-10"
+              onClick={() => {}}
+            >
+              Become a Speaker
+            </button>
           </div>
         </div>
       </div>
-      {
-        features?.showCommunityPartners ? (
-          <>
-            <Sponsors />
-            <CommunityPartners />
-          </>
-        ) : null
-      }
+      {features?.showCommunityPartners ? (
+        <>
+          <Sponsors />
+          <CommunityPartners />
+        </>
+      ) : null}
     </>
   );
 };
