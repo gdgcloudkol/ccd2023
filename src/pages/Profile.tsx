@@ -1,8 +1,16 @@
-import { useState } from 'react';
-import { logout } from '../services/rest.service';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ApiLogout } from '../services/rest.service';
+import { LoggedInContext } from '../services/state.service';
 
 const Profile = () => {
-  const [type, setType] = useState('Speaker');
+  const { setLoggedInState } = useContext(LoggedInContext)
+  const [type] = useState('Speaker');
+  const nav = useNavigate()
+
+  const logout = () => {
+    ApiLogout(setLoggedInState, nav)
+  }
 
   return (
     <div>
@@ -67,9 +75,7 @@ const Profile = () => {
                   bg-google-red
                   hover:bg-google-green 
                   cursor:timer "
-              onClick={() => {
-                logout();
-              }}
+              onClick={logout}
             >
               Logout
             </button>
@@ -78,9 +84,7 @@ const Profile = () => {
                   bg-black
                   hover:bg-google-green 
                   cursor:timer "
-              onClick={() => {
-                logout();
-              }}
+              onClick={() => { }}
             >
               Edit Account
             </button>

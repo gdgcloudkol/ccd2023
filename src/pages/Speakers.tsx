@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
 import { AiFillLinkedin } from 'react-icons/ai';
-import { getContent } from '../services/content.service';
-import { getFeature } from '../services/feature.service';
 import { ReactComponent as FacebookSVGIcon } from '../assets/icons/facebook.svg';
-import { ReactComponent as TwitterSVGIcon } from '../assets/icons/twitter.svg';
-import { ReactComponent as InstagramSVGIcon } from '../assets/icons/instagram.svg';
-import { ReactComponent as LinkedInSVGIcon } from '../assets/icons/linkedin.svg';
 import { ReactComponent as GitHubSVGIcon } from '../assets/icons/github.svg';
 import { ReactComponent as GmailSVGIcon } from '../assets/icons/gmail.svg';
+import { ReactComponent as InstagramSVGIcon } from '../assets/icons/instagram.svg';
+import { ReactComponent as LinkedInSVGIcon } from '../assets/icons/linkedin.svg';
+import { ReactComponent as TwitterSVGIcon } from '../assets/icons/twitter.svg';
 import RandomColorWrapper from '../components/utils/RandomColorWrapper';
-import { CurrentTheme, CurrentThemeLS } from '../services/common.service';
+import { getContent } from '../services/content.service';
+import { getFeature } from '../services/feature.service';
 
 const Speakers = () => {
   const [speakersDetails, setSpeakersDetails] = useState([]);

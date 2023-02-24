@@ -60,7 +60,7 @@ const Home = () => {
       <div className="hidden lg:block opacity-50 white-sec relative -z-0 lg: zoom-120">
         <img
           src="images/background/victoria.svg"
-          alt="Victoria Memorial Picture"
+          alt="Victoria Memorial"
         />
       </div>
       {/* home section 1 ends here */}
@@ -97,7 +97,7 @@ const Home = () => {
       <div className="hidden lg:block opacity-50 relative lg: zoom-120 z-0">
         <img
           src="images/background/howrahBridge.svg"
-          alt="Howrah Bridge Picture"
+          alt="Howrah Bridge"
         />
       </div>
       <HomeCFS />

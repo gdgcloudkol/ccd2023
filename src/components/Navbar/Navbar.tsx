@@ -1,18 +1,17 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useEffect, useState } from 'react';
-import {
-  NavbarContent,
-  NavbarItemContent
-} from '../../assets/models/navbar/datatype';
+import { useContext, useEffect, useState } from 'react';
+import { FeatureRule } from '../../assets/models/datatype';
+import { NavbarContent, NavbarItemContent } from '../../assets/models/navbar/datatype';
 import { CurrentTheme } from '../../services/common.service';
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
-import { loggedIn } from '../../services/state.service';
+import { LoggedInContext } from '../../services/state.service';
 import Toggle from '../Theme/ThemeToggle';
 import Navlink from './Navlink';
 
 const NavbarPage = () => {
+  const {loggedInState,} = useContext(LoggedInContext)
   const [content, setContent] = useState({} as NavbarContent);
   useEffect(() => {
     getContent<NavbarContent>('navbar').then((data: void | NavbarContent) => {
@@ -20,20 +19,12 @@ const NavbarPage = () => {
     });
   }, []);
 
+
   const [rule, setFeature] = useState({
     navbarPermanent: false,
     navbarSpatialLoggedIn: false,
     navbarSpatialNotLoggedIn: false
   });
-  const [disabledRoutes, setDisabledRoutes] = useState(['']);
-  useEffect(() => {
-    getFeature().then((data) => {
-      if (data) {
-        setFeature(data.navbar);
-        setDisabledRoutes(data.disabledRoutes);
-      }
-    });
-  }, []);
 
   const navigation: {
     navbarPermanent: NavbarItemContent[];
@@ -43,7 +34,17 @@ const NavbarPage = () => {
     navbar_additional: []
   };
 
-  if (loggedIn) {
+  const [disabledRoutes, setDisabledRoutes] = useState(['']);
+  useEffect(() => {
+    getFeature().then((data: FeatureRule) => {
+      if (data) {
+        setFeature(data.navbar);
+        setDisabledRoutes(data.disabledRoutes);
+      }
+    });
+  }, [loggedInState]);
+
+  if (loggedInState) {
     navigation.navbar_additional = rule?.navbarSpatialLoggedIn
       ? content?.navbarSpatialLoggedIn
       : [];

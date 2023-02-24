@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FeatureRule } from "../../assets/models/datatype";
 import { HomeButtonContent, HomeCFSContent, HomeEventContent } from "../../assets/models/home/datatype";
 import { CurrentTheme } from "../../services/common.service";
 import { getContent } from "../../services/content.service";
 import { getFeature } from "../../services/feature.service";
-import { loggedIn } from "../../services/state.service";
+import { LoggedInContext } from "../../services/state.service";
 
 export default function HomeCFS() {
+  const { loggedInState } = useContext(LoggedInContext)
   const [cfsContent, setCfsContent] = useState({} as HomeCFSContent);
   const [buttonContent, setButtonContent] = useState([{}] as HomeButtonContent[])
   useEffect(() => {
@@ -29,9 +30,9 @@ export default function HomeCFS() {
         setCfsRule(data.home?.cfs);
         for (let i of buttonContent) {
           if (
-            (loggedIn && i?.id === data.home?.cfsButtonStateLogin) ||
-            (!loggedIn && i?.id === data.home?.cfsButtonStateNotLogin)
-            ) {
+            (loggedInState && i?.id === data.home?.cfsButtonStateLogin) ||
+            (!loggedInState && i?.id === data.home?.cfsButtonStateNotLogin)
+          ) {
             i.state = 'disabled'
             if (
               data.home.disabledCfsButton.every(
@@ -45,7 +46,7 @@ export default function HomeCFS() {
         }
       }
     });
-  }, [cfsRule]);
+  }, [cfsRule, loggedInState, buttonContent]);
 
   return (
     <div
@@ -71,7 +72,7 @@ export default function HomeCFS() {
                             cursor-${buttonDisplay?.state === 'disabled' ? 'not-allowed' : 'pointer'}
                             bg-google-${buttonLocalColor}
                           `}
-                href={buttonDisplay?.state === 'active' ? buttonDisplay?.hyperlink : ''}
+                href={buttonDisplay?.state === 'active' ? buttonDisplay?.hyperlink : '/'}
                 aria-disabled={buttonDisplay?.state === 'disabled'}
                 onMouseEnter={() => { setButtonLocalColor(buttonDisplay.hoverColor) }}
                 onMouseLeave={() => { setButtonLocalColor(buttonDisplay.color) }}

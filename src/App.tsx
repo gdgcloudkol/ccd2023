@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     if (scrollPosition < 50) setshowGoTop('hidden');
-    const event = window.addEventListener('scroll', handleGoTopButton);
+    window.addEventListener('scroll', handleGoTopButton);
     return () => window.removeEventListener('scroll', handleGoTopButton);
   }, [scrollPosition]);
 

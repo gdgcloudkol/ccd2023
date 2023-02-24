@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FeatureRule, HomeRule } from "../../assets/models/datatype";
 import { HomeButtonContent, HomeEventContent } from "../../assets/models/home/datatype";
 import { CurrentTheme, textRandomColor } from "../../services/common.service";
 import { getContent } from "../../services/content.service";
 import { getFeature } from "../../services/feature.service";
-import { loggedIn } from "../../services/state.service";
+import { LoggedInContext } from "../../services/state.service";
 
 const HomeEvent = () => {
+  const { loggedInState } = useContext(LoggedInContext)
   const [homeContent, setContent] = useState({} as HomeEventContent);
   useEffect(() => {
     getContent<HomeEventContent>('home').then((data: void | HomeEventContent) => {
@@ -29,8 +30,8 @@ const HomeEvent = () => {
           if (homeContent?.ticketButton)
             for (let i of homeContent?.ticketButton) {
               if (
-                (loggedIn && i?.id === data.home?.ticketButtonStateLogin) ||
-                (!loggedIn && i?.id === data.home?.ticketButtonStateNotLogin)
+                (loggedInState && i?.id === data.home?.ticketButtonStateLogin) ||
+                (!loggedInState && i?.id === data.home?.ticketButtonStateNotLogin)
               ) {
                 i.state = 'disabled'
                 if (
@@ -46,8 +47,8 @@ const HomeEvent = () => {
           if (homeContent?.cfsButton)
             for (let i of homeContent?.cfsButton) {
               if (
-                (loggedIn && i.id === data.home?.cfsButtonStateLogin) ||
-                (!loggedIn && i.id === data.home?.cfsButtonStateNotLogin)
+                (loggedInState && i.id === data.home?.cfsButtonStateLogin) ||
+                (!loggedInState && i.id === data.home?.cfsButtonStateNotLogin)
               ) {
                 i.state = 'disabled'
                 if (
@@ -62,7 +63,7 @@ const HomeEvent = () => {
             }
         }
       });
-  }, [ticketButtonRule, cfsButtonRule, homeContent]);
+  }, [ticketButtonRule, cfsButtonRule, homeContent, loggedInState]);
 
   const [headingColor, setColor] = useState<string>('text-google-gray-3');
   useEffect(() => {
@@ -121,14 +122,14 @@ const HomeEvent = () => {
                           cursor-${ticketButtonRule?.state === 'disabled' ? 'not-allowed' : 'pointer'}
                           bg-google-${ticketButtonColor}
                         `}
-              href={ticketButtonRule?.state === 'active' ? ticketButtonRule?.hyperlink : ''}
+              href={ticketButtonRule?.state === 'active' ? ticketButtonRule?.hyperlink : '/'}
               aria-disabled={ticketButtonRule?.state === 'disabled'}
               onMouseEnter={() => { setTicketButtonColor(ticketButtonRule.hoverColor) }}
               onMouseLeave={() => { setTicketButtonColor(ticketButtonRule.color) }}
             >
               {ticketButtonRule?.title}
             </a>
-            {loggedIn ? (
+            {loggedInState ? (
               <a
                 className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
                           transition ease-in-out duration-300
@@ -136,7 +137,7 @@ const HomeEvent = () => {
                           cursor-${cfsButtonRule?.state === 'disabled' ? 'not-allowed' : 'pointer'}
                           bg-google-${cfsButtonColor}
                         `}
-                href={cfsButtonRule?.state === 'active' ? cfsButtonRule?.hyperlink : ''}
+                href={cfsButtonRule?.state === 'active' ? cfsButtonRule?.hyperlink : '/'}
                 aria-disabled={cfsButtonRule?.state === 'disabled'}
                 onMouseEnter={() => { setCfsButtonColor(cfsButtonRule.hoverColor) }}
                 onMouseLeave={() => { setCfsButtonColor(cfsButtonRule.color) }}
