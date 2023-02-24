@@ -101,10 +101,6 @@ h3 {
   margin-top: -400px;
 }
 
-.pic1{
-  height: 350px;
-  width: 350px;
-}
 
 .pic2 {
   height: 220px;
@@ -130,11 +126,6 @@ h3 {
     height: 350px;
   }
 
-  .pic1{
-    height: 200px;
-    width: 200px;
-  }
-
   .pic2 {
     height: 110px;
     width: 110px;
@@ -145,12 +136,36 @@ h3 {
   .pic3 {
     height: 150px;
     width: 150px;
-    margin-left: 50px;
-    margin-top: -80px;
+    margin-left: -85px;
+    margin-top: -60px;
   }
 
   .pic-cont {
     margin-left: 40px;
     height: 200px;
+  }
+}
+
+@media screen and (min-width:1500px) {
+  .pic2 {
+    margin-left: -30px;
+    margin-top: 100px;
+  }
+
+  .pic3 {
+    margin-left: -140px;
+    margin-top: -100px;
+  }
+}
+
+@media screen and (min-width:1900px) {
+  .pic2 {
+    margin-left: -30px;
+    margin-top: 115px;
+  }
+
+  .pic3 {
+    margin-left: -140px;
+    margin-top: -90px;
   }
 }
