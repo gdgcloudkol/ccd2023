@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-import { useContext, useEffect, useState } from "react";
-import { FeatureRule, HomeRule } from "../../assets/models/datatype";
-import { HomeButtonContent, HomeEventContent } from "../../assets/models/home/datatype";
-import { CurrentTheme, textRandomColor } from "../../services/common.service";
-import { getContent } from "../../services/content.service";
-import { getFeature } from "../../services/feature.service";
-import { LoggedInContext } from "../../services/state.service";
-=======
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FeatureRule, HomeRule } from '../../assets/models/datatype';
 import {
   HomeButtonContent,
@@ -16,11 +7,10 @@ import {
 import { CurrentTheme, textRandomColor } from '../../services/common.service';
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
-import { loggedIn } from '../../services/state.service';
->>>>>>> ace1288 (feat: countdown timer)
+import { LoggedInContext } from '../../services/state.service';
 
 const HomeEvent = () => {
-  const { loggedInState } = useContext(LoggedInContext)
+  const { loggedInState } = useContext(LoggedInContext);
   const [homeContent, setContent] = useState({} as HomeEventContent);
   useEffect(() => {
     getContent<HomeEventContent>('home').then(
@@ -46,8 +36,10 @@ const HomeEvent = () => {
           if (homeContent?.ticketButton)
             for (let i of homeContent?.ticketButton) {
               if (
-                (loggedInState && i?.id === data.home?.ticketButtonStateLogin) ||
-                (!loggedInState && i?.id === data.home?.ticketButtonStateNotLogin)
+                (loggedInState &&
+                  i?.id === data.home?.ticketButtonStateLogin) ||
+                (!loggedInState &&
+                  i?.id === data.home?.ticketButtonStateNotLogin)
               ) {
                 i.state = 'disabled';
                 if (
@@ -144,15 +136,11 @@ const HomeEvent = () => {
                           }
                           bg-google-${ticketButtonColor}
                         `}
-<<<<<<< HEAD
-              href={ticketButtonRule?.state === 'active' ? ticketButtonRule?.hyperlink : '/'}
-=======
               href={
                 ticketButtonRule?.state === 'active'
                   ? ticketButtonRule?.hyperlink
-                  : ''
+                  : '/'
               }
->>>>>>> ace1288 (feat: countdown timer)
               aria-disabled={ticketButtonRule?.state === 'disabled'}
               onMouseEnter={() => {
                 setTicketButtonColor(ticketButtonRule.hoverColor);
@@ -175,15 +163,11 @@ const HomeEvent = () => {
                           }
                           bg-google-${cfsButtonColor}
                         `}
-<<<<<<< HEAD
-                href={cfsButtonRule?.state === 'active' ? cfsButtonRule?.hyperlink : '/'}
-=======
                 href={
                   cfsButtonRule?.state === 'active'
                     ? cfsButtonRule?.hyperlink
-                    : ''
+                    : '/'
                 }
->>>>>>> ace1288 (feat: countdown timer)
                 aria-disabled={cfsButtonRule?.state === 'disabled'}
                 onMouseEnter={() => {
                   setCfsButtonColor(cfsButtonRule.hoverColor);
