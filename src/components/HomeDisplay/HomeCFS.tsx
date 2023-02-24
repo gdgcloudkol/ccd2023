@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { FeatureRule } from "../../assets/models/datatype";
 import { HomeButtonContent, HomeCFSContent, HomeEventContent } from "../../assets/models/home/datatype";
 import { CurrentTheme } from "../../services/common.service";
 import { getContent } from "../../services/content.service";
@@ -7,19 +7,13 @@ import { getFeature } from "../../services/feature.service";
 import { loggedIn } from "../../services/state.service";
 
 export default function HomeCFS() {
-
-  let nav = useNavigate();
-
-  const [cfsContent, setCfsContent] = useState(
-    {} as HomeCFSContent
-  );
+  const [cfsContent, setCfsContent] = useState({} as HomeCFSContent);
   const [buttonContent, setButtonContent] = useState([{}] as HomeButtonContent[])
-
   useEffect(() => {
     getContent<HomeEventContent>('home').then(
       (data: void | HomeEventContent) => {
         if (data) {
-          setButtonContent(data.buttonRight)
+          setButtonContent(data.cfsButton)
           setCfsContent(data.cfs);
         }
       }
@@ -29,24 +23,22 @@ export default function HomeCFS() {
   const [cfsRule, setCfsRule] = useState(false);
   const [buttonDisplay, setButtonDisplay] = useState({} as HomeButtonContent)
   const [buttonLocalColor, setButtonLocalColor] = useState(buttonDisplay.color)
-
   useEffect(() => {
-    getFeature().then((data) => {
+    getFeature().then((data: FeatureRule) => {
       if (data) {
-        setCfsRule(data.home.cfs);
+        setCfsRule(data.home?.cfs);
         for (let i of buttonContent) {
           if (
-            (loggedIn && i?.id === data.home?.buttonRightStateLogin) ||
-            (!loggedIn && i?.id === data.home?.buttonRightStateNotLogin)
-          ) {
+            (loggedIn && i?.id === data.home?.cfsButtonStateLogin) ||
+            (!loggedIn && i?.id === data.home?.cfsButtonStateNotLogin)
+            ) {
             i.state = 'disabled'
             if (
-              data.home.disabledRightButton.every(
+              data.home.disabledCfsButton.every(
                 (item: string) => i.id !== item
               )
             )
               i.state = 'active';
-            console.log(i)
             setButtonDisplay(i);
             setButtonLocalColor(i.color)
           }
@@ -79,7 +71,7 @@ export default function HomeCFS() {
                             cursor-${buttonDisplay?.state === 'disabled' ? 'not-allowed' : 'pointer'}
                             bg-google-${buttonLocalColor}
                           `}
-                href={buttonDisplay?.state === 'active' ? buttonDisplay?.hyperLink : ''}
+                href={buttonDisplay?.state === 'active' ? buttonDisplay?.hyperlink : ''}
                 aria-disabled={buttonDisplay?.state === 'disabled'}
                 onMouseEnter={() => { setButtonLocalColor(buttonDisplay.hoverColor) }}
                 onMouseLeave={() => { setButtonLocalColor(buttonDisplay.color) }}

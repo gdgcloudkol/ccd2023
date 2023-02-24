@@ -3,7 +3,7 @@ export interface HomeButtonContent {
   title: string;
   color: string;
   hoverColor: string;
-  hyperLink: string;
+  hyperlink: string;
   state?: 'disabled' | 'active';
 }
 
@@ -16,8 +16,8 @@ export interface HomeEventContent {
   date: string;
   locationTitle: string;
   location: string;
-  buttonLeft: HomeButtonContent[];
-  buttonRight: HomeButtonContent[];
+  ticketButton: HomeButtonContent[];
+  cfsButton: HomeButtonContent[];
   landingPage: LandingPageContent;
   cfs: HomeCFSContent;
 }

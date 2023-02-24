@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HomeRule } from "../../assets/models/datatype";
+import { FeatureRule, HomeRule } from "../../assets/models/datatype";
 import { HomeButtonContent, HomeEventContent } from "../../assets/models/home/datatype";
 import { CurrentTheme, textRandomColor } from "../../services/common.service";
 import { getContent } from "../../services/content.service";
@@ -15,56 +15,54 @@ const HomeEvent = () => {
   }, []);
 
 
-  const [buttonLeftRule, setButtonLeft] = useState({} as HomeButtonContent);
-  const [buttonRightRule, setButtonRight] = useState({} as HomeButtonContent);
-
   const [homeRules, setHome] = useState({} as HomeRule);
-
-  const [buttonLeftColor, setButtonLeftColor] = useState(buttonLeftRule.color)
-  const [buttonRightColor, setButtonRightColor] = useState(buttonRightRule.color)
+  const [ticketButtonRule, setTicketButton] = useState({} as HomeButtonContent);
+  const [cfsButtonRule, setCfsButton] = useState({} as HomeButtonContent);
+  const [ticketButtonColor, setTicketButtonColor] = useState(ticketButtonRule.color)
+  const [cfsButtonColor, setCfsButtonColor] = useState(cfsButtonRule.color)
 
   useEffect(() => {
-    if (!buttonLeftRule?.id || !buttonRightRule?.id)
-      getFeature().then((data) => {
+    if (!ticketButtonRule?.id || !cfsButtonRule?.id)
+      getFeature().then((data: FeatureRule) => {
         if (data) {
           setHome(data.home);
-          if (homeContent?.buttonLeft)
-            for (let i of homeContent?.buttonLeft) {
+          if (homeContent?.ticketButton)
+            for (let i of homeContent?.ticketButton) {
               if (
-                (loggedIn && i?.id === data.home?.buttonLeftStateLogin) ||
-                (!loggedIn && i?.id === data.home?.buttonLeftStateNotLogin)
+                (loggedIn && i?.id === data.home?.ticketButtonStateLogin) ||
+                (!loggedIn && i?.id === data.home?.ticketButtonStateNotLogin)
               ) {
                 i.state = 'disabled'
                 if (
-                  data.home.disabledLeftButton.every(
+                  data.home?.disabledTicketButton.every(
                     (item: string) => i.id !== item
                   )
                 )
                   i.state = 'active';
-                setButtonLeft(i);
-                setButtonLeftColor(i.color)
+                setTicketButton(i);
+                setTicketButtonColor(i.color)
               }
             }
-          if (homeContent?.buttonRight)
-            for (let i of homeContent?.buttonRight) {
+          if (homeContent?.cfsButton)
+            for (let i of homeContent?.cfsButton) {
               if (
-                (loggedIn && i?.id === data.home?.buttonRightStateLogin) ||
-                (!loggedIn && i?.id === data.home?.buttonRightStateNotLogin)
+                (loggedIn && i.id === data.home?.cfsButtonStateLogin) ||
+                (!loggedIn && i.id === data.home?.cfsButtonStateNotLogin)
               ) {
                 i.state = 'disabled'
                 if (
-                  data.home.disabledRightButton.every(
+                  data.home?.disabledCfsButton.every(
                     (item: string) => i.id !== item
                   )
                 )
                   i.state = 'active';
-                setButtonRight(i);
-                setButtonRightColor(i.color)
+                setCfsButton(i);
+                setCfsButtonColor(i.color)
               }
             }
         }
       });
-  }, [buttonLeftRule, buttonRightRule, homeContent]);
+  }, [ticketButtonRule, cfsButtonRule, homeContent]);
 
   const [headingColor, setColor] = useState<string>('text-google-gray-3');
   useEffect(() => {
@@ -120,30 +118,30 @@ const HomeEvent = () => {
               className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
                           transition ease-in-out duration-300
                           hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                          cursor-${buttonLeftRule?.state === 'disabled' ? 'not-allowed' : 'pointer'}
-                          bg-google-${buttonLeftColor}
+                          cursor-${ticketButtonRule?.state === 'disabled' ? 'not-allowed' : 'pointer'}
+                          bg-google-${ticketButtonColor}
                         `}
-              href={buttonLeftRule?.state === 'active' ? buttonLeftRule?.hyperLink : ''}
-              aria-disabled={buttonLeftRule?.state === 'disabled'}
-              onMouseEnter={() => { setButtonLeftColor(buttonLeftRule.hoverColor) }}
-              onMouseLeave={() => { setButtonLeftColor(buttonLeftRule.color) }}
+              href={ticketButtonRule?.state === 'active' ? ticketButtonRule?.hyperlink : ''}
+              aria-disabled={ticketButtonRule?.state === 'disabled'}
+              onMouseEnter={() => { setTicketButtonColor(ticketButtonRule.hoverColor) }}
+              onMouseLeave={() => { setTicketButtonColor(ticketButtonRule.color) }}
             >
-              {buttonLeftRule?.title}
+              {ticketButtonRule?.title}
             </a>
             {loggedIn ? (
               <a
                 className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
                           transition ease-in-out duration-300
                           hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                          cursor-${buttonRightRule?.state === 'disabled' ? 'not-allowed' : 'pointer'}
-                          bg-google-${buttonRightColor}
+                          cursor-${cfsButtonRule?.state === 'disabled' ? 'not-allowed' : 'pointer'}
+                          bg-google-${cfsButtonColor}
                         `}
-                href={buttonRightRule?.state === 'active' ? buttonRightRule?.hyperLink : ''}
-                aria-disabled={buttonRightRule?.state === 'disabled'}
-                onMouseEnter={() => { setButtonRightColor(buttonRightRule.hoverColor) }}
-                onMouseLeave={() => { setButtonRightColor(buttonRightRule.color) }}
+                href={cfsButtonRule?.state === 'active' ? cfsButtonRule?.hyperlink : ''}
+                aria-disabled={cfsButtonRule?.state === 'disabled'}
+                onMouseEnter={() => { setCfsButtonColor(cfsButtonRule.hoverColor) }}
+                onMouseLeave={() => { setCfsButtonColor(cfsButtonRule.color) }}
               >
-                {buttonRightRule?.title}
+                {cfsButtonRule?.title}
               </a>
             ) : null}
           </div>

@@ -74,17 +74,16 @@
     "dsc_iem"
   ],
   "home": {
-    "buttonLeftStateNotLogin": "cs",
-    "buttonLeftStateLogin": "bt",
-    "disabledLeftButton": [
-      "gs",
+    "ticketButtonStateNotLogin": "gs",
+    "ticketButtonStateLogin": "bt",
+    "disabledTicketButton": [
       "bt",
       "vt",
       "rt"
     ],
-    "buttonRightStateNotLogin": "cfscs",
-    "buttonRightStateLogin": "cfs",
-    "disabledRightButton": [
+    "cfsButtonStateNotLogin": "cfsgs",
+    "cfsButtonStateLogin": "cfs",
+    "disabledCfsButton": [
       "cfsc"
     ],
     "timer": false,
