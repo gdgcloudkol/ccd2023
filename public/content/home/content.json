@@ -53,6 +53,13 @@
       "hyperlink": ""
     },
     {
+      "id": "cfsgs",
+      "title": "Login To Continue",
+      "color": "red",
+      "hoverColor": "blue",
+      "hyperlink": ""
+    },
+    {
       "id": "cfs",
       "title": "Call For Speakers",
       "color": "red",
@@ -80,5 +87,10 @@
     "description5": "Speciality Tracks",
     "youtubeLink": "https://www.youtube.com/embed/Jhof8FwvNaY",
     "youtubeLinkTitle": "Cloud Community Days Kolkata 2022 Teaser"
+  },
+  "cfs": {
+    "title": "Call for",
+    "subtitle": "Speakers",
+    "description": "Each Google Cloud Community Days event brings you an opportunity to lead and present to the crown your excellent views. Join us as a Speaker to showcase your awesomeness"
   }
 }

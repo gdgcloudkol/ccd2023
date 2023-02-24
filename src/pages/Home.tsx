@@ -4,18 +4,17 @@ import {
   LandingPageContent
 } from '../assets/models/home/datatype';
 import CommunityPartners from '../components/CommunityPartners/CommunityPartners';
-import HomeEvent from '../components/HomeEvent/HomeEvent';
+import HomeCFS from '../components/HomeDisplay/HomeCFS';
+import HomeDisplay from '../components/HomeDisplay/HomeDisplay';
+import HomeSection3 from '../components/HomeDisplay/HomeSection3';
+import HomeEvent from '../components/HomeDisplay/HomeEvent';
 import Sponsors from '../components/Sponsors/Sponsors';
+import Youtube from '../components/Youtube/Youtube';
 import { CurrentTheme } from '../services/common.service';
 import { getContent } from '../services/content.service';
 import { getFeature } from '../services/feature.service';
 
 const Home = () => {
-  // const [applied, setApplied] = useState(false)
-  // const [ticket, setTicket] = useState(false)
-  // const [rejected, setRejected] = useState(false)
-
-  // const navigate = useNavigate();
 
   const [landingPageContent, setLandingPageContent] = useState(
     {} as LandingPageContent
@@ -28,13 +27,12 @@ const Home = () => {
     );
   }, []);
 
-  const [features, setHome] = useState({
+  const [homeRule, setHome] = useState({
     showCommunityPartners: false,
     showSponsors: false
   });
 
   useEffect(() => {
-    // if (features.showCommunityPartners === null || features.showCommunityPartners === undefined)
     getFeature().then((data) => {
       if (data) {
         setHome({
@@ -47,38 +45,17 @@ const Home = () => {
 
   return (
     <>
+      {/* home section 1 starts here */}
       <div
         className={`relative z-10 w-full justify-between items-start flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-26 lg:pb-[62px] px-4`}
         id="home-grid"
       >
+        {/* event description starts here */}
         <HomeEvent />
-        <div className="flex flex-col justify-between pic-cont">
-          <div className="flex flex-wrap">
-            <div className="w-6/12 px-4">
-              <img
-                src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                alt=""
-                className="shadow rounded-full max-w-full h-auto align-middle border-none"
-              />
-            </div>
-            <div className="w-4/12 px-4 pic2">
-              <img
-                src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                alt=""
-                className="shadow rounded-full max-w-full h-auto align-middle border-none"
-              />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-center">
-            <div className="w-4/12 px-4 pic3">
-              <img
-                src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"
-                alt=""
-                className="shadow rounded-full max-w-full h-auto align-middle border-none"
-              />
-            </div>
-          </div>
-        </div>
+        {/* event description ends here */}
+        {/* photos section starts here */}
+        <HomeDisplay />
+        {/* photos section ends here */}
       </div>
       <div className="hidden lg:block opacity-50 white-sec relative -z-0 lg: zoom-120">
         <img
@@ -86,126 +63,55 @@ const Home = () => {
           alt="Victoria Memorial Picture"
         />
       </div>
+      {/* home section 1 ends here */}
+      {/* home section 2 starts here */}
       <div
-        className={`hidden lg:block h-72 text-center event-sec-2 strokeme pl-52 pr-52 pt-10 text-white ${
-          CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
-        }`}
+        className={`hidden lg:block h-72 text-center event-sec-2 strokeme pl-52 pr-52 pt-10 text-white ${CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
+          }`}
       >
         {landingPageContent?.subTitle1}
         <p
-          className={`no-shadow ${
-            CurrentTheme() === 'white' ? 'text-black' : 'text-white'
-          }`}
+          className={`no-shadow ${CurrentTheme() === 'white' ? 'text-black' : 'text-white'
+            }`}
         >
           {landingPageContent?.description1}
         </p>
       </div>
-      <div className="hidden lg:block h-44 -mt-120">
-        <div className="grid grid-cols-4 text-white text-left">
-          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
-            {landingPageContent?.subTitle2}
-            <p
-              className={`no-shadow ${
-                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
-              }`}
-            >
-              {landingPageContent?.description2}
-            </p>
-          </div>
-          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
-            {landingPageContent?.subTitle3}
-            <p
-              className={`no-shadow ${
-                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
-              }`}
-            >
-              {landingPageContent?.description3}
-            </p>
-          </div>
-          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
-            {landingPageContent?.subTitle4}
-            <p
-              className={`no-shadow ${
-                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
-              }`}
-            >
-              {landingPageContent?.description4}
-            </p>
-          </div>
-          <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5">
-            {landingPageContent?.subTitle5}
-            <p
-              className={`no-shadow ${
-                CurrentTheme() === 'white' ? 'text-white' : 'text-black'
-              }`}
-            >
-              {landingPageContent?.description5}
-            </p>
-          </div>
-        </div>
-      </div>
+      {/* home section 2 ends here */}
+      {/* home section 3 starts here */}
+      <HomeSection3
+        {...landingPageContent}
+      />
+      {/* home section 3 ends here */}
+      {/* youtube section starts here */}
       <div
-        className={`hidden lg:block h-80 ${
-          CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
-        }`}
+        className={`hidden lg:block h-80 ${CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
+          }`}
       ></div>
-      <div className="text-center lg:-mt-60 mt-20 object-fill pl-10 pr-10 lg:pl-32 lg:pr-32 yt max-h-fit">
-        <iframe
-          width="100%"
-          height="100%"
-          className="iframe"
-          src={landingPageContent?.youtubeLink}
-          title={landingPageContent?.youtubeLinkTitle}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        ></iframe>
-      </div>
+      <Youtube
+        youtubeLink={landingPageContent?.youtubeLink}
+        youtubeLinkTitle={landingPageContent?.youtubeLinkTitle}
+      />
+      {/* youtube section ends here */}
+      {/* cfs section starts here */}
       <div className="hidden lg:block opacity-50 relative lg: zoom-120 z-0">
         <img
           src="images/background/howrahBridge.svg"
           alt="Howrah Bridge Picture"
         />
       </div>
-      <div
-        className={`hidden lg:block h-72 text-center event-sec-2 pl-52 pr-52 pt-10 text-white bg-transparent cfs`}
-      >
-        {/* <div className="grid grid-rows-1 grid-col-2 flex flex-row">
-          <div className="row-span-1 col-span-1"></div>
-          <div className="row-span-1 col-span-2">Details goes here</div>
-          <div className="">Button</div>
-        </div> */}
-        <div className="flex flex-row justify-center items-center">
-          <div className="flex flex-col justify-center items-center">
-            <div className="event-sec-3 strokeme-w text-black pl-32 pr-32 pt-5 uppercase z-10">
-              Call for Speakers
-            </div>
-            <p className="no-shadow text-white uppercase z-10">Speakers</p>
-          </div>
-          <div className="flex flex-col justify-start items-start">
-            <p className=" text-lg text-start lg:text-clip text-g-gray-7 pb-6 dark:text-white z-10">
-              Each Google Cloud Community Days event brings you an opportunity
-              to learn about Cloud Technology and Google Cloud Certifications
-              from the industry experts. Our experts will tell you how Google
-              Cloud Platform and Google Cloud
-            </p>
-            <button
-              className="transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
-                  bg-red-500 
-                  hover:bg-google-green 
-                  cursor:timer z-10"
-              onClick={() => {}}
-            >
-              Become a Speaker
-            </button>
-          </div>
-        </div>
-      </div>
-      {features?.showCommunityPartners ? (
-        <>
-          <Sponsors />
-          <CommunityPartners />
-        </>
+      <HomeCFS />
+      {/* cfs section ends here */}
+      {/* sponsors section starts here */}
+      {homeRule?.showSponsors ? (
+        <Sponsors />
       ) : null}
+      {/* sponsors section ends here */}
+      {/* community partner starts here */}
+      {homeRule?.showCommunityPartners ? (
+        <CommunityPartners />
+      ) : null}
+      {/* community partner ends here */}
     </>
   );
 };
