@@ -1,12 +1,12 @@
 export type AccountType = 'student' | 'professional';
 
 export interface HomeRule {
-  buttonLeftStateNotLogin: string;
-  buttonLeftStateLogin: string;
-  disabledLeftButton: string[];
-  buttonRightStateNotLogin: string;
-  buttonRightStateLogin: string;
-  disabledRightButton: string[];
+  ticketButtonStateNotLogin: string;
+  ticketButtonStateLogin: string;
+  disabledTicketButton: string[];
+  cfsButtonStateNotLogin: string;
+  cfsButtonStateLogin: string;
+  disabledCfsButton: string[];
   timer: boolean;
   cfs: boolean;
   location: boolean;

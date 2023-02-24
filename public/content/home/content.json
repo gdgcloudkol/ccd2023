@@ -7,7 +7,7 @@
   "date": "TBD",
   "locationTitle": "Venue",
   "location": "TBD",
-  "buttonLeft": [
+  "ticketButton": [
     {
       "id": "cs",
       "title": "Coming Soon",
@@ -20,7 +20,7 @@
       "title": "Get Started",
       "color": "red",
       "hoverColor": "blue",
-      "hyperlink": ""
+      "hyperlink": "/login"
     },
     {
       "id": "bt",
@@ -44,7 +44,7 @@
       "hyperlink": ""
     }
   ],
-  "buttonRight": [
+  "cfsButton": [
     {
       "id": "cfscs",
       "title": "CFS Coming Soon",
@@ -57,7 +57,7 @@
       "title": "Login To Continue",
       "color": "red",
       "hoverColor": "blue",
-      "hyperlink": ""
+      "hyperlink": "/login"
     },
     {
       "id": "cfs",

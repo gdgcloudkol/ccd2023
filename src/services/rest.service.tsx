@@ -13,7 +13,7 @@ export function postTestLogin(username: string, password: string) {
     .catch(e => console.log(e))
 }
 
-export function postTestSignup({}) {
+export function postTestSignup({ }) {
   axios.post(BASE_AUTH_URI + '/registration',
     //
   )
