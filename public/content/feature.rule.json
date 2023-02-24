@@ -85,8 +85,6 @@
     "buttonRightStateNotLogin": "cfscs",
     "buttonRightStateLogin": "cfs",
     "disabledRightButton": [
-      "cfscs",
-      "cfs",
       "cfsc"
     ],
     "timer": false,

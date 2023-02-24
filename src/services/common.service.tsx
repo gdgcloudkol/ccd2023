@@ -28,5 +28,5 @@ export const CurrentTheme = () => {
 }
 
 export const CurrentThemeLS = () => {
-  return localStorage.getItem('color-theme')
+  return localStorage.getItem('theme')
 }

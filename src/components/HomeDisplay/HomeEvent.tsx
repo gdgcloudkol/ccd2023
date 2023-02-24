@@ -7,7 +7,7 @@ import { getFeature } from "../../services/feature.service";
 import { loggedIn } from "../../services/state.service";
 
 const HomeEvent = () => {
-  const [content, setContent] = useState({} as HomeEventContent);
+  const [homeContent, setContent] = useState({} as HomeEventContent);
   useEffect(() => {
     getContent<HomeEventContent>('home').then((data: void | HomeEventContent) => {
       if (data) setContent(data);
@@ -28,12 +28,13 @@ const HomeEvent = () => {
       getFeature().then((data) => {
         if (data) {
           setHome(data.home);
-          if (content?.buttonLeft)
-            for (let i of content?.buttonLeft) {
+          if (homeContent?.buttonLeft)
+            for (let i of homeContent?.buttonLeft) {
               if (
                 (loggedIn && i?.id === data.home?.buttonLeftStateLogin) ||
                 (!loggedIn && i?.id === data.home?.buttonLeftStateNotLogin)
               ) {
+                i.state = 'disabled'
                 if (
                   data.home.disabledLeftButton.every(
                     (item: string) => i.id !== item
@@ -44,12 +45,13 @@ const HomeEvent = () => {
                 setButtonLeftColor(i.color)
               }
             }
-          if (content?.buttonRight)
-            for (let i of content?.buttonRight) {
+          if (homeContent?.buttonRight)
+            for (let i of homeContent?.buttonRight) {
               if (
                 (loggedIn && i?.id === data.home?.buttonRightStateLogin) ||
                 (!loggedIn && i?.id === data.home?.buttonRightStateNotLogin)
               ) {
+                i.state = 'disabled'
                 if (
                   data.home.disabledRightButton.every(
                     (item: string) => i.id !== item
@@ -62,7 +64,7 @@ const HomeEvent = () => {
             }
         }
       });
-  }, [buttonLeftRule, buttonRightRule, content]);
+  }, [buttonLeftRule, buttonRightRule, homeContent]);
 
   const [headingColor, setColor] = useState<string>('text-google-gray-3');
   useEffect(() => {
@@ -81,22 +83,22 @@ const HomeEvent = () => {
             alt="GDG Cloud Kolkata Logo"
           />
           <p className={`text-4xl lg:text-6xl font-normal text-google-blue mb-6`}>
-            {content?.event}
+            {homeContent?.event}
           </p>
 
           <p className="text-g-gray-6 dark:text-white mb-0 text-center text-justify pb-6 text-1xl sm:text-base">
             <span
               className={`mb-0 text-center text-justify pb-6 ${headingColor}`}
             >
-              {content?.hashtagEventName}
+              {homeContent?.hashtagEventName}
             </span>
-            {' - '} {content?.description}
+            {' - '} {homeContent?.description}
           </p>
 
           <p className="text-xl mb-6 text-g-gray-8 dark:text-g-gray-4">
             {homeRules?.date ? (
               <>
-                {content?.dateTitle + ' : ' + content.date}
+                {homeContent?.dateTitle + ' : ' + homeContent.date}
                 <sup className="mr-0.5"></sup> &nbsp;
               </>
             ) : (
@@ -105,7 +107,7 @@ const HomeEvent = () => {
 
             {homeRules?.location ? (
               <>
-                {content?.locationTitle + ' : ' + content.location}
+                {homeContent?.locationTitle + ' : ' + homeContent.location}
                 <sup className="mr-0.5"></sup>
               </>
             ) : (
@@ -115,28 +117,35 @@ const HomeEvent = () => {
 
           <div className="flex flex-row items-center justify-center min-w-3/4">
             <a
-              className={`transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded cursor-pointer hover:shadow-xl hover:scale-105 hover:ease-in duration-300 rounded-3xl
+              className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
+                          transition ease-in-out duration-300
+                          hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                          cursor-${buttonLeftRule?.state === 'disabled' ? 'not-allowed' : 'pointer'}
                           bg-google-${buttonLeftColor}
-                          cursor:${buttonLeftRule?.state === 'disabled' ? 'not-allowed' : 'timer'} `}
-              href={buttonRightRule?.hyperLink}
-              aria-disabled={buttonLeftRule?.state === 'disabled' ? true : false}
+                        `}
+              href={buttonLeftRule?.state === 'active' ? buttonLeftRule?.hyperLink : ''}
+              aria-disabled={buttonLeftRule?.state === 'disabled'}
               onMouseEnter={() => { setButtonLeftColor(buttonLeftRule.hoverColor) }}
               onMouseLeave={() => { setButtonLeftColor(buttonLeftRule.color) }}
             >
               {buttonLeftRule?.title}
             </a>
-
-            <a
-              className={`transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded cursor-pointer hover:shadow-xl hover:scale-105 hover:ease-in duration-300 rounded-3xl
+            {loggedIn ? (
+              <a
+                className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
+                          transition ease-in-out duration-300
+                          hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                          cursor-${buttonRightRule?.state === 'disabled' ? 'not-allowed' : 'pointer'}
                           bg-google-${buttonRightColor}
-                          cursor:${buttonRightRule?.state === 'disabled' ? 'not-allowed' : 'timer'}`}
-              href={buttonRightRule?.hyperLink}
-              aria-disabled={buttonRightRule?.state === 'disabled' ? true : false}
-              onMouseEnter={() => { setButtonRightColor(buttonLeftRule.hoverColor) }}
-              onMouseLeave={() => { setButtonRightColor(buttonLeftRule.color) }}
-            >
-              {buttonRightRule?.title}
-            </a>
+                        `}
+                href={buttonRightRule?.state === 'active' ? buttonRightRule?.hyperLink : ''}
+                aria-disabled={buttonRightRule?.state === 'disabled'}
+                onMouseEnter={() => { setButtonRightColor(buttonRightRule.hoverColor) }}
+                onMouseLeave={() => { setButtonRightColor(buttonRightRule.color) }}
+              >
+                {buttonRightRule?.title}
+              </a>
+            ) : null}
           </div>
         </div>
       </div>

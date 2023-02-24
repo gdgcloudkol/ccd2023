@@ -19,6 +19,7 @@ export interface HomeEventContent {
   buttonLeft: HomeButtonContent[];
   buttonRight: HomeButtonContent[];
   landingPage: LandingPageContent;
+  cfs: HomeCFSContent;
 }
 
 export interface LandingPageContent {
@@ -34,4 +35,10 @@ export interface LandingPageContent {
   description5: string;
   youtubeLink: string;
   youtubeLinkTitle: string;
+}
+
+export interface HomeCFSContent {
+  title: string;
+  subtitle: string;
+  description: string;
 }
