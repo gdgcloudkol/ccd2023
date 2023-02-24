@@ -1,19 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import NavbarPage from './components/Navbar/Navbar';
 import Coc from './pages/Coc';
 import Dashboard from './pages/Dashboard';
 import FaqPage from './pages/Faq';
 import Home from './pages/Home';
-import Login from './pages/Login';
+import ApiLogin from './pages/Login';
 import Profile from './pages/Profile';
 import Schedule from './pages/Schedule/Schedule';
 import Signup from './pages/Signup';
 import Speakers from './pages/Speakers';
 import Tickets from './pages/Tickets';
 import { getFeature } from './services/feature.service';
+import { LoggedInContext } from './services/state.service';
 
 const Router = () => {
+  const { loggedInState } = useContext(LoggedInContext)
   const [navRule, setNavRule] = useState(['']);
   useEffect(() => {
     getFeature().then((data) => {
@@ -48,12 +50,12 @@ const Router = () => {
           <Route path="/signup" element={<Signup />} />
         ) : null}
         {navRule?.every((item) => '/login' !== item) ? (
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<ApiLogin />} />
         ) : null}
-        {navRule?.every((item) => '/profile' !== item) ? (
+        {navRule?.every((item) => '/profile' !== item) && loggedInState ? (
           <Route path="/profile" element={<Profile />} />
         ) : null}
-        {navRule?.every((item) => '/dashboard' !== item) ? (
+        {navRule?.every((item) => '/dashboard' !== item) && loggedInState ? (
           <Route path="/dashboard" element={<Dashboard />} />
         ) : null}
         <Route path="/*" element={<Home />} />

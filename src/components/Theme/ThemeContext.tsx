@@ -1,4 +1,4 @@
-import React from 'react';
+import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 const getInitialTheme = () => {
   const lsTheme = localStorage.getItem('theme');
@@ -12,10 +12,11 @@ const getInitialTheme = () => {
   return 'light';
 };
 
-export const ThemeContext = React.createContext<any | null>(null);
+export const ThemeContext = createContext<{ theme: string | null, setTheme: Dispatch<SetStateAction<string>> }>
+  ({} as { theme: string | null, setTheme: Dispatch<SetStateAction<string>> });
 
 export const ThemeProvider = ({ initialTheme, children }: any) => {
-  const [theme, setTheme] = React.useState(getInitialTheme);
+  const [theme, setTheme] = useState(getInitialTheme);
 
   const rawSetTheme = (rawTheme: any) => {
     const root = window.document.documentElement;
@@ -31,7 +32,7 @@ export const ThemeProvider = ({ initialTheme, children }: any) => {
     rawSetTheme(initialTheme);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     rawSetTheme(theme);
   }, [theme]);
 

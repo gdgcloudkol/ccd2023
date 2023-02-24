@@ -1,8 +1,10 @@
-import { useState } from "react";
-import { postTestLogin } from "../services/rest.service";
+import { useContext, useState } from "react";
+import { ApiLogin } from "../services/rest.service";
+import { LoggedInContext } from "../services/state.service";
 
 const Login = () => {
-  const [user, setUser] = useState({ username: '', password: '' });
+  const { setLoggedInState } = useContext(LoggedInContext)
+  const [user] = useState({ username: '', password: '' });
   const { username, password } = user;
 
   function handleChange(e: any) {
@@ -14,7 +16,7 @@ const Login = () => {
   }
 
   function handleSubmit() {
-    postTestLogin(user.username, user.password)
+    ApiLogin(user.username, user.password, setLoggedInState)
   }
 
   return (
