@@ -1,4 +1,4 @@
-import { AccountType } from "../datatype";
+import { AccountType } from '../datatype';
 
 export interface LoginData {
   accountType: AccountType;
@@ -15,5 +15,12 @@ export interface LoginContent {
     oneTimeLink: string;
     submit: string;
     cancel: string;
-  }
+  };
+}
+
+export interface SignUpPayload {
+  username: string;
+  email: string;
+  password1: string;
+  password2: string;
 }
