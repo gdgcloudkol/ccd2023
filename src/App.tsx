@@ -4,10 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Footer from './components/Footer/Footer';
 import GoTop from './components/GoTop/GoTop';
+import Timer from './components/Timer/Timer';
 import Router from './Router';
 import { clearLocalStorage } from './services/state.service';
 
-function App() {
+const App = () => {
   const [scrollPosition, setSrollPosition] = useState<number>(0);
   const [showGoTop, setshowGoTop] = useState<string>('goTopHidden');
 
@@ -31,7 +32,7 @@ function App() {
   }, [scrollPosition]);
 
   useEffect(() => {
-    clearLocalStorage()
+    clearLocalStorage();
     AOS.init({
       duration: 1000,
       once: true
@@ -51,6 +52,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;

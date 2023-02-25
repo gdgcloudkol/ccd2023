@@ -1,26 +1,32 @@
-import { useContext, useEffect, useState } from "react";
-import { FeatureRule, HomeRule } from "../../assets/models/datatype";
-import { HomeButtonContent, HomeEventContent } from "../../assets/models/home/datatype";
-import { CurrentTheme, textRandomColor } from "../../services/common.service";
-import { getContent } from "../../services/content.service";
-import { getFeature } from "../../services/feature.service";
-import { LoggedInContext } from "../../services/state.service";
+import { useContext, useEffect, useState } from 'react';
+import { FeatureRule, HomeRule } from '../../assets/models/datatype';
+import {
+  HomeButtonContent,
+  HomeEventContent
+} from '../../assets/models/home/datatype';
+import { CurrentTheme, textRandomColor } from '../../services/common.service';
+import { getContent } from '../../services/content.service';
+import { getFeature } from '../../services/feature.service';
+import { LoggedInContext } from '../../services/state.service';
 
 const HomeEvent = () => {
-  const { loggedInState } = useContext(LoggedInContext)
+  const { loggedInState } = useContext(LoggedInContext);
   const [homeContent, setContent] = useState({} as HomeEventContent);
   useEffect(() => {
-    getContent<HomeEventContent>('home').then((data: void | HomeEventContent) => {
-      if (data) setContent(data);
-    });
+    getContent<HomeEventContent>('home').then(
+      (data: void | HomeEventContent) => {
+        if (data) setContent(data);
+      }
+    );
   }, []);
-
 
   const [homeRules, setHome] = useState({} as HomeRule);
   const [ticketButtonRule, setTicketButton] = useState({} as HomeButtonContent);
   const [cfsButtonRule, setCfsButton] = useState({} as HomeButtonContent);
-  const [ticketButtonColor, setTicketButtonColor] = useState(ticketButtonRule.color)
-  const [cfsButtonColor, setCfsButtonColor] = useState(cfsButtonRule.color)
+  const [ticketButtonColor, setTicketButtonColor] = useState(
+    ticketButtonRule.color
+  );
+  const [cfsButtonColor, setCfsButtonColor] = useState(cfsButtonRule.color);
 
   useEffect(() => {
     if (!ticketButtonRule?.id || !cfsButtonRule?.id)
@@ -30,10 +36,12 @@ const HomeEvent = () => {
           if (homeContent?.ticketButton)
             for (let i of homeContent?.ticketButton) {
               if (
-                (loggedInState && i?.id === data.home?.ticketButtonStateLogin) ||
-                (!loggedInState && i?.id === data.home?.ticketButtonStateNotLogin)
+                (loggedInState &&
+                  i?.id === data.home?.ticketButtonStateLogin) ||
+                (!loggedInState &&
+                  i?.id === data.home?.ticketButtonStateNotLogin)
               ) {
-                i.state = 'disabled'
+                i.state = 'disabled';
                 if (
                   data.home?.disabledTicketButton.every(
                     (item: string) => i.id !== item
@@ -41,7 +49,7 @@ const HomeEvent = () => {
                 )
                   i.state = 'active';
                 setTicketButton(i);
-                setTicketButtonColor(i.color)
+                setTicketButtonColor(i.color);
               }
             }
           if (homeContent?.cfsButton)
@@ -50,7 +58,7 @@ const HomeEvent = () => {
                 (loggedInState && i.id === data.home?.cfsButtonStateLogin) ||
                 (!loggedInState && i.id === data.home?.cfsButtonStateNotLogin)
               ) {
-                i.state = 'disabled'
+                i.state = 'disabled';
                 if (
                   data.home?.disabledCfsButton.every(
                     (item: string) => i.id !== item
@@ -58,7 +66,7 @@ const HomeEvent = () => {
                 )
                   i.state = 'active';
                 setCfsButton(i);
-                setCfsButtonColor(i.color)
+                setCfsButtonColor(i.color);
               }
             }
         }
@@ -70,18 +78,20 @@ const HomeEvent = () => {
     return setColor(textRandomColor());
   }, []);
 
-
-
   return (
     <div className="w-full m-w-1/2">
       <div>
         <div className="flex flex-col lg:items-start lg:pl-10 lg:w-4/5">
           <img
-            className={`w-1/2 lg:w-2/5 pb-4 ${CurrentTheme() === 'white' ? 'filter brightness-0 invert' : ''}`}
+            className={`w-1/2 lg:w-2/5 pb-4 ${
+              CurrentTheme() === 'white' ? 'filter brightness-0 invert' : ''
+            }`}
             src="/images/logos/google_cloud_logo.png"
             alt="GDG Cloud Kolkata Logo"
           />
-          <p className={`text-4xl lg:text-6xl font-normal text-google-blue mb-6`}>
+          <p
+            className={`text-4xl lg:text-6xl font-normal text-google-blue mb-6`}
+          >
             {homeContent?.event}
           </p>
 
@@ -119,13 +129,25 @@ const HomeEvent = () => {
               className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
                           transition ease-in-out duration-300
                           hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                          cursor-${ticketButtonRule?.state === 'disabled' ? 'not-allowed' : 'pointer'}
+                          cursor-${
+                            ticketButtonRule?.state === 'disabled'
+                              ? 'not-allowed'
+                              : 'pointer'
+                          }
                           bg-google-${ticketButtonColor}
                         `}
-              href={ticketButtonRule?.state === 'active' ? ticketButtonRule?.hyperlink : '/'}
+              href={
+                ticketButtonRule?.state === 'active'
+                  ? ticketButtonRule?.hyperlink
+                  : '/'
+              }
               aria-disabled={ticketButtonRule?.state === 'disabled'}
-              onMouseEnter={() => { setTicketButtonColor(ticketButtonRule.hoverColor) }}
-              onMouseLeave={() => { setTicketButtonColor(ticketButtonRule.color) }}
+              onMouseEnter={() => {
+                setTicketButtonColor(ticketButtonRule.hoverColor);
+              }}
+              onMouseLeave={() => {
+                setTicketButtonColor(ticketButtonRule.color);
+              }}
             >
               {ticketButtonRule?.title}
             </a>
@@ -134,13 +156,25 @@ const HomeEvent = () => {
                 className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
                           transition ease-in-out duration-300
                           hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                          cursor-${cfsButtonRule?.state === 'disabled' ? 'not-allowed' : 'pointer'}
+                          cursor-${
+                            cfsButtonRule?.state === 'disabled'
+                              ? 'not-allowed'
+                              : 'pointer'
+                          }
                           bg-google-${cfsButtonColor}
                         `}
-                href={cfsButtonRule?.state === 'active' ? cfsButtonRule?.hyperlink : '/'}
+                href={
+                  cfsButtonRule?.state === 'active'
+                    ? cfsButtonRule?.hyperlink
+                    : '/'
+                }
                 aria-disabled={cfsButtonRule?.state === 'disabled'}
-                onMouseEnter={() => { setCfsButtonColor(cfsButtonRule.hoverColor) }}
-                onMouseLeave={() => { setCfsButtonColor(cfsButtonRule.color) }}
+                onMouseEnter={() => {
+                  setCfsButtonColor(cfsButtonRule.hoverColor);
+                }}
+                onMouseLeave={() => {
+                  setCfsButtonColor(cfsButtonRule.color);
+                }}
               >
                 {cfsButtonRule?.title}
               </a>
@@ -149,7 +183,7 @@ const HomeEvent = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default HomeEvent;
