@@ -53,12 +53,12 @@ const Home = () => {
         {/* event description starts here */}
         <HomeEvent />
         {/* event description ends here */}
+        <div className=" lg:fixed lg:right-0 lg:top-1/4 w-full lg:w-auto flex justify-center lg:inline-block lg:z-50 bg-[#ffffff26] ">
+          <Timer />
+        </div>
         {/* photos section starts here */}
         <HomeDisplay />
         {/* photos section ends here */}
-        <div className=" fixed right-0 top-1/4 z-50 bg-[#ffffff26] ">
-          <Timer />
-        </div>
       </div>
       <div className="hidden lg:block opacity-50 white-sec relative -z-0 lg: zoom-120">
         <img src="images/background/victoria.svg" alt="Victoria Memorial" />
