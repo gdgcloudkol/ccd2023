@@ -7,3 +7,165 @@
     scroll-behavior: smooth;
   }
 }
+
+h1 {
+  @apply text-2xl;
+  @apply font-extrabold;
+}
+
+h2 {
+  @apply text-xl;
+}
+
+h3 {
+  @apply text-lg;
+}
+
+.img-border {
+  border: 1px solid #ddd;
+  @apply rounded-lg;
+  @apply p-5;
+}
+
+.schedule-container {
+  position: relative;
+  overflow: hidden;
+  height: fit-content;
+  width: inherit;
+}
+
+#fade-in-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  width: inherit;
+  transition: .3s cubic-bezier(.25, .8, .5, 1);
+  transform: translateX(0);
+  background: transparent;
+}
+
+#fade-in-2 {
+  height: auto;
+  width: inherit;
+  background: transparent;
+  transition: .3s cubic-bezier(.25, .8, .5, 1);
+  transform: translateX(100%);
+}
+
+#fade-in-1.inactive {
+  transform: translateX(-100%);
+}
+
+#fade-in-2.active {
+  transform: translateX(0);
+}
+
+.event-sec-2 {
+  font-weight: 500;
+  font-size: 54px;
+  line-height: 65px;
+}
+
+.event-sec-3 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 42px;
+}
+
+.strokeme {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.strokeme-w {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+.no-shadow {
+  text-shadow: none;
+}
+
+.zoom-120 {
+  zoom: 130%;
+}
+
+.yt {
+  height: 50rem
+}
+
+.white-sec {
+  margin-top: -400px;
+}
+
+.cfs {
+  margin-top: -400px;
+}
+
+
+.pic2 {
+  height: 220px;
+  width: 220px;
+  margin-left: -30px;
+  margin-top: 100px;
+}
+
+.pic3 {
+  height: 220px;
+  width: 220px;
+  margin-left: -100px;
+  margin-top: -75px;
+}
+
+@media screen and (max-width:400px) {
+  .yt {
+    height: 400px;
+  }
+
+  .iframe {
+    width: 300px;
+    height: 350px;
+  }
+
+  .pic2 {
+    height: 110px;
+    width: 110px;
+    margin-left: -30px;
+    margin-top: 60px;
+  }
+
+  .pic3 {
+    height: 150px;
+    width: 150px;
+    margin-left: -85px;
+    margin-top: -60px;
+  }
+
+  .pic-cont {
+    margin-left: 40px;
+    height: 200px;
+  }
+}
+
+@media screen and (min-width:1500px) {
+  .pic2 {
+    margin-left: -30px;
+    margin-top: 100px;
+  }
+
+  .pic3 {
+    margin-left: -140px;
+    margin-top: -100px;
+  }
+}
+
+@media screen and (min-width:1900px) {
+  .pic2 {
+    margin-left: -30px;
+    margin-top: 115px;
+  }
+
+  .pic3 {
+    margin-left: -140px;
+    margin-top: -90px;
+  }
+}
