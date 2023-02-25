@@ -27,7 +27,7 @@ const Timer = () => {
   React.useEffect(() => {
     const tick = setInterval(() => converter(), 1000);
     return () => clearInterval(tick);
-  }, []);
+  });
 
   return (
     <div className=" w-16 lg:w-20 h-1/2 text-center py-3 text-[#8AB4F8]">
