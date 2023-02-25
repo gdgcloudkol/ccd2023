@@ -36,4 +36,16 @@ export interface SignInPayload {
   email: string;
   username: string;
   password: string;
+  button: {
+    oneTimeLink: string;
+    submit: string;
+    cancel: string;
+  };
+}
+
+export interface SignUpPayload {
+  username: string;
+  email: string;
+  password1: string;
+  password2: string;
 }

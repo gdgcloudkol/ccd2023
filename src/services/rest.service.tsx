@@ -17,6 +17,7 @@ export async function ApiLogin(
     if (res.status === 200) {
       const data = res.data as LoginData;
       setLoggedInState(true);
+      console.log(data);
       localStorage.setItem('loggedIn', 'true');
       localStorage.setItem('accessToken', data.access_token);
     }
