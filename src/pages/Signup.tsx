@@ -32,13 +32,28 @@ const Signup = () => {
       return;
     }
 
-    Promise.resolve(ApiSignup(payload))
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((e) => {
-        console.log('Error: ', e);
+    const res = await ApiSignup(payload);
+    if (res.status === 400) {
+      setFieldErrors(res.data);
+    }
+  }
+
+  function handleChange(e: React.FormEvent<HTMLFormElement>) {
+    const formData = new FormData(
+      document.getElementById('login') as HTMLFormElement
+    );
+
+    const password1 = formData.get('password1') as string;
+    const password2 = formData.get('password2') as string;
+
+    if (password1 && password2 && password1 !== password2) {
+      setFieldErrors({
+        password1: 'Passwords do not match',
+        password2: 'Passwords do not match'
       });
+    } else {
+      setFieldErrors({});
+    }
   }
 
   const FIELDS = [
@@ -73,29 +88,43 @@ const Signup = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto" data-aos="fade-up">
       <div className="min-h-full flex">
         <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div>
               <img
-                className="h-12 w-auto brightness-0 invert"
+                className="h-12 w-auto dark:brightness-0 dark:invert"
                 src="/images/logos/cloud_kol_logo.svg"
                 alt="GDG Cloud Kolkata Logo"
               />
               <h2 className="mt-6 text-3xl text-gray-900 dark:text-gray-100 tracking-tight">
-                Sign in to your account
+                Sign up for an account
               </h2>
+            </div>
+
+            <div className="mt-8">
+              {fieldErrors.non_field_errors && (
+                <div className="rounded-md bg-red-50 p-4" data-aos="fade-in">
+                  <div className="flex">
+                    <div className="ml-3">
+                      <h3 className="text-sm font-medium text-red-800">
+                        {fieldErrors.non_field_errors}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="mt-8">
               <div className="mt-6">
                 <form
-                  action="#"
                   method="POST"
                   className="space-y-6"
                   id="login"
                   onSubmit={handleSubmit}
+                  onChange={handleChange}
                 >
                   {FIELDS.map((field) => (
                     <div key={field.name}>
@@ -112,10 +141,21 @@ const Signup = () => {
                           type={field.type}
                           autoComplete={field.name}
                           required={field.required}
-                          className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm"
+                          className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm
+                          
+                          ${
+                            fieldErrors[field.name] &&
+                            'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
+                          }
+                          
+                          `}
                         />
                       </div>
-                      {JSON.stringify(fieldErrors)}
+                      {fieldErrors[field.name] && (
+                        <p className="mt-2 text-sm text-red-600">
+                          {fieldErrors[field.name]}
+                        </p>
+                      )}
                     </div>
                   ))}
 

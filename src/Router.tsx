@@ -15,7 +15,7 @@ import { getFeature } from './services/feature.service';
 import { LoggedInContext } from './services/state.service';
 
 const Router = () => {
-  const { loggedInState } = useContext(LoggedInContext)
+  const { loggedInState } = useContext(LoggedInContext);
   const [navRule, setNavRule] = useState(['']);
   useEffect(() => {
     getFeature().then((data) => {

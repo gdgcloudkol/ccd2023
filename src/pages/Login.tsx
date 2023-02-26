@@ -1,31 +1,62 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { SignInPayload } from '../assets/models/login/datatype';
 import { ApiLogin } from '../services/rest.service';
 import { LoggedInContext } from '../services/state.service';
 
 const Login = () => {
   const { setLoggedInState } = useContext(LoggedInContext);
+  const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
+  const navigate = useNavigate();
 
-  function handleSubmit(e: any) {
+  async function handleSubmit(e: any): Promise<void> {
     e.preventDefault();
     const formData = new FormData(
       document.getElementById('login') as HTMLFormElement
     );
 
-    const username = formData.get('username') as string;
-    const password = formData.get('password') as string;
+    const username = (formData.get('username') as string) || '';
+    const password = (formData.get('password') as string) || '';
+    const email = (formData.get('email') as string) || '';
 
-    ApiLogin(username, password, setLoggedInState);
+    const payload: SignInPayload = {
+      username,
+      email,
+      password
+    };
+
+    const res = await ApiLogin(payload, setLoggedInState);
+
+    if (res.status === 200) {
+      navigate('/profile');
+    } else if (res.status === 400) {
+      setFieldErrors(res.data);
+    }
   }
 
+  const FIELDS = [
+    {
+      name: 'username',
+      type: 'text',
+      placeholder: 'Username',
+      error: fieldErrors.username
+    },
+    {
+      name: 'password',
+      type: 'password',
+      placeholder: 'Password',
+      error: fieldErrors.password
+    }
+  ];
+
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto" data-aos="fade-up">
       <div className="min-h-full flex">
         <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div>
               <img
-                className="h-12 w-auto brightness-0 invert"
+                className="h-12 w-auto dark:brightness-0 dark:invert"
                 src="/images/logos/cloud_kol_logo.svg"
                 alt="GDG Cloud Kolkata Logo"
               />
@@ -35,51 +66,60 @@ const Login = () => {
             </div>
 
             <div className="mt-8">
+              {fieldErrors.non_field_errors && (
+                <div className="rounded-md bg-red-50 p-4" data-aos="fade-in">
+                  <div className="flex">
+                    <div className="ml-3">
+                      <h3 className="text-sm font-medium text-red-800">
+                        {fieldErrors.non_field_errors}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="mt-8">
               <div className="mt-6">
                 <form
-                  action="#"
                   method="POST"
                   className="space-y-6"
                   id="login"
                   onSubmit={handleSubmit}
                 >
-                  <div>
-                    <label
-                      htmlFor="username"
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-200"
-                    >
-                      Username
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        id="username"
-                        name="username"
-                        type="text"
-                        autoComplete="username"
-                        required
-                        className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm"
-                      />
+                  {FIELDS.map((field) => (
+                    <div key={field.name}>
+                      <label
+                        htmlFor={field.name}
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-200 capitalize"
+                      >
+                        {field.name}
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          id={field.name}
+                          name={field.name}
+                          type={field.type}
+                          autoComplete={field.name}
+                          required
+                          className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm
+                          ${
+                            fieldErrors[field.name] &&
+                            'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
+                          }
+                          `}
+                        />
+                      </div>
+                      {field.error && (
+                        <p
+                          className="mt-2 text-sm text-red-600"
+                          id={`${field.name}-error`}
+                        >
+                          {field.error}
+                        </p>
+                      )}
                     </div>
-                  </div>
-
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="password"
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-200"
-                    >
-                      Password
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        autoComplete="current-password"
-                        required
-                        className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm"
-                      />
-                    </div>
-                  </div>
+                  ))}
 
                   <div className="flex items-center justify-between">
                     <div className="text-sm">
