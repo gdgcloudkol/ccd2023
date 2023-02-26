@@ -83,7 +83,7 @@ const CommunityPartners = () => {
                     <GdscBanner label={sponsor?.sponsorName} />
                   ) : valid ? (
                     <img
-                      src={`../../assets/images/communityPartners/${sponsor.sponsorId}.png`}
+                      src={`images/communityPartners/${sponsor.sponsorId}.png`}
                       onLoad={checkValid}
                       onError={() => setValid(false)}
                       ref={image}

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import NavbarPage from './components/Navbar/Navbar';
 import Coc from './pages/Coc';
 import Dashboard from './pages/Dashboard';
@@ -15,7 +15,7 @@ import { getFeature } from './services/feature.service';
 import { LoggedInContext } from './services/state.service';
 
 const Router = () => {
-  const { loggedInState } = useContext(LoggedInContext)
+  const { loggedInState } = useContext(LoggedInContext);
   const [navRule, setNavRule] = useState(['']);
   useEffect(() => {
     getFeature().then((data) => {
@@ -24,7 +24,7 @@ const Router = () => {
   }, []);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <nav className="sticky top-0 z-30 w-full bg-white dark:bg-black dark:bg-opacity-0 backdrop-filter backdrop-blur-md bg-opacity-30 ">
         <NavbarPage />
       </nav>
@@ -60,7 +60,7 @@ const Router = () => {
         ) : null}
         <Route path="/*" element={<Home />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

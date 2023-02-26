@@ -4,9 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Footer from './components/Footer/Footer';
 import GoTop from './components/GoTop/GoTop';
-import Timer from './components/Timer/Timer';
 import Router from './Router';
-import { clearLocalStorage } from './services/state.service';
 
 const App = () => {
   const [scrollPosition, setSrollPosition] = useState<number>(0);
@@ -29,10 +27,10 @@ const App = () => {
     if (scrollPosition < 50) setshowGoTop('hidden');
     window.addEventListener('scroll', handleGoTopButton);
     return () => window.removeEventListener('scroll', handleGoTopButton);
+    // eslint-disable-next-line
   }, [scrollPosition]);
 
   useEffect(() => {
-    clearLocalStorage();
     AOS.init({
       duration: 1000,
       once: true

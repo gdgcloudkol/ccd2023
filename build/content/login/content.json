@@ -1,0 +1,10 @@
+{
+  "accountType": "Account Type",
+  "email": "Email",
+  "password": "Password",
+  "button": {
+    "oneTimeLink": "Click To Get One Time Link",
+    "submit": "Login",
+    "cancel": "Goto Home"
+  }
+}
