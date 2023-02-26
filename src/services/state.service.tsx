@@ -1,19 +1,31 @@
-import React, { Dispatch, SetStateAction, createContext, useEffect, useState } from "react";
-
+import React, {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useEffect,
+  useState
+} from 'react';
 
 export function clearLocalStorage() {
   localStorage.clear();
 }
 
-export const LoggedInContext = createContext<{ loggedInState: boolean, setLoggedInState: Dispatch<SetStateAction<boolean>> }>
-  ({} as { loggedInState: boolean, setLoggedInState: Dispatch<SetStateAction<boolean>> });
+export const LoggedInContext = createContext<{
+  loggedInState: boolean;
+  setLoggedInState: Dispatch<SetStateAction<boolean>>;
+}>(
+  {} as {
+    loggedInState: boolean;
+    setLoggedInState: Dispatch<SetStateAction<boolean>>;
+  }
+);
 
 export const LoggedInStateProvider = ({ children }: any) => {
   const [loggedInState, setLoggedInState] = useState(false);
 
   useEffect(() => {
-    const state = localStorage.getItem('loggedIn')
-    setLoggedInState(state === 'true')
+    const state = localStorage.getItem('loggedIn');
+    setLoggedInState(state === 'true');
   }, [loggedInState]);
 
   return (
@@ -25,4 +37,4 @@ export const LoggedInStateProvider = ({ children }: any) => {
 
 export const LoggedInState = () => {
   return React.useContext(LoggedInContext);
-}
+};

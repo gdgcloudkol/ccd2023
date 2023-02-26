@@ -5,7 +5,6 @@ import './App.css';
 import Footer from './components/Footer/Footer';
 import GoTop from './components/GoTop/GoTop';
 import Router from './Router';
-import { clearLocalStorage } from './services/state.service';
 
 const App = () => {
   const [scrollPosition, setSrollPosition] = useState<number>(0);
@@ -32,7 +31,6 @@ const App = () => {
   }, [scrollPosition]);
 
   useEffect(() => {
-    clearLocalStorage();
     AOS.init({
       duration: 1000,
       once: true
