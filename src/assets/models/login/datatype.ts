@@ -36,7 +36,7 @@ export interface SignInPayload {
   email: string;
   username: string;
   password: string;
-  button: {
+  button?: {
     oneTimeLink: string;
     submit: string;
     cancel: string;
@@ -48,4 +48,10 @@ export interface SignUpPayload {
   email: string;
   password1: string;
   password2: string;
+}
+
+export interface SignInPayload {
+  email: string;
+  username: string;
+  password: string;
 }
