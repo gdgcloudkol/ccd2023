@@ -8,7 +8,7 @@ const Timer = () => {
     second: '0'
   });
   const converter = () => {
-    let difference = new Date('2023-05-06').getTime() - Date.now();
+    let difference = new Date('2023/05/06').getTime() - new Date().getTime();
     let seconds = Math.floor(difference / 1000);
     let minutes = Math.floor(seconds / 60);
     let hours = Math.floor(minutes / 60);
@@ -27,7 +27,7 @@ const Timer = () => {
   React.useEffect(() => {
     const tick = setInterval(() => converter(), 1000);
     return () => clearInterval(tick);
-  });
+  }, []);
 
   return (
     <div className=" flex justify-center flex-col lg:inline-block py-2 lg:w-20 h-1/2 lg:text-center lg:py-3 px-3 lg:px-0 text-[#8AB4F8]">
