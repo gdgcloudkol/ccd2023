@@ -14,6 +14,7 @@ import { CurrentTheme } from '../services/common.service';
 import { getContent } from '../services/content.service';
 import { getFeature } from '../services/feature.service';
 import Timer from '../components/Timer/Timer';
+import HomeSocials from '../components/HomeDisplay/HomeSocials';
 
 const Home = () => {
   const [landingPageContent, setLandingPageContent] = useState(
@@ -106,6 +107,9 @@ const Home = () => {
       {/* community partner starts here */}
       {homeRule?.showCommunityPartners ? <CommunityPartners /> : null}
       {/* community partner ends here */}
+      {/* Home Socials starts here */}
+      <HomeSocials />
+      {/* Home Socials ends here */}
     </>
   );
 };
