@@ -58,7 +58,7 @@ const Home = () => {
         <HomeDisplay />
         {/* photos section ends here */}
       </div>
-      <div className="hidden lg:block opacity-50 white-sec relative -z-0 lg: zoom-120">
+      <div className="hidden lg:block opacity-50 white-sec relative -z-0 lg:zoom-120">
         <img src="/ccd2023/images/background/victoria.svg" alt="Victoria Memorial" />
       </div>
       {/* home section 1 ends here */}
