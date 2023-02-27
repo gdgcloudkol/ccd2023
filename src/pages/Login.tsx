@@ -55,11 +55,6 @@ const Login = () => {
         <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div>
-              <img
-                className="h-12 w-auto dark:brightness-0 dark:invert"
-                src="images/logos/cloud_kol_logo.svg"
-                alt="GDG Cloud Kolkata Logo"
-              />
               <h2 className="mt-6 text-3xl text-gray-900 dark:text-gray-100 tracking-tight">
                 Sign in to your account
               </h2>
@@ -156,7 +151,7 @@ const Login = () => {
         <div className="hidden lg:block relative w-0 flex-1">
           <img
             className="absolute inset-0 h-full w-full object-fill"
-            src="images/background/victoria.svg"
+            src="ccd2023/images/background/victoria.svg"
             alt=""
           />
         </div>
