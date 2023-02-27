@@ -9,7 +9,7 @@
           "sponsorId": "google_developers",
           "sponsorName": "Google Developers",
           "hyperlink": "https://developers.google.com",
-          "imgSrc": "ccd2023/images/sponsors/GoogleDevelopers.svg"
+          "imgSrc": "/ccd2023/images/sponsors/GoogleDevelopers.svg"
         }
       ]
     },
@@ -20,7 +20,7 @@
           "sponsorId": "weight_and_biases",
           "sponsorName": "Weight and Biases",
           "hyperlink": "https://wandb.ai",
-          "imgSrc": "ccd2023/images/sponsors/Wandb.svg"
+          "imgSrc": "/ccd2023/images/sponsors/Wandb.svg"
         }
       ]
     },
@@ -31,7 +31,7 @@
           "sponsorId": "dynopii",
           "sponsorName": "Dynopii",
           "hyperlink": "https://dynopii.com",
-          "imgSrc": "ccd2023/images/sponsors/Dynopii.svg"
+          "imgSrc": "/ccd2023/images/sponsors/Dynopii.svg"
         }
       ]
     },
@@ -42,7 +42,7 @@
           "sponsorId": "sessonize",
           "sponsorName": "Sessonize",
           "hyperlink": "https://sessonize.com",
-          "imgSrc": "ccd2023/images/sponsors/Sessionize.svg"
+          "imgSrc": "/ccd2023/images/sponsors/Sessionize.svg"
         }
       ]
     }
