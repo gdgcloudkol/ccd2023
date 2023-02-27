@@ -7,6 +7,7 @@ import { ReactComponent as InstagramSVGIcon } from '../assets/icons/instagram.sv
 import { ReactComponent as LinkedInSVGIcon } from '../assets/icons/linkedin.svg';
 import { ReactComponent as TwitterSVGIcon } from '../assets/icons/twitter.svg';
 import RandomColorWrapper from '../components/utils/RandomColorWrapper';
+import { CurrentTheme } from '../services/common.service';
 import { getContent } from '../services/content.service';
 import { getFeature } from '../services/feature.service';
 
@@ -87,7 +88,7 @@ const Speakers = () => {
                       <a
                         target="_blank"
                         rel="noopener noreferrer"
-                        href={`${social.url}`}
+                        href={social.url}
                         key={j}
                       >
                         <RandomColorWrapper>
@@ -119,6 +120,29 @@ const Speakers = () => {
                       <div className="text-sm w-full max-w-sm text-g-gray-7 dark:text-white mt-2">
                         {modalData.tagLine}
                       </div>
+                      <div>
+                        <div className="pt-3 flex relative justify-start">
+                          {
+                            modalData.links.map((social: any, j: number) => {
+                              return (
+                                <a
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  href={social.url}
+                                  key={j}
+                                >
+                                  {(social?.title === 'Facebook') ? <FacebookSVGIcon fill="currentColor" className={`w-8 h-8 ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`} /> : null}
+                                  {(social?.title === 'Twitter') ? <TwitterSVGIcon fill="currentColor" className={`w-8 h-8 ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`} /> : null}
+                                  {(social?.title === 'Instagram') ? <InstagramSVGIcon fill="currentColor" className={`w-8 h-8 ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`} /> : null}
+                                  {(social?.title === 'LinkedIn') ? <LinkedInSVGIcon fill="currentColor" className={`w-8 h-8 ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`} /> : null}
+                                  {(social?.title === 'Github') ? <GitHubSVGIcon fill="currentColor" className={`w-8 h-8 ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`} /> : null}
+                                  {(social?.title === 'Email') ? <GmailSVGIcon fill="currentColor" className={`w-8 h-8 ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`} /> : null}
+                                </a>
+                              )
+                            })
+                          }
+                        </div>
+                      </div>
                     </div>
                     <div>
                       <img
@@ -134,18 +158,6 @@ const Speakers = () => {
                     <p className="my-2 text-g-gray-5 dark:text-white font-light text-base leading-relaxed">
                       {modalData.bio}
                     </p>
-                    <div className="pt-10">
-                      {modalData.fullName === 'Dikshita Desai' ? (
-                        <a
-                          className="py-2 absolute bottom-4"
-                          href="https://www.linkedin.com/in/desaidikshita/"
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                          <AiFillLinkedin size={24} />
-                        </a>
-                      ) : null}
-                    </div>
                   </div>
 
                   {/*footer*/}

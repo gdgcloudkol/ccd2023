@@ -83,9 +83,8 @@ const HomeEvent = () => {
       <div>
         <div className="flex flex-col lg:items-start lg:pl-10 lg:w-4/5">
           <img
-            className={`w-1/2 lg:w-2/5 pb-4 ${
-              CurrentTheme() === 'white' ? 'filter brightness-0 invert' : ''
-            }`}
+            className={`w-1/2 lg:w-2/5 pb-4 ${CurrentTheme() === 'white' ? 'filter brightness-0 invert' : ''
+              }`}
             src="/ccd2023/images/logos/google_cloud_logo.png"
             alt="GDG Cloud Kolkata Logo"
           />
@@ -129,18 +128,13 @@ const HomeEvent = () => {
               className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
                           transition ease-in-out duration-300
                           hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                          cursor-${
-                            ticketButtonRule?.state === 'disabled'
-                              ? 'not-allowed'
-                              : 'pointer'
-                          }
+                          cursor-${ticketButtonRule?.state === 'disabled'
+                  ? 'not-allowed'
+                  : 'pointer'
+                }
                           bg-google-${ticketButtonColor}
                         `}
-              href={
-                ticketButtonRule?.state === 'active'
-                  ? ticketButtonRule?.hyperlink
-                  : '/'
-              }
+              href={ticketButtonRule?.state === 'active' ? ticketButtonRule?.hyperlink : '/#'}
               aria-disabled={ticketButtonRule?.state === 'disabled'}
               onMouseEnter={() => {
                 setTicketButtonColor(ticketButtonRule.hoverColor);
@@ -156,18 +150,13 @@ const HomeEvent = () => {
                 className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
                           transition ease-in-out duration-300
                           hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                          cursor-${
-                            cfsButtonRule?.state === 'disabled'
-                              ? 'not-allowed'
-                              : 'pointer'
-                          }
+                          cursor-${cfsButtonRule?.state === 'disabled'
+                    ? 'not-allowed'
+                    : 'pointer'
+                  }
                           bg-google-${cfsButtonColor}
                         `}
-                href={
-                  cfsButtonRule?.state === 'active'
-                    ? cfsButtonRule?.hyperlink
-                    : '/'
-                }
+                href={cfsButtonRule?.state === 'active' ? cfsButtonRule?.hyperlink : '/#'}
                 aria-disabled={cfsButtonRule?.state === 'disabled'}
                 onMouseEnter={() => {
                   setCfsButtonColor(cfsButtonRule.hoverColor);

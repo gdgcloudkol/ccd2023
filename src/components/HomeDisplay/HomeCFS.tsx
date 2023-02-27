@@ -72,7 +72,7 @@ export default function HomeCFS() {
                             cursor-${buttonDisplay?.state === 'disabled' ? 'not-allowed' : 'pointer'}
                             bg-google-${buttonLocalColor}
                           `}
-                href={buttonDisplay?.state === 'active' ? buttonDisplay?.hyperlink : '/'}
+                href={buttonDisplay?.state === 'active' ? buttonDisplay?.hyperlink : '/#'}
                 aria-disabled={buttonDisplay?.state === 'disabled'}
                 onMouseEnter={() => { setButtonLocalColor(buttonDisplay.hoverColor) }}
                 onMouseLeave={() => { setButtonLocalColor(buttonDisplay.color) }}
