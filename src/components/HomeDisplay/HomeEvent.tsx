@@ -86,7 +86,7 @@ const HomeEvent = () => {
             className={`w-1/2 lg:w-2/5 pb-4 ${
               CurrentTheme() === 'white' ? 'filter brightness-0 invert' : ''
             }`}
-            src="ccd2023/images/logos/google_cloud_logo.png"
+            src="/ccd2023/images/logos/google_cloud_logo.png"
             alt="GDG Cloud Kolkata Logo"
           />
           <p

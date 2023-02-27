@@ -4,7 +4,7 @@ const GdscBanner = ({ label }: { label: string }) => {
   return (
     <div className="w-full flex justify-center items-center px-2 flex-col">
       <img
-        src="ccd2023/images/logos/gdsc-logo.svg"
+        src="/ccd2023/images/logos/gdsc-logo.svg"
         className={`w-20 object-contain  ${CurrentTheme() === 'white' ? 'filter brightness-0 invert' : ''}`}
         alt={`${label} logo`}
         aria-label={`${label} logo`}

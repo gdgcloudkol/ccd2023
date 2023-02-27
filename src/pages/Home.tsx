@@ -59,7 +59,7 @@ const Home = () => {
         {/* photos section ends here */}
       </div>
       <div className="hidden lg:block opacity-50 white-sec relative -z-0 lg: zoom-120">
-        <img src="ccd2023/images/background/victoria.svg" alt="Victoria Memorial" />
+        <img src="/ccd2023/images/background/victoria.svg" alt="Victoria Memorial" />
       </div>
       {/* home section 1 ends here */}
       {/* home section 2 starts here */}
@@ -91,7 +91,7 @@ const Home = () => {
       {/* youtube section ends here */}
       {/* cfs section starts here */}
       <div className="hidden lg:block opacity-50 relative lg: zoom-120 z-0">
-        <img src="ccd2023/images/background/howrahBridge.svg" alt="Howrah Bridge" />
+        <img src="/ccd2023/images/background/howrahBridge.svg" alt="Howrah Bridge" />
       </div>
       <HomeCFS />
       {/* cfs section ends here */}

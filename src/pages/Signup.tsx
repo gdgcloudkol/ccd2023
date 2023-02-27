@@ -181,7 +181,7 @@ const Signup = () => {
         <div className="hidden lg:block relative w-0 flex-1">
           <img
             className="absolute inset-0 h-full w-full object-fill"
-            src="ccd2023/images/background/victoria.svg"
+            src="/ccd2023/images/background/victoria.svg"
             alt=""
           />
         </div>
