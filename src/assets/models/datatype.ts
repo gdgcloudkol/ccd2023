@@ -37,12 +37,7 @@ export interface SignupRule {
   reset: boolean;
 }
 
-export interface LoginRule {
-  accountType: boolean;
-  email: boolean;
-  password: boolean;
-  oneTimeLink: boolean;
-}
+export interface SignInRule { [key: string]: boolean }
 
 export interface ForgetPasswordRule {
   accountType: boolean;
@@ -68,7 +63,7 @@ export interface FooterRule {
 
 export interface FeatureRule {
   signup: SignupRule;
-  login: LoginRule;
+  login: SignInRule;
   forgetPassword: ForgetPasswordRule;
   navbar: NavbarRule;
   disabledRoutes: string[];
