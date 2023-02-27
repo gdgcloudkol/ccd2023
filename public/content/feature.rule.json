@@ -25,7 +25,9 @@
     "username": true,
     "email": false,
     "password": true,
-    "oneTimeLink": false
+    "oneTimeLink": false,
+    "submit": true,
+    "cancel": true
   },
   "forgetPassword": {
     "accountType": true,

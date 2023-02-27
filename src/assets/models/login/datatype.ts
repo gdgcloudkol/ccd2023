@@ -36,22 +36,28 @@ export interface SignInPayload {
   email: string;
   username: string;
   password: string;
-  button?: {
-    oneTimeLink: string;
-    submit: string;
-    cancel: string;
-  };
 }
 
-export interface SignUpPayload {
-  username: string;
-  email: string;
-  password1: string;
-  password2: string;
+export interface SigninFieldContent {
+  name: string;
+  type: string;
+  placeholder: string;
+  show?: boolean;
+  error?: string;
 }
 
-export interface SignInPayload {
-  email: string;
-  username: string;
-  password: string;
+export interface SigninFieldButtonContent {
+  name: string;
+  title: string;
+  hyperlink: string;
+}
+
+export interface SignInContent {
+  title: string;
+  fields: SigninFieldContent[];
+  signUp: string;
+  signUpLink: string;
+  forgotPassword: string;
+  forgotPasswordLink: string;
+  button: SigninFieldButtonContent[];
 }
