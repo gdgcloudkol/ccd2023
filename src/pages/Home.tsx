@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  HomeEventContent,
-  LandingPageContent
-} from '../assets/models/home/datatype';
+import { HomeEventContent, LandingPageContent } from '../assets/models/home/datatype';
 import CommunityPartners from '../components/CommunityPartners/CommunityPartners';
 import HomeCFS from '../components/HomeDisplay/HomeCFS';
 import HomeDisplay from '../components/HomeDisplay/HomeDisplay';
@@ -62,20 +59,18 @@ const Home = () => {
         {/* photos section ends here */}
       </div>
       <div className="hidden lg:block opacity-50 white-sec relative -z-0 lg: zoom-120">
-        <img src="images/background/victoria.svg" alt="Victoria Memorial" />
+        <img src="ccd2023/images/background/victoria.svg" alt="Victoria Memorial" />
       </div>
       {/* home section 1 ends here */}
       {/* home section 2 starts here */}
       <div
-        className={`hidden lg:block h-72 text-center event-sec-2 strokeme pl-52 pr-52 pt-10 text-white ${
-          CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
-        }`}
+        className={`hidden lg:block h-72 text-center event-sec-2 pl-52 pr-52 pt-10 ${CurrentTheme() === 'white' ? 'bg-white strokeme text-white' : 'bg-black strokeme-w text-black'
+          }`}
       >
         {landingPageContent?.subTitle1}
         <p
-          className={`no-shadow ${
-            CurrentTheme() === 'white' ? 'text-black' : 'text-white'
-          }`}
+          className={`no-shadow ${CurrentTheme() === 'white' ? 'text-black' : 'text-white'
+            }`}
         >
           {landingPageContent?.description1}
         </p>
@@ -86,9 +81,8 @@ const Home = () => {
       {/* home section 3 ends here */}
       {/* youtube section starts here */}
       <div
-        className={`hidden lg:block h-80 ${
-          CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
-        }`}
+        className={`hidden lg:block h-80 ${CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
+          }`}
       ></div>
       <Youtube
         youtubeLink={landingPageContent?.youtubeLink}
@@ -97,7 +91,7 @@ const Home = () => {
       {/* youtube section ends here */}
       {/* cfs section starts here */}
       <div className="hidden lg:block opacity-50 relative lg: zoom-120 z-0">
-        <img src="images/background/howrahBridge.svg" alt="Howrah Bridge" />
+        <img src="ccd2023/images/background/howrahBridge.svg" alt="Howrah Bridge" />
       </div>
       <HomeCFS />
       {/* cfs section ends here */}

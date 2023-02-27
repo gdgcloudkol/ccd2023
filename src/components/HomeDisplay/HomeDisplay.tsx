@@ -7,7 +7,7 @@ export default function HomeDisplay() {
           <img
             height="800px"
             width="800px"
-            src="images/background/ccd221.jpg"
+            src="ccd2023/images/background/ccd221.jpg"
             alt=""
             className="shadow rounded-full max-w-full h-auto align-middle border-none"
           />
@@ -16,7 +16,7 @@ export default function HomeDisplay() {
           <img
             height="800px"
             width="800px"
-            src="images/background/ccd222.jpg"
+            src="ccd2023/images/background/ccd222.jpg"
             alt=""
             className="shadow rounded-full max-w-full h-auto align-middle border-none"
           />
@@ -27,7 +27,7 @@ export default function HomeDisplay() {
           <img
             height="800px"
             width="800px"
-            src="images/background/ccd223.jpg"
+            src="ccd2023/images/background/ccd223.jpg"
             alt=""
             className="shadow rounded-full max-w-full h-auto align-middle border-none"
           />
