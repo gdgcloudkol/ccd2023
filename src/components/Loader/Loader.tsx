@@ -1,4 +1,4 @@
-const loader = require('../../assets/images/gdsc-logo.gif');
+const loader = require('images/gdsc-logo.gif');
 
 function Loading() {
   return (

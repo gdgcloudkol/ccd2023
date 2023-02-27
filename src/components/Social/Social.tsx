@@ -38,7 +38,7 @@ const Social = () => {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={`${el.hyperlink}`}
+                  href={el.hyperlink}
                   key={i}
                 >
                   <div className="relative inline-block text-left group ">

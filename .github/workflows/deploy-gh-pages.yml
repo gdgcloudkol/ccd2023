@@ -3,7 +3,7 @@ name: Deploy Site
 on:
   push:
     branches:
-      - "main"
+      - "prod"
   workflow_dispatch:
 
 permissions:
@@ -13,14 +13,14 @@ permissions:
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: "18.11.x"
+    - run: yarn
+    - run: npm run deploy
     environment:
       name: github-pages
       url: ${{ steps.build-publish.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-    - id: build-publish
-      uses: bitovi/github-actions-react-to-ghp@v1.2.0
-      with:
-        path: build
-        build_command: yarn build
-  
