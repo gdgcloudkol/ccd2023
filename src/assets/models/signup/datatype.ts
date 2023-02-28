@@ -5,7 +5,6 @@ export interface SignupData {
   speaker: boolean,
   speakerDetails?: {
     bio: string,
-    city: string,
     accomodation: boolean,
     sampleRecordings: string[];
   },
@@ -22,6 +21,7 @@ export interface SignupData {
     graduation: string;
     company?: string;
     role?: string;
+    city: string,
   },
   social: {
     cloudskillboost?: string;
@@ -32,7 +32,7 @@ export interface SignupData {
   misc: {
     theme?: 'light' | 'dark';
     foodPref?: 'veg' | 'non-veg';
-    thisrt?: 's' | 'm' | 'l' |'xl' | 'xxl';
+    tshirt?: 's' | 'm' | 'l' |'xl' | 'xxl';
   }
 }
 

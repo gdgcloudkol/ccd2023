@@ -32,31 +32,31 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        {navRule?.every((item) => '/schedule' !== item) ? (
+        {navRule?.every((item) => 'schedule' !== item) ? (
           <Route path="/schedule" element={<Schedule />} />
         ) : null}
-        {navRule?.every((item) => '/speakers' !== item) ? (
+        {navRule?.every((item) => 'speakers' !== item) ? (
           <Route path="/speakers" element={<Speakers />} />
         ) : null}
-        {navRule?.every((item) => '/faq' !== item) ? (
+        {navRule?.every((item) => 'faq' !== item) ? (
           <Route path="/faq" element={<FaqPage />} />
         ) : null}
-        {navRule?.every((item) => '/tickets' !== item) ? (
+        {navRule?.every((item) => 'tickets' !== item) && loggedInState ? (
           <Route path="/tickets" element={<Tickets />} />
         ) : null}
-        {navRule?.every((item) => '/codeofconduct' !== item) ? (
+        {navRule?.every((item) => 'codeofconduct' !== item) ? (
           <Route path="/code-of-conduct" element={<Coc />} />
         ) : null}
-        {navRule?.every((item) => '/signup' !== item) ? (
+        {navRule?.every((item) => 'signup' !== item) ? (
           <Route path="/signup" element={<Signup />} />
         ) : null}
-        {navRule?.every((item) => '/login' !== item) ? (
+        {navRule?.every((item) => 'login' !== item) ? (
           <Route path="/login" element={<ApiLogin />} />
         ) : null}
-        {navRule?.every((item) => '/profile' !== item) && loggedInState ? (
+        {navRule?.every((item) => 'profile' !== item) && loggedInState ? (
           <Route path="/profile" element={<Profile />} />
         ) : null}
-        {navRule?.every((item) => '/dashboard' !== item) && loggedInState ? (
+        {navRule?.every((item) => 'dashboard' !== item) && loggedInState ? (
           <Route path="/dashboard" element={<Dashboard />} />
         ) : null}
         <Route path="/*" element={<NotFound />} />

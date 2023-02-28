@@ -31,6 +31,7 @@ const App = () => {
   }, [scrollPosition]);
 
   useEffect(() => {
+    sessionStorage.clear();
     AOS.init({
       duration: 1000,
       once: true
