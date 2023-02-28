@@ -159,9 +159,10 @@ const Login = () => {
                         signInRule[btn.name] ? (
                           <div className='pr-10 pl-10'>
                             <a
-                              onClick={handleSubmit}
+                              onClick={btn.name === 'submit' ? handleSubmit : () => { }}
+                              href={btn.name !== 'submit' ? btn.hyperlink : ''}
                               key={i}
-                              className="w-full content-fill flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                              className="w-full content-fill flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue cursor-pointer"
                             >
                               {btn?.title}
                             </a>
