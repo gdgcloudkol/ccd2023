@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FeatureRule, SignInRule } from '../assets/models/datatype';
 import { SignInContent, SigninFieldButtonContent, SigninFieldContent, SignInPayload } from '../assets/models/login/datatype';
 import { getContent } from '../services/content.service';
@@ -64,6 +64,7 @@ const Login = () => {
         }
       }
     );
+    // eslint-disable-next-line
   }, [signInRule]);
 
 
@@ -137,20 +138,18 @@ const Login = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="text-sm">
-                      <a
-                        href={signInContent?.signUpLink}
+                      <Link to={signInContent?.signUpLink}
                         className="font-medium text-google-blue hover:text-google-blue"
                       >
                         {signInContent?.signUp}
-                      </a>
+                      </Link>
                     </div>
                     <div className="text-sm">
-                      <a
-                        href={signInContent?.forgotPasswordLink}
+                      <Link to={signInContent?.forgotPasswordLink}
                         className="font-medium text-google-blue hover:text-google-blue"
                       >
                         {signInContent?.forgotPassword}
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   <div>
@@ -158,13 +157,13 @@ const Login = () => {
                       signInContent?.button?.map((btn: SigninFieldButtonContent, i: number) => (
                         signInRule[btn.name] ? (
                           <div>
-                            <a
+                            <button
                               onClick={btn.name === 'submit' ? handleSubmit : () => { }}
                               key={i}
-                              className="block text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue cursor-pointer"
+                              className="block w-full text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue cursor-pointer"
                             >
                               {btn?.title}
-                            </a>
+                            </button>
                           </div>
                         ) : null
                       ))

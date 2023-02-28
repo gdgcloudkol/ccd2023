@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FeatureRule, HomeRule } from '../../assets/models/datatype';
 import {
   HomeButtonContent,
@@ -103,7 +104,7 @@ const HomeEvent = () => {
             {' - '} {homeContent?.description}
           </p>
 
-          <p className="text-xl mb-6 text-g-gray-8 dark:text-g-gray-4">
+          <p className="text-xl mb-5 text-g-gray-8 dark:text-g-gray-4">
             {homeRules?.date ? (
               <>
                 {homeContent?.dateTitle + ' : ' + homeContent.date}
@@ -124,49 +125,51 @@ const HomeEvent = () => {
           </p>
 
           <div className="flex flex-row items-center justify-center min-w-3/4">
-            <a
-              className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
-                          transition ease-in-out duration-300
-                          hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                          cursor-${ticketButtonRule?.state === 'disabled'
-                  ? 'not-allowed'
-                  : 'pointer'
-                }
-                          bg-google-${ticketButtonColor}
-                        `}
-              href={ticketButtonRule?.state === 'active' ? ticketButtonRule?.hyperlink : '/#'}
-              aria-disabled={ticketButtonRule?.state === 'disabled'}
-              onMouseEnter={() => {
-                setTicketButtonColor(ticketButtonRule.hoverColor);
-              }}
-              onMouseLeave={() => {
-                setTicketButtonColor(ticketButtonRule.color);
-              }}
-            >
-              {ticketButtonRule?.title}
-            </a>
-            {loggedInState ? (
-              <a
+            <Link to={ticketButtonRule?.state === 'active' ? ticketButtonRule?.hyperlink : '/'}            >
+              <button
                 className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
                           transition ease-in-out duration-300
                           hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                          cursor-${cfsButtonRule?.state === 'disabled'
+                          cursor-${ticketButtonRule?.state === 'disabled'
                     ? 'not-allowed'
                     : 'pointer'
                   }
-                          bg-google-${cfsButtonColor}
+                          bg-google-${ticketButtonColor}
                         `}
-                href={cfsButtonRule?.state === 'active' ? cfsButtonRule?.hyperlink : '/#'}
-                aria-disabled={cfsButtonRule?.state === 'disabled'}
+                aria-disabled={ticketButtonRule?.state === 'disabled'}
                 onMouseEnter={() => {
-                  setCfsButtonColor(cfsButtonRule.hoverColor);
+                  setTicketButtonColor(ticketButtonRule.hoverColor);
                 }}
                 onMouseLeave={() => {
-                  setCfsButtonColor(cfsButtonRule.color);
+                  setTicketButtonColor(ticketButtonRule.color);
                 }}
               >
-                {cfsButtonRule?.title}
-              </a>
+                {ticketButtonRule?.title}
+              </button>
+            </Link>
+            {loggedInState ? (
+              <Link to={cfsButtonRule?.state === 'active' ? cfsButtonRule?.hyperlink : '/'}              >
+                <button
+                  className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
+                          transition ease-in-out duration-300
+                          hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                          cursor-${cfsButtonRule?.state === 'disabled'
+                      ? 'not-allowed'
+                      : 'pointer'
+                    }
+                          bg-google-${cfsButtonColor}
+                        `}
+                  aria-disabled={cfsButtonRule?.state === 'disabled'}
+                  onMouseEnter={() => {
+                    setCfsButtonColor(cfsButtonRule.hoverColor);
+                  }}
+                  onMouseLeave={() => {
+                    setCfsButtonColor(cfsButtonRule.color);
+                  }}
+                >
+                  {cfsButtonRule?.title}
+                </button>
+              </Link>
             ) : null}
           </div>
         </div>

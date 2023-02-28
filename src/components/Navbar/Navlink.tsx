@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react'
 import React, { useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { textRandomColor } from '../../services/common.service'
 import {
   ACTIVE_CLASS_DESKTOP,
@@ -18,7 +18,6 @@ interface NavlinkProps {
 
 const Navlink = ({ variant = 'desktop', path, label, type = 'none' }: NavlinkProps) => {
   const location = useLocation()
-  const navigate = useNavigate()
 
   const isActive = location.pathname === path
 
@@ -34,11 +33,14 @@ const Navlink = ({ variant = 'desktop', path, label, type = 'none' }: NavlinkPro
         switch (type) {
           case 'button':
             return (
-              <div className="flex space-x-2 pl-3 py-2">
-                <button type="button"
-                  onClick={() => { navigate(path) }}
-                  className="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{label}</button>
-              </div>
+              <Link to={path}>
+                <Disclosure.Button>
+                  <div className="flex space-x-2 pl-3 py-2">
+                    <button type="button"
+                      className="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{label}</button>
+                  </div>
+                </Disclosure.Button>
+              </Link>
             )
           default:
           case 'none':
@@ -59,17 +61,19 @@ const Navlink = ({ variant = 'desktop', path, label, type = 'none' }: NavlinkPro
         switch (type) {
           case 'button':
             return (
-              <div className="flex space-x-2 py-3.5">
-                <button type="button"
-                  onClick={() => { navigate(path) }}
-                  className="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{label}</button>
-              </div>
+              <Link to={path}>
+                <Disclosure.Button>
+                  <div className="flex space-x-2 py-3.5">
+                    <button type="button"
+                      className="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{label}</button>
+                  </div>
+                </Disclosure.Button>
+              </Link>
             )
           default:
           case 'none':
             return (
-              <Link
-                to={path}
+              <Link to={path}
                 className={`${isActive ? ACTIVE_CLASS_DESKTOP : INACTIVE_CLASS_DESKTOP
                   } hover:border-${underlyingColor}  inline-flex items-center px-1 pt-4 border-b-2 text-sm font-medium h-12`}
               >

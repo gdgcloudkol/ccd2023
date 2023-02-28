@@ -23,24 +23,24 @@
     }
   ],
   "signUp": "Create an Account",
-  "signUpLink": "/ccd2023/#/signup",
+  "signUpLink": "/signup",
   "forgotPassword": "Forgot Password",
-  "forgotPasswordLink": "/ccd2023/#/home",
+  "forgotPasswordLink": "/home",
   "button": [ 
     {
       "name": "oneTimeLink",
       "title": "Click To Get One Time Link",
-      "hyperlink": "/ccd2023/#/home"
+      "link": "/home"
     },
     {
       "name": "submit",
       "title": "Login",
-      "hyperlink": "/ccd2023/#/profile"
+      "link": "/profile"
     },
     {
       "name": "cancel",
       "title": "Home",
-      "hyperlink": "/ccd2023/#/home"
+      "link": "/home"
     }
   ]
 }

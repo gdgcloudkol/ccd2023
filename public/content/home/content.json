@@ -20,7 +20,7 @@
       "title": "Get Started",
       "color": "red",
       "hoverColor": "blue",
-      "hyperlink": "/ccd2023/#/login"
+      "hyperlink": "/login"
     },
     {
       "id": "bt",
@@ -57,7 +57,7 @@
       "title": "Login To Continue",
       "color": "red",
       "hoverColor": "blue",
-      "hyperlink": "/ccd2023/#/login"
+      "hyperlink": "/login"
     },
     {
       "id": "cfs",

@@ -39,7 +39,7 @@ const Timer = () => {
 
   return (
     <div className=" flex justify-center flex-col lg:inline-block py-2 md:w-10 bg-[#ffffff26] rounded-lg lg:rounded lg:w-20 h-1/2 lg:text-center lg:py-3 px-3 lg:px-0 text-timer-blue">
-      <p className=" text-left w-full lg:text-center text-sm font-normal">
+      <p className=" text-left w-full lg:text-center text-xl lg:text-sm font-normal capitalize text-white pb-3">
         starting in
       </p>
       <div className=" w-full flex items-center lg:inline-block font-normal lg:font-bold">

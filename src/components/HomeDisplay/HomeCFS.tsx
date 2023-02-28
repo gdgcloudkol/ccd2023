@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { FeatureRule } from "../../assets/models/datatype";
 import { HomeButtonContent, HomeCFSContent, HomeEventContent } from "../../assets/models/home/datatype";
 import { CurrentTheme } from "../../services/common.service";
@@ -60,25 +61,26 @@ export default function HomeCFS() {
           <p className={`no-shadow uppercase ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`}>{cfsContent?.subtitle}</p>
         </div>
         <div className="flex flex-col justify-start items-start">
-          <p className=" text-lg text-start lg:text-clip text-g-gray-7 pb-6 dark:text-white">
+          <p className=" text-lg text-start lg:text-clip text-g-gray-7 pb-5 dark:text-white">
             {cfsContent?.description}
           </p>
           {
             cfsRule ? (
-              <a
-                className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 
+              <Link to={buttonDisplay?.state === 'active' ? buttonDisplay?.hyperlink : '/'}              >
+                <button
+                  className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 
                             transition ease-in-out duration-300  
                             hover:shadow-xl hover:scale-105 hover:ease-in duration-300 rounded-3xl
                             cursor-${buttonDisplay?.state === 'disabled' ? 'not-allowed' : 'pointer'}
                             bg-google-${buttonLocalColor}
                           `}
-                href={buttonDisplay?.state === 'active' ? buttonDisplay?.hyperlink : '/#'}
-                aria-disabled={buttonDisplay?.state === 'disabled'}
-                onMouseEnter={() => { setButtonLocalColor(buttonDisplay.hoverColor) }}
-                onMouseLeave={() => { setButtonLocalColor(buttonDisplay.color) }}
-              >
-                {buttonDisplay?.title}
-              </a>
+                  aria-disabled={buttonDisplay?.state === 'disabled'}
+                  onMouseEnter={() => { setButtonLocalColor(buttonDisplay.hoverColor) }}
+                  onMouseLeave={() => { setButtonLocalColor(buttonDisplay.color) }}
+                >
+                  {buttonDisplay?.title}
+                </button>
+              </Link>
             ) : null
           }
         </div>

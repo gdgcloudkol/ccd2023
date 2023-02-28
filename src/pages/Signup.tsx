@@ -138,10 +138,9 @@ const Signup = () => {
                           required={field.required}
                           className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm
                           
-                          ${
-                            fieldErrors[field.name] &&
+                          ${fieldErrors[field.name] &&
                             'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
-                          }
+                            }
                           
                           `}
                         />
@@ -156,8 +155,7 @@ const Signup = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="text-sm">
-                      <Link
-                        to="/login"
+                      <Link to="/login"
                         className="font-medium text-google-blue hover:text-google-blue"
                       >
                         Already have an account?
