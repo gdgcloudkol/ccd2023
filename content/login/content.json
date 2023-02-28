@@ -1,10 +1,46 @@
 {
-  "accountType": "Account Type",
-  "email": "Email",
-  "password": "Password",
-  "button": {
-    "oneTimeLink": "Click To Get One Time Link",
-    "submit": "Login",
-    "cancel": "Goto Home"
-  }
+  "title": "Sign In To Your Account",
+  "fields": [
+    {
+      "name": "accountType",
+      "type": "text",
+      "placeholder": "Account Type"
+    },
+    {
+      "name": "email",
+      "type": "text",
+      "placeholder": "Email"
+    },
+    {
+      "name": "username",
+      "type": "text",
+      "placeholder": "Username"
+    },
+    {
+      "name": "password",
+      "type": "password",
+      "placeholder": "Password"
+    }
+  ],
+  "signUp": "Create an Account",
+  "signUpLink": "/ccd2023/#/signup",
+  "forgotPassword": "Forgot Password",
+  "forgotPasswordLink": "/ccd2023/#/home",
+  "button": [ 
+    {
+      "name": "oneTimeLink",
+      "title": "Click To Get One Time Link",
+      "hyperlink": "/ccd2023/#/home"
+    },
+    {
+      "name": "submit",
+      "title": "Login",
+      "hyperlink": "/ccd2023/#/profile"
+    },
+    {
+      "name": "cancel",
+      "title": "Home",
+      "hyperlink": "/ccd2023/#/home"
+    }
+  ]
 }
