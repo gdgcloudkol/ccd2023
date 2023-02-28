@@ -65,10 +65,10 @@ const Profile = () => {
             <button
               className="transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
                   bg-google-blue
-                  hover:bg-google-green 
+                  hover:bg-google-yellow 
                   cursor:timer"
             >
-              Apply Now
+              Become a Speaker
             </button>
             <button
               className="transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
@@ -81,8 +81,8 @@ const Profile = () => {
             </button>
             <button
               className="transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
-                  bg-black
-                  hover:bg-google-green 
+                  bg-black bg-google-yellow
+                  hover:bg-google-red 
                   cursor:timer "
               onClick={() => { }}
             >

@@ -153,15 +153,15 @@ const Login = () => {
                       </a>
                     </div>
                   </div>
-                  <div className='flex box-border justify-between'>
+                  <div>
                     {
                       signInContent?.button?.map((btn: SigninFieldButtonContent, i: number) => (
                         signInRule[btn.name] ? (
-                          <div className='pr-10 pl-10'>
+                          <div>
                             <a
-                              onClick={handleSubmit}
+                              onClick={btn.name === 'submit' ? handleSubmit : () => { }}
                               key={i}
-                              className="w-full content-fill flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                              className="block text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue cursor-pointer"
                             >
                               {btn?.title}
                             </a>

@@ -27,7 +27,7 @@
     "password": true,
     "oneTimeLink": false,
     "submit": true,
-    "cancel": true
+    "cancel": false
   },
   "forgetPassword": {
     "accountType": true,
@@ -41,8 +41,7 @@
     "navbarSpatialNotLoggedIn": true
   },
   "disabledRoutes": [
-    "/dashboard",
-    "/tickets"
+    "/dashboard"
   ],
   "disabledPartnerTitles": [
     "Also Backed By"
