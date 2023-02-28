@@ -159,7 +159,7 @@ const Login = () => {
                         signInRule[btn.name] ? (
                           <div className='pr-10 pl-10'>
                             <a
-                              href={btn.hyperlink}
+                              onClick={handleSubmit}
                               key={i}
                               className="w-full content-fill flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
                             >
