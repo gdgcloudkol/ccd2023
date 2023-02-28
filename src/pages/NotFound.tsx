@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 const NotFound = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen max-w-full p-4 mx-auto space-y-4 text-center -mt-20">
-      <img src={notFoundImg} alt="404" className="max-w-full" />
+      <img
+        src={notFoundImg}
+        alt="404"
+        className="object-contain max-w-7xl w-full"
+      />
       <p className="text-2xl font-bold text-center text-gray-800 dark:text-white">
         Uh oh! that page doesn't exist
       </p>
