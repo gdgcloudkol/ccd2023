@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import FaqPage from './pages/Faq';
 import Home from './pages/Home';
 import ApiLogin from './pages/Login';
+import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
 import Schedule from './pages/Schedule/Schedule';
 import Signup from './pages/Signup';
@@ -58,7 +59,7 @@ const Router = () => {
         {navRule?.every((item) => '/dashboard' !== item) && loggedInState ? (
           <Route path="/dashboard" element={<Dashboard />} />
         ) : null}
-        <Route path="/*" element={<Home />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </HashRouter>
   );

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { AiFillLinkedin } from 'react-icons/ai';
 import { ReactComponent as FacebookSVGIcon } from '../assets/icons/facebook.svg';
 import { ReactComponent as GitHubSVGIcon } from '../assets/icons/github.svg';
 import { ReactComponent as GmailSVGIcon } from '../assets/icons/gmail.svg';
 import { ReactComponent as InstagramSVGIcon } from '../assets/icons/instagram.svg';
 import { ReactComponent as LinkedInSVGIcon } from '../assets/icons/linkedin.svg';
 import { ReactComponent as TwitterSVGIcon } from '../assets/icons/twitter.svg';
+import Spinner from '../components/Spinner/Spinner';
 import RandomColorWrapper from '../components/utils/RandomColorWrapper';
 import { CurrentTheme } from '../services/common.service';
 import { getContent } from '../services/content.service';
@@ -25,11 +25,15 @@ const Speakers = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  const [speakerContent, setContent] = useState({} as { title: string, description: string });
+  const [speakerContent, setContent] = useState(
+    {} as { title: string; description: string }
+  );
   useEffect(() => {
-    getContent<{ title: string, description: string }>('navbar').then((data: void | { title: string, description: string }) => {
-      if (data) setContent(data);
-    });
+    getContent<{ title: string; description: string }>('navbar').then(
+      (data: void | { title: string; description: string }) => {
+        if (data) setContent(data);
+      }
+    );
   }, []);
 
   const [speakerRule, setFeature] = useState(['']);
@@ -43,6 +47,12 @@ const Speakers = () => {
 
   return (
     <>
+      {!speakersDetails.length && (
+        <div className="flex justify-center items-center h-screen bg-transparent">
+          <Spinner />
+        </div>
+      )}
+
       <div className="flex justify-center items-center flex-col px-5 pt-5">
         <div className="text-2xl lg:text-3xl font-normal text-g-gray-8 dark:text-white">
           {speakerContent?.title}
@@ -57,8 +67,8 @@ const Speakers = () => {
         style={{ gridAutoRows: '1fr' }}
         id="speakers-grid"
       >
-        {speakersDetails.map((speaker: any, id: number) => (
-          speakerRule?.every(i => i !== speaker?.fullName) ? (
+        {speakersDetails.map((speaker: any, id: number) =>
+          speakerRule?.every((i) => i !== speaker?.fullName) ? (
             <div
               key={id}
               className="flex w-full h-full dark:text-white flex-col rounded-2xl items-center border border-g-gray-8 p-4 transform hover:-translate-y-2 hover:shadow-xl cursor-pointer transition duration-300"
@@ -77,36 +87,62 @@ const Speakers = () => {
                 {speaker.fullName}
               </div>
               <div className="text-sm font-light mt-2 text-center flex align-middle h-12">
-                <div>
-                  {speaker.tagLine}
-                </div>
+                <div>{speaker.tagLine}</div>
               </div>
-              <div className='flex mt-5'>
-                {
-                  speaker.links.map((social: any, j: number) => {
-                    return (
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={social.url}
-                        key={j}
-                      >
-                        <RandomColorWrapper>
-                          {(social?.title === 'Facebook') ? <FacebookSVGIcon fill="currentColor" className="w-8 h-8" /> : null}
-                          {(social?.title === 'Twitter') ? <TwitterSVGIcon fill="currentColor" className="w-8 h-8" /> : null}
-                          {(social?.title === 'Instagram') ? <InstagramSVGIcon fill="currentColor" className="w-8 h-8" /> : null}
-                          {(social?.title === 'LinkedIn') ? <LinkedInSVGIcon fill="currentColor" className="w-8 h-8" /> : null}
-                          {(social?.title === 'Github') ? <GitHubSVGIcon fill="currentColor" className="w-8 h-8" /> : null}
-                          {(social?.title === 'Email') ? <GmailSVGIcon fill="currentColor" className="w-8 h-8" /> : null}
-                        </RandomColorWrapper>
-                      </a>
-                    )
-                  })
-                }
+              <div className="flex mt-5">
+                {speaker.links.map((social: any, j: number) => {
+                  return (
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={social.url}
+                      key={j}
+                    >
+                      <RandomColorWrapper>
+                        {social?.title === 'Facebook' ? (
+                          <FacebookSVGIcon
+                            fill="currentColor"
+                            className="w-8 h-8"
+                          />
+                        ) : null}
+                        {social?.title === 'Twitter' ? (
+                          <TwitterSVGIcon
+                            fill="currentColor"
+                            className="w-8 h-8"
+                          />
+                        ) : null}
+                        {social?.title === 'Instagram' ? (
+                          <InstagramSVGIcon
+                            fill="currentColor"
+                            className="w-8 h-8"
+                          />
+                        ) : null}
+                        {social?.title === 'LinkedIn' ? (
+                          <LinkedInSVGIcon
+                            fill="currentColor"
+                            className="w-8 h-8"
+                          />
+                        ) : null}
+                        {social?.title === 'Github' ? (
+                          <GitHubSVGIcon
+                            fill="currentColor"
+                            className="w-8 h-8"
+                          />
+                        ) : null}
+                        {social?.title === 'Email' ? (
+                          <GmailSVGIcon
+                            fill="currentColor"
+                            className="w-8 h-8"
+                          />
+                        ) : null}
+                      </RandomColorWrapper>
+                    </a>
+                  );
+                })}
               </div>
             </div>
           ) : null
-        ))}
+        )}
         {showModal ? (
           <>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -122,25 +158,77 @@ const Speakers = () => {
                       </div>
                       <div>
                         <div className="pt-3 flex relative justify-start">
-                          {
-                            modalData.links.map((social: any, j: number) => {
-                              return (
-                                <a
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  href={social.url}
-                                  key={j}
-                                >
-                                  {(social?.title === 'Facebook') ? <FacebookSVGIcon fill="currentColor" className={`w-8 h-8 ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`} /> : null}
-                                  {(social?.title === 'Twitter') ? <TwitterSVGIcon fill="currentColor" className={`w-8 h-8 ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`} /> : null}
-                                  {(social?.title === 'Instagram') ? <InstagramSVGIcon fill="currentColor" className={`w-8 h-8 ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`} /> : null}
-                                  {(social?.title === 'LinkedIn') ? <LinkedInSVGIcon fill="currentColor" className={`w-8 h-8 ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`} /> : null}
-                                  {(social?.title === 'Github') ? <GitHubSVGIcon fill="currentColor" className={`w-8 h-8 ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`} /> : null}
-                                  {(social?.title === 'Email') ? <GmailSVGIcon fill="currentColor" className={`w-8 h-8 ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`} /> : null}
-                                </a>
-                              )
-                            })
-                          }
+                          {modalData.links.map((social: any, j: number) => {
+                            return (
+                              <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href={social.url}
+                                key={j}
+                              >
+                                {social?.title === 'Facebook' ? (
+                                  <FacebookSVGIcon
+                                    fill="currentColor"
+                                    className={`w-8 h-8 ${
+                                      CurrentTheme() === 'white'
+                                        ? 'text-white '
+                                        : 'text-black'
+                                    }`}
+                                  />
+                                ) : null}
+                                {social?.title === 'Twitter' ? (
+                                  <TwitterSVGIcon
+                                    fill="currentColor"
+                                    className={`w-8 h-8 ${
+                                      CurrentTheme() === 'white'
+                                        ? 'text-white '
+                                        : 'text-black'
+                                    }`}
+                                  />
+                                ) : null}
+                                {social?.title === 'Instagram' ? (
+                                  <InstagramSVGIcon
+                                    fill="currentColor"
+                                    className={`w-8 h-8 ${
+                                      CurrentTheme() === 'white'
+                                        ? 'text-white '
+                                        : 'text-black'
+                                    }`}
+                                  />
+                                ) : null}
+                                {social?.title === 'LinkedIn' ? (
+                                  <LinkedInSVGIcon
+                                    fill="currentColor"
+                                    className={`w-8 h-8 ${
+                                      CurrentTheme() === 'white'
+                                        ? 'text-white '
+                                        : 'text-black'
+                                    }`}
+                                  />
+                                ) : null}
+                                {social?.title === 'Github' ? (
+                                  <GitHubSVGIcon
+                                    fill="currentColor"
+                                    className={`w-8 h-8 ${
+                                      CurrentTheme() === 'white'
+                                        ? 'text-white '
+                                        : 'text-black'
+                                    }`}
+                                  />
+                                ) : null}
+                                {social?.title === 'Email' ? (
+                                  <GmailSVGIcon
+                                    fill="currentColor"
+                                    className={`w-8 h-8 ${
+                                      CurrentTheme() === 'white'
+                                        ? 'text-white '
+                                        : 'text-black'
+                                    }`}
+                                  />
+                                ) : null}
+                              </a>
+                            );
+                          })}
                         </div>
                       </div>
                     </div>

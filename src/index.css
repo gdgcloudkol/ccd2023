@@ -73,6 +73,12 @@ h3 {
   line-height: 42px;
 }
 
+.event-sec-4 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
 .strokeme {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }

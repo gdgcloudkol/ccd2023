@@ -1,6 +1,9 @@
-import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { SignInPayload } from '../assets/models/login/datatype';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FeatureRule, SignInRule } from '../assets/models/datatype';
+import { SignInContent, SigninFieldButtonContent, SigninFieldContent, SignInPayload } from '../assets/models/login/datatype';
+import { getContent } from '../services/content.service';
+import { getFeature } from '../services/feature.service';
 import { ApiLogin } from '../services/rest.service';
 import { LoggedInContext } from '../services/state.service';
 
@@ -34,20 +37,35 @@ const Login = () => {
     }
   }
 
-  const FIELDS = [
-    {
-      name: 'username',
-      type: 'text',
-      placeholder: 'Username',
-      error: fieldErrors.username
-    },
-    {
-      name: 'password',
-      type: 'password',
-      placeholder: 'Password',
-      error: fieldErrors.password
-    }
-  ];
+  const [signInRule, setsignInRule] = useState({} as SignInRule);
+  useEffect(() => {
+    getFeature().then((data: FeatureRule) => {
+      if (data)
+        setsignInRule(data.login as SignInRule);
+    });
+  }, []);
+
+  const [signInFields, setSignInFields] = useState<SigninFieldContent[]>([]);
+
+  const [signInContent, setSignInContent] = useState<SignInContent>({} as SignInContent);
+  useEffect(() => {
+    getContent<SignInContent>('login').then(
+      (data: void | SignInContent) => {
+        if (data) {
+          setSignInContent(data);
+          const tmpArr: SigninFieldContent[] = []
+          for (let el of data.fields) {
+            el.show = signInRule[el.name] || false
+            fieldErrors[el.name] = ''
+            el.error = fieldErrors[el.name]
+            tmpArr.push(el)
+          }
+          setSignInFields(tmpArr)
+        }
+      }
+    );
+  }, [signInRule]);
+
 
   return (
     <div className="max-w-7xl mx-auto" data-aos="fade-up">
@@ -56,7 +74,7 @@ const Login = () => {
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div>
               <h2 className="mt-6 text-3xl text-gray-900 dark:text-gray-100 tracking-tight">
-                Sign in to your account
+                {signInContent?.title}
               </h2>
             </div>
 
@@ -82,66 +100,75 @@ const Login = () => {
                   id="login"
                   onSubmit={handleSubmit}
                 >
-                  {FIELDS.map((field) => (
-                    <div key={field.name}>
-                      <label
-                        htmlFor={field.name}
-                        className="block text-sm font-medium text-gray-700 dark:text-gray-200 capitalize"
-                      >
-                        {field.name}
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          id={field.name}
-                          name={field.name}
-                          type={field.type}
-                          autoComplete={field.name}
-                          required
-                          className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm
-                          ${
-                            fieldErrors[field.name] &&
-                            'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
-                          }
-                          `}
-                        />
-                      </div>
-                      {field.error && (
-                        <p
-                          className="mt-2 text-sm text-red-600"
-                          id={`${field.name}-error`}
+                  {signInFields.map((field) => (
+                    field.show ? (
+                      <div key={field.name}>
+                        <label
+                          htmlFor={field.name}
+                          className="block text-sm font-medium text-gray-700 dark:text-gray-200 capitalize"
                         >
-                          {field.error}
-                        </p>
-                      )}
-                    </div>
+                          {field.name}
+                        </label>
+                        <div className="mt-1">
+                          <input
+                            id={field.name}
+                            name={field.name}
+                            type={field.type}
+                            autoComplete={field.name}
+                            required
+                            className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm
+                          ${fieldErrors[field.name] &&
+                              'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
+                              }
+                          `}
+                          />
+                        </div>
+                        {field.error && (
+                          <p
+                            className="mt-2 text-sm text-red-600"
+                            id={`${field.name}-error`}
+                          >
+                            {field.error}
+                          </p>
+                        )}
+                      </div>
+                    ) : null
                   ))}
 
                   <div className="flex items-center justify-between">
                     <div className="text-sm">
-                      <Link
-                        to="/signup"
+                      <a
+                        href={signInContent?.signUpLink}
                         className="font-medium text-google-blue hover:text-google-blue"
                       >
-                        Create an account
-                      </Link>
+                        {signInContent?.signUp}
+                      </a>
                     </div>
                     <div className="text-sm">
                       <a
-                        href="/#"
+                        href={signInContent?.forgotPasswordLink}
                         className="font-medium text-google-blue hover:text-google-blue"
                       >
-                        Forgot your password?
+                        {signInContent?.forgotPassword}
                       </a>
                     </div>
                   </div>
-
-                  <div>
-                    <button
-                      type="submit"
-                      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
-                    >
-                      Sign in
-                    </button>
+                  <div className='flex box-border justify-between'>
+                    {
+                      signInContent?.button?.map((btn: SigninFieldButtonContent, i: number) => (
+                        signInRule[btn.name] ? (
+                          <div className='pr-10 pl-10'>
+                            <a
+                              onClick={handleSubmit}
+                              key={i}
+                              className="w-full content-fill flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                            >
+                              {btn?.title}
+                            </a>
+                          </div>
+                        ) : null
+                      ))
+                    }
                   </div>
                 </form>
               </div>
