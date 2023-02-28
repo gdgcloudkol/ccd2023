@@ -13,10 +13,6 @@
       "link": "/schedule"
     },
     {
-      "title": "Buy Tickets",
-      "link": "/tickets"
-    },
-    {
       "title": "FAQ",
       "link": "/faq"
     },
@@ -29,6 +25,10 @@
     {
       "title": "Profile",
       "link": "/profile"
+    },
+    {
+      "title": "Buy Tickets",
+      "link": "/tickets"
     },
     {
       "title": "Dashboard",
