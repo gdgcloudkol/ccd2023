@@ -13,7 +13,7 @@ export async function ApiPurchaseTickets(
 
     if (res.status === 200) {
       const data = res.data as TicketData;
-      localStorage.setItem('ticketPurchased', 'true');
+      sessionStorage.setItem('ticketPurchased', 'true');
     }
     return res;
   } catch (e: any) {
@@ -31,7 +31,7 @@ export async function ApiViewTickets(
 
     if (res.status === 200) {
       const data = res.data as TicketData;
-      localStorage.setItem('ticketPurchased', 'true');
+      sessionStorage.setItem('ticketPurchased', 'true');
     }
     return res;
   } catch (e: any) {
