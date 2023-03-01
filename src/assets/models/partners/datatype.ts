@@ -10,7 +10,7 @@ export interface PartnerContent {
   sponsors: [SponsorContent];
 }
 
-export interface PartnersContent {
+export interface PartnerSponsorContent {
   title: string;
   description: string;
   partners: [PartnerContent];

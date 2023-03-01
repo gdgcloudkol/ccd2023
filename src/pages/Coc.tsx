@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react';
-import { COCContent } from '../assets/models/coc/datatype';
-import { textRandomColor } from '../services/common.service';
+import { COCContent, COCContentSection } from '../assets/models/coc/datatype';
+import { randomTextGoogleColor } from '../services/common.service';
+import { COC_CONTENT_KEY } from '../services/constants';
 import { getContent } from '../services/content.service';
 
 const Coc = () => {
-  const [content, setContent] = useState({} as COCContent);
+  const [content, setContent] = useState<COCContent>({} as COCContent);
 
   useEffect(() => {
-    getContent<COCContent>('coc').then((data: void | COCContent) => {
+    getContent<COCContent>(COC_CONTENT_KEY).then((data: void | COCContent) => {
       if (data) setContent(data);
     });
   }, []);
 
   const [headingColor, setColor] = useState<string>('text-google-gray-3');
   useEffect(() => {
-    return setColor(textRandomColor());
+    return setColor(randomTextGoogleColor());
   }, []);
 
   return (
@@ -35,7 +36,7 @@ const Coc = () => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row gap-4 justify-around bg-g-gray-1 dark:bg-black lg:rounded-2xl p-4 mt-12">
-          {content?.sections?.map((el, i) => {
+          {content?.sections?.map((el: COCContentSection, i: number) => {
             return (
               <div className="lg:w-1/3 md:w-full" key={i + ''}>
                 <div className="text-xl text-g-gray-8 dark:text-white mb-4">

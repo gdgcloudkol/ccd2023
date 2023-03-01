@@ -1,6 +1,7 @@
 export interface FooterListContent {
   title: string;
-  hyperlink: string;
+  link?: string;
+  hyperlink?: string;
 }
 
 export interface FooterSectionContent {

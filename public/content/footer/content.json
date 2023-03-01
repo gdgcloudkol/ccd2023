@@ -27,11 +27,11 @@
       "list": [
         {
           "title": "Become a Sponsor",
-          "hyperlink": "/"
+          "link": "/"
         },
         {
           "title": "Call for Speakers",
-          "hyperlink": "/"
+          "link": "/cfs"
         }
       ]
     },
@@ -40,15 +40,15 @@
       "list": [
         {
           "title": "Privacy Policy",
-          "hyperlink": "/"
+          "link": "/"
         },
         {
           "title": "Terms & Conditions",
-          "hyperlink": "/"
+          "link": "/"
         },
         {
           "title": "Code of Conduct",
-          "hyperlink": "/code-of-conduct"
+          "link": "/code-of-conduct"
         }
       ]
     }

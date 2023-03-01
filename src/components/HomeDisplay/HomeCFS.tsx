@@ -1,17 +1,19 @@
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { FeatureRule } from "../../assets/models/datatype";
 import { HomeButtonContent, HomeCFSContent, HomeEventContent } from "../../assets/models/home/datatype";
 import { CurrentTheme } from "../../services/common.service";
+import { ACTIVE, DARK, HOME_CONTENT_KEY, INACTIVE } from "../../services/constants";
 import { getContent } from "../../services/content.service";
 import { getFeature } from "../../services/feature.service";
 import { LoggedInContext } from "../../services/state.service";
 
 export default function HomeCFS() {
   const { loggedInState } = useContext(LoggedInContext)
-  const [cfsContent, setCfsContent] = useState({} as HomeCFSContent);
-  const [buttonContent, setButtonContent] = useState([{}] as HomeButtonContent[])
+  const [cfsContent, setCfsContent] = useState<HomeCFSContent>({} as HomeCFSContent);
+  const [buttonContent, setButtonContent] = useState<HomeButtonContent[]>([{}] as HomeButtonContent[])
   useEffect(() => {
-    getContent<HomeEventContent>('home').then(
+    getContent<HomeEventContent>(HOME_CONTENT_KEY).then(
       (data: void | HomeEventContent) => {
         if (data) {
           setButtonContent(data.cfsButton)
@@ -21,9 +23,9 @@ export default function HomeCFS() {
     );
   }, []);
 
-  const [cfsRule, setCfsRule] = useState(false);
-  const [buttonDisplay, setButtonDisplay] = useState({} as HomeButtonContent)
-  const [buttonLocalColor, setButtonLocalColor] = useState(buttonDisplay.color)
+  const [cfsRule, setCfsRule] = useState<boolean>(false);
+  const [buttonDisplay, setButtonDisplay] = useState<HomeButtonContent>({} as HomeButtonContent)
+  const [buttonLocalColor, setButtonLocalColor] = useState<string>(buttonDisplay.color)
   useEffect(() => {
     getFeature().then((data: FeatureRule) => {
       if (data) {
@@ -33,13 +35,13 @@ export default function HomeCFS() {
             (loggedInState && i?.id === data.home?.cfsButtonStateLogin) ||
             (!loggedInState && i?.id === data.home?.cfsButtonStateNotLogin)
           ) {
-            i.state = 'disabled'
+            i.state = INACTIVE
             if (
               data.home.disabledCfsButton.every(
                 (item: string) => i.id !== item
               )
             )
-              i.state = 'active';
+              i.state = ACTIVE;
             setButtonDisplay(i);
             setButtonLocalColor(i.color)
           }
@@ -57,28 +59,29 @@ export default function HomeCFS() {
           <div className="event-sec-3 block strokeme-w text-black pt-5 uppercase">
             {cfsContent?.title}
           </div>
-          <p className={`no-shadow uppercase ${CurrentTheme() === 'white' ? 'text-white ' : 'text-black'}`}>{cfsContent?.subtitle}</p>
+          <p className={`no-shadow uppercase ${CurrentTheme() === DARK ? 'text-white ' : 'text-black'}`}>{cfsContent?.subtitle}</p>
         </div>
         <div className="flex flex-col justify-start items-start">
-          <p className=" text-lg text-start lg:text-clip text-g-gray-7 pb-6 dark:text-white">
+          <p className=" text-lg text-start lg:text-clip text-g-gray-7 pb-5 dark:text-white">
             {cfsContent?.description}
           </p>
           {
             cfsRule ? (
-              <a
-                className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 
+              <Link to={buttonDisplay?.state === ACTIVE ? buttonDisplay?.link : '/'}>
+                <button
+                  className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 
                             transition ease-in-out duration-300  
                             hover:shadow-xl hover:scale-105 hover:ease-in duration-300 rounded-3xl
-                            cursor-${buttonDisplay?.state === 'disabled' ? 'not-allowed' : 'pointer'}
+                            cursor-${buttonDisplay?.state === INACTIVE ? 'not-allowed' : 'pointer'}
                             bg-google-${buttonLocalColor}
                           `}
-                href={buttonDisplay?.state === 'active' ? buttonDisplay?.hyperlink : '/#'}
-                aria-disabled={buttonDisplay?.state === 'disabled'}
-                onMouseEnter={() => { setButtonLocalColor(buttonDisplay.hoverColor) }}
-                onMouseLeave={() => { setButtonLocalColor(buttonDisplay.color) }}
-              >
-                {buttonDisplay?.title}
-              </a>
+                  aria-disabled={buttonDisplay?.state === INACTIVE}
+                  onMouseEnter={() => { setButtonLocalColor(buttonDisplay.hoverColor) }}
+                  onMouseLeave={() => { setButtonLocalColor(buttonDisplay.color) }}
+                >
+                  {buttonDisplay?.title}
+                </button>
+              </Link>
             ) : null
           }
         </div>

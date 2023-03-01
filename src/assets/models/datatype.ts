@@ -1,6 +1,11 @@
-export type AccountType = 'student' | 'professional';
+export type AccountType = 'student' | 'professional' | 'speaker';
 
-export interface HomeRule {
+export interface SponsorRule {
+  showCommunityPartners: boolean;
+  showSponsors: boolean;
+}
+
+export interface HomeRule extends SponsorRule {
   ticketButtonStateNotLogin: string;
   ticketButtonStateLogin: string;
   disabledTicketButton: string[];
@@ -11,8 +16,6 @@ export interface HomeRule {
   cfs: boolean;
   location: boolean;
   date: boolean;
-  showCommunityPartners: boolean;
-  showSponsors: boolean;
 }
 
 export interface SignupRule {

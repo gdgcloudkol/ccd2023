@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { textRandomColor } from '../../services/common.service';
+import { randomTextGoogleColor } from '../../services/common.service';
 
 const defaultColor: string = 'text-gray-600';
 
@@ -14,7 +14,7 @@ export default function RandomColorWrapper({
   const [textColor, setTextColor] = useState(defaultColor);
 
   function handleMouseHover(): void {
-    const color = textRandomColor;
+    const color = randomTextGoogleColor;
     setTextColor(color);
   }
 

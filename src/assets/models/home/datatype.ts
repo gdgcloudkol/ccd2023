@@ -3,7 +3,7 @@ export interface HomeButtonContent {
   title: string;
   color: string;
   hoverColor: string;
-  hyperlink: string;
+  link: string;
   state?: 'disabled' | 'active';
 }
 

@@ -4,16 +4,17 @@ import { ReactComponent as InstagramSVGIcon } from '../../assets/icons/instagram
 import { ReactComponent as LinkedInSVGIcon } from '../../assets/icons/linkedin.svg';
 import { ReactComponent as GitHubSVGIcon } from '../../assets/icons/github.svg';
 import { ReactComponent as GmailSVGIcon } from '../../assets/icons/gmail.svg';
-import RandomColorWrapper from '../utils/RandomColorWrapper';
+import RandomColorWrapper from '../Utils/RandomColorWrapper';
 import { useState, useEffect } from 'react';
 import { getContent } from '../../services/content.service';
-import { SocialContent } from '../../assets/models/social/datatype';
+import { SocialContent, SocialItem } from '../../assets/models/social/datatype';
 import { getFeature } from '../../services/feature.service';
+import { SOCIAL_CONTENT_KEY } from '../../services/constants';
 
 const Social = () => {
   const [content, setContent] = useState({} as SocialContent);
   useEffect(() => {
-    getContent<SocialContent>('social').then((data: void | SocialContent) => {
+    getContent<SocialContent>(SOCIAL_CONTENT_KEY).then((data: void | SocialContent) => {
       if (data) setContent(data);
     });
   }, []);
@@ -32,7 +33,7 @@ const Social = () => {
       </h2>
       <div className="flex flex-row items-center justify-center space-x-4">
         {
-          content?.social?.map((el, i) => {
+          content?.social?.map((el: SocialItem, i: number) => {
             return (
               (disabledSocial?.every(i => i !== el.imgSrc)) ? (
                 <a

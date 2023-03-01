@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { SignUpPayload } from '../assets/models/login/datatype';
-import { ApiSignup } from '../services/rest.service';
+import { ApiSignup } from '../services/signin.service';
 import { useState } from 'react';
+import { BACKGROUND_ASSETS } from '../services/constants';
 
 const Signup = () => {
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
@@ -9,7 +10,7 @@ const Signup = () => {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(
-      document.getElementById('login') as HTMLFormElement
+      document.getElementById('signup') as HTMLFormElement
     );
 
     const email = formData.get('email') as string;
@@ -40,7 +41,7 @@ const Signup = () => {
 
   function handleChange(e: React.FormEvent<HTMLFormElement>) {
     const formData = new FormData(
-      document.getElementById('login') as HTMLFormElement
+      document.getElementById('signup') as HTMLFormElement
     );
 
     const password1 = formData.get('password1') as string;
@@ -117,7 +118,7 @@ const Signup = () => {
                 <form
                   method="POST"
                   className="space-y-6"
-                  id="login"
+                  id="signup"
                   onSubmit={handleSubmit}
                   onChange={handleChange}
                 >
@@ -138,10 +139,9 @@ const Signup = () => {
                           required={field.required}
                           className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm
                           
-                          ${
-                            fieldErrors[field.name] &&
+                          ${fieldErrors[field.name] &&
                             'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
-                          }
+                            }
                           
                           `}
                         />
@@ -156,8 +156,7 @@ const Signup = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="text-sm">
-                      <Link
-                        to="/login"
+                      <Link to="/login"
                         className="font-medium text-google-blue hover:text-google-blue"
                       >
                         Already have an account?
@@ -181,8 +180,8 @@ const Signup = () => {
         <div className="hidden lg:block relative w-0 flex-1">
           <img
             className="absolute inset-0 h-full w-full object-fill"
-            src="/ccd2023/images/background/victoria.svg"
-            alt=""
+            src={BACKGROUND_ASSETS + `victoria.svg`}
+            alt="Victoria SVG"
           />
         </div>
       </div>

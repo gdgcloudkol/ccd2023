@@ -13,35 +13,35 @@
       "title": "Coming Soon",
       "color": "green",
       "hoverColor": "blue",
-      "hyperlink": ""
+      "link": ""
     },
     {
       "id": "gs",
       "title": "Get Started",
       "color": "red",
       "hoverColor": "blue",
-      "hyperlink": "/ccd2023/#/login"
+      "link": "/login"
     },
     {
       "id": "bt",
       "title": "Buy Ticket",
       "color": "yellow",
       "hoverColor": "green",
-      "hyperlink": ""
+      "link": ""
     },
     {
       "id": "vt",
       "title": "View Ticket",
       "color": "green",
       "hoverColor": "yellow",
-      "hyperlink": ""
+      "link": ""
     },
     {
       "id": "rt",
       "title": "Request Ticket",
       "color": "blue",
       "hoverColor": "yellow",
-      "hyperlink": ""
+      "link": ""
     }
   ],
   "cfsButton": [
@@ -50,28 +50,28 @@
       "title": "CFS Coming Soon",
       "color": "green",
       "hoverColor": "blue",
-      "hyperlink": ""
+      "link": ""
     },
     {
       "id": "cfsgs",
       "title": "Login To Continue",
       "color": "red",
       "hoverColor": "blue",
-      "hyperlink": "/ccd2023/#/login"
+      "link": "/login"
     },
     {
       "id": "cfs",
       "title": "Call For Speakers",
       "color": "red",
       "hoverColor": "blue",
-      "hyperlink": ""
+      "link": "/cfs"
     },
     {
       "id": "cfsc",
       "title": "CFS Closed",
       "color": "yellow",
       "hoverColor": "red",
-      "hyperlink": ""
+      "link": ""
     }
   ],
   "landingPage": {

@@ -2,7 +2,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
-import Footer from './components/Footer/Footer';
 import GoTop from './components/GoTop/GoTop';
 import Router from './Router';
 
@@ -48,7 +47,6 @@ const App = () => {
         <GoTop showGoTop={showGoTop} scrollUp={handleScrollUp} />
       </div>
       <Router />
-      <Footer />
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React from "react"
 import { ThemeContext } from "../components/Theme/ThemeContext"
+import { DARK, LIGHT, THEME_KEY } from "./constants"
 
-export const textRandomColor = () => {
+export const randomTextGoogleColor = () => {
   let color = [
     'text-google-blue',
     'text-google-red',
@@ -11,7 +12,7 @@ export const textRandomColor = () => {
   return (color[Math.floor(Math.random() * color.length)])
 }
 
-export const rawRandomColor = () => {
+export const rawRandomGoogleColor = () => {
   let color = [
     '#4285f4',
     '#ea4335',
@@ -23,10 +24,10 @@ export const rawRandomColor = () => {
 
 export const CurrentTheme = () => {
   const { theme } = React.useContext(ThemeContext);
-  if (theme === 'dark') return 'white';
-  return 'black';
+  if (theme === DARK) return DARK;
+  return LIGHT;
 }
 
 export const CurrentThemeLS = () => {
-  return localStorage.getItem('theme')
+  return localStorage.getItem(THEME_KEY)
 }

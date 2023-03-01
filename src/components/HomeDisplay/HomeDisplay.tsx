@@ -1,3 +1,5 @@
+import { BACKGROUND_ASSETS } from "../../services/constants";
+
 export default function HomeDisplay() {
   return (
     <div className="flex flex-col justify-between pic-cont">
@@ -7,8 +9,8 @@ export default function HomeDisplay() {
           <img
             height="800px"
             width="800px"
-            src="/ccd2023/images/background/ccd221.jpg"
-            alt=""
+            src={BACKGROUND_ASSETS + `ccd221.jpg`}
+            alt="background circle 1"
             className="shadow rounded-full max-w-full h-auto align-middle border-none"
           />
         </div>
@@ -16,8 +18,8 @@ export default function HomeDisplay() {
           <img
             height="800px"
             width="800px"
-            src="/ccd2023/images/background/ccd222.jpg"
-            alt=""
+            src={BACKGROUND_ASSETS + `ccd222.jpg`}
+            alt="background circle 1"
             className="shadow rounded-full max-w-full h-auto align-middle border-none"
           />
         </div>
@@ -27,8 +29,8 @@ export default function HomeDisplay() {
           <img
             height="800px"
             width="800px"
-            src="/ccd2023/images/background/ccd223.jpg"
-            alt=""
+            src={BACKGROUND_ASSETS + `ccd223.jpg`}
+            alt="background circle 1"
             className="shadow rounded-full max-w-full h-auto align-middle border-none"
           />
         </div>

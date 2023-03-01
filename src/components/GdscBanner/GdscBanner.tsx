@@ -1,17 +1,18 @@
 import { CurrentTheme } from "../../services/common.service";
+import { DARK, LOGO_ASSETS } from "../../services/constants";
 
 const GdscBanner = ({ label }: { label: string }) => {
   return (
     <div className="w-full flex justify-center items-center px-2 flex-col">
       <img
-        src="/ccd2023/images/logos/gdsc-logo.svg"
-        className={`w-20 object-contain  ${CurrentTheme() === 'white' ? 'filter brightness-0 invert' : ''}`}
+        src={LOGO_ASSETS + `gdsc-logo.svg`}
+        className={`w-20 object-contain  ${CurrentTheme() === DARK ? 'filter brightness-0 invert' : ''}`}
         alt={`${label} logo`}
         aria-label={`${label} logo`}
       />
       <p className="flex flex-col items-center justify-center space-y-1 text-center text-[#757575] dark:text-white">
         <span className="flex font-medium text-sm">
-          Google Developer Student Clubs
+          Google Developer Student Club
         </span>
         <span className="text-[0.6rem]">{label}</span>
       </p>

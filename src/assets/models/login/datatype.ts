@@ -49,7 +49,7 @@ export interface SigninFieldContent {
 export interface SigninFieldButtonContent {
   name: string;
   title: string;
-  hyperlink: string;
+  link: string;
 }
 
 export interface SignInContent {
