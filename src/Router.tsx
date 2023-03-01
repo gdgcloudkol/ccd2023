@@ -16,6 +16,7 @@ import Speakers from './pages/Speakers';
 import Tickets from './pages/Tickets';
 import { getFeature } from './services/feature.service';
 import { LoggedInContext } from './services/state.service';
+import Footer from './components/Footer/Footer';
 
 const ScrollToTop = ({ children }: { children: ReactElement }) => {
   const location = useLocation();
@@ -79,6 +80,7 @@ const Router = () => {
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </ScrollToTop>
+      <Footer />
     </HashRouter>
   );
 };

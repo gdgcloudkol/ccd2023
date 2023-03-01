@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PartnerContent, SponsorContent } from '../../assets/models/partners/datatype';
 import { CurrentTheme } from '../../services/common.service';
-import { DARK } from '../../services/constants';
+import { DARK, SPONSORS_ASSETS } from '../../services/constants';
 import { getFeature } from '../../services/feature.service';
 
 const SponsorCard = ({ title, sponsors }: PartnerContent) => {
@@ -33,7 +33,7 @@ const SponsorCard = ({ title, sponsors }: PartnerContent) => {
             <img
               className={`w-full h-32 object-contain img-border 
               ${CurrentTheme() === DARK ? ' filter invert brightness-0 ' : ''}`}
-              src={sponsor?.imgSrc}
+              src={SPONSORS_ASSETS + sponsor?.imgSrc}
               alt={`${sponsor?.sponsorName} logo`}
               aria-label={`${sponsor?.sponsorName} logo`}
             />

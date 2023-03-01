@@ -67,7 +67,7 @@ export default function HomeCFS() {
           </p>
           {
             cfsRule ? (
-              <Link to={buttonDisplay?.state === ACTIVE ? buttonDisplay?.hyperlink : '/'}>
+              <Link to={buttonDisplay?.state === ACTIVE ? buttonDisplay?.link : '/'}>
                 <button
                   className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 
                             transition ease-in-out duration-300  

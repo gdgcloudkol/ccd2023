@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FeatureRule, FooterRule } from '../../assets/models/datatype';
 import { FooterContent, FooterListContent, FooterSectionContent } from '../../assets/models/footer/datatype';
 import { FOOTER_CONTENT_KEY } from '../../services/constants';
@@ -45,12 +46,26 @@ const Footer = () => {
                             (!disabledFooterContent?.section[i]?.nOI ||
                               disabledFooterContent?.section[i]?.nOI - 1 >= j) ? (
                               <li key={'list-' + j} className="mb-2">
-                                <a
-                                  href={li?.hyperlink}
-                                  className="hover:underline"
-                                >
-                                  {li?.title}
-                                </a>
+                                {
+                                  li?.hyperlink ? (
+                                    <a
+                                      href={li?.hyperlink}
+                                      className="hover:underline"
+                                    >
+                                      {li?.title}
+                                    </a>
+                                  ) : null
+                                }
+                                {
+                                  li?.link ? (
+                                    <Link
+                                      to={li?.link}
+                                      className="hover:underline"
+                                    >
+                                      {li?.title}
+                                    </Link>
+                                  ) : null
+                                }
                               </li>
                             ) : null
                           )

@@ -121,7 +121,7 @@ const HomeEvent = () => {
           </p>
 
           <div className="flex flex-row items-center justify-center min-w-3/4">
-            <Link to={ticketButtonRule?.state === ACTIVE ? ticketButtonRule?.hyperlink : '/'}>
+            <Link to={ticketButtonRule?.state === ACTIVE ? ticketButtonRule?.link : '/'}>
               <button
                 className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
                           transition ease-in-out duration-300
@@ -144,7 +144,7 @@ const HomeEvent = () => {
               </button>
             </Link>
             {loggedInState ? (
-              <Link to={cfsButtonRule?.state === ACTIVE ? cfsButtonRule?.hyperlink : '/'}>
+              <Link to={cfsButtonRule?.state === ACTIVE ? cfsButtonRule?.link : '/'}>
                 <button
                   className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
                           transition ease-in-out duration-300
