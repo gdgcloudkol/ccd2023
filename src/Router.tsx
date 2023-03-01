@@ -1,6 +1,13 @@
-import { ReactElement, useContext, useEffect, useLayoutEffect, useState } from 'react';
+import {
+  ReactElement,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState
+} from 'react';
 import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import NavbarPage from './components/Navbar/Navbar';
+import Team from './components/Team/Team';
 import Coc from './pages/Coc';
 import Dashboard from './pages/Dashboard';
 import FaqPage from './pages/Faq';
@@ -41,6 +48,9 @@ const Router = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          {navRule?.every((item) => 'team' !== item) ? (
+            <Route path="/team" element={<Team />} />
+          ) : null}
           {navRule?.every((item) => 'schedule' !== item) ? (
             <Route path="/schedule" element={<Schedule />} />
           ) : null}

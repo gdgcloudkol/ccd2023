@@ -51,7 +51,7 @@ const Home = () => {
         {/* event description starts here */}
         <HomeEvent />
         {/* event description ends here */}
-        <div className=" lg:fixed lg:right-0 lg:top-1/4 w-full lg:w-auto flex justify-center lg:inline-block lg:z-50 bg-[#ffffff26] ">
+        <div className=" lg:fixed lg:right-0 lg:top-1/4 w-full lg:w-auto flex justify-center lg:inline-block lg:z-50 rounded-lg lg:rounded ">
           <Timer />
         </div>
         {/* photos section starts here */}
