@@ -99,20 +99,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-// <div className="w-full justify-center flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-28 lg:pb-[62px] px-4">
-//   {/* <div className="w-[75%] h-[50vh] ml-[12.5%] mr-[12.5%] mt-2 items-center ">
-//     <img
-//       src={`https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80`}
-//       className="bg-no-repeat w-full h-full rounded-lg"
-//       alt="background"
-//     />
-//   </div> */}
-//   <img
-//     className="top-12 rounded-full"
-//     src={
-//       'https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80'
-//     }
-//     alt="profile pic"
-//   />
-// </div>

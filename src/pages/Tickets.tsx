@@ -1,5 +1,5 @@
 import React from 'react';
-import BuyTicketsCard from '../components/BuyTickets/BuyTicketsCard';
+import BuyTicketsCard from '../components/Tickets/TicketsCard';
 
 const DATA = [
   {

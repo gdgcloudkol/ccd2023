@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { SignUpPayload } from '../assets/models/login/datatype';
 import { ApiSignup } from '../services/signin.service';
 import { useState } from 'react';
+import { BACKGROUND_ASSETS } from '../services/constants';
 
 const Signup = () => {
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
@@ -9,7 +10,7 @@ const Signup = () => {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(
-      document.getElementById('login') as HTMLFormElement
+      document.getElementById('signup') as HTMLFormElement
     );
 
     const email = formData.get('email') as string;
@@ -40,7 +41,7 @@ const Signup = () => {
 
   function handleChange(e: React.FormEvent<HTMLFormElement>) {
     const formData = new FormData(
-      document.getElementById('login') as HTMLFormElement
+      document.getElementById('signup') as HTMLFormElement
     );
 
     const password1 = formData.get('password1') as string;
@@ -117,7 +118,7 @@ const Signup = () => {
                 <form
                   method="POST"
                   className="space-y-6"
-                  id="login"
+                  id="signup"
                   onSubmit={handleSubmit}
                   onChange={handleChange}
                 >
@@ -179,8 +180,8 @@ const Signup = () => {
         <div className="hidden lg:block relative w-0 flex-1">
           <img
             className="absolute inset-0 h-full w-full object-fill"
-            src="/ccd2023/images/background/victoria.svg"
-            alt=""
+            src={BACKGROUND_ASSETS + `victoria.svg`}
+            alt="Victoria SVG"
           />
         </div>
       </div>

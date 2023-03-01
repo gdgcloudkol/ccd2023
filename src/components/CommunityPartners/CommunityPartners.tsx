@@ -1,41 +1,32 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FeatureRule } from '../../assets/models/datatype';
-import { PartnersContent } from '../../assets/models/partners/datatype';
-import { rawRandomColor } from '../../services/common.service';
+import { PartnerSponsorContent, SponsorContent } from '../../assets/models/partners/datatype';
+import { rawRandomGoogleColor } from '../../services/common.service';
+import { COMMUNITY_PARTNER_ASSETS, PARTNERS_CONTENT_KEY } from '../../services/constants';
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
 import GdscBanner from '../GdscBanner/GdscBanner';
 
 const CommunityPartners = () => {
-  const [content, setContent] = useState({} as PartnersContent);
+  const [content, setContent] = useState<PartnerSponsorContent>({} as PartnerSponsorContent);
   useEffect(() => {
-    getContent<PartnersContent>('partners').then(
-      (data: void | PartnersContent) => {
+    getContent<PartnerSponsorContent>(PARTNERS_CONTENT_KEY).then(
+      (data: void | PartnerSponsorContent) => {
         if (data) setContent(data);
       }
     );
   }, []);
 
-  const [disabledCommunityPartners, setdisabledCommunityPartners] = useState(['']);
+  const [disabledCommunityPartners, setdisabledCommunityPartners] = useState<string[]>(['']);
   useEffect(() => {
     getFeature().then((data: FeatureRule) => {
-      if (data) {
-        setdisabledCommunityPartners(data.disabledCommunityPartners);
-      }
+      if (data) setdisabledCommunityPartners(data.disabledCommunityPartners);
     });
   }, []);
 
-  const image = useRef(null);
-  const [valid, setValid] = useState(true);
-
-  const checkValid = () => {
-    //@ts-ignore
-    if (image.current.complete) setValid(true);
-  };
-
   const [rawColor, setColor] = useState<string>('text-google-gray-3');
   useEffect(() => {
-    return setColor(rawRandomColor());
+    return setColor(rawRandomGoogleColor());
   }, []);
 
   return (
@@ -65,7 +56,7 @@ const CommunityPartners = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-6 lg:grid-cols-4 place-items-center">
-        {content?.community_partners?.sponsors?.map((sponsor) => {
+        {content?.community_partners?.sponsors?.map((sponsor: SponsorContent) => {
           return (
             (disabledCommunityPartners.every(i => i !== sponsor?.sponsorId)) ? (
               <div
@@ -78,21 +69,15 @@ const CommunityPartners = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {/* Put all images in the assets/images/communityPartners/ */}
                   {sponsor?.sponsorId.startsWith('dsc') ? (
                     <GdscBanner label={sponsor?.sponsorName} />
-                  ) : valid ? (
+                  ) : (
                     <img
-                      src={`images/communityPartners/${sponsor?.sponsorId}.png`}
-                      onLoad={checkValid}
-                      onError={() => setValid(false)}
-                      ref={image}
-                      alt={`${sponsor?.sponsorName} logo`}
                       className="w-full h-20 object-contain"
+                      src={COMMUNITY_PARTNER_ASSETS + `${sponsor?.sponsorId}.png`}
+                      alt={`${sponsor?.sponsorName} logo`}
                       aria-label={`${sponsor?.sponsorName} logo`}
                     />
-                  ) : (
-                    <p>{sponsor?.sponsorName}</p>
                   )}
                 </a>
               </div>

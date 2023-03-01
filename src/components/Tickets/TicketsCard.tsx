@@ -1,15 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import { TicketContent } from '../../assets/models/tickets/datatype';
 
-export interface DATA {
-  imageSrc: string;
-  imageAlt: string;
-  title: string;
-  description: string;
-  btnText: string;
-}
-
-const BuyTicketsCard = (data: DATA) => {
+const BuyTicketsCard = (data: TicketContent) => {
   return (
     <div className="m-2 block max-w-xs rounded-lg bg-white transition duration-100 ease-in-out hover:shadow-lg hover:shadow-green-300 dark:bg-neutral-100 hover:drop-shadow-xl border-2 border-sky-500 dark:border-red-500 dark:hover:shadow-yellow-200">
       <Link to="/">

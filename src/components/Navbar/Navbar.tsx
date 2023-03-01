@@ -3,7 +3,9 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useContext, useEffect, useState } from 'react';
 import { FeatureRule } from '../../assets/models/datatype';
 import { NavbarContent, NavbarItemContent } from '../../assets/models/navbar/datatype';
+import { NavbarRule } from '../../assets/models/datatype';
 import { CurrentTheme } from '../../services/common.service';
+import { DARK, LOGO_ASSETS, NAVBAR_CONTENT_KEY } from '../../services/constants';
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
 import { LoggedInContext } from '../../services/state.service';
@@ -11,26 +13,22 @@ import Toggle from '../Theme/ThemeToggle';
 import Navlink from './Navlink';
 
 const NavbarPage = () => {
-  const {loggedInState,} = useContext(LoggedInContext)
-  const [content, setContent] = useState({} as NavbarContent);
+  const { loggedInState, } = useContext(LoggedInContext)
+  const [content, setContent] = useState<NavbarContent>({} as NavbarContent);
   useEffect(() => {
-    getContent<NavbarContent>('navbar').then((data: void | NavbarContent) => {
+    getContent<NavbarContent>(NAVBAR_CONTENT_KEY).then((data: void | NavbarContent) => {
       if (data) setContent(data);
     });
   }, []);
 
 
-  const [rule, setFeature] = useState({
-    navbarPermanent: false,
-    navbarSpatialLoggedIn: false,
-    navbarSpatialNotLoggedIn: false
-  });
+  const [navbarRule, setFeature] = useState<NavbarRule>({} as NavbarRule);
 
   const navigation: {
     navbarPermanent: NavbarItemContent[];
     navbar_additional: NavbarItemContent[];
   } = {
-    navbarPermanent: rule?.navbarPermanent ? content?.navbarPermanent : [],
+    navbarPermanent: navbarRule?.navbarPermanent ? content?.navbarPermanent : [],
     navbar_additional: []
   };
 
@@ -45,11 +43,11 @@ const NavbarPage = () => {
   }, [loggedInState]);
 
   if (loggedInState) {
-    navigation.navbar_additional = rule?.navbarSpatialLoggedIn
+    navigation.navbar_additional = navbarRule?.navbarSpatialLoggedIn
       ? content?.navbarSpatialLoggedIn
       : [];
   } else {
-    navigation.navbar_additional = rule?.navbarSpatialNotLoggedIn
+    navigation.navbar_additional = navbarRule?.navbarSpatialNotLoggedIn
       ? content?.navbarSpatialNotLoggedIn
       : [];
   }
@@ -63,20 +61,15 @@ const NavbarPage = () => {
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
                   <img
-                    className={`block lg:hidden h-12 w-auto mt-2 ${CurrentTheme() === 'white' ? 'filter brightness-0 invert' : ''}`}
-                    src="/ccd2023/images/logos/cloud_kol_logo.svg"
-                    alt="GDG Cloud Kolkata Logo"
-                  />
-                  <img
-                    className={`hidden lg:block h-12 w-auto mt-3 ${CurrentTheme() === 'white' ? 'filter brightness-0 invert' : ''}`}
-                    src="/ccd2023/images/logos/cloud_kol_logo.svg"
+                    className={`block h-12 w-auto mt-2 lg:mt-3 ${CurrentTheme() === DARK ? 'filter brightness-0 invert' : ''}`}
+                    src={LOGO_ASSETS + `cloud_kol_logo.svg`}
                     alt="GDG Cloud Kolkata Logo"
                   />
                 </div>
               </div>
               <div className="flex">
                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  {navigation?.navbarPermanent?.map((item) =>
+                  {navigation?.navbarPermanent?.map((item: NavbarItemContent) =>
                     disabledRoutes?.every((i) => item.link !== i) ? (
                       <Navlink
                         key={item.title}
@@ -85,7 +78,7 @@ const NavbarPage = () => {
                       />
                     ) : null
                   )}
-                  {navigation?.navbar_additional?.map((item) =>
+                  {navigation?.navbar_additional?.map((item: NavbarItemContent) =>
                     disabledRoutes?.every((i) => item.link !== i) ? (
                       <Navlink
                         key={item.title}
@@ -117,7 +110,7 @@ const NavbarPage = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="pt-2 pb-3 space-y-1">
-              {navigation?.navbarPermanent?.map((item) =>
+              {navigation?.navbarPermanent?.map((item: NavbarItemContent) =>
                 disabledRoutes?.every((i) => item.link !== i) ? (
                   <Navlink
                     key={item.title}
@@ -127,7 +120,7 @@ const NavbarPage = () => {
                   />
                 ) : null
               )}
-              {navigation?.navbar_additional?.map((item) =>
+              {navigation?.navbar_additional?.map((item: NavbarItemContent) =>
                 disabledRoutes?.every((i) => item.link !== i) ? (
                   <Navlink
                     key={item.title}

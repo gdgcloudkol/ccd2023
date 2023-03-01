@@ -1,11 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
-import {
-  SignUpPayload,
-  SignInPayload,
-  LoginData
-} from '../assets/models/login/datatype';
+import { SignUpPayload, SignInPayload, LoginData } from '../assets/models/login/datatype';
+import { ACCESS_TOKEN_KEY, BASE_AUTH_URI, HOME_ROUTE, LOGGED_IN_KEY } from './constants';
 
-const BASE_AUTH_URI = 'https://api.gdgcloud.kolkata.dev/auth';
 
 export async function ApiSignIn(
   payload: SignInPayload,
@@ -17,8 +13,8 @@ export async function ApiSignIn(
     if (res.status === 200) {
       const data = res.data as LoginData;
       setLoggedInState(true);
-      localStorage.setItem('loggedIn', 'true');
-      localStorage.setItem('accessToken', data.access_token);
+      localStorage.setItem(LOGGED_IN_KEY, 'true');
+      localStorage.setItem(ACCESS_TOKEN_KEY, data.access_token);
     }
     return res;
   } catch (e: any) {
@@ -38,7 +34,7 @@ export async function ApiSignup(
 }
 
 export function ApiLogout(setLoggedInState: any, navigate: any) {
-  localStorage.removeItem('loggedIn');
+  localStorage.removeItem(LOGGED_IN_KEY);
   setLoggedInState(false);
-  navigate('/home');
+  navigate(HOME_ROUTE);
 }

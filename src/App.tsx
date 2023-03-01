@@ -33,7 +33,6 @@ const App = () => {
 
   useEffect(() => {
     sessionStorage.clear();
-    ApiSpeaker()
     AOS.init({
       duration: 1000,
       once: true

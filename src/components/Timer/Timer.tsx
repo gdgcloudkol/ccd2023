@@ -9,12 +9,14 @@ const Timer = () => {
   seconds = seconds % 60;
   minutes = minutes % 60;
   hours = hours % 24;
+  
   const [parsedTime, setParsed] = React.useState({
     day: days.toString().padStart(2, '0'),
     hour: hours.toString().padStart(2, '0'),
     minute: minutes.toString().padStart(2, '0'),
     second: seconds.toString().padStart(2, '0')
   });
+
   const converter = () => {
     let difference = new Date('2023/05/06').getTime() - new Date().getTime();
     let seconds = Math.floor(difference / 1000);
@@ -32,6 +34,7 @@ const Timer = () => {
       minute: minutes.toString().padStart(2, '0')
     });
   };
+  
   React.useEffect(() => {
     const tick = setInterval(() => converter(), 1000);
     return () => clearInterval(tick);

@@ -1,7 +1,7 @@
 import { ReactElement, useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import NavbarPage from './components/Navbar/Navbar';
-import Team from './components/Team/Team';
+import Team from './pages/Team';
 import CFS from './pages/CFS';
 import Coc from './pages/Coc';
 import Dashboard from './pages/Dashboard';
