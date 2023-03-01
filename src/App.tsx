@@ -5,6 +5,7 @@ import './App.css';
 import Footer from './components/Footer/Footer';
 import GoTop from './components/GoTop/GoTop';
 import Router from './Router';
+import { ApiSpeaker } from './services/speaker.service';
 
 const App = () => {
   const [scrollPosition, setSrollPosition] = useState<number>(0);
@@ -32,6 +33,7 @@ const App = () => {
 
   useEffect(() => {
     sessionStorage.clear();
+    ApiSpeaker()
     AOS.init({
       duration: 1000,
       once: true

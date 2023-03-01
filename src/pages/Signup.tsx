@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SignUpPayload } from '../assets/models/login/datatype';
-import { ApiSignup } from '../services/rest.service';
+import { ApiSignup } from '../services/signin.service';
 import { useState } from 'react';
 
 const Signup = () => {

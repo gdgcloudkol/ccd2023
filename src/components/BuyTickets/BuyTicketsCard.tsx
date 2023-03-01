@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export interface DATA {
   imageSrc: string;
@@ -11,14 +12,12 @@ export interface DATA {
 const BuyTicketsCard = (data: DATA) => {
   return (
     <div className="m-2 block max-w-xs rounded-lg bg-white transition duration-100 ease-in-out hover:shadow-lg hover:shadow-green-300 dark:bg-neutral-100 hover:drop-shadow-xl border-2 border-sky-500 dark:border-red-500 dark:hover:shadow-yellow-200">
-      <a href="">
-        <a href="#">
-          <img
-            className="rounded-t-lg"
-            src={data.imageSrc}
-            alt={data.imageAlt}
-          />
-        </a>
+      <Link to="/">
+        <img
+          className="rounded-t-lg"
+          src={data.imageSrc}
+          alt={data.imageAlt}
+        />
         <div className="p-6">
           <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-black">
             {data.title}
@@ -33,7 +32,7 @@ const BuyTicketsCard = (data: DATA) => {
             {data.btnText}
           </button>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };

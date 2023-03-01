@@ -4,7 +4,7 @@ import { FeatureRule, SignInRule } from '../assets/models/datatype';
 import { SignInContent, SigninFieldButtonContent, SigninFieldContent, SignInPayload } from '../assets/models/login/datatype';
 import { getContent } from '../services/content.service';
 import { getFeature } from '../services/feature.service';
-import { ApiLogin } from '../services/rest.service';
+import { ApiSignIn } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 
 const Login = () => {
@@ -28,7 +28,7 @@ const Login = () => {
       password
     };
 
-    const res = await ApiLogin(payload, setLoggedInState);
+    const res = await ApiSignIn(payload, setLoggedInState);
 
     if (res.status === 200) {
       navigate('/profile');

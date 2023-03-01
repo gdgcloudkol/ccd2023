@@ -7,7 +7,7 @@ import {
 
 const BASE_AUTH_URI = 'https://api.gdgcloud.kolkata.dev/auth';
 
-export async function ApiLogin(
+export async function ApiSignIn(
   payload: SignInPayload,
   setLoggedInState: React.Dispatch<React.SetStateAction<boolean>>
 ): Promise<AxiosResponse> {

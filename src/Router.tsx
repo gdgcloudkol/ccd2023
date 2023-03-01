@@ -1,18 +1,13 @@
-import {
-  ReactElement,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useState
-} from 'react';
+import { ReactElement, useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import NavbarPage from './components/Navbar/Navbar';
 import Team from './components/Team/Team';
+import CFS from './pages/CFS';
 import Coc from './pages/Coc';
 import Dashboard from './pages/Dashboard';
 import FaqPage from './pages/Faq';
 import Home from './pages/Home';
-import ApiLogin from './pages/Login';
+import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
 import Schedule from './pages/Schedule/Schedule';
@@ -60,9 +55,6 @@ const Router = () => {
           {navRule?.every((item) => 'faq' !== item) ? (
             <Route path="/faq" element={<FaqPage />} />
           ) : null}
-          {navRule?.every((item) => 'tickets' !== item) && loggedInState ? (
-            <Route path="/tickets" element={<Tickets />} />
-          ) : null}
           {navRule?.every((item) => 'codeofconduct' !== item) ? (
             <Route path="/code-of-conduct" element={<Coc />} />
           ) : null}
@@ -70,10 +62,16 @@ const Router = () => {
             <Route path="/signup" element={<Signup />} />
           ) : null}
           {navRule?.every((item) => 'login' !== item) ? (
-            <Route path="/login" element={<ApiLogin />} />
+            <Route path="/login" element={<Login />} />
+          ) : null}
+          {navRule?.every((item) => 'cfs' !== item) ? (
+            <Route path="/cfs" element={<CFS />} />
           ) : null}
           {navRule?.every((item) => 'profile' !== item) && loggedInState ? (
             <Route path="/profile" element={<Profile />} />
+          ) : null}
+          {navRule?.every((item) => 'tickets' !== item) && loggedInState ? (
+            <Route path="/tickets" element={<Tickets />} />
           ) : null}
           {navRule?.every((item) => 'dashboard' !== item) && loggedInState ? (
             <Route path="/dashboard" element={<Dashboard />} />

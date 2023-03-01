@@ -13,7 +13,7 @@ const DATA = [
     btnText: 'Buy Tickets'
   },
   {
-    id: 1,
+    id: 2,
     title: 'Student',
     href: '#',
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.`,
@@ -23,7 +23,7 @@ const DATA = [
     btnText: 'Buy Tickets'
   },
   {
-    id: 1,
+    id: 3,
     title: 'Merit Based Scholarships',
     href: '#',
     description: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.`,

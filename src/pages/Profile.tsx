@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ApiLogout } from '../services/rest.service';
+import { ApiLogout } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 
 const Profile = () => {
@@ -67,6 +67,9 @@ const Profile = () => {
                   bg-google-blue
                   hover:bg-google-yellow 
                   cursor:timer"
+              onClick={() => {
+                nav('/cfs')
+              }}
             >
               Become a Speaker
             </button>
