@@ -5,7 +5,7 @@ interface TeamData {
   data: PeopleData[]
 }
 
-const TeamData: TeamData[] = [
+const TeamDetails: TeamData[] = [
   {
     team: 'Web Team',
     data: [
@@ -185,7 +185,7 @@ const TeamData: TeamData[] = [
 const Team = () => {
   return (
     <>
-      {TeamData.map((teams: TeamData, key: number) => {
+      {TeamDetails.map((teams: TeamData, key: number) => {
         return (
           <div key={key}>
             <h1 className=" px:5 text-center lg:text-start md:text-start md:px-10 lg:px-20 py-2 lg:py-5 text-transparent text-4xl bg-clip-text bg-gradient-to-r from-purple-400 via-red-300 to-pink-600">
