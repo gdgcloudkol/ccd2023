@@ -1,16 +1,46 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FeatureRule, SignInRule } from '../assets/models/datatype';
 import { SignInContent, SigninFieldButtonContent, SigninFieldContent, SignInPayload } from '../assets/models/login/datatype';
+import { BACKGROUND_ASSETS, LOGIN_CONTENT_KEY, PROFILE_ROUTE } from '../services/constants';
 import { getContent } from '../services/content.service';
 import { getFeature } from '../services/feature.service';
-import { ApiLogin } from '../services/rest.service';
+import { ApiSignIn } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 
 const Login = () => {
   const { setLoggedInState } = useContext(LoggedInContext);
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
+
+  const [signInRule, setsignInRule] = useState<SignInRule>({} as SignInRule);
+  useEffect(() => {
+    getFeature().then((data: FeatureRule) => {
+      if (data) setsignInRule(data.login as SignInRule);
+    });
+  }, []);
+
+  const [signInFields, setSignInFields] = useState<SigninFieldContent[]>([]);
+
+  const [signInContent, setSignInContent] = useState<SignInContent>({} as SignInContent);
+  useEffect(() => {
+    getContent<SignInContent>(LOGIN_CONTENT_KEY).then(
+      (data: void | SignInContent) => {
+        if (data) {
+          setSignInContent(data);
+          const tmpArr: SigninFieldContent[] = []
+          for (let el of data.fields) {
+            el.show = signInRule[el.name] || false
+            fieldErrors[el.name] = ''
+            el.error = fieldErrors[el.name]
+            tmpArr.push(el)
+          }
+          setSignInFields(tmpArr)
+        }
+      }
+    );
+    // eslint-disable-next-line
+  }, [signInRule]);
 
   async function handleSubmit(e: any): Promise<void> {
     e.preventDefault();
@@ -28,44 +58,14 @@ const Login = () => {
       password
     };
 
-    const res = await ApiLogin(payload, setLoggedInState);
+    const res = await ApiSignIn(payload, setLoggedInState);
 
     if (res.status === 200) {
-      navigate('/profile');
+      navigate(PROFILE_ROUTE);
     } else if (res.status === 400) {
       setFieldErrors(res.data);
     }
   }
-
-  const [signInRule, setsignInRule] = useState({} as SignInRule);
-  useEffect(() => {
-    getFeature().then((data: FeatureRule) => {
-      if (data)
-        setsignInRule(data.login as SignInRule);
-    });
-  }, []);
-
-  const [signInFields, setSignInFields] = useState<SigninFieldContent[]>([]);
-
-  const [signInContent, setSignInContent] = useState<SignInContent>({} as SignInContent);
-  useEffect(() => {
-    getContent<SignInContent>('login').then(
-      (data: void | SignInContent) => {
-        if (data) {
-          setSignInContent(data);
-          const tmpArr: SigninFieldContent[] = []
-          for (let el of data.fields) {
-            el.show = signInRule[el.name] || false
-            fieldErrors[el.name] = ''
-            el.error = fieldErrors[el.name]
-            tmpArr.push(el)
-          }
-          setSignInFields(tmpArr)
-        }
-      }
-    );
-  }, [signInRule]);
-
 
   return (
     <div className="max-w-7xl mx-auto" data-aos="fade-up">
@@ -100,7 +100,7 @@ const Login = () => {
                   id="login"
                   onSubmit={handleSubmit}
                 >
-                  {signInFields.map((field) => (
+                  {signInFields.map((field: SigninFieldContent) => (
                     field.show ? (
                       <div key={field.name}>
                         <label
@@ -137,20 +137,18 @@ const Login = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="text-sm">
-                      <a
-                        href={signInContent?.signUpLink}
+                      <Link to={signInContent?.signUpLink}
                         className="font-medium text-google-blue hover:text-google-blue"
                       >
                         {signInContent?.signUp}
-                      </a>
+                      </Link>
                     </div>
                     <div className="text-sm">
-                      <a
-                        href={signInContent?.forgotPasswordLink}
+                      <Link to={signInContent?.forgotPasswordLink}
                         className="font-medium text-google-blue hover:text-google-blue"
                       >
                         {signInContent?.forgotPassword}
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   <div>
@@ -158,13 +156,13 @@ const Login = () => {
                       signInContent?.button?.map((btn: SigninFieldButtonContent, i: number) => (
                         signInRule[btn.name] ? (
                           <div>
-                            <a
+                            <button
                               onClick={btn.name === 'submit' ? handleSubmit : () => { }}
                               key={i}
-                              className="block text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue cursor-pointer"
+                              className="block w-full text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue cursor-pointer"
                             >
                               {btn?.title}
-                            </a>
+                            </button>
                           </div>
                         ) : null
                       ))
@@ -178,8 +176,8 @@ const Login = () => {
         <div className="hidden lg:block relative w-0 flex-1">
           <img
             className="absolute inset-0 h-full w-full object-fill"
-            src="/ccd2023/images/background/victoria.svg"
-            alt=""
+            src={BACKGROUND_ASSETS + `victoria.svg`}
+            alt="Victoria SVG"
           />
         </div>
       </div>

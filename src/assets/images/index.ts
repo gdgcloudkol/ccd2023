@@ -1,1 +1,0 @@
-export const loader=require("./gdsc-logo.gif")

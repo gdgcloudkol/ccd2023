@@ -1,8 +1,8 @@
-import LottieAnimation from '../utils/LottieAnimation';
+import LottieAnimation from '../Utils/LottieAnimation';
 import animationData from '../../assets/animations/google-loader.json';
 
-const Spinner = () => {
+const GoogleDotsLoader = () => {
   return <LottieAnimation animationData={animationData} />;
 };
 
-export default Spinner;
+export default GoogleDotsLoader;

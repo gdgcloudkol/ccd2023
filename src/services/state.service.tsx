@@ -1,13 +1,12 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  createContext,
-  useEffect,
-  useState
-} from 'react';
+import React, { Dispatch, SetStateAction, createContext, useEffect, useState } from 'react';
+import { LOGGED_IN_KEY } from './constants';
 
 export function clearLocalStorage() {
   localStorage.clear();
+}
+
+export function clearSessionStorage() {
+  sessionStorage.clear();
 }
 
 export const LoggedInContext = createContext<{
@@ -24,7 +23,7 @@ export const LoggedInStateProvider = ({ children }: any) => {
   const [loggedInState, setLoggedInState] = useState(false);
 
   useEffect(() => {
-    const state = localStorage.getItem('loggedIn');
+    const state = localStorage.getItem(LOGGED_IN_KEY);
     setLoggedInState(state === 'true');
   }, [loggedInState]);
 

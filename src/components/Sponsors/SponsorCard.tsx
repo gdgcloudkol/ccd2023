@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { PartnerContent } from '../../assets/models/partners/datatype';
+import { PartnerContent, SponsorContent } from '../../assets/models/partners/datatype';
 import { CurrentTheme } from '../../services/common.service';
+import { DARK, SPONSORS_ASSETS } from '../../services/constants';
 import { getFeature } from '../../services/feature.service';
 
 const SponsorCard = ({ title, sponsors }: PartnerContent) => {
@@ -20,7 +21,7 @@ const SponsorCard = ({ title, sponsors }: PartnerContent) => {
       <p className="text-2xl font-bold text-gray-900 dark:text-white uppercase tracking-widest leading-loose">
         {title}
       </p>
-      {sponsors?.map((sponsor, i) => {
+      {sponsors?.map((sponsor: SponsorContent, i: number) => {
         return disabledPartners?.every((i) => i !== sponsor?.sponsorId) ? (
           <a
             className="rounded cursor-pointer flex justify-center items-center hover:shadow-xl hover:scale-105 hover:ease-in duration-300"
@@ -31,8 +32,8 @@ const SponsorCard = ({ title, sponsors }: PartnerContent) => {
           >
             <img
               className={`w-full h-32 object-contain img-border 
-              ${CurrentTheme() === 'white' ? ' filter invert brightness-0 ' : ''}`}
-              src={sponsor?.imgSrc}
+              ${CurrentTheme() === DARK ? ' filter invert brightness-0 ' : ''}`}
+              src={SPONSORS_ASSETS + sponsor?.imgSrc}
               alt={`${sponsor?.sponsorName} logo`}
               aria-label={`${sponsor?.sponsorName} logo`}
             />

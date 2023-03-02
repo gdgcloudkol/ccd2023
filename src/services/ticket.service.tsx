@@ -1,10 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
-import { TicketData } from '../assets/models/tickets/datatype';
+import { ProfileTicketData } from '../assets/models/tickets/datatype';
+import { TICKET_PURCHASED_KEY } from './constants';
 
 const BASE_AUTH_URI = 'https://api.gdgcloud.kolkata.dev/ticket';
 
 export async function ApiPurchaseTickets(
-  payload: TicketData,
+  payload: ProfileTicketData,
 ): Promise<any> {
   console.log('Purchase: ', payload)
   return Promise.resolve(payload)
@@ -12,8 +13,8 @@ export async function ApiPurchaseTickets(
     const res = await axios.post(BASE_AUTH_URI + '/purchase/', payload);
 
     if (res.status === 200) {
-      const data = res.data as TicketData;
-      sessionStorage.setItem('ticketPurchased', 'true');
+      const data = res.data as ProfileTicketData;
+      sessionStorage.setItem(TICKET_PURCHASED_KEY, 'true');
     }
     return res;
   } catch (e: any) {
@@ -22,7 +23,7 @@ export async function ApiPurchaseTickets(
 }
 
 export async function ApiViewTickets(
-  payload: TicketData,
+  payload: ProfileTicketData,
 ): Promise<any> {
   console.log('View: ', payload)
   return Promise.resolve(payload)
@@ -30,8 +31,8 @@ export async function ApiViewTickets(
     const res = await axios.post(BASE_AUTH_URI + '/view/', payload);
 
     if (res.status === 200) {
-      const data = res.data as TicketData;
-      sessionStorage.setItem('ticketPurchased', 'true');
+      const data = res.data as ProfileTicketData;
+      sessionStorage.setItem(TICKET_PURCHASED_KEY, 'true');
     }
     return res;
   } catch (e: any) {

@@ -12,32 +12,23 @@ import { getContent } from '../services/content.service';
 import { getFeature } from '../services/feature.service';
 import Timer from '../components/Timer/Timer';
 import HomeSocials from '../components/HomeDisplay/HomeSocials';
+import { BACKGROUND_ASSETS, DARK, HOME_CONTENT_KEY } from '../services/constants';
+import { SponsorRule } from '../assets/models/datatype';
 
 const Home = () => {
-  const [landingPageContent, setLandingPageContent] = useState(
-    {} as LandingPageContent
-  );
+  const [landingPageContent, setLandingPageContent] = useState<LandingPageContent>({} as LandingPageContent);
   useEffect(() => {
-    getContent<HomeEventContent>('home').then(
+    getContent<HomeEventContent>(HOME_CONTENT_KEY).then(
       (data: void | HomeEventContent) => {
         if (data) setLandingPageContent(data.landingPage);
       }
     );
   }, []);
 
-  const [homeRule, setHome] = useState({
-    showCommunityPartners: false,
-    showSponsors: false
-  });
-
+  const [homeRule, setHome] = useState<SponsorRule>({} as SponsorRule);
   useEffect(() => {
     getFeature().then((data) => {
-      if (data) {
-        setHome({
-          showCommunityPartners: data.home?.showCommunityPartners,
-          showSponsors: data.home?.showSponsors
-        });
-      }
+      if (data) setHome({ showCommunityPartners: data.home?.showCommunityPartners, showSponsors: data.home?.showSponsors });
     });
   }, []);
 
@@ -45,13 +36,13 @@ const Home = () => {
     <>
       {/* home section 1 starts here */}
       <div
-        className={`relative z-10 w-full justify-between items-start flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-26 lg:pb-[62px] px-4`}
         id="home-grid"
+        className={`relative z-10 w-full justify-between items-start flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-26 lg:pb-[62px] px-4`}
       >
         {/* event description starts here */}
         <HomeEvent />
         {/* event description ends here */}
-        <div className=" lg:fixed lg:right-0 lg:top-1/4 w-full lg:w-auto flex justify-center lg:inline-block lg:z-50 bg-[#ffffff26] ">
+        <div className=" lg:fixed lg:right-0 lg:top-1/4 w-full lg:w-auto flex justify-center lg:inline-block lg:z-50 rounded-lg lg:rounded ">
           <Timer />
         </div>
         {/* photos section starts here */}
@@ -59,19 +50,15 @@ const Home = () => {
         {/* photos section ends here */}
       </div>
       <div className="hidden lg:block opacity-50 white-sec relative -z-0 lg:zoom-120">
-        <img src="/ccd2023/images/background/victoria.svg" alt="Victoria Memorial" />
+        <img src={BACKGROUND_ASSETS + `victoria.svg`} alt="Victoria Memorial" />
       </div>
       {/* home section 1 ends here */}
       {/* home section 2 starts here */}
       <div
-        className={`hidden lg:block h-72 text-center event-sec-2 pl-52 pr-52 pt-10 ${CurrentTheme() === 'white' ? 'bg-white strokeme text-white' : 'bg-black strokeme-w text-black'
-          }`}
-      >
+        className={`hidden lg:block h-72 text-center event-sec-2 pl-52 pr-52 pt-10 ${CurrentTheme() === DARK ? 'bg-white strokeme text-white' : 'bg-black strokeme-w text-black'}`}>
         {landingPageContent?.subTitle1}
         <p
-          className={`no-shadow ${CurrentTheme() === 'white' ? 'text-black' : 'text-white'
-            }`}
-        >
+          className={`no-shadow ${CurrentTheme() === DARK ? 'text-black' : 'text-white'}`}>
           {landingPageContent?.description1}
         </p>
       </div>
@@ -81,9 +68,7 @@ const Home = () => {
       {/* home section 3 ends here */}
       {/* youtube section starts here */}
       <div
-        className={`hidden lg:block h-80 ${CurrentTheme() === 'white' ? 'bg-white' : 'bg-black'
-          }`}
-      ></div>
+        className={`hidden lg:block h-80 ${CurrentTheme() === DARK ? 'bg-white' : 'bg-black'}`}></div>
       <Youtube
         youtubeLink={landingPageContent?.youtubeLink}
         youtubeLinkTitle={landingPageContent?.youtubeLinkTitle}
@@ -91,7 +76,7 @@ const Home = () => {
       {/* youtube section ends here */}
       {/* cfs section starts here */}
       <div className="hidden lg:block opacity-50 relative lg: zoom-120 z-0">
-        <img src="/ccd2023/images/background/howrahBridge.svg" alt="Howrah Bridge" />
+        <img src={BACKGROUND_ASSETS + `howrahBridge.svg`} alt="Howrah Bridge" />
       </div>
       <HomeCFS />
       {/* cfs section ends here */}

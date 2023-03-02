@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react';
-import { PartnersContent } from '../../assets/models/partners/datatype';
-import { rawRandomColor } from '../../services/common.service';
+import { PartnerContent, PartnerSponsorContent } from '../../assets/models/partners/datatype';
+import { rawRandomGoogleColor } from '../../services/common.service';
+import { PARTNERS_CONTENT_KEY } from '../../services/constants';
 import { getContent } from '../../services/content.service';
 import SponsorCard from './SponsorCard';
 
 const Sponsors = () => {
-  const [content, setContent] = useState({} as PartnersContent);
+  const [content, setContent] = useState({} as PartnerSponsorContent);
   useEffect(() => {
-    getContent<PartnersContent>('partners').then((data: void | PartnersContent) => {
+    getContent<PartnerSponsorContent>(PARTNERS_CONTENT_KEY).then((data: void | PartnerSponsorContent) => {
       if (data) setContent(data);
     });
   }, []);
 
   const [rawColor, setColor] = useState<string>('text-google-gray-3');
   useEffect(() => {
-    return setColor(rawRandomColor());
+    return setColor(rawRandomGoogleColor());
   }, []);
 
   return (
@@ -48,7 +49,7 @@ const Sponsors = () => {
       </span>
       <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
       <div className="grid grid-cols-1 gap-6 gap-y-10 place-items-center">
-        {content?.partners?.map((partner, i) => (
+        {content?.partners?.map((partner: PartnerContent, i: number) => (
           <SponsorCard
             title={partner?.title}
             sponsors={partner?.sponsors}
