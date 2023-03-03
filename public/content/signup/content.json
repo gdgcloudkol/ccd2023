@@ -1,36 +1,185 @@
 {
-  "accountType": "Account Type",
-  "speaker": "Speaker Profile",
-  "speakerDetails": {
-    "bio": "Bio",
-    "city": "City",
-    "accomodation": "Accomodation Required",
-    "sampleRecordings": "Sample Recordings"
+  "title": "Signup For An Account",
+  "signin": "Already have an account?",
+  "signinLink": "/login",
+  "verifiedEmail": "Email Verified",
+  "accountType": {
+    "label": "Account Type",
+    "type": "option",
+    "placeholder": "Account Type",
+    "options": [
+      "Professional",
+      "Student",
+      "Speaker"
+    ],
+    "required": true
+  },
+  "initialProfile": {
+    "username": {
+      "label": "Username",
+      "type": "text",
+      "placeholder": "Username",
+      "required": true
+    },
+    "email": {
+      "label": "Email",
+      "type": "text",
+      "placeholder": "Email",
+      "required": true
+    },
+    "password": {
+      "label": "Password",
+      "type": "passowrd",
+      "placeholder": "Password",
+      "required": true
+    },
+    "confirmPassword": {
+      "label": "Confirm Password",
+      "type": "password",
+      "placeholder": "Confirm Password",
+      "required": true
+    }
   },
   "profile": {
-    "fullName": "Full Name",
-    "displayName": "Display Name",
-    "email": "Email",
-    "countryCode": "Country Code",
-    "password": "Password",
-    "confirmPassword": "Confirm Password",
-    "phNo": "Phone Number",
-    "college": "College",
-    "course": "Course",
-    "graduation": "Year of Graduation",
-    "company": "Company",
-    "role": "Designation"
+    "fullName": {
+      "label": "Full Name",
+      "type": "text",
+      "placeholder": "Full Name",
+      "required": true
+    },
+    "displayName": {
+      "label": "Display Name",
+      "type": "text",
+      "placeholder": "Display Name",
+      "required": true
+    },
+    "countryCode": {
+      "label": "Country Code",
+      "type": "number",
+      "placeholder": "Country Code",
+      "required": true
+    },
+    "phNo": {
+      "label": "Phone Number",
+      "type": "number",
+      "placeholder": "Phone Number",
+      "required": true
+    },
+    "college": {
+      "label": "College",
+      "type": "text",
+      "placeholder": "College",
+      "required": true
+    },
+    "course": {
+      "label": "Course",
+      "type": "text",
+      "placeholder": "Course",
+      "required": true
+    },
+    "graduation": {
+      "label": "Year of Graduation",
+      "type": "text",
+      "placeholder": "Year of Graduation",
+      "required": true
+    },
+    "company": {
+      "label": "Company",
+      "type": "text",
+      "placeholder": "Company",
+      "required": false
+    },
+    "role": {
+      "label": "Designation",
+      "type": "text",
+      "placeholder": "Designation",
+      "required": false
+    },
+    "city": {
+      "label": "City",
+      "type": "text",
+      "placeholder": "City",
+      "required": true
+    }
   },
   "social": {
-    "cloudskillboost": "Cloud Skill Boost URL",
-    "linkedin": "LinkedIn Id",
-    "github": "Github Username",
-    "website": "Website"
+    "cloudskillboost": {
+      "label": "Cloud Skill Boost URL",
+      "type": "text",
+      "placeholder": "Cloud Skill Boost URL",
+      "required": false
+    },
+    "linkedin": {
+      "label": "LinkedIn URL",
+      "type": "text",
+      "placeholder": "LinkedIn URL",
+      "required": false
+    },
+    "github": {
+      "label": "Github Username",
+      "type": "text",
+      "placeholder": "Github Username",
+      "required": false
+    },
+    "website": {
+      "label": "Website",
+      "type": "text",
+      "placeholder": "Website",
+      "required": false
+    }
   },
   "misc": {
-    "theme": "Default Theme",
-    "foodPref": "Food Preference",
-    "thisrt": "T Shirt Size"
+    "theme": {
+      "label": "Theme",
+      "type": "text",
+      "placeholder": "Theme",
+      "required": false
+    },
+    "foodPref": {
+      "label": "Food Preference",
+      "type": "text",
+      "placeholder": "Food Preference",
+      "required": true
+    },
+    "tshirt": {
+      "label": "T-shirt Size",
+      "type": "option",
+      "options": [
+        "Small",
+        "Medium",
+        "Large",
+        "X-Large",
+        "XX-Large"
+      ],
+      "placeholder": "T-shirt Size",
+      "required": true
+    }
+  },
+  "speakerProfile": {
+    "label": "Speaker Profile",
+    "type": "toggle",
+    "placeholder": "Speaker Profile",
+    "required": false
+  },
+  "speakerDetails": {
+    "bio": {
+      "label": "Bio",
+      "type": "textarea",
+      "placeholder": "Bio",
+      "required": true
+    },
+    "accomodation": {
+      "label": "Accomodation Required",
+      "type": "toggle",
+      "placeholder": "Accomodation Required",
+      "required": true
+    },
+    "sampleRecordings": {
+      "label": "Sample Recordings",
+      "type": "text",
+      "placeholder": "Sample Recordings",
+      "required": true
+    }
   },
   "button": {
     "submit": "Sign Up",

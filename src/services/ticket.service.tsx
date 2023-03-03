@@ -1,8 +1,7 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { ProfileTicketData } from '../assets/models/tickets/datatype';
-import { TICKET_PURCHASED_KEY } from './constants';
+import { BASE_SPEAKER_URI, TICKET_PURCHASED_KEY } from './constants';
 
-const BASE_AUTH_URI = 'https://api.gdgcloud.kolkata.dev/ticket';
 
 export async function ApiPurchaseTickets(
   payload: ProfileTicketData,
@@ -10,7 +9,7 @@ export async function ApiPurchaseTickets(
   console.log('Purchase: ', payload)
   return Promise.resolve(payload)
   try {
-    const res = await axios.post(BASE_AUTH_URI + '/purchase/', payload);
+    const res = await axios.post(BASE_SPEAKER_URI + '/purchase/', payload);
 
     if (res.status === 200) {
       const data = res.data as ProfileTicketData;
@@ -28,7 +27,7 @@ export async function ApiViewTickets(
   console.log('View: ', payload)
   return Promise.resolve(payload)
   try {
-    const res = await axios.post(BASE_AUTH_URI + '/view/', payload);
+    const res = await axios.post(BASE_SPEAKER_URI + '/view/', payload);
 
     if (res.status === 200) {
       const data = res.data as ProfileTicketData;

@@ -56,8 +56,14 @@ const Router = () => {
           {navRule?.every((item) => 'faq' !== item) ? (
             <Route path="/faq" element={<FaqPage />} />
           ) : null}
-          {navRule?.every((item) => 'codeofconduct' !== item) ? (
+          {navRule?.every((item) => 'codeOfConduct' !== item) ? (
             <Route path="/code-of-conduct" element={<Coc />} />
+          ) : null}
+          {navRule?.every((item) => 'termsAndCondition' !== item) ? (
+            <Route path="/terms-and-condition" element={<Coc />} />
+          ) : null}
+          {navRule?.every((item) => 'privacyPolicy' !== item) ? (
+            <Route path="/privacy-policy" element={<Coc />} />
           ) : null}
           {navRule?.every((item) => 'signup' !== item) ? (
             <Route path="/signup" element={<Signup />} />

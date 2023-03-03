@@ -16,10 +16,10 @@ interface LinkType {
 
 export interface PeopleData {
   fullName: string;
-  description: string;
   profilePicture: string;
   links: LinkType[];
   tagLine: string;
+  bio: string;
 }
 
 export interface PeopleGridProp {
@@ -66,7 +66,7 @@ const PeopleGrid = ({ peopleGrid, rule = [''] }: PeopleGridProp) => {
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href={social.url}
+                      href={social?.url}
                       key={j}
                     >
                       <RandomColorWrapper>
@@ -131,7 +131,7 @@ const PeopleGrid = ({ peopleGrid, rule = [''] }: PeopleGridProp) => {
                     <img
                       loading="lazy"
                       className="rounded-full mx-auto w-28 h-28 border-4 border-b-google-blue border-t-google-red border-r-google-yellow border-l-google-green"
-                      src={modalData?.profilePic}
+                      src={modalData?.profilePicture}
                       alt="profile"
                     />
                   </div>
@@ -139,7 +139,7 @@ const PeopleGrid = ({ peopleGrid, rule = [''] }: PeopleGridProp) => {
 
                 <div className="relative px-6 py-2 flex-auto">
                   <p className="my-2 text-g-gray-5 dark:text-white font-light text-base leading-relaxed">
-                    {modalData?.description}
+                    {modalData?.bio}
                   </p>
                 </div>
                 <div className="flex items-center justify-end px-6 py-2 border-t border-solid border-slate-200 rounded-b">

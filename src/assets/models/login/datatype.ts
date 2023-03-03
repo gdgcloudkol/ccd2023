@@ -1,5 +1,3 @@
-import { AccountType } from '../datatype';
-
 interface UserProfileData {
   college?: string;
   company?: string;

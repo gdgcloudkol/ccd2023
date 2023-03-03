@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ApiLogout } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 
@@ -62,17 +62,15 @@ const Profile = () => {
           </div>
 
           <div className="flex flex-row items-center justify-center min-w-2/3">
-            <button
+            <Link
+              to="/cfs"
               className="transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
                   bg-google-blue
                   hover:bg-google-yellow 
                   cursor:timer"
-              onClick={() => {
-                nav('/cfs')
-              }}
             >
               Become a Speaker
-            </button>
+            </Link>
             <button
               className="transition ease-in-out duration-300 mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded 
                   bg-google-red

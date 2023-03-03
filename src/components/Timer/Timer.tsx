@@ -15,7 +15,7 @@ const Timer = () => {
     return date;
   };
 
-  let eventDate = getTime('2023/05/06');
+  let eventDate = getTime('2023/05/07');
 
   const [parsedTime, setParsed] = React.useState({
     day: eventDate.days,
@@ -35,7 +35,6 @@ const Timer = () => {
   };
 
   React.useEffect(() => {
-    console.log(getTime('2023/05/06'));
     const tick = setInterval(() => converter(), 1000);
     return () => clearInterval(tick);
   }, [parsedTime]);
