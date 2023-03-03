@@ -93,8 +93,13 @@ h3 {
   height: 50rem
 }
 
+.bg-img {
+  margin: auto;
+}
+
 .white-sec {
-  margin-top: -400px;
+  margin-top: -390px;
+  margin-bottom: 70px;
 }
 
 .cfs {
@@ -144,6 +149,11 @@ h3 {
     margin-left: 40px;
     height: 200px;
   }
+
+  .white-sec {
+    margin-top: -550px;
+    margin-bottom: 450px;
+  }
 }
 
 @media screen and (min-width:1500px) {
@@ -167,5 +177,9 @@ h3 {
   .pic3 {
     margin-left: -140px;
     margin-top: -90px;
+  }
+
+  .bg-img {
+    scale: 120%;
   }
 }
