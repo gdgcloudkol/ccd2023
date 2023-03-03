@@ -36,7 +36,8 @@ export const THEME_KEY = 'theme';
 
 // routes
 export const HOME_ROUTE = '/home';
-export const PROFILE_ROUTE = '/profile'
+export const PROFILE_ROUTE = '/profile';
+export const TEAM_ROUTE = '/team';
 
 // button states
 export const ACTIVE = 'active';

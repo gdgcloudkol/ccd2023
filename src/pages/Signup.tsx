@@ -1,63 +1,43 @@
 import { Link } from 'react-router-dom';
 import { SignUpPayload } from '../assets/models/login/datatype';
 import { ApiSignup } from '../services/signin.service';
-import { useState } from 'react';
-import { BACKGROUND_ASSETS } from '../services/constants';
+import { useEffect, useState, useContext } from 'react';
+import { BACKGROUND_ASSETS, SIGNUP_CONTENT_KEY } from '../services/constants';
+import { InitialProfileDataAndContent, SignupContent } from '../assets/models/signup/datatype';
+import { getContent } from '../services/content.service';
+import { FeatureRule } from '../assets/models/datatype';
+import { getFeature } from '../services/feature.service';
+import { LoggedInContext } from '../services/state.service';
 
 const Signup = () => {
-  const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
+  const [signupContent, setSignupContent] = useState<SignupContent>({} as SignupContent);
+  const { setLoggedInState } = useContext(LoggedInContext);
+  useEffect(() => {
+    getContent<SignupContent>(SIGNUP_CONTENT_KEY).then((data: void | SignupContent) => {
+      if (data) setSignupContent(data);
+    });
+  }, []);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const formData = new FormData(
-      document.getElementById('signup') as HTMLFormElement
-    );
+  const [signupRule, setSignupRule] = useState<string[]>(['']);
+  useEffect(() => {
+    getFeature().then((data: FeatureRule) => {
+      if (data) setSignupRule(data.signup);
+    });
+  }, []);
 
-    const email = formData.get('email') as string;
-    const username = formData.get('username') as string;
-    const password1 = formData.get('password1') as string;
-    const password2 = formData.get('password2') as string;
-
-    const payload: SignUpPayload = {
-      email,
-      username,
-      password1,
-      password2
-    };
-
-    if (password1 !== password2) {
-      setFieldErrors({
-        password1: 'Passwords do not match',
-        password2: 'Passwords do not match'
-      });
-      return;
+  const [initialProfileFileds, setInitialProfileFields] = useState<InitialProfileDataAndContent>({} as InitialProfileDataAndContent);
+  useEffect(() => {
+    if (signupContent?.initialProfile) {
+      Object.keys(signupContent?.initialProfile).forEach((key: string) => {
+        if (signupRule.every(i => i !== key)) {
+          console.log(signupContent?.initialProfile)
+        } else {
+          console.log('not allowed', key)
+        }
+      })
     }
-
-    const res = await ApiSignup(payload);
-    if (res.status === 400) {
-      setFieldErrors(res.data);
-    }
-  }
-
-  function handleChange(e: React.FormEvent<HTMLFormElement>) {
-    const formData = new FormData(
-      document.getElementById('signup') as HTMLFormElement
-    );
-
-    const password1 = formData.get('password1') as string;
-    const password2 = formData.get('password2') as string;
-
-    if (password1 && password2 && password1 !== password2) {
-      setFieldErrors({
-        password1: 'Passwords do not match',
-        password2: 'Passwords do not match'
-      });
-    } else {
-      setFieldErrors({});
-    }
-  }
-
-  const FIELDS = [
+  }, [signupRule, signupContent]);
+  const signupFields = [
     {
       name: 'email',
       type: 'email',
@@ -88,6 +68,56 @@ const Signup = () => {
     }
   ];
 
+  const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(
+      document.getElementById('signup') as HTMLFormElement
+    );
+
+    const email = formData.get('email') as string;
+    const username = formData.get('username') as string;
+    const password1 = formData.get('password1') as string;
+    const password2 = formData.get('password2') as string;
+
+    const payload: SignUpPayload = {
+      email,
+      username,
+      password1,
+      password2
+    };
+
+    if (password1 !== password2) {
+      setFieldErrors({
+        password1: 'Passwords do not match',
+        password2: 'Passwords do not match'
+      });
+      return;
+    }
+
+    const res = await ApiSignup(payload, setLoggedInState);
+    if (res.status === 400) {
+      setFieldErrors(res.data);
+    }
+  }
+  function handleChange(e: React.FormEvent<HTMLFormElement>) {
+    const formData = new FormData(
+      document.getElementById('signup') as HTMLFormElement
+    );
+
+    const password1 = formData.get('password1') as string;
+    const password2 = formData.get('password2') as string;
+
+    if (password1 && password2 && password1 !== password2) {
+      setFieldErrors({
+        password1: 'Passwords do not match',
+        password2: 'Passwords do not match'
+      });
+    } else {
+      setFieldErrors({});
+    }
+  }
+
   return (
     <div className="max-w-7xl mx-auto" data-aos="fade-up">
       <div className="min-h-full flex">
@@ -95,7 +125,7 @@ const Signup = () => {
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div>
               <h2 className="mt-6 text-3xl text-gray-900 dark:text-gray-100 tracking-tight">
-                Sign up for an account
+                {signupContent?.title}
               </h2>
             </div>
 
@@ -122,7 +152,7 @@ const Signup = () => {
                   onSubmit={handleSubmit}
                   onChange={handleChange}
                 >
-                  {FIELDS.map((field) => (
+                  {signupFields.map((field) => (
                     <div key={field.name}>
                       <label
                         htmlFor={field.name}
@@ -156,10 +186,10 @@ const Signup = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="text-sm">
-                      <Link to="/login"
+                      <Link to={signupContent?.signinLink}
                         className="font-medium text-google-blue hover:text-google-blue"
                       >
-                        Already have an account?
+                        {signupContent?.signin}
                       </Link>
                     </div>
                   </div>
@@ -169,7 +199,7 @@ const Signup = () => {
                       type="submit"
                       className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
                     >
-                      Sign up
+                      {signupContent?.button?.submit}
                     </button>
                   </div>
                 </form>

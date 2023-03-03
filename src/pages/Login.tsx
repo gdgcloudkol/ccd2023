@@ -101,34 +101,34 @@ const Login = () => {
                   onSubmit={handleSubmit}
                 >
                   {signInFields.map((field: SigninFieldContent) => (
-                    field.show ? (
-                      <div key={field.name}>
+                    field?.show ? (
+                      <div key={field?.name}>
                         <label
-                          htmlFor={field.name}
+                          htmlFor={field?.name}
                           className="block text-sm font-medium text-gray-700 dark:text-gray-200 capitalize"
                         >
-                          {field.name}
+                          {field?.name}
                         </label>
                         <div className="mt-1">
                           <input
-                            id={field.name}
-                            name={field.name}
-                            type={field.type}
-                            autoComplete={field.name}
+                            id={field?.name}
+                            name={field?.name}
+                            type={field?.type}
+                            autoComplete={field?.name}
                             required
                             className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm
-                          ${fieldErrors[field.name] &&
+                          ${fieldErrors[field?.name] &&
                               'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
                               }
                           `}
                           />
                         </div>
-                        {field.error && (
+                        {field?.error && (
                           <p
                             className="mt-2 text-sm text-red-600"
-                            id={`${field.name}-error`}
+                            id={`${field?.name}-error`}
                           >
-                            {field.error}
+                            {field?.error}
                           </p>
                         )}
                       </div>
@@ -157,7 +157,7 @@ const Login = () => {
                         signInRule[btn.name] ? (
                           <div>
                             <button
-                              onClick={btn.name === 'submit' ? handleSubmit : () => { }}
+                              onClick={btn?.name === 'submit' ? handleSubmit : () => { }}
                               key={i}
                               className="block w-full text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue cursor-pointer"
                             >

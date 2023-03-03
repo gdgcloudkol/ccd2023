@@ -18,28 +18,6 @@ export interface HomeRule extends SponsorRule {
   date: boolean;
 }
 
-export interface SignupRule {
-  accountType: boolean;
-  fullName: boolean;
-  displayName: boolean;
-  email: boolean;
-  countryCode: boolean;
-  phNo: boolean;
-  college: boolean;
-  course: boolean;
-  graduation: boolean;
-  company: boolean;
-  role: boolean;
-  cloudskillboost: boolean;
-  linkedin: boolean;
-  github: boolean;
-  website: boolean;
-  foodPref: boolean;
-  thisrt: boolean;
-  submit: boolean;
-  reset: boolean;
-}
-
 export interface SignInRule { [key: string]: boolean }
 
 export interface ForgetPasswordRule {
@@ -65,7 +43,7 @@ export interface FooterRule {
 }
 
 export interface FeatureRule {
-  signup: SignupRule;
+  signup: string[];
   login: SignInRule;
   forgetPassword: ForgetPasswordRule;
   navbar: NavbarRule;
