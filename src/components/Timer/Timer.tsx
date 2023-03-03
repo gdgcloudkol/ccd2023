@@ -1,44 +1,44 @@
 import React from 'react';
 
 const Timer = () => {
-  let difference = new Date('2023/05/06').getTime() - new Date().getTime();
-  let seconds = Math.floor(difference / 1000);
-  let minutes = Math.floor(seconds / 60);
-  let hours = Math.floor(minutes / 60);
-  let days = Math.floor(hours / 24);
-  seconds = seconds % 60;
-  minutes = minutes % 60;
-  hours = hours % 24;
-  
-  const [parsedTime, setParsed] = React.useState({
-    day: days.toString().padStart(2, '0'),
-    hour: hours.toString().padStart(2, '0'),
-    minute: minutes.toString().padStart(2, '0'),
-    second: seconds.toString().padStart(2, '0')
-  });
-
-  const converter = () => {
-    let difference = new Date('2023/05/06').getTime() - new Date().getTime();
+  const getTime = (_time: string) => {
+    let date = { days: '', hours: '', minutes: '', seconds: '' };
+    let difference = new Date(_time).getTime() - new Date().getTime();
     let seconds = Math.floor(difference / 1000);
     let minutes = Math.floor(seconds / 60);
     let hours = Math.floor(minutes / 60);
     let days = Math.floor(hours / 24);
-    seconds = seconds % 60;
-    minutes = minutes % 60;
-    hours = hours % 24;
+    date.seconds = (seconds % 60).toString().padStart(2, '0');
+    date.minutes = (minutes % 60).toString().padStart(2, '0');
+    date.hours = (hours % 24).toString().padStart(2, '0');
+    date.days = days.toString().padStart(2, '0');
+    return date;
+  };
+
+  let eventDate = getTime('2023/05/06');
+
+  const [parsedTime, setParsed] = React.useState({
+    day: eventDate.days,
+    hour: eventDate.hours,
+    minute: eventDate.minutes,
+    second: eventDate.seconds
+  });
+
+  const converter = () => {
     setParsed({
       ...parsedTime,
-      day: days.toString().padStart(2, '0'),
-      hour: hours.toString().padStart(2, '0'),
-      second: seconds.toString().padStart(2, '0'),
-      minute: minutes.toString().padStart(2, '0')
+      day: eventDate.days,
+      hour: eventDate.hours,
+      second: eventDate.seconds,
+      minute: eventDate.minutes
     });
   };
-  
+
   React.useEffect(() => {
+    console.log(getTime('2023/05/06'));
     const tick = setInterval(() => converter(), 1000);
     return () => clearInterval(tick);
-  });
+  }, [parsedTime]);
 
   return (
     <div className=" flex justify-center flex-col lg:inline-block py-2 md:w-10 bg-[#ffffff26] rounded-lg lg:rounded lg:w-20 h-1/2 lg:text-center lg:py-3 px-3 lg:px-0 text-timer-blue">
