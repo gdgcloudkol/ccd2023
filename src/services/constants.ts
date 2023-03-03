@@ -11,7 +11,7 @@ export const SPONSORS_ASSETS = '/ccd2023/images/sponsors/'
 export const LOGO_ASSETS = '/ccd2023/images/logos/';
 
 // content types
-export type ContentTypes = 'coc' | 'faq' | 'footer' | 'forgetPassword' | 'home' | 'login' | 'navbar' | 'partners' | 'signup' | 'social' | 'speakers' | 'team';
+export type ContentTypes = 'coc' | 'faq' | 'footer' | 'forgetPassword' | 'home' | 'login' | 'navbar' | 'partners' | 'signup' | 'social' | 'speakers' | 'team' | 'schedule';
 
 // constants storage keys
 export const FEATURE_RULE_KEY = 'featureRule';

@@ -27,12 +27,6 @@ h3 {
   @apply p-5;
 }
 
-.schedule-container {
-  position: relative;
-  overflow: hidden;
-  height: fit-content;
-  width: inherit;
-}
 
 #fade-in-1 {
   position: absolute;
