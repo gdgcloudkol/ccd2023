@@ -10,7 +10,7 @@
   "ticketButton": [
     {
       "id": "cs",
-      "title": "Coming Soon",
+      "title": "Tickets Coming Soon",
       "color": "green",
       "hoverColor": "blue",
       "link": ""

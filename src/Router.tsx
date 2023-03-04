@@ -24,6 +24,7 @@ import { getFeature } from './services/feature.service';
 import { LoggedInContext } from './services/state.service';
 import Footer from './components/Footer/Footer';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import VerifyEmail from './pages/VerifyEmail';
 
 const ScrollToTop = ({ children }: { children: ReactElement }) => {
   const location = useLocation();
@@ -80,6 +81,9 @@ const Router = () => {
           ) : null}
           {navRule?.every((item) => 'cfs' !== item) ? (
             <Route path="/cfs" element={<CFS />} />
+          ) : null}
+          {navRule?.every((item) => 'verifyEmail' !== item) ? (
+            <Route path="/verify-email" element={<VerifyEmail />} />
           ) : null}
           {navRule?.every((item) => 'profile' !== item) && loggedInState ? (
             <Route path="/profile" element={<Profile />} />

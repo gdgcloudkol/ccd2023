@@ -25,7 +25,9 @@
     "navbarSpatialNotLoggedIn": true
   },
   "disabledRoutes": [
-    "/dashboard"
+    "/dashboard",
+    "/tickets",
+    "/termsAndCondition"
   ],
   "disabledPartnerTitles": [
     "Also Backed By"
@@ -60,7 +62,7 @@
   ],
   "home": {
     "ticketButtonStateNotLogin": "gs",
-    "ticketButtonStateLogin": "bt",
+    "ticketButtonStateLogin": "cs",
     "disabledTicketButton": [
       "bt",
       "vt",
