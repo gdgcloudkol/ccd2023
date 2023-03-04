@@ -1,8 +1,12 @@
 // constant URIs
 export const BASE_URI = 'https://api.gdgcloud.kolkata.dev';
 export const BASE_AUTH_URI = BASE_URI + '/auth';
-export const BASE_SPEAKER_URI = BASE_URI + '/speakers';
-export const BASE_CONTENT_URI = 'content'
+export const BASE_LOGIN_URI = BASE_AUTH_URI + '/login/';
+export const BASE_REGISTRATION_URI = BASE_AUTH_URI + '/registration/';
+export const BASE_SPEAKER_URI = BASE_URI + '/speakers/';
+export const BASE_CONTENT_URI = 'content';
+export const BASE_TICKET_URI = BASE_URI + '/tickets/';
+
 
 // assets URI
 export const BACKGROUND_ASSETS = '/ccd2023/images/background/';
@@ -38,6 +42,7 @@ export const THEME_KEY = 'theme';
 export const HOME_ROUTE = '/home';
 export const PROFILE_ROUTE = '/profile';
 export const TEAM_ROUTE = '/team';
+export const VERIFY_EMAIL_ROUTE = '/verify-email';
 
 // button states
 export const ACTIVE = 'active';

@@ -98,11 +98,10 @@ const Login = () => {
                   method="POST"
                   className="space-y-6"
                   id="login"
-                  onSubmit={handleSubmit}
                 >
-                  {signInFields.map((field: SigninFieldContent) => (
+                  {signInFields.map((field: SigninFieldContent, k: number) => (
                     field?.show ? (
-                      <div key={field?.name}>
+                      <div key={k} id={field?.name + k}>
                         <label
                           htmlFor={field?.name}
                           className="block text-sm font-medium text-gray-700 dark:text-gray-200 capitalize"

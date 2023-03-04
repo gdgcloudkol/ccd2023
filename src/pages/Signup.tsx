@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom';
-import { SignUpPayload } from '../assets/models/login/datatype';
-import { ApiSignup } from '../services/signin.service';
-import { useEffect, useState, useContext } from 'react';
-import { BACKGROUND_ASSETS, SIGNUP_CONTENT_KEY } from '../services/constants';
-import { InitialProfileDataAndContent, SignupContent } from '../assets/models/signup/datatype';
-import { getContent } from '../services/content.service';
+import { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FeatureRule } from '../assets/models/datatype';
+import { SignUpPayload } from '../assets/models/login/datatype';
+import { InitialProfileDataAndContent, SignupContent } from '../assets/models/signup/datatype';
+import { BACKGROUND_ASSETS, SIGNUP_CONTENT_KEY, VERIFY_EMAIL_ROUTE } from '../services/constants';
+import { getContent } from '../services/content.service';
 import { getFeature } from '../services/feature.service';
+import { ApiSignup } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 
 const Signup = () => {
+  const nav = useNavigate();
   const [signupContent, setSignupContent] = useState<SignupContent>({} as SignupContent);
   const { setLoggedInState } = useContext(LoggedInContext);
   useEffect(() => {
@@ -30,9 +31,9 @@ const Signup = () => {
     if (signupContent?.initialProfile) {
       Object.keys(signupContent?.initialProfile).forEach((key: string) => {
         if (signupRule.every(i => i !== key)) {
-          console.log(signupContent?.initialProfile)
+          // console.log(signupContent?.initialProfile)
         } else {
-          console.log('not allowed', key)
+          // console.log('not allowed', key)
         }
       })
     }
@@ -69,7 +70,7 @@ const Signup = () => {
   ];
 
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
     const formData = new FormData(
       document.getElementById('signup') as HTMLFormElement
@@ -95,11 +96,13 @@ const Signup = () => {
       return;
     }
 
-    const res = await ApiSignup(payload, setLoggedInState);
+    const res = await ApiSignup(payload);
     if (res.status === 400) {
       setFieldErrors(res.data);
-    }
+    } else if (res.status === 200)
+      nav(VERIFY_EMAIL_ROUTE)
   }
+
   function handleChange(e: React.FormEvent<HTMLFormElement>) {
     const formData = new FormData(
       document.getElementById('signup') as HTMLFormElement
@@ -149,7 +152,6 @@ const Signup = () => {
                   method="POST"
                   className="space-y-6"
                   id="signup"
-                  onSubmit={handleSubmit}
                   onChange={handleChange}
                 >
                   {signupFields.map((field) => (
@@ -198,6 +200,7 @@ const Signup = () => {
                     <button
                       type="submit"
                       className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                      onClick={handleSubmit}
                     >
                       {signupContent?.button?.submit}
                     </button>
