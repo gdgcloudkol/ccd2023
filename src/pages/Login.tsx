@@ -1,8 +1,18 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FeatureRule, SignInRule } from '../assets/models/datatype';
-import { SignInContent, SigninFieldButtonContent, SigninFieldContent, SignInPayload } from '../assets/models/login/datatype';
-import { BACKGROUND_ASSETS, LOGIN_CONTENT_KEY, PROFILE_ROUTE } from '../services/constants';
+import {
+  SignInContent,
+  SigninFieldButtonContent,
+  SigninFieldContent,
+  SignInPayload
+} from '../assets/models/login/datatype';
+import Spinner from '../components/Spinner/Spinner';
+import {
+  BACKGROUND_ASSETS,
+  LOGIN_CONTENT_KEY,
+  PROFILE_ROUTE
+} from '../services/constants';
 import { getContent } from '../services/content.service';
 import { getFeature } from '../services/feature.service';
 import { ApiSignIn } from '../services/signin.service';
@@ -12,7 +22,7 @@ const Login = () => {
   const { setLoggedInState } = useContext(LoggedInContext);
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
-
+  const [isLoading, setLoading] = useState<boolean>(false);
   const [signInRule, setsignInRule] = useState<SignInRule>({} as SignInRule);
   useEffect(() => {
     getFeature().then((data: FeatureRule) => {
@@ -22,27 +32,33 @@ const Login = () => {
 
   const [signInFields, setSignInFields] = useState<SigninFieldContent[]>([]);
 
-  const [signInContent, setSignInContent] = useState<SignInContent>({} as SignInContent);
+  const [signInContent, setSignInContent] = useState<SignInContent>(
+    {} as SignInContent
+  );
   useEffect(() => {
     getContent<SignInContent>(LOGIN_CONTENT_KEY).then(
       (data: void | SignInContent) => {
         if (data) {
           setSignInContent(data);
-          const tmpArr: SigninFieldContent[] = []
+          const tmpArr: SigninFieldContent[] = [];
           for (let el of data.fields) {
-            el.show = signInRule[el.name] || false
-            fieldErrors[el.name] = ''
-            el.error = fieldErrors[el.name]
-            tmpArr.push(el)
+            el.show = signInRule[el.name] || false;
+            fieldErrors[el.name] = '';
+            el.error = fieldErrors[el.name];
+            tmpArr.push(el);
           }
-          setSignInFields(tmpArr)
+          setSignInFields(tmpArr);
         }
       }
     );
     // eslint-disable-next-line
   }, [signInRule]);
 
-  async function handleSubmit(e: any): Promise<void> {
+  async function handleSubmit(
+    e:
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+      | React.FormEvent<HTMLFormElement>
+  ): Promise<void> {
     e.preventDefault();
     const formData = new FormData(
       document.getElementById('login') as HTMLFormElement
@@ -64,6 +80,7 @@ const Login = () => {
       navigate(PROFILE_ROUTE);
     } else if (res.status === 400) {
       setFieldErrors(res.data);
+      setLoading(false);
     }
   }
 
@@ -98,9 +115,11 @@ const Login = () => {
                   method="POST"
                   className="space-y-6"
                   id="login"
-                  onSubmit={handleSubmit}
+                  onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
+                    handleSubmit(e)
+                  }
                 >
-                  {signInFields.map((field: SigninFieldContent) => (
+                  {signInFields.map((field: SigninFieldContent) =>
                     field?.show ? (
                       <div key={field?.name}>
                         <label
@@ -117,9 +136,10 @@ const Login = () => {
                             autoComplete={field?.name}
                             required
                             className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm
-                          ${fieldErrors[field?.name] &&
-                              'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
-                              }
+                          ${
+                            fieldErrors[field?.name] &&
+                            'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
+                          }
                           `}
                           />
                         </div>
@@ -133,18 +153,20 @@ const Login = () => {
                         )}
                       </div>
                     ) : null
-                  ))}
+                  )}
 
                   <div className="flex items-center justify-between">
                     <div className="text-sm">
-                      <Link to={signInContent?.signUpLink}
+                      <Link
+                        to={signInContent?.signUpLink}
                         className="font-medium text-google-blue hover:text-google-blue"
                       >
                         {signInContent?.signUp}
                       </Link>
                     </div>
                     <div className="text-sm">
-                      <Link to={signInContent?.forgotPasswordLink}
+                      <Link
+                        to={signInContent?.forgotPasswordLink}
                         className="font-medium text-google-blue hover:text-google-blue"
                       >
                         {signInContent?.forgotPassword}
@@ -152,21 +174,27 @@ const Login = () => {
                     </div>
                   </div>
                   <div>
-                    {
-                      signInContent?.button?.map((btn: SigninFieldButtonContent, i: number) => (
+                    {signInContent?.button?.map(
+                      (btn: SigninFieldButtonContent, i: number) =>
                         signInRule[btn.name] ? (
-                          <div>
+                          <div key={i}>
                             <button
-                              onClick={btn?.name === 'submit' ? handleSubmit : () => { }}
+                              onClick={
+                                btn?.name === 'submit'
+                                  ? (e) => {
+                                      handleSubmit(e);
+                                      setLoading(true);
+                                    }
+                                  : () => {}
+                              }
                               key={i}
                               className="block w-full text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue cursor-pointer"
                             >
-                              {btn?.title}
+                              {isLoading ? <Spinner /> : btn?.title}
                             </button>
                           </div>
                         ) : null
-                      ))
-                    }
+                    )}
                   </div>
                 </form>
               </div>
