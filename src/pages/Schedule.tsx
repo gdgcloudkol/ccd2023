@@ -1,6 +1,14 @@
 import React from 'react';
-import { SpeakerData, SessionData, RoomData, TimeSlot, ScheduleData, CategoryData, CategoryItems } from '../../assets/models/schedule/datatype';
-import { getContent } from '../../services/content.service';
+import {
+  SpeakerData,
+  SessionData,
+  RoomData,
+  TimeSlot,
+  ScheduleData,
+  CategoryData,
+  CategoryItems
+} from '../assets/models/schedule/datatype';
+import { getContent } from '../services/content.service';
 
 const Schedule = () => {
   const [day, setDay] = React.useState(1);
@@ -18,8 +26,8 @@ const Schedule = () => {
       d.getHours() === 0
         ? 12
         : d.getHours() > 12
-          ? d.getHours() - 12
-          : d.getHours();
+        ? d.getHours() - 12
+        : d.getHours();
     const min = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();
     const ampm = d.getHours() < 12 ? 'AM' : 'PM';
     const time = hour + ':' + min + ' ' + ampm;
