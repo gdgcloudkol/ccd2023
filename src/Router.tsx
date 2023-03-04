@@ -1,4 +1,10 @@
-import { ReactElement, useContext, useEffect, useLayoutEffect, useState } from 'react';
+import {
+  ReactElement,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState
+} from 'react';
 import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import NavbarPage from './components/Navbar/Navbar';
 import Team from './pages/Team';
@@ -10,13 +16,14 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
-import Schedule from './pages/Schedule/Schedule';
+import Schedule from './pages/Schedule';
 import Signup from './pages/Signup';
 import Speakers from './pages/Speakers';
 import Tickets from './pages/Tickets';
 import { getFeature } from './services/feature.service';
 import { LoggedInContext } from './services/state.service';
 import Footer from './components/Footer/Footer';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 const ScrollToTop = ({ children }: { children: ReactElement }) => {
   const location = useLocation();
@@ -63,7 +70,7 @@ const Router = () => {
             <Route path="/terms-and-condition" element={<Coc />} />
           ) : null}
           {navRule?.every((item) => 'privacyPolicy' !== item) ? (
-            <Route path="/privacy-policy" element={<Coc />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           ) : null}
           {navRule?.every((item) => 'signup' !== item) ? (
             <Route path="/signup" element={<Signup />} />
