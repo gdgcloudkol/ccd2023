@@ -1,12 +1,75 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ApiLogout } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
+import { FeatureRule } from '../assets/models/datatype';
+import { SignupContent, InputDataType, ProfileContent, SignupSocialContent, MiscContent } from '../assets/models/signup/datatype';
+import { PROFILE_ROUTE, SIGNUP_CONTENT_KEY } from '../services/constants';
+import { getContent } from '../services/content.service';
+import { getFeature } from '../services/feature.service';
 
 const Profile = () => {
+  const nav = useNavigate();
+  const [signupContent, setSignupContent] = useState<SignupContent>({} as SignupContent);
+  const { loggedInState } = useContext(LoggedInContext);
+  useEffect(() => {
+    if (loggedInState)
+      nav(PROFILE_ROUTE)
+    getContent<SignupContent>(SIGNUP_CONTENT_KEY).then((data: void | SignupContent) => {
+      if (data) setSignupContent(data);
+    });
+  }, [loggedInState, nav]);
+
+  const [signupRule, setSignupRule] = useState<string[]>(['']);
+  useEffect(() => {
+    getFeature().then((data: FeatureRule) => {
+      if (data) setSignupRule(data.signup);
+    });
+  }, []);
+  const [profileContentFileds, setProfileContentFields] = useState<InputDataType[]>([] as InputDataType[]);
+  useEffect(() => {
+    if (signupContent?.profile) {
+      const order = signupContent?.profile?.order
+      const locArr: InputDataType[] = new Array(order.length)
+      Object.keys(signupContent?.profile).forEach((key: string) => {
+        if (signupRule.every(i => i !== key) && key !== 'order') {
+          locArr[order.indexOf(key)] = signupContent?.profile[key as keyof ProfileContent] as InputDataType
+        }
+        setProfileContentFields(locArr)
+      })
+    }
+  }, [signupRule, signupContent]);
+
+  const [socialContentFileds, setSocialContentFields] = useState<InputDataType[]>([] as InputDataType[]);
+  useEffect(() => {
+    if (signupContent?.social) {
+      const order = signupContent?.social?.order
+      const locArr: InputDataType[] = new Array(order.length)
+      Object.keys(signupContent?.social).forEach((key: string) => {
+        if (signupRule.every(i => i !== key) && key !== 'order') {
+          locArr[order.indexOf(key)] = signupContent?.social[key as keyof SignupSocialContent] as InputDataType
+        }
+        setSocialContentFields(locArr)
+      })
+    }
+  }, [signupRule, signupContent]);
+
+  const [miscContentFileds, setMiscContentFields] = useState<InputDataType[]>([] as InputDataType[]);
+  useEffect(() => {
+    if (signupContent?.misc) {
+      const order = signupContent?.misc?.order
+      const locArr: InputDataType[] = new Array(order.length)
+      Object.keys(signupContent?.misc).forEach((key: string) => {
+        if (signupRule.every(i => i !== key) && key !== 'order') {
+          locArr[order.indexOf(key)] = signupContent?.misc[key as keyof MiscContent] as InputDataType
+        }
+        setMiscContentFields(locArr)
+      })
+    }
+  }, [signupRule, signupContent]);
+
   const { setLoggedInState } = useContext(LoggedInContext)
   const [type] = useState('Speaker');
-  const nav = useNavigate()
 
   const logout = () => {
     ApiLogout(setLoggedInState, nav)

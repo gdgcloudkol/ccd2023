@@ -1,10 +1,4 @@
-import {
-  ReactElement,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useState
-} from 'react';
+import { ReactElement, useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import NavbarPage from './components/Navbar/Navbar';
 import Team from './pages/Team';
@@ -52,46 +46,46 @@ const Router = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          {navRule?.every((item) => 'team' !== item) ? (
+          {navRule?.every((item) => '/team' !== item) ? (
             <Route path="/team" element={<Team />} />
           ) : null}
-          {navRule?.every((item) => 'schedule' !== item) ? (
+          {navRule?.every((item) => '/schedule' !== item) ? (
             <Route path="/schedule" element={<Schedule />} />
           ) : null}
-          {navRule?.every((item) => 'speakers' !== item) ? (
+          {navRule?.every((item) => '/speakers' !== item) ? (
             <Route path="/speakers" element={<Speakers />} />
           ) : null}
-          {navRule?.every((item) => 'faq' !== item) ? (
+          {navRule?.every((item) => '/faq' !== item) ? (
             <Route path="/faq" element={<FaqPage />} />
           ) : null}
-          {navRule?.every((item) => 'codeOfConduct' !== item) ? (
+          {navRule?.every((item) => '/codeOfConduct' !== item) ? (
             <Route path="/code-of-conduct" element={<Coc />} />
           ) : null}
-          {navRule?.every((item) => 'termsAndCondition' !== item) ? (
+          {navRule?.every((item) => '/termsAndCondition' !== item) ? (
             <Route path="/terms-and-condition" element={<Coc />} />
           ) : null}
-          {navRule?.every((item) => 'privacyPolicy' !== item) ? (
+          {navRule?.every((item) => '/privacyPolicy' !== item) ? (
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           ) : null}
-          {navRule?.every((item) => 'signup' !== item) ? (
+          {navRule?.every((item) => '/signup' !== item) ? (
             <Route path="/signup" element={<Signup />} />
           ) : null}
-          {navRule?.every((item) => 'login' !== item) ? (
+          {navRule?.every((item) => '/login' !== item) ? (
             <Route path="/login" element={<Login />} />
           ) : null}
-          {navRule?.every((item) => 'cfs' !== item) ? (
+          {navRule?.every((item) => '/cfs' !== item) ? (
             <Route path="/cfs" element={<CFS />} />
           ) : null}
-          {navRule?.every((item) => 'verifyEmail' !== item) ? (
+          {navRule?.every((item) => '/verifyEmail' !== item) ? (
             <Route path="/verify-email" element={<VerifyEmail />} />
           ) : null}
-          {navRule?.every((item) => 'profile' !== item) && loggedInState ? (
+          {navRule?.every((item) => '/profile' !== item) && loggedInState ? (
             <Route path="/profile" element={<Profile />} />
           ) : null}
-          {navRule?.every((item) => 'tickets' !== item) && loggedInState ? (
+          {navRule?.every((item) => '/tickets' !== item) && loggedInState ? (
             <Route path="/tickets" element={<Tickets />} />
           ) : null}
-          {navRule?.every((item) => 'dashboard' !== item) && loggedInState ? (
+          {navRule?.every((item) => '/dashboard' !== item) && loggedInState ? (
             <Route path="/dashboard" element={<Dashboard />} />
           ) : null}
           <Route path="/*" element={<NotFound />} />

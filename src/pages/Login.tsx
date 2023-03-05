@@ -9,16 +9,18 @@ import { ApiSignIn } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 
 const Login = () => {
-  const { setLoggedInState } = useContext(LoggedInContext);
+  const { loggedInState, setLoggedInState } = useContext(LoggedInContext);
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
-  const navigate = useNavigate();
+  const nav = useNavigate();
 
   const [signInRule, setsignInRule] = useState<SignInRule>({} as SignInRule);
   useEffect(() => {
+    if (loggedInState)
+      nav(PROFILE_ROUTE)
     getFeature().then((data: FeatureRule) => {
       if (data) setsignInRule(data.login as SignInRule);
     });
-  }, []);
+  }, [loggedInState, nav]);
 
   const [signInFields, setSignInFields] = useState<SigninFieldContent[]>([]);
 
@@ -61,7 +63,7 @@ const Login = () => {
     const res = await ApiSignIn(payload, setLoggedInState);
 
     if (res.status === 200) {
-      navigate(PROFILE_ROUTE);
+      nav(PROFILE_ROUTE);
     } else if (res.status === 400) {
       setFieldErrors(res.data);
     }
