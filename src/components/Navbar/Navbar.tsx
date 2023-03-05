@@ -2,10 +2,17 @@ import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useContext, useEffect, useState } from 'react';
 import { FeatureRule } from '../../assets/models/datatype';
-import { NavbarContent, NavbarItemContent } from '../../assets/models/navbar/datatype';
+import {
+  NavbarContent,
+  NavbarItemContent
+} from '../../assets/models/navbar/datatype';
 import { NavbarRule } from '../../assets/models/datatype';
 import { CurrentTheme } from '../../services/common.service';
-import { DARK, LOGO_ASSETS, NAVBAR_CONTENT_KEY } from '../../services/constants';
+import {
+  DARK,
+  LOGO_ASSETS,
+  NAVBAR_CONTENT_KEY
+} from '../../services/constants';
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
 import { LoggedInContext } from '../../services/state.service';
@@ -13,14 +20,17 @@ import Toggle from '../Theme/ThemeToggle';
 import Navlink from './Navlink';
 
 const NavbarPage = () => {
-  const { loggedInState, } = useContext(LoggedInContext)
+  const { loggedInState } = useContext(LoggedInContext);
   const [content, setContent] = useState<NavbarContent>({} as NavbarContent);
-  useEffect(() => {
-    getContent<NavbarContent>(NAVBAR_CONTENT_KEY).then((data: void | NavbarContent) => {
-      if (data) setContent(data);
-    });
-  }, []);
+  const { isLoggedIn } = loggedInState;
 
+  useEffect(() => {
+    getContent<NavbarContent>(NAVBAR_CONTENT_KEY).then(
+      (data: void | NavbarContent) => {
+        if (data) setContent(data);
+      }
+    );
+  }, [isLoggedIn]);
 
   const [navbarRule, setFeature] = useState<NavbarRule>({} as NavbarRule);
 
@@ -28,7 +38,9 @@ const NavbarPage = () => {
     navbarPermanent: NavbarItemContent[];
     navbar_additional: NavbarItemContent[];
   } = {
-    navbarPermanent: navbarRule?.navbarPermanent ? content?.navbarPermanent : [],
+    navbarPermanent: navbarRule?.navbarPermanent
+      ? content?.navbarPermanent
+      : [],
     navbar_additional: []
   };
 
@@ -40,9 +52,9 @@ const NavbarPage = () => {
         setDisabledRoutes(data.disabledRoutes);
       }
     });
-  }, [loggedInState]);
+  }, []);
 
-  if (loggedInState) {
+  if (isLoggedIn) {
     navigation.navbar_additional = navbarRule?.navbarSpatialLoggedIn
       ? content?.navbarSpatialLoggedIn
       : [];
@@ -61,7 +73,11 @@ const NavbarPage = () => {
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
                   <img
-                    className={`block h-12 w-auto mt-2 lg:mt-3 ${CurrentTheme() === DARK ? 'filter brightness-0 invert' : ''}`}
+                    className={`block h-12 w-auto mt-2 lg:mt-3 ${
+                      CurrentTheme() === DARK
+                        ? 'filter brightness-0 invert'
+                        : ''
+                    }`}
                     src={LOGO_ASSETS + `cloud_kol_logo.svg`}
                     alt="GDG Cloud Kolkata Logo"
                   />
@@ -78,15 +94,16 @@ const NavbarPage = () => {
                       />
                     ) : null
                   )}
-                  {navigation?.navbar_additional?.map((item: NavbarItemContent) =>
-                    disabledRoutes?.every((i) => item.link !== i) ? (
-                      <Navlink
-                        key={item.title}
-                        label={item.title}
-                        path={item.link}
-                        type="button"
-                      />
-                    ) : null
+                  {navigation?.navbar_additional?.map(
+                    (item: NavbarItemContent) =>
+                      disabledRoutes?.every((i) => item.link !== i) ? (
+                        <Navlink
+                          key={item.title}
+                          label={item.title}
+                          path={item.link}
+                          type="button"
+                        />
+                      ) : null
                   )}
                 </div>
                 <div className=" hidden select-none sm:flex items-center pl-4 -mr-4">

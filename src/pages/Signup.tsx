@@ -2,8 +2,17 @@ import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FeatureRule } from '../assets/models/datatype';
 import { SignUpPayload } from '../assets/models/login/datatype';
-import { InitialProfileContent, InputDataType, SignupContent } from '../assets/models/signup/datatype';
-import { BACKGROUND_ASSETS, PROFILE_ROUTE, SIGNUP_CONTENT_KEY, VERIFY_EMAIL_ROUTE } from '../services/constants';
+import {
+  InitialProfileContent,
+  InputDataType,
+  SignupContent
+} from '../assets/models/signup/datatype';
+import {
+  BACKGROUND_ASSETS,
+  PROFILE_ROUTE,
+  SIGNUP_CONTENT_KEY,
+  VERIFY_EMAIL_ROUTE
+} from '../services/constants';
 import { getContent } from '../services/content.service';
 import { getFeature } from '../services/feature.service';
 import { ApiSignup } from '../services/signin.service';
@@ -11,14 +20,17 @@ import { LoggedInContext } from '../services/state.service';
 
 const Signup = () => {
   const nav = useNavigate();
-  const [signupContent, setSignupContent] = useState<SignupContent>({} as SignupContent);
+  const [signupContent, setSignupContent] = useState<SignupContent>(
+    {} as SignupContent
+  );
   const { loggedInState } = useContext(LoggedInContext);
   useEffect(() => {
-    if (loggedInState)
-      nav(PROFILE_ROUTE)
-    getContent<SignupContent>(SIGNUP_CONTENT_KEY).then((data: void | SignupContent) => {
-      if (data) setSignupContent(data);
-    });
+    if (loggedInState) nav(PROFILE_ROUTE);
+    getContent<SignupContent>(SIGNUP_CONTENT_KEY).then(
+      (data: void | SignupContent) => {
+        if (data) setSignupContent(data);
+      }
+    );
   }, [loggedInState, nav]);
 
   const [signupRule, setSignupRule] = useState<string[]>(['']);
@@ -28,17 +40,20 @@ const Signup = () => {
     });
   }, []);
 
-  const [initialProfileContentFileds, setInitialProfileContentFields] = useState<InputDataType[]>([] as InputDataType[]);
+  const [initialProfileContentFileds, setInitialProfileContentFields] =
+    useState<InputDataType[]>([] as InputDataType[]);
   useEffect(() => {
     if (signupContent?.initialProfile) {
-      const order = signupContent?.initialProfile?.order
-      const locArr: InputDataType[] = new Array(order.length)
+      const order = signupContent?.initialProfile?.order;
+      const locArr: InputDataType[] = new Array(order.length);
       Object.keys(signupContent?.initialProfile).forEach((key: string) => {
-        if (signupRule.every(i => i !== key) && key !== 'order') {
-          locArr[order.indexOf(key)] = signupContent?.initialProfile[key as keyof InitialProfileContent] as InputDataType
+        if (signupRule.every((i) => i !== key) && key !== 'order') {
+          locArr[order.indexOf(key)] = signupContent?.initialProfile[
+            key as keyof InitialProfileContent
+          ] as InputDataType;
         }
-        setInitialProfileContentFields(locArr)
-      })
+        setInitialProfileContentFields(locArr);
+      });
     }
   }, [signupRule, signupContent]);
 
@@ -72,8 +87,7 @@ const Signup = () => {
     const res = await ApiSignup(payload);
     if (res.status === 400) {
       setFieldErrors(res.data);
-    } else if (res.status === 200)
-      nav(VERIFY_EMAIL_ROUTE)
+    } else if (res.status === 200) nav(VERIFY_EMAIL_ROUTE);
   }
 
   function handleChange(e: React.FormEvent<HTMLFormElement>) {
@@ -144,9 +158,10 @@ const Signup = () => {
                           required={field.required}
                           className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm
                           
-                          ${fieldErrors[field.name] &&
+                          ${
+                            fieldErrors[field.name] &&
                             'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
-                            }
+                          }
                           
                           `}
                         />
@@ -161,7 +176,8 @@ const Signup = () => {
 
                   <div className="flex items-center justify-between">
                     <div className="text-sm">
-                      <Link to={signupContent?.signinLink}
+                      <Link
+                        to={signupContent?.signinLink}
                         className="font-medium text-google-blue hover:text-google-blue"
                       >
                         {signupContent?.signin}
