@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FeatureRule } from '../assets/models/datatype';
 import { SignUpPayload } from '../assets/models/login/datatype';
-import { InitialProfileDataAndContent, SignupContent } from '../assets/models/signup/datatype';
-import { BACKGROUND_ASSETS, SIGNUP_CONTENT_KEY, VERIFY_EMAIL_ROUTE } from '../services/constants';
+import { InitialProfileContent, InputDataType, SignupContent } from '../assets/models/signup/datatype';
+import { BACKGROUND_ASSETS, PROFILE_ROUTE, SIGNUP_CONTENT_KEY, VERIFY_EMAIL_ROUTE } from '../services/constants';
 import { getContent } from '../services/content.service';
 import { getFeature } from '../services/feature.service';
 import { ApiSignup } from '../services/signin.service';
@@ -12,12 +12,14 @@ import { LoggedInContext } from '../services/state.service';
 const Signup = () => {
   const nav = useNavigate();
   const [signupContent, setSignupContent] = useState<SignupContent>({} as SignupContent);
-  const { setLoggedInState } = useContext(LoggedInContext);
+  const { loggedInState } = useContext(LoggedInContext);
   useEffect(() => {
+    if (loggedInState)
+      nav(PROFILE_ROUTE)
     getContent<SignupContent>(SIGNUP_CONTENT_KEY).then((data: void | SignupContent) => {
       if (data) setSignupContent(data);
     });
-  }, []);
+  }, [loggedInState, nav]);
 
   const [signupRule, setSignupRule] = useState<string[]>(['']);
   useEffect(() => {
@@ -26,48 +28,19 @@ const Signup = () => {
     });
   }, []);
 
-  const [initialProfileFileds, setInitialProfileFields] = useState<InitialProfileDataAndContent>({} as InitialProfileDataAndContent);
+  const [initialProfileContentFileds, setInitialProfileContentFields] = useState<InputDataType[]>([] as InputDataType[]);
   useEffect(() => {
     if (signupContent?.initialProfile) {
+      const order = signupContent?.initialProfile?.order
+      const locArr: InputDataType[] = new Array(order.length)
       Object.keys(signupContent?.initialProfile).forEach((key: string) => {
-        if (signupRule.every(i => i !== key)) {
-          // console.log(signupContent?.initialProfile)
-        } else {
-          // console.log('not allowed', key)
+        if (signupRule.every(i => i !== key) && key !== 'order') {
+          locArr[order.indexOf(key)] = signupContent?.initialProfile[key as keyof InitialProfileContent] as InputDataType
         }
+        setInitialProfileContentFields(locArr)
       })
     }
   }, [signupRule, signupContent]);
-  const signupFields = [
-    {
-      name: 'email',
-      type: 'email',
-      label: 'Email',
-      placeholder: 'Email',
-      required: true
-    },
-    {
-      name: 'username',
-      type: 'text',
-      label: 'Username',
-      placeholder: 'Username',
-      required: true
-    },
-    {
-      name: 'password1',
-      type: 'password',
-      label: 'Password',
-      placeholder: 'Password',
-      required: true
-    },
-    {
-      name: 'password2',
-      type: 'password',
-      label: 'Confirm Password',
-      placeholder: 'Confirm Password',
-      required: true
-    }
-  ];
 
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
   async function handleSubmit(e: any) {
@@ -154,7 +127,7 @@ const Signup = () => {
                   id="signup"
                   onChange={handleChange}
                 >
-                  {signupFields.map((field) => (
+                  {initialProfileContentFileds.map((field: InputDataType) => (
                     <div key={field.name}>
                       <label
                         htmlFor={field.name}
