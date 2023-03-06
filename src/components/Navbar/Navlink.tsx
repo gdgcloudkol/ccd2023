@@ -31,7 +31,7 @@ const Navlink = ({ variant = 'desktop', path, label, type = 'none' }: NavlinkPro
               <Link to={path}>
                 <div className="flex space-x-2 pl-3 py-2">
                   <button type="button"
-                    className="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{label}</button>
+                    className="inline-block px-6 py-2.5 bg-transparent border text-white font-medium text-sm leading-tight rounded-3xl shadow-md transition duration-150 ease-in-out">{label}</button>
                 </div>
               </Link>
             )
@@ -57,7 +57,7 @@ const Navlink = ({ variant = 'desktop', path, label, type = 'none' }: NavlinkPro
               <Link to={path}>
                 <div className="flex space-x-2 py-3.5">
                   <Disclosure.Button type="button"
-                    className="inline-block px-6 py-2.5 bg-gray-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">{label}
+                    className="inline-block px-8 py-2.5 bg-transparent border text-white font-medium text-xl leading-tight rounded-3xl shadow-md transition duration-150 ease-in-out">{label}
                   </Disclosure.Button>
                 </div>
               </Link>
@@ -67,7 +67,7 @@ const Navlink = ({ variant = 'desktop', path, label, type = 'none' }: NavlinkPro
             return (
               <Link to={path}
                 className={`${isActive ? ACTIVE_CLASS_DESKTOP : INACTIVE_CLASS_DESKTOP
-                  } hover:border-${underlyingColor}  inline-flex items-center px-1 pt-4 border-b-2 text-sm font-medium h-12`}
+                  } hover:border-${underlyingColor}  inline-flex items-center px-1 pt-6 border-b-2 text-xl font-medium h-12`}
               >
                 {label}
               </Link>

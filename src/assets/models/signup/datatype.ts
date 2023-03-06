@@ -108,6 +108,7 @@ export interface SignupContent {
   title: string;
   signin: string;
   signinLink: string;
+  bgImg: string;
   accountType: string;
   verifiedEmail: string;
   initialProfile: InitialProfileContent;

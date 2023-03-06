@@ -7,6 +7,7 @@ import { ACTIVE, DARK, HOME_CONTENT_KEY, INACTIVE } from "../../services/constan
 import { getContent } from "../../services/content.service";
 import { getFeature } from "../../services/feature.service";
 import { LoggedInContext } from "../../services/state.service";
+import { Disclosure } from "@headlessui/react";
 
 export default function HomeCFS() {
   const { loggedInState } = useContext(LoggedInContext)
@@ -51,37 +52,37 @@ export default function HomeCFS() {
   }, [cfsRule, loggedInState, buttonContent]);
 
   return (
-    <div
-      className={`hidden lg:block h-96 text-center event-sec-2 pl-52 pr-52 pt-10 text-white bg-transparent relative cfs z-10`}
-    >
-      <div className="flex flex-row justify-center items-center">
-        <div className="flex flex-col justify-center items-center pl-32 pr-32">
-          <div className="event-sec-3 block strokeme-w text-black pt-5 uppercase">
+    <div className={`relative z-10 -mt-80 lg:-mt-96 lg:pb-36 lg:pl-60 lg:pr-60 lg:pt-0`}>
+      <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col items-center mb-5 lg:mr-20">
+          <div className="stroke-w-1px lg:stroke-w-2px text-4xl lg:text-8xl font-bold text-black uppercase">
             {cfsContent?.title}
           </div>
-          <p className={`no-shadow uppercase ${CurrentTheme() === DARK ? 'text-white ' : 'text-black'}`}>{cfsContent?.subtitle}</p>
+          <p className={`no-shadow text-4xl lg:text-8xl font-bold uppercase ${CurrentTheme() === DARK ? 'text-white ' : 'text-black'}`}>{cfsContent?.subtitle}</p>
         </div>
-        <div className="flex flex-col justify-start items-start">
-          <p className=" text-lg text-start lg:text-clip text-g-gray-7 pb-5 dark:text-white">
+        <div className="flex flex-col items-center lg:items-start">
+          <p className="p-5 lg:p-0 lg:pb-10 text-justify lg:text-4xl dark:text-white">
             {cfsContent?.description}
           </p>
           {
             cfsRule ? (
-              <Link to={buttonDisplay?.state === ACTIVE ? buttonDisplay?.link : '/'}>
-                <button
-                  className={`mr-6 text-white h-fit w-fit text-base py-2 px-4 
-                            transition ease-in-out duration-300  
-                            hover:shadow-xl hover:scale-105 hover:ease-in duration-300 rounded-3xl
-                            cursor-${buttonDisplay?.state === INACTIVE ? 'not-allowed' : 'pointer'}
-                            bg-google-${buttonLocalColor}
-                          `}
-                  aria-disabled={buttonDisplay?.state === INACTIVE}
-                  onMouseEnter={() => { setButtonLocalColor(buttonDisplay.hoverColor) }}
-                  onMouseLeave={() => { setButtonLocalColor(buttonDisplay.color) }}
-                >
-                  {buttonDisplay?.title}
-                </button>
-              </Link>
+              <Disclosure>
+                <Link to={buttonDisplay?.state === ACTIVE ? buttonDisplay?.link : '/'}>
+                  <Disclosure.Button
+                    className={`py-2 px-10 rounded-3xl h-fit w-fit mt-5 lg:mt-0
+                                text-white bg-google-red border font-medium text-1xl lg:text-2xl
+                                transition ease-in-out duration-300
+                                hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                                cursor-${buttonDisplay?.state === INACTIVE ? 'not-allowed' : 'pointer'}
+                              `}
+                    aria-disabled={buttonDisplay?.state === INACTIVE}
+                    onMouseEnter={() => { setButtonLocalColor(buttonDisplay.hoverColor) }}
+                    onMouseLeave={() => { setButtonLocalColor(buttonDisplay.color) }}
+                  >
+                    {buttonDisplay?.title}
+                  </Disclosure.Button>
+                </Link>
+              </Disclosure>
             ) : null
           }
         </div>

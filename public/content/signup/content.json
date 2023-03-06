@@ -1,6 +1,7 @@
 {
   "title": "Signup For An Account",
   "signin": "Already have an account?",
+  "bgImg": "howrahBridge.svg",
   "signinLink": "/login",
   "verifiedEmail": "Email Verified",
   "accountType": {

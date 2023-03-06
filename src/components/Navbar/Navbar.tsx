@@ -53,10 +53,10 @@ const NavbarPage = () => {
   }
 
   return (
-    <Disclosure as="nav" className="bg-transparent w-full z-10">
+    <Disclosure as="nav" className="bg-transparent dark:bg-black w-full z-10">
       {({ open }) => (
         <>
-          <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-20">
+          <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-18">
             <div className="flex justify-between">
               <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
@@ -89,9 +89,9 @@ const NavbarPage = () => {
                     ) : null
                   )}
                 </div>
-                <div className=" hidden select-none sm:flex items-center pl-4 -mr-4">
+                {/* <div className=" hidden select-none sm:flex items-center pl-4 -mr-4">
                   <Toggle />
-                </div>
+                </div> */}
               </div>
 
               <div className="-mr-2 flex items-center sm:hidden">
@@ -131,9 +131,9 @@ const NavbarPage = () => {
                   />
                 ) : null
               )}
-              <div className="pl-2 pr-3 ">
+              {/* <div className="pl-2 pr-3 ">
                 <Toggle />
-              </div>
+              </div> */}
             </div>
           </Disclosure.Panel>
         </>

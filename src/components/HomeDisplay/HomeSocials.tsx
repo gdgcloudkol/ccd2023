@@ -27,18 +27,18 @@ const HomeSocials = () => {
   }, []);
 
   return (
-    <div className={`${CurrentTheme() === DARK ? 'bg-white text-black' : 'bg-black text-white'}`}>
-      <div className="flex flex-col items-center justify-center w-full mt-10 mb-2 lg:mb-5 pt-5">
+    <div className={`dark:bg-black dark:text-white bg-white text-black`}>
+      <div className="flex flex-col items-center justify-center w-full mt-10 mb-2">
         <div className="flex flex-row ">
-          <div className={`font-medium leading-14 text-[20px] md:text-[54px] block uppercase ${CurrentTheme() === DARK ? 'strokeme text-white ' : ' strokeme-w text-black'}`}>
+          <div className={`font-medium leading-14 text-2xl lg:text-8xl block uppercase ${CurrentTheme() === DARK ? 'stroke-w-1px lg:stroke-w-2px text-black ' : ' stroke-b-1px lg:stroke-b-2px text-white'}`}>
             Follow us for&nbsp;
           </div>
-          <p className={`font-medium leading-14 text-[20px] md:text-[54px] no-shadow uppercase}`}>
+          <p className={`font-medium leading-14 text-2xl lg:text-8xl no-shadow uppercase}`}>
             UPDATES
           </p>
         </div>
       </div>
-      <div className="flex flex-row items-center justify-center lg:space-x-7 space-x-2 pb-5">
+      <div className="flex flex-row items-center justify-center lg:space-x-10 space-x-2 lg:mt-10">
         {socialContent?.social?.map((el: SocialItem, i: number) => {
           return disabledSocial?.every((i: string) => i !== el.imgSrc) ? (
             <a
@@ -48,12 +48,12 @@ const HomeSocials = () => {
               key={i}
             >
               <div className="relative inline-block text-left group ">
-                {el.imgSrc === 'facebook' ? (<FacebookSVGIcon fill="currentColor" className="w-8 h-8 lg:w-12 lg:h-12" />) : null}
-                {el.imgSrc === 'twitter' ? (<TwitterSVGIcon fill="currentColor" className="w-8 h-8 lg:w-12 lg:h-12" />) : null}
-                {el.imgSrc === 'instagram' ? (<InstagramSVGIcon fill="currentColor" className="w-8 h-8 lg:w-12 lg:h-12" />) : null}
-                {el.imgSrc === 'linkedin' ? (<LinkedInSVGIcon fill="currentColor" className="w-8 h-8 lg:w-12 lg:h-12" />) : null}
-                {el.imgSrc === 'github' ? (<GitHubSVGIcon fill="currentColor" className="w-8 h-8 lg:w-12 lg:h-12" />) : null}
-                {el.imgSrc === 'gmail' ? (<GmailSVGIcon fill="currentColor" className="w-8 h-8 lg:w-12 lg:h-12" />) : null}
+                {el.imgSrc === 'facebook' ? (<FacebookSVGIcon fill="currentColor" className="w-8 h-8 lg:w-24 lg:h-24" />) : null}
+                {el.imgSrc === 'twitter' ? (<TwitterSVGIcon fill="currentColor" className="w-8 h-8 lg:w-24 lg:h-24" />) : null}
+                {el.imgSrc === 'instagram' ? (<InstagramSVGIcon fill="currentColor" className="w-8 h-8 lg:w-24 lg:h-24" />) : null}
+                {el.imgSrc === 'linkedin' ? (<LinkedInSVGIcon fill="currentColor" className="w-8 h-8 lg:w-24 lg:h-24" />) : null}
+                {el.imgSrc === 'github' ? (<GitHubSVGIcon fill="currentColor" className="w-8 h-8 lg:w-24 lg:h-24" />) : null}
+                {el.imgSrc === 'gmail' ? (<GmailSVGIcon fill="currentColor" className="w-8 h-8 lg:w-24 lg:h-24" />) : null}
               </div>
             </a>
           ) : null;

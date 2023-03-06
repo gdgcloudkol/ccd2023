@@ -1,6 +1,6 @@
 export default function Youtube({ youtubeLink, youtubeLinkTitle }: { youtubeLink: string, youtubeLinkTitle: string }) {
   return (
-    <div className="text-center lg:-mt-60 mt-20 object-fill pl-10 pr-10 lg:pl-32 lg:pr-32 yt max-h-fit">
+    <div className="-mt-28 lg:-mt-[30rem] text-center lg:pl-32 lg:pr-32 yt-s lg:yt-l">
       <iframe
         width="100%"
         height="100%"

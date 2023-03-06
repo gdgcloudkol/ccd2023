@@ -20,7 +20,7 @@ const Sponsors = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="lg:text-6xl text-5xl flex justify-center font-normal mt-12 text-g-gray-8 dark:text-white">
+      <div className="lg:text-6xl text-5xl flex justify-center font-normal mt-12 text-g-gray-8 dark:text-black">
         {content?.title}
       </div>
       <div className=" flex justify-center">
@@ -41,9 +41,9 @@ const Sponsors = () => {
         </svg>
       </div>
       <br />
-      <span className="mb-4 lg:mb-16 font-light text-center text-black dark:text-white mt-8 sm:text-xl ">
+      <span className="mb-4 lg:mb-16 font-light text-center text-black dark:text-black mt-8 sm:text-xl ">
         <p
-          className=" text-lg text-center lg:text-clip text-g-gray-7 dark:text-white"
+          className=" text-lg text-center lg:text-clip text-g-gray-7 dark:text-black"
           dangerouslySetInnerHTML={{ __html: content?.description?.substring(3) }}
         ></p>
       </span>
