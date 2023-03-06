@@ -19,6 +19,7 @@ import { LoggedInContext } from './services/state.service';
 import Footer from './components/Footer/Footer';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import VerifyEmail from './pages/VerifyEmail';
+import ResetPassword from './pages/ResetPassword';
 
 const ScrollToTop = ({ children }: { children: ReactElement }) => {
   const location = useLocation();
@@ -78,6 +79,12 @@ const Router = () => {
           ) : null}
           {navRule?.every((item) => '/verifyEmail' !== item) ? (
             <Route path="/verify-email/:key" element={<VerifyEmail />} />
+          ) : null}
+          {navRule?.every((item) => '/resetPassword' !== item) ? (
+            <Route path="/reset-password/" element={<ResetPassword />} />
+          ) : null}
+          {navRule?.every((item) => '/resetPassword' !== item) ? (
+            <Route path="/reset-password/:uid/:token" element={<ResetPassword />} />
           ) : null}
           {navRule?.every((item) => '/profile' !== item) && loggedInState ? (
             <Route path="/profile" element={<Profile />} />
