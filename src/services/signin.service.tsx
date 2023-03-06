@@ -1,20 +1,25 @@
 import axios, { AxiosResponse } from 'axios';
 import { LoginData, SignInPayload, SignUpPayload } from '../assets/models/login/datatype';
-import { ACCESS_TOKEN_KEY, BASE_EMAIL_RESEND_URL, BASE_EMAIL_VERIFICATION_URL, BASE_LOGIN_URI, BASE_LOGOUT_URI, BASE_REGISTRATION_URI, HOME_ROUTE, LOGGED_IN_KEY } from './constants';
+import { ACCESS_TOKEN_KEY, BASE_AUTH_URI, BASE_EMAIL_RESEND_URL, BASE_EMAIL_VERIFICATION_URL, BASE_LOGIN_URI, BASE_LOGOUT_URI, BASE_REGISTRATION_URI, HOME_ROUTE, LOGGED_IN_KEY } from './constants';
 import { NavigateFunction } from 'react-router-dom';
+import { LoggedInState } from './state.service';
 
 export async function ApiSignIn(
   payload: SignInPayload,
-  setLoggedInState: React.Dispatch<React.SetStateAction<boolean>>
+  setLoggedInState: React.Dispatch<React.SetStateAction<LoggedInState>>
 ): Promise<AxiosResponse> {
   try {
     const res = await axios.post(BASE_LOGIN_URI, payload);
 
     if (res?.status === 200) {
       const data = res.data as LoginData;
-      setLoggedInState(true);
-      localStorage.setItem(LOGGED_IN_KEY, 'true');
-      localStorage.setItem(ACCESS_TOKEN_KEY, data.access_token); // access-token is JWT
+      localStorage.setItem(ACCESS_TOKEN_KEY, data.access_token);
+      setLoggedInState({
+        accessToken: data.access_token,
+        refreshToken: data.refresh_token,
+        isLoggedIn: true,
+        user: data.user
+      });
     }
     return res;
   } catch (e: any) {
@@ -37,7 +42,7 @@ export async function ApiSignup(
 }
 
 export async function ApiLogout(
-  setLoggedInState: React.Dispatch<React.SetStateAction<boolean>>,
+  setLoggedInState: React.Dispatch<React.SetStateAction<LoggedInState>>,
   navigate: NavigateFunction
 ) {
   try {
@@ -46,8 +51,25 @@ export async function ApiLogout(
       throw "Logout Error";
     }
     localStorage.removeItem(LOGGED_IN_KEY);
-    setLoggedInState(false);
+    localStorage.removeItem(ACCESS_TOKEN_KEY);
+    setLoggedInState({
+      accessToken: '',
+      refreshToken: '',
+      isLoggedIn: false
+    });
     navigate(HOME_ROUTE);
+    return res;
+  } catch (e: any) {
+    return e.response;
+  }
+}
+
+export async function ApiFetchProfile(accessToken: string) {
+  try {
+    const headers = {
+      Authorization: `Bearer ${accessToken}`
+    };
+    const res = await axios.get(`${BASE_AUTH_URI}/user/`, { headers });
     return res;
   } catch (e: any) {
     return e.response;

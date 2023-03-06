@@ -10,15 +10,27 @@ export const BASE_TICKET_URI = BASE_URI + '/tickets/';
 export const BASE_EMAIL_VERIFICATION_URL = BASE_URI + '/account-confirm-email/';
 export const BASE_EMAIL_RESEND_URL = BASE_REGISTRATION_URI + 'resend-email/';
 
-
 // assets URI
 export const BACKGROUND_ASSETS = '/ccd2023/images/background/';
-export const COMMUNITY_PARTNER_ASSETS = '/ccd2023/images/communityPartners/'
-export const SPONSORS_ASSETS = '/ccd2023/images/sponsors/'
+export const COMMUNITY_PARTNER_ASSETS = '/ccd2023/images/communityPartners/';
+export const SPONSORS_ASSETS = '/ccd2023/images/sponsors/';
 export const LOGO_ASSETS = '/ccd2023/images/logos/';
 
 // content types
-export type ContentTypes = 'coc' | 'faq' | 'footer' | 'forgetPassword' | 'home' | 'login' | 'navbar' | 'partners' | 'signup' | 'social' | 'speakers' | 'team' | 'schedule';
+export type ContentTypes =
+  | 'coc'
+  | 'faq'
+  | 'footer'
+  | 'forgetPassword'
+  | 'home'
+  | 'login'
+  | 'navbar'
+  | 'partners'
+  | 'signup'
+  | 'social'
+  | 'speakers'
+  | 'team'
+  | 'schedule';
 
 // constants storage keys
 export const FEATURE_RULE_KEY = 'featureRule';
@@ -38,7 +50,7 @@ export const TEAM_CONTENT_KEY = 'team';
 // other storage keys
 export const LOGGED_IN_KEY = 'loggedIn';
 export const ACCESS_TOKEN_KEY = 'accessToken';
-export const TICKET_PURCHASED_KEY = 'ticketPurchased'
+export const TICKET_PURCHASED_KEY = 'ticketPurchased';
 export const THEME_KEY = 'theme';
 
 // routes
@@ -46,6 +58,7 @@ export const HOME_ROUTE = '/home';
 export const PROFILE_ROUTE = '/profile';
 export const TEAM_ROUTE = '/team';
 export const VERIFY_EMAIL_ROUTE = '/verify-email';
+export const LOGIN_ROUTE = '/login';
 
 // button states
 export const ACTIVE = 'active';
