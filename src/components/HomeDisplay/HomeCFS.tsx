@@ -1,3 +1,4 @@
+import { Disclosure } from "@headlessui/react";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FeatureRule } from "../../assets/models/datatype";
@@ -7,7 +8,6 @@ import { ACTIVE, DARK, HOME_CONTENT_KEY, HOME_ROUTE, INACTIVE } from "../../serv
 import { getContent } from "../../services/content.service";
 import { getFeature } from "../../services/feature.service";
 import { LoggedInContext } from "../../services/state.service";
-import { Disclosure } from "@headlessui/react";
 
 export default function HomeCFS() {
   const { loggedInState } = useContext(LoggedInContext)

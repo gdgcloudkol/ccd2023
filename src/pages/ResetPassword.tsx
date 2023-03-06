@@ -45,7 +45,7 @@ const ForgotPassword = () => {
     } else {
       setResetFlag(false);
     }
-  }, []);
+  }, [token, uid]);
 
   return (
     <>

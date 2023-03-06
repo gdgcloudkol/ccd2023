@@ -12,7 +12,7 @@ const VerifyEmail = () => {
   const [email, setEmail] = useState<string>('');
   const param = useParams();
   let key: string = param.key + '/';
-  let checkInboxFlag = false;
+  const [checkInboxFlag, setCheckInboxFlag] = useState<boolean>(false);
 
   const handleClick = async (email: string) => {
     if (email) {
@@ -40,10 +40,10 @@ const VerifyEmail = () => {
       };
       validate();
     } else {
-      checkInboxFlag = true;
+      setCheckInboxFlag(true);
       setStatus('Check Inbox for Verification Mail');
     }
-  }, []);
+  }, [key]);
 
   return (
     <>
