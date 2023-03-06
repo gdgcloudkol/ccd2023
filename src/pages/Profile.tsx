@@ -71,8 +71,8 @@ const Profile = () => {
   const { setLoggedInState } = useContext(LoggedInContext)
   const [type] = useState('Speaker');
 
-  const logout = () => {
-    ApiLogout(setLoggedInState, nav)
+  const logout = async () => {
+    await ApiLogout(setLoggedInState, nav)
   }
 
   return (

@@ -77,7 +77,7 @@ const Router = () => {
             <Route path="/cfs" element={<CFS />} />
           ) : null}
           {navRule?.every((item) => '/verifyEmail' !== item) ? (
-            <Route path="/verify-email" element={<VerifyEmail />} />
+            <Route path="/account-confirm-email/:key" element={<VerifyEmail />} />
           ) : null}
           {navRule?.every((item) => '/profile' !== item) && loggedInState ? (
             <Route path="/profile" element={<Profile />} />

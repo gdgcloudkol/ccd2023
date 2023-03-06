@@ -30,14 +30,14 @@
       "required": true
     },
     "password": {
-      "name": "password",
+      "name": "password1",
       "label": "Password",
       "type": "passowrd",
       "placeholder": "Password",
       "required": true
     },
     "confirmPassword": {
-      "name": "confirmPassword",
+      "name": "password2",
       "label": "Confirm Password",
       "type": "password",
       "placeholder": "Confirm Password",
