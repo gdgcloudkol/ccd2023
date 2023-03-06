@@ -1,7 +1,8 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ApiEmailVerification, ApiResendVerification } from '../services/signin.service';
 import Spinner from '../components/Spinner/Spinner';
+import { LOGIN_ROUTE } from '../services/constants';
 
 const VerifyEmail = () => {
   const defaultMessage = 'Please wait while we are confirming your email';
@@ -56,6 +57,11 @@ const VerifyEmail = () => {
               <div className="text-center">
                 <h1>{status}</h1>
                 {!resendEnabler && <Spinner />}
+                {resendEnabler && <div>
+                  <Link to={LOGIN_ROUTE}>
+                    <h3 className="hover:underline cursor-pointer text-google-blue">Continue To Login</h3>
+                  </Link>
+                </div>}
               </div>
             ) : (
               <div className="">
