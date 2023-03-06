@@ -127,7 +127,7 @@ const HomeEvent = () => {
           <div className="flex flex-col lg:flex-row items-center justify-center min-w-3/4">
             <Disclosure>
               <Link to={ticketButtonRule?.state === ACTIVE ? ticketButtonRule?.link : '/'}>
-                <Disclosure.Button type="button"
+                <button type="button"
                   className={`py-2 px-10 rounded-3xl h-fit w-fit 
                               text-white bg-transparent border font-medium text-1xl lg:text-2xl
                               transition ease-in-out duration-300
@@ -143,13 +143,13 @@ const HomeEvent = () => {
                   }}
                 >
                   {ticketButtonRule?.title}
-                </Disclosure.Button>
+                </button>
               </Link>
             </Disclosure>
             {loggedInState ? (
               <Disclosure>
                 <Link to={cfsButtonRule?.state === ACTIVE ? cfsButtonRule?.link : '/'}>
-                  <Disclosure.Button type="button"
+                  <button type="button"
                     className={`py-2 px-10 rounded-3xl h-fit w-fit mt-5 lg:ml-10 lg:mt-0
                                 text-white bg-google-red border font-medium text-1xl lg:text-2xl
                                 transition ease-in-out duration-300
@@ -165,7 +165,7 @@ const HomeEvent = () => {
                     }}
                   >
                     {cfsButtonRule?.title}
-                  </Disclosure.Button>
+                  </button>
                 </Link>
               </Disclosure>
             ) : null}
