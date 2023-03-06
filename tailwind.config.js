@@ -18,7 +18,8 @@ module.exports = {
         'g-gray-7': '#666666',
         'g-gray-8': '#4D4D4D',
         'g-gray-9': '#333333',
-        'timer-blue': '#8AB4F8'
+        'timer-blue': '#8AB4F8',
+        'timer-bg': '#ffffff26'
       }
     }
   },

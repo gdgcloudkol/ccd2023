@@ -40,27 +40,30 @@ const Timer = () => {
   }, [parsedTime]);
 
   return (
-    <div className=" flex justify-center flex-col lg:inline-block py-2 md:w-10 bg-[#ffffff26] rounded-lg lg:rounded lg:w-20 h-1/2 lg:text-center lg:py-3 px-3 lg:px-0 text-timer-blue">
-      <p className=" text-left w-full lg:text-center text-xl lg:text-sm font-normal capitalize text-white pb-3">
+    <div className="flex flex-col flex-middle text-center
+                    py-3 lg:px-5 rounded-3xl lg:rounded
+                    text-timer-blue bg-timer-bg
+                    ">
+      <p className="w-full text-xl lg:text-2xl font-normal capitalize text-white pb-3">
         starting in
       </p>
-      <div className=" w-full flex items-center lg:inline-block font-normal lg:font-bold">
-        <div className=" mr-1 lg:mr-0 py-1 text-4xl lg:text-4xl">
+      <div className="w-full flex lg:flex-col justify-center items-center font-bold">
+        <div className="mr-1 lg:mr-0 py-1 text-4xl lg:text-6xl">
           {parsedTime.day}
         </div>
-        <span className=" mr-3 lg:mr-0 text-lg">d</span>
-        <div className=" mr-1 lg:mr-0 py-1 text-4xl lg:text-4xl">
+        <div className="mr-3 lg:mr-0 text-xl lg:text-4xl lg:pb-10">d</div>
+        <div className="mr-1 lg:mr-0 py-1 text-4xl lg:text-6xl">
           {parsedTime.hour}
         </div>
-        <span className=" mr-3 lg:mr-0 text-lg">h</span>
-        <div className=" mr-1 lg:mr-0 py-1 text-4xl lg:text-4xl">
+        <div className="mr-3 lg:mr-0 text-xl lg:text-4xl lg:pb-10">h</div>
+        <div className="mr-1 lg:mr-0 py-1 text-4xl lg:text-6xl">
           {parsedTime.minute}
         </div>
-        <span className=" mr-3 lg:mr-0 text-lg">m</span>
-        <div className=" mr-1 lg:mr-0 py-1 text-4xl lg:text-4xl">
+        <div className="mr-3 lg:mr-0 text-xl lg:text-4xl lg:pb-10">m</div>
+        <div className="mr-1 lg:mr-0 py-1 text-4xl lg:text-6xl">
           {parsedTime.second}
         </div>
-        <span className=" mr-3 lg:mr-0 text-lg">s</span>
+        <div className="mr-3 lg:mr-0 text-xl lg:text-4xl lg:pb-5">s</div>
       </div>
     </div>
   );

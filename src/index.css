@@ -1,30 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
 @layer base {
   html {
     scroll-behavior: smooth;
   }
-}
-
-h1 {
-  @apply text-2xl;
-  @apply font-extrabold;
-}
-
-h2 {
-  @apply text-xl;
-}
-
-h3 {
-  @apply text-lg;
-}
-
-.img-border {
-  border: 1px solid #ddd;
-  @apply rounded-lg;
-  @apply p-5;
 }
 
 
@@ -55,30 +37,30 @@ h3 {
   transform: translateX(0);
 }
 
-.event-sec-2 {
-  font-weight: 500;
-  font-size: 54px;
-  line-height: 65px;
-}
+@responsive {
+  .stroke-b-1px {
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
 
-.event-sec-3 {
-  font-weight: 500;
-  font-size: 40px;
-  line-height: 42px;
-}
+  .stroke-w-1px {
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+  }
 
-.event-sec-4 {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-}
+  .stroke-b-2px {
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+  }
 
-.strokeme {
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
+  .stroke-w-2px {
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+  }
 
-.strokeme-w {
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+  .yt-l {
+    height: 50rem;
+  }
+
+  .yt-s {
+    height: 25rem;
+  }
 }
 
 .no-shadow {
@@ -89,97 +71,35 @@ h3 {
   zoom: 130%;
 }
 
-.yt {
-  height: 50rem
-}
-
 .bg-img {
-  margin: auto;
-}
-
-.white-sec {
-  margin-top: -390px;
-  margin-bottom: 70px;
+  width: 100%;
 }
 
 .cfs {
   margin-top: -400px;
 }
 
+@media screen and (max-width:600px) {}
 
-.pic2 {
-  height: 220px;
-  width: 220px;
-  margin-left: -30px;
-  margin-top: 100px;
-}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
 
-.pic3 {
-  height: 220px;
-  width: 220px;
-  margin-left: -100px;
-  margin-top: -75px;
-}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
 
-@media screen and (max-width:400px) {
-  .yt {
-    height: 400px;
-  }
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
 
-  .iframe {
-    width: 300px;
-    height: 350px;
-  }
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
 
-  .pic2 {
-    height: 110px;
-    width: 110px;
-    margin-left: -30px;
-    margin-top: 60px;
-  }
+/* Screens 1536 x 750*/
+@media only screen and (min-width: 1536px) {}
 
-  .pic3 {
-    height: 150px;
-    width: 150px;
-    margin-left: -85px;
-    margin-top: -60px;
-  }
+/* FHD Screens 1920 x 1080*/
+@media only screen and (min-width: 1920px) {}
 
-  .pic-cont {
-    margin-left: 40px;
-    height: 200px;
-  }
+@media only screen and (min-width: 2560px) {}
 
-  .white-sec {
-    margin-top: -550px;
-    margin-bottom: 450px;
-  }
-}
-
-@media screen and (min-width:1500px) {
-  .pic2 {
-    margin-left: -30px;
-    margin-top: 100px;
-  }
-
-  .pic3 {
-    margin-left: -140px;
-    margin-top: -100px;
-  }
-}
-
-@media screen and (min-width:1900px) {
-  .pic2 {
-    margin-left: -30px;
-    margin-top: 115px;
-  }
-
-  .pic3 {
-    margin-left: -140px;
-    margin-top: -90px;
-  }
-
-  .bg-img {
-    scale: 120%;
-  }
-}
+/* QHD Screens 3840 x 2160*/
+@media only screen and (min-width: 3840px) {}

@@ -7,6 +7,7 @@ import { ACTIVE, DARK, HOME_CONTENT_KEY, INACTIVE, LOGO_ASSETS } from '../../ser
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
 import { LoggedInContext } from '../../services/state.service';
+import { Disclosure } from '@headlessui/react';
 
 const HomeEvent = () => {
   const { loggedInState } = useContext(LoggedInContext);
@@ -76,28 +77,31 @@ const HomeEvent = () => {
   }, []);
 
   return (
-    <div className="w-full m-w-1/2">
+    <div className="w-full lg:w-1/2 m-w-1/2">
       <div>
         <div className="flex flex-col lg:items-start lg:pl-10 lg:w-4/5">
           <img
-            className={`w-1/2 lg:w-2/5 pb-4 ${CurrentTheme() === DARK ? 'filter brightness-0 invert' : ''
-              }`}
+            className={`w-1/2 lg:w-2/5 pb-4 ${CurrentTheme() === DARK ? 'filter brightness-0 invert' : ''}`}
             src={LOGO_ASSETS + `google_cloud_logo.png`}
             alt="GDG Cloud Kolkata Logo"
           />
           <p
-            className={`text-4xl lg:text-6xl font-normal text-google-blue mb-6`}
+            className={`text-4xl lg:text-7xl font-normal text-google-blue mb-6`}
           >
             {homeContent?.event}
           </p>
 
-          <p className="text-g-gray-6 dark:text-white mb-0 text-center text-justify pb-6 text-1xl sm:text-base">
+          <p className="dark:text-white mb-0 pb-6 text-justify">
             <span
-              className={`mb-0 text-center text-justify pb-6 ${headingColor}`}
+              className={`text-1xl lg:text-2xl font-light text-center text-google-yellow`}
             >
               {homeContent?.hashtagEventName}
             </span>
-            {' - '} {homeContent?.description}
+            <span
+              className='text-1xl lg:text-2xl font-light'
+            >
+              {' - '} {homeContent?.description}
+            </span>
           </p>
 
           <p className="text-xl mb-5 text-g-gray-8 dark:text-g-gray-4">
@@ -120,52 +124,50 @@ const HomeEvent = () => {
             )}
           </p>
 
-          <div className="flex flex-row items-center justify-center min-w-3/4">
-            <Link to={ticketButtonRule?.state === ACTIVE ? ticketButtonRule?.link : '/'}>
-              <button
-                className={`text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
-                          transition ease-in-out duration-300
-                          hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                          cursor-${ticketButtonRule?.state === INACTIVE
-                    ? 'not-allowed'
-                    : 'pointer'
-                  }
-                          bg-google-${ticketButtonColor}
-                        `}
-                aria-disabled={ticketButtonRule?.state === INACTIVE}
-                onMouseEnter={() => {
-                  setTicketButtonColor(ticketButtonRule.hoverColor);
-                }}
-                onMouseLeave={() => {
-                  setTicketButtonColor(ticketButtonRule.color);
-                }}
-              >
-                {ticketButtonRule?.title}
-              </button>
-            </Link>
-            {loggedInState ? (
-              <Link to={cfsButtonRule?.state === ACTIVE ? cfsButtonRule?.link : '/'}>
-                <button
-                  className={`ml-6 lg:mr-6 text-white h-fit w-fit text-base py-2 px-4 rounded-3xl
-                          transition ease-in-out duration-300
-                          hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                          cursor-${cfsButtonRule?.state === INACTIVE
-                      ? 'not-allowed'
-                      : 'pointer'
-                    }
-                          bg-google-${cfsButtonColor}
-                        `}
-                  aria-disabled={cfsButtonRule?.state === INACTIVE}
+          <div className="flex flex-col lg:flex-row items-center justify-center min-w-3/4">
+            <Disclosure>
+              <Link to={ticketButtonRule?.state === ACTIVE ? ticketButtonRule?.link : '/'}>
+                <Disclosure.Button type="button"
+                  className={`py-2 px-10 rounded-3xl h-fit w-fit 
+                              text-white bg-transparent border font-medium text-1xl lg:text-2xl
+                              transition ease-in-out duration-300
+                              hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                              cursor-${ticketButtonRule?.state === INACTIVE ? 'not-allowed' : 'pointer'}
+                            `}
+                  aria-disabled={ticketButtonRule?.state === INACTIVE}
                   onMouseEnter={() => {
-                    setCfsButtonColor(cfsButtonRule.hoverColor);
+                    setTicketButtonColor(ticketButtonRule.hoverColor);
                   }}
                   onMouseLeave={() => {
-                    setCfsButtonColor(cfsButtonRule.color);
+                    setTicketButtonColor(ticketButtonRule.color);
                   }}
                 >
-                  {cfsButtonRule?.title}
-                </button>
+                  {ticketButtonRule?.title}
+                </Disclosure.Button>
               </Link>
+            </Disclosure>
+            {loggedInState ? (
+              <Disclosure>
+                <Link to={cfsButtonRule?.state === ACTIVE ? cfsButtonRule?.link : '/'}>
+                  <Disclosure.Button type="button"
+                    className={`py-2 px-10 rounded-3xl h-fit w-fit mt-5 lg:ml-10 lg:mt-0
+                                text-white bg-google-red border font-medium text-1xl lg:text-2xl
+                                transition ease-in-out duration-300
+                                hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                                cursor-${ticketButtonRule?.state === INACTIVE ? 'not-allowed' : 'pointer'}
+                              `}
+                    aria-disabled={cfsButtonRule?.state === INACTIVE}
+                    onMouseEnter={() => {
+                      setCfsButtonColor(cfsButtonRule.hoverColor);
+                    }}
+                    onMouseLeave={() => {
+                      setCfsButtonColor(cfsButtonRule.color);
+                    }}
+                  >
+                    {cfsButtonRule?.title}
+                  </Disclosure.Button>
+                </Link>
+              </Disclosure>
             ) : null}
           </div>
         </div>

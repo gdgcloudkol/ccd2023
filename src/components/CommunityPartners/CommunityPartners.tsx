@@ -32,9 +32,9 @@ const CommunityPartners = () => {
   return (
     <section
       id="partners"
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:space-y-3 space-y-4"
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:space-y-3 space-y-4 pb-10"
     >
-      <div className="lg:text-6xl text-4xl flex justify-center font-normal mt-12 text-g-gray-8 dark:text-white">
+      <div className="lg:text-6xl text-4xl flex justify-center font-normal mt-12 text-g-gray-8 dark:text-black">
         {content?.community_partners?.title}
       </div>
       <div className=" flex justify-center">
@@ -60,7 +60,7 @@ const CommunityPartners = () => {
           return (
             (disabledCommunityPartners.every(i => i !== sponsor?.sponsorId)) ? (
               <div
-                className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 img-border h-full w-full hover:shadow-xl hover:scale-105 hover:ease-in duration-300"
+                className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 border rounded-lg p-5 h-full w-full hover:shadow-xl hover:scale-105 hover:ease-in duration-300"
                 key={sponsor?.sponsorId}
               >
                 <a

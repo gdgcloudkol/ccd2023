@@ -18,7 +18,7 @@ const SponsorCard = ({ title, sponsors }: PartnerContent) => {
 
   return disabledPartnerTitles.every((i) => i !== title) ? (
     <div className="flex flex-col items-center justify-center space-y-4 max-w-xs">
-      <p className="text-2xl font-bold text-gray-900 dark:text-white uppercase tracking-widest leading-loose">
+      <p className="text-2xl font-bold text-gray-900 dark:text-black uppercase tracking-widest leading-loose">
         {title}
       </p>
       {sponsors?.map((sponsor: SponsorContent, i: number) => {
@@ -31,8 +31,8 @@ const SponsorCard = ({ title, sponsors }: PartnerContent) => {
             key={i}
           >
             <img
-              className={`w-full h-32 object-contain img-border 
-              ${CurrentTheme() === DARK ? ' filter invert brightness-0 ' : ''}`}
+              className={`w-full h-32 object-contain border rounded-lg p-5
+              ${CurrentTheme() === DARK ? '' : 'filter invert brightness-0 '}`}
               src={SPONSORS_ASSETS + sponsor?.imgSrc}
               alt={`${sponsor?.sponsorName} logo`}
               aria-label={`${sponsor?.sponsorName} logo`}

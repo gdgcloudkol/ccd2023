@@ -37,28 +37,32 @@ const Home = () => {
       {/* home section 1 starts here */}
       <div
         id="home-grid"
-        className={`relative z-10 w-full justify-between items-start flex flex-col lg:flex-row my-0 mx-auto gap-12 pt-20 lg:pt-26 lg:pb-[62px] px-4`}
+        className={`z-10 w-full items-center justify-start flex flex-col lg:flex-row pt-10 px-5 lg:pt-36`}
       >
         {/* event description starts here */}
         <HomeEvent />
         {/* event description ends here */}
-        <div className=" lg:fixed lg:right-0 lg:top-1/4 w-full lg:w-auto flex justify-center lg:inline-block lg:z-50 rounded-lg lg:rounded ">
+        {/* photos section starts here */}
+        <div className='hidden lg:block'>
+          <HomeDisplay />
+        </div>
+        {/* photos section ends here */}
+        {/* timer ends here */}
+        <div className="w-full lg:fixed lg:right-0 lg:w-auto lg:inline-block lg:z-50 mt-10 lg:-mt-10">
           <Timer />
         </div>
-        {/* photos section starts here */}
-        <HomeDisplay />
-        {/* photos section ends here */}
+        {/* timer ends here */}
       </div>
-      <div className="opacity-60 lg:opacity-50 white-sec relative -z-0">
-        <img src={BACKGROUND_ASSETS + `victoria.svg`} className='bg-img' alt="Victoria Memorial" />
+      <div className="opacity-50 lg:opacity-80 relative z-0 -mt-32 lg:-mt-80">
+        <img src={BACKGROUND_ASSETS + `victoria.svg`} className='w-full' alt="Victoria Memorial" />
       </div>
       {/* home section 1 ends here */}
       {/* home section 2 starts here */}
       <div
-        className={`hidden lg:block h-72 text-center event-sec-2 pl-52 pr-52 pt-10 ${CurrentTheme() === DARK ? 'bg-white strokeme text-white' : 'bg-black strokeme-w text-black'}`}>
+        className={`block text-center pt-[16px] lg:pl-32 lg:pr-32 font-bold text-3xl leading-normal lg:text-6xl lg:leading-normal ${CurrentTheme() === DARK ? 'bg-white stroke-b-1px lg:stroke-b-2px text-white' : 'bg-black stroke-w-1px lg:stroke-w-2px text-black'}`}>
         {landingPageContent?.subTitle1}
         <p
-          className={`no-shadow ${CurrentTheme() === DARK ? 'text-black' : 'text-white'}`}>
+          className={`no-shadow ${CurrentTheme() === DARK ? 'text-black' : 'text-white'} pb-10`}>
           {landingPageContent?.description1}
         </p>
       </div>
@@ -67,25 +71,31 @@ const Home = () => {
       <HomeSection3 {...landingPageContent} />
       {/* home section 3 ends here */}
       {/* youtube section starts here */}
-      <div
-        className={`hidden lg:block h-80 ${CurrentTheme() === DARK ? 'bg-white' : 'bg-black'}`}></div>
-      <Youtube
-        youtubeLink={landingPageContent?.youtubeLink}
-        youtubeLinkTitle={landingPageContent?.youtubeLinkTitle}
-      />
-      {/* youtube section ends here */}
-      {/* cfs section starts here */}
-      <div className="hidden lg:block opacity-50 relative lg: zoom-120 z-0">
-        <img src={BACKGROUND_ASSETS + `howrahBridge.svg`} alt="Howrah Bridge" />
+      <div>
+        <div className={`block h-40 lg:h-[35rem] ${CurrentTheme() === DARK ? 'bg-white' : 'bg-black'}`}>
+        </div>
+        <Youtube
+          youtubeLink={landingPageContent?.youtubeLink}
+          youtubeLinkTitle={landingPageContent?.youtubeLinkTitle}
+        />
       </div>
+      {/* youtube section ends here */}
+      <div className="opacity-80 relative z-0 pt-48 lg:pt-0">
+        <img src={BACKGROUND_ASSETS + `howrahBridge.svg`} className='w-full' alt="Howrah Bridge" />
+      </div>
+      {/* cfs section starts here */}
       <HomeCFS />
       {/* cfs section ends here */}
-      {/* sponsors section starts here */}
-      {homeRule?.showSponsors ? <Sponsors /> : null}
-      {/* sponsors section ends here */}
-      {/* community partner starts here */}
-      {homeRule?.showCommunityPartners ? <CommunityPartners /> : null}
-      {/* community partner ends here */}
+      <div className='dark:bg-white'>
+        {/* sponsors section starts here */}
+        {homeRule?.showSponsors ? (
+          <Sponsors />
+        ) : null}
+        {/* sponsors section ends here */}
+        {/* community partner starts here */}
+        {homeRule?.showCommunityPartners ? <CommunityPartners /> : null}
+        {/* community partner ends here */}
+      </div>
       {/* Home Socials starts here */}
       <HomeSocials />
       {/* Home Socials ends here */}
