@@ -120,7 +120,7 @@ const Signup = () => {
         password1: 'Passwords do not match',
         password2: 'Passwords do not match'
       });
-    } else {
+    } else if (password1 && password2 && password1 === password2) {
       setFieldErrors({});
     }
   }
