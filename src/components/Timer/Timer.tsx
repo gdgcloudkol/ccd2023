@@ -44,7 +44,7 @@ const Timer = () => {
                     py-3 lg:px-5 rounded-3xl lg:rounded
                     text-timer-blue bg-timer-bg
                     ">
-      <p className="w-full text-xl lg:text-2xl font-normal capitalize text-white pb-3">
+      <p className="w-full text-xl lg:text-2xl font-normal capitalize pb-3">
         starting in
       </p>
       <div className="w-full flex lg:flex-col justify-center items-center font-bold">

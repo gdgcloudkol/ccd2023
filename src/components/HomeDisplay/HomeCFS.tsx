@@ -68,7 +68,7 @@ export default function HomeCFS() {
             cfsRule ? (
               <Disclosure>
                 <Link to={buttonDisplay?.state === ACTIVE ? buttonDisplay?.link : '/'}>
-                  <Disclosure.Button
+                  <button
                     className={`py-2 px-10 rounded-3xl h-fit w-fit mt-5 lg:mt-0
                                 text-white bg-google-red border font-medium text-1xl lg:text-2xl
                                 transition ease-in-out duration-300
@@ -80,7 +80,7 @@ export default function HomeCFS() {
                     onMouseLeave={() => { setButtonLocalColor(buttonDisplay.color) }}
                   >
                     {buttonDisplay?.title}
-                  </Disclosure.Button>
+                  </button>
                 </Link>
               </Disclosure>
             ) : null

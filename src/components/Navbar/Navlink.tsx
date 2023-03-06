@@ -30,8 +30,9 @@ const Navlink = ({ variant = 'desktop', path, label, type = 'none' }: NavlinkPro
             return (
               <Link to={path}>
                 <div className="flex space-x-2 pl-3 py-2">
-                  <button type="button"
-                    className="inline-block px-6 py-2.5 bg-transparent border text-white font-medium text-sm leading-tight rounded-3xl shadow-md transition duration-150 ease-in-out">{label}</button>
+                  <Disclosure.Button
+                    className="inline-block px-6 py-2.5 bg-transparent border text-white font-medium text-sm leading-tight rounded-3xl shadow-md transition duration-150 ease-in-out">{label}
+                  </Disclosure.Button>
                 </div>
               </Link>
             )
@@ -41,8 +42,7 @@ const Navlink = ({ variant = 'desktop', path, label, type = 'none' }: NavlinkPro
               <Link to={path}>
                 <Disclosure.Button
                   as="span"
-                  className={`${isActive ? ACTIVE_CLASS_MOBILE : INACTIVE_CLASS_MOBILE
-                    } `}
+                  className={`${isActive ? ACTIVE_CLASS_MOBILE : INACTIVE_CLASS_MOBILE} `}
                 >
                   {label}
                 </Disclosure.Button>
@@ -56,9 +56,9 @@ const Navlink = ({ variant = 'desktop', path, label, type = 'none' }: NavlinkPro
             return (
               <Link to={path}>
                 <div className="flex space-x-2 py-3.5">
-                  <Disclosure.Button type="button"
+                  <button
                     className="inline-block px-8 py-2.5 bg-transparent border text-white font-medium text-xl leading-tight rounded-3xl shadow-md transition duration-150 ease-in-out">{label}
-                  </Disclosure.Button>
+                  </button>
                 </div>
               </Link>
             )
