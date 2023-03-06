@@ -1,0 +1,1122 @@
+[
+    {
+      "date": "2022-08-27T00:00:00",
+      "timeSlots": [
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Entry and Registration",
+                "description": null,
+                "startsAt": "2022-08-27T09:30:00",
+                "endsAt": "2022-08-27T10:15:00",
+                "speakers": [],
+                "categories": [],
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Keynote",
+                "description": null,
+                "startsAt": "2022-08-27T10:15:00",
+                "endsAt": "2022-08-27T10:45:00",
+                
+                "speakers": [],
+                "categories": [],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "High Performance Computing in Cloud using oneAPI",
+                "description": "I would be doing a hands-on lab with Devcloud with a focus on oneMKL(oneAPI Math Kernel Library), Open MP offload basics for HPC,Adding Google's JAX library for higher order maths calculation using Google Colab\r\n",
+                "startsAt": "2022-08-27T10:45:00",
+                "endsAt": "2022-08-27T11:30:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Abhishek Nandy",
+                    "profilePicture": "https://sessionize.com/image/68f4-400o400o2-nGfDgGpvmu7Y2Y2jYzznqX.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Cloud"
+                      },
+                      {
+                        
+                        "name": "Machine Learning"
+                      }
+                    ]
+                  }
+                  
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Movie Recommender System using NLP",
+                "description": "We all love binge-watching, but how do those OTT platforms suggest similar movies? Are they reading my mind?\r\n\r\nIn this session, we will go in-depth into Natural Language Processing and then we will learn how these recommendations actually work. We will also develop a recommendation engine from our own data.",
+                "startsAt": "2022-08-27T11:30:00",
+                "endsAt": "2022-08-27T12:15:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Sandip Palit",
+                    "profilePicture": "https://sessionize.com/image/96c4-400o400o2-bWpZz3Btap96ij9UVreBM.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Data Science"
+                      }
+                    ]
+                  }
+                  
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Transformers Assemble",
+                "description": "A session on Robotics and Automation, applications, future, boon, or curse.",
+                "startsAt": "2022-08-27T12:15:00",
+                "endsAt": "2022-08-27T12:45:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Dikshita Desai",
+                    "profilePicture": "https://sessionize.com/image/2000-400o400o2-RamYUp8A3xwFZkUtqBBeob.PNG"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Cloud"
+                      },
+                      {
+                        
+                        "name": "Machine Learning"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Customer Data Platform on Google Cloud for Retailers",
+                "description": "A unified customer experience is impossible without unified customer data. \r\nKnow how Google Cloud helps Retailers harness their First-Party Data to create a single view of customer by harnessing the power of ML and integration between Google Cloud, Google Marketing Platform & other MarTech technologies to drive personalised experience in a privacy-first approach.",
+                "startsAt": "2022-08-27T12:45:00",
+                "endsAt": "2022-08-27T13:30:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Rani Mohapatra",
+                    "profilePicture": "https://sessionize.com/image/0c43-400o400o2-D26NKAvHNj5UYcovVP2Gx3.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Google Cloud Platform"
+                      },
+                      {
+                        
+                        "name": "Cloud"
+                      },
+                      {
+                        
+                        "name": "Data Science"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Lunch",
+                "description": null,
+                "startsAt": "2022-08-27T13:30:00",
+                "endsAt": "2022-08-27T14:15:00",
+                
+                "speakers": [],
+                "categories": [],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Helm v3 For Beginners",
+                "description": "Kubernetes was started inside Google to provide a layer of abstractions with containers for the modern infrastructure. Now, the technology is adopted by the masses and has become a de-facto standard for any cloud-native application. The open-source system provides management, deployment, and scaling of your containers. Kubernetes is hard to beat in orchestration, but one of the most significant drawbacks is its lack of reproducibility. \r\n\r\n\r\nHere comes Helm: A package manager for Kubernetes and a CNCF Graduate Project. But how will you get started with Helm? The answer is by clearing the basics. This talk will help describe the importance of Helm in the current landscape and give you details on the why and how Helm is used.\r\n\r\n",
+                "startsAt": "2022-08-27T14:15:00",
+                "endsAt": "2022-08-27T15:00:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Hrittik Roy",
+                    "profilePicture": "https://sessionize.com/image/4952-400o400o2-ak93xPqkbF4SbF1uc9yEc6.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Google Cloud Platform"
+                      },
+                      {
+                        
+                        "name": "Cloud"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Get more out of your ML workflow: Minimal MLOps everyone should know",
+                "description": "In this session, I will discuss the importance of experiment tracking, model and dataset versioning, and overall best practices to structure your ML workflow. The talk will explore how Weights and Biases can be used with different frameworks and across different cloud platforms.",
+                "startsAt": "2022-08-27T15:00:00",
+                "endsAt": "2022-08-27T16:00:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Ayush Thakur",
+                    "profilePicture": "https://sessionize.com/image/daeb-400o400o2-WVFpgjtwK1YXqggbFeTPeB.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Machine Learning"
+                      },
+                      {
+                        
+                        "name": "Deep Learning"
+                      },
+                      {
+                        
+                        "name": "TensorFlow"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Community Project Showcase",
+                "description": null,
+                "startsAt": "2022-08-27T16:00:00",
+                "endsAt": "2022-08-27T16:45:00",
+                
+                "speakers": [],
+                "categories": [],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "End note, Networking and Schwag Distribution",
+                "description": null,
+                "startsAt": "2022-08-27T16:45:00",
+                "endsAt": "2022-08-27T17:00:00",
+                
+                "speakers": [],
+                "categories": [],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2022-08-28T00:00:00",
+      "timeSlots": [
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Registration",
+                "description": null,
+                "startsAt": "2022-08-28T08:30:00",
+                "endsAt": "2022-08-28T09:15:00",
+                
+                "speakers": [],
+                "categories": [],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Keynote: Rolling out your data idea into an application",
+                "description": "Keynote setting the theme for Google Cloud Services around databases, and data.\r\n\r\nWill talk about the foundations of database design, applications in ML and AI, AutoML, and Delivering user experience as a service with Google Cloud",
+                "startsAt": "2022-08-28T09:15:00",
+                "endsAt": "2022-08-28T09:55:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Abirami Sukumaran",
+                    "profilePicture": "https://sessionize.com/image/dd75-400o400o2-7EBKDVm9dFkh9szkNTfyTA.png"
+                  }
+                ],
+                "categories": [
+                  {
+                    
+                    "name": "Session Format",
+                    "categoryItems": []
+                  },
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Google Cloud Platform"
+                      },
+                      {
+                        
+                        "name": "Cloud"
+                      },
+                      {
+                        
+                        "name": "Machine Learning"
+                      },
+                      {
+                        
+                        "name": "Data Science"
+                      }
+                    ]
+                  }
+                  
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Tea Break",
+                "description": null,
+                "startsAt": "2022-08-28T09:55:00",
+                "endsAt": "2022-08-28T10:15:00",
+                
+                "speakers": [],
+                "categories": [],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "AI/ML Workloads Need Extra Security",
+                "description": "The need for security is pervading all modern day systems. But given the growth in cloud machine-learning computing, which deals with extremely valuable data, and companies need to be paying particular attention to handling that data securely. The operation and maintenance of large scale production machine learning systems has uncovered new challenges which have required fundamentally different approaches to that of traditional software. The area of security in MLOps has seen a rise in attention as machine learning infrastructure expands to further critical use cases across industry. In this talk, we will discuss the key security challenges that arise in production machine learning systems, best practices and frameworks that can be adopted to help mitigate security risks in ML models, ML pipelines and ML services reinforcing SecOps into MLOps.",
+                "startsAt": "2022-08-28T10:15:00",
+                "endsAt": "2022-08-28T10:55:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Joinal Ahmed",
+                    "profilePicture": "https://sessionize.com/image/add0-400o400o2-JnpjDBNZVkyjqtWBpVjKHh.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Google Cloud Platform"
+                      },
+                      {
+                        
+                        "name": "Cloud"
+                      },
+                      {
+                        
+                        "name": "Machine Learning"
+                      },
+                      {
+                        
+                        "name": "Deep Learning"
+                      },
+                      {
+                        
+                        "name": "TensorFlow"
+                      },
+                      {
+                        
+                        "name": "Data Science"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            },
+            {
+              
+              "name": "Megh 2",
+              "session": {
+                
+                "title": "With Cloud Native never build your application, just Continuously Integrate",
+                "description": "Over the past few years, lots of organizations have started to adopt Cloud Native architectures. Despite the adoption of Cloud Native architectures many companies haven’t achieved optimal results. Wondering why? One of  the reasons is our adherence to traditional ways of building and deploying applications.\r\n\r\nKubernetes has become the de facto Cloud Native deployment platform. It offers radically easy scaling and fault tolerance. Despite this, not many CI systems utilize the benefits of kubernetes. None of the existing build system offers the capabilities that are native to Kubernetes like in-cluster building, defining the build resources using CRDs, leveraging underlying security and access control etc., These missing features of Kubernetes made the Cloud Native architectures to be less effective and more complex.\r\n\r\nIn this session we will explore an Open Source project Drone --  a cloud native self-service Continuous Integration platform -- . Though 10 years old, Drone offers a mature, Kubernetes based CI system harnessing the scaling and fault tolerance characteristics of Cloud Native architectures. The session will also explore the characteristics of Drone; Simplicity, Cloud Native, Decoupled and Declarative with a demo that will show how to define drone pipelines to do a self-service continuous integration, facilitating quicker builds and faster deployments to cloud native platforms like Kubernetes.\r\n",
+                "startsAt": "2022-08-28T10:15:00",
+                "endsAt": "2022-08-28T10:55:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Kamesh Sampath",
+                    "profilePicture": "https://sessionize.com/image/a9f6-400o400o2-3TghqdyQ9u1tcTfcnr1ets.png"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Google Cloud Platform"
+                      },
+                      {
+                        
+                        "name": "Cloud"
+                      },
+                      {
+                        
+                        "name": "Community"
+                      }
+                    ]
+                  }
+                  
+                ],
+                
+                "room": "Megh 2"
+              }
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Role of Google Cloud in Digital Transformations in an Ethical manner",
+                "description": "The session will highlight how to approach building AI/ML solutions to solve business problems, using Open source tools, platforms, and frameworks.\r\n It will also entail different tools and best practices including Ethics, Sustainability that could aid the development process of different stages in the AI transformation journey. In addition, it will also discuss strategies and actions for organizations \r\nto be compliant with standards, laws, and practices enabling them to experience smoother transition, with the best utilization of resources.\r\n",
+                "startsAt": "2022-08-28T10:55:00",
+                "endsAt": "2022-08-28T11:35:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Sharmistha Chatterjee",
+                    "profilePicture": "https://sessionize.com/image/9dfc-400o400o2-NLxVMD8b9MuRbPzgX3H9Ap.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Google Cloud Platform"
+                      },
+                      {
+                        
+                        "name": "Machine Learning"
+                      },
+                      {
+                        
+                        "name": "Deep Learning"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            },
+            {
+              
+              "name": "Megh 2",
+              "session": {
+                
+                "title": "Container Security for Enterprise Kubernetes environments",
+                "description": "Getting into the ways of securing multiple Kubernetes environments running in production deployments also securing GCR Containers and developing effective pipelines to make environments secure with tools like Cloud Build, Cloud Run, Binary Authorization, Trivy, ThreatMapper and more.",
+                "startsAt": "2022-08-28T10:55:00",
+                "endsAt": "2022-08-28T11:35:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Imran Roshan",
+                    "profilePicture": "https://sessionize.com/image/d498-400o400o2-M7boRG9u1AjQobmVpc9q7J.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Google Cloud Platform"
+                      },
+                      {
+                        
+                        "name": "Cloud"
+                      }
+                    ]
+                  }
+                  
+                ],
+                
+                "room": "Megh 2"
+              }
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Scaling Websockets for IoT Devices using Google Cloud Platform",
+                "description": "Scalability issues of Websockets and its probable solution using GCP as service for IoT devices",
+                "startsAt": "2022-08-28T11:35:00",
+                "endsAt": "2022-08-28T12:15:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Md Nasirul Haque",
+                    "profilePicture": "https://sessionize.com/image/e589-400o400o2-wE99rGVu8E1ScCGeVwyUNB.jpg"
+                  },
+                  {
+                    
+                    "name": "Pratik Gupta",
+                    "profilePicture": "https://sessionize.com/image/a1ac-400o400o2-9rJkfemHJJ4rMWHtrYJEj1.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Google Cloud Platform"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            },
+            {
+              
+              "name": "Megh 2",
+              "session": {
+                
+                "title": "Your business never sleeps, you do, Stay Alert with Cloud Monitoring",
+                "description": "Monitoring  services and applications to detect and mitigate errors in the right time is as important as delivering the next “coolest” application. While we are often excited about the solutions that can solve world’s biggest problems, maintaining those applications once they are out there serving the customers remains ignored and becomes a bottleneck in growth.\r\nIn this session we will be talking about the importance of monitoring applications in production that are serving the customer traffic and how tools can be used to log errors and record metrics that are critical to troubleshoot any big issue. We will also go through the tools provided by Google Cloud Operations, viz., Cloud Logging, Cloud Monitoring and Error Reporting and the ways in which these can be leveraged to monitor your own services to save yourself from being the next big news of Is it Down?",
+                "startsAt": "2022-08-28T11:35:00",
+                "endsAt": "2022-08-28T12:15:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Rimjhim Bhadani",
+                    "profilePicture": "https://sessionize.com/image/ec8a-400o400o2-7NgpDHSwcMe4nFsyJHZUM6.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Google Cloud Platform"
+                      },
+                      {
+                        
+                        "name": "Cloud"
+                      }
+                    ]
+                  }
+                  
+                ],
+                
+                "room": "Megh 2"
+              }
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "UI / UX Personalization using Firebase Remote Config",
+                "description": "This talk intends to dive deep into the concept of the Personalization of User Experience and User Interface and how it can be achieved using a service called 'Remote Config' by Firebase. This talk is suitable even for audience with little or no idea about UI/UX personalization as we'd start from the very basics. This talk also covers a service of Firebase called 'Remote Config', and for that a basic understanding of what Firebase is and how to setup firebase is required. A couple of end-to-end working demos of personalizartion using remote config would also be included in form of videos, as coding live during the event wouldn't be possible.",
+                "startsAt": "2022-08-28T12:15:00",
+                "endsAt": "2022-08-28T12:55:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Sahil Kalyani",
+                    "profilePicture": "https://sessionize.com/image/7331-400o400o2-HcyfYVQsbF4joPHEybAvm8.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Web"
+                      },
+                      {
+                        
+                        "name": "Mobile"
+                      },
+                      {
+                        
+                        "name": "Firebase"
+                      },
+                      {
+                        
+                        "name": "Design"
+                      }
+                    ]
+                  }
+                  
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            },
+            {
+              
+              "name": "Megh 2",
+              "session": {
+                
+                "title": "Future of SPA deployment using SPAship (Integration with Openshift & GCP)",
+                "description": "I'll be talking about our Opensource CD tool SPAship which we're developing at Redat. SPAship basically makes your SPA (Single Page Application) deployment faster, using SPAship you can easily deploy your SPA in less than 3 sec, and we can easily configure it in any of the cloud platform (eg. GCP, Openshift) & this is a highly scalable  I'll also provide a short demo using of SPAship on Openshift & GCP.",
+                "startsAt": "2022-08-28T12:15:00",
+                "endsAt": "2022-08-28T12:55:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Soumyadip Chowdhury",
+                    "profilePicture": "https://sessionize.com/image/183c-400o400o2-E1cVULuqXcixyicfKiqJZ6.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Google Cloud Platform"
+                      },
+                      {
+                        
+                        "name": "Cloud"
+                      },
+                      {
+                        
+                        "name": "Web"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 2"
+              }
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Lunch",
+                "description": null,
+                "startsAt": "2022-08-28T12:55:00",
+                "endsAt": "2022-08-28T13:45:00",
+                
+                "speakers": [],
+                "categories": [],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Building Semantic Search Engines",
+                "description": "This session would include the science behind semantic search engines, steps involved in building one, how are they different from keyword based search engines and why is it such a hard problem in the real world.",
+                "startsAt": "2022-08-28T13:45:00",
+                "endsAt": "2022-08-28T14:25:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Shweta Bhatt",
+                    "profilePicture": "https://sessionize.com/image/d4ee-400o400o2-JXHUUNQ1mNrcJQZN8FBiEh.png"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Machine Learning"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            },
+            {
+              
+              "name": "Megh 2",
+              "session": {
+                
+                "title": "Building modern web apps with Angular and Firebase",
+                "description": "We will learn how to create a rich web application using Angular and Firebase. We will create an employee management system that uses Angular on the front end and Google cloud firestore as a database. The application will have Google-based authentication configured with the help of firebase. We will also use bootstrap for styling the application.\r\n\r\nWe will cover the following concepts in this talk.\r\n•\tCreating a project on Firebase\r\n•\tConfiguring Google cloud firestore database\r\n•\tAdding firebase project to Angular application\r\n•\tTemplate-driven form\r\n•\tImplementing auth-guards in Angular\r\n•\tConfiguring Google authentication for our application\r\n•\tDeploying the app on the firebase\r\n",
+                "startsAt": "2022-08-28T13:45:00",
+                "endsAt": "2022-08-28T14:25:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Ankit Sharma",
+                    "profilePicture": "https://sessionize.com/image/3726-400o400o2-e2-de9b-4304-9a53-d5ce42d4bf61.dc9e1bc5-80ce-4dc4-8d28-11deac5f63cc.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Web"
+                      },
+                      {
+                        
+                        "name": "Firebase"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 2"
+              }
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Improving Beam-Dataflow Pipelines for Text Data Processing",
+                "description": "In this session, we'll share a few recipes to improve Beam-Dataflow pipelines when dealing with sequence data. These methods came from our experience of processing and preparing large datasets for ML use at Carted. We'll provide a step-by-step framework of how to analyze the issues that can start surfacing when processing text data at scale and will share our approaches to dealing with them.\r\n\r\nWe hope you'll apply these recipes to your own Beam-Dataflow pipelines to improve their performance. \r\n\r\nSome topics that we'll cover in this session have been discussed in our blog post: https://www.carted.com/blog/improving-dataflow-pipelines-for-text-data-processing/. The accompanying GitHub repository of the blog post is available here: https://github.com/carted/processing-text-data. ",
+                "startsAt": "2022-08-28T14:25:00",
+                "endsAt": "2022-08-28T15:05:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Sayak Paul",
+                    "profilePicture": "https://sessionize.com/image/7f3f-400o400o2-SWAgktbFhukMZpze6UxzAu.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Google Cloud Platform"
+                      },
+                      {
+                        
+                        "name": "Machine Learning"
+                      },
+                      {
+                        
+                        "name": "Deep Learning"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            },
+            {
+              
+              "name": "Megh 2",
+              "session": {
+                
+                "title": "Android integration with Firebase Monitoring System and Crashlytics",
+                "description": "Integration the Android Native Application with the all new Firebase Monitoring System and Crashlytics. Get hold of the new available APIs and how to debug the application after integration with the Firebase NEW APIs",
+                "startsAt": "2022-08-28T14:25:00",
+                "endsAt": "2022-08-28T15:05:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Rishabh Gupta",
+                    "profilePicture": "https://sessionize.com/image/3972-400o400o2-a9WcYpX8diEVqGM7c76QNr.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Mobile"
+                      },
+                      {
+                        
+                        "name": "Firebase"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 2"
+              }
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Tea Break 2",
+                "description": null,
+                "startsAt": "2022-08-28T15:05:00",
+                "endsAt": "2022-08-28T15:30:00",
+                
+                "speakers": [],
+                "categories": [],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Forecasting with CCD 2022",
+                "description": "Cloud Community Days 2022 has gathered a huge amount of data about the local tech ecosystem through the registrations for the event. The session will be a deep dive into the insights that the dataset offers. \r\n\r\nWhat's in it for the audience - Learn how to turn variables into actionable information. \r\nSay, 30% of the total registrations did not provide a GitHub profile. \r\nIf one had provided their GitHub profile, it directly implies that one is more aware than at least 30% of the applicants. A simple insight such as this will help them gauge where they stand with respect to their competition. \r\n\r\nWhat's in it for the organizers - The same insight informs the organizers that 30% of applicants did not even know about GitHub. Having such action points can enable them to understand the needs of the community even better and cater to them. ",
+                "startsAt": "2022-08-28T15:30:00",
+                "endsAt": "2022-08-28T15:50:00",
+                
+                "speakers": [
+                  {
+                    
+                    "name": "Ankita Prakash",
+                    "profilePicture": "https://sessionize.com/image/2811-400o400o2-h2Lj8dNdRq5b73GhuRDZ7M.jpg"
+                  }
+                ],
+                "categories": [
+                  
+                  {
+                    
+                    "name": "Technology",
+                    "categoryItems": [
+                      {
+                        
+                        "name": "Data Science"
+                      }
+                    ]
+                  }
+                ],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Panel",
+                "description": null,
+                "startsAt": "2022-08-28T15:50:00",
+                "endsAt": "2022-08-28T16:20:00",
+                
+                "speakers": [],
+                "categories": [],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Vote of Thanks",
+                "description": null,
+                "startsAt": "2022-08-28T16:20:00",
+                "endsAt": "2022-08-28T16:50:00",
+                
+                "speakers": [],
+                "categories": [],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        },
+        {
+          "rooms": [
+            {
+              
+              "session": {
+                
+                "title": "Ending Note",
+                "description": null,
+                "startsAt": "2022-08-28T16:50:00",
+                "endsAt": "2022-08-28T17:00:00",
+                
+                "speakers": [],
+                "categories": [],
+                
+                "room": "Megh 1"
+              }
+              
+            }
+          ]
+        }
+      ]
+    }
+  ]
