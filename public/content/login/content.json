@@ -24,8 +24,8 @@
   ],
   "signUp": "Create an Account",
   "signUpLink": "/signup",
-  "forgotPassword": "Forgot Password",
-  "forgotPasswordLink": "/home",
+  "forgotPassword": "Forgot Password?",
+  "forgotPasswordLink": "/reset-password",
   "button": [ 
     {
       "name": "oneTimeLink",

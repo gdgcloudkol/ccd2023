@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ApiEmailVerification, ApiResendVerification } from '../services/signin.service';
 import Spinner from '../components/Spinner/Spinner';
@@ -6,10 +6,10 @@ import { LOGIN_ROUTE } from '../services/constants';
 
 const VerifyEmail = () => {
   const defaultMessage = 'Please wait while we are confirming your email';
-  const [isVerifed, setVerified] = React.useState<boolean>(false);
-  const [status, setStatus] = React.useState<string>(defaultMessage);
-  const [resendEnabler, setEnabler] = React.useState<boolean>(false);
-  const [email, setEmail] = React.useState<string>('');
+  const [isVerifed, setVerified] = useState<boolean>(false);
+  const [status, setStatus] = useState<string>(defaultMessage);
+  const [resendEnabler, setEnabler] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
   const param = useParams();
   let key: string = param.key + '/';
   let checkInboxFlag = false;
@@ -26,7 +26,7 @@ const VerifyEmail = () => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (key !== 'check-inbox/') {
       const validate = async () => {
         let result: any = await ApiEmailVerification(key);
@@ -44,6 +44,7 @@ const VerifyEmail = () => {
       setStatus('Check Inbox for Verification Mail');
     }
   }, []);
+
   return (
     <>
       <div className=" dark:text-white py-10">
@@ -84,7 +85,7 @@ const VerifyEmail = () => {
                         htmlFor="email"
                         className="block text-left px-1 py-2 text-sm font-medium text-gray-700 dark:text-gray-200"
                       >
-                        Email
+                        Registered Email
                       </label>
                       <input
                         onChange={(e) => setEmail(e.currentTarget.value)}

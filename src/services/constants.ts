@@ -1,8 +1,11 @@
 // constant URIs
 export const BASE_URI = 'https://api.gdgcloud.kolkata.dev';
 export const BASE_AUTH_URI = BASE_URI + '/auth';
-export const BASE_LOGIN_URI = BASE_AUTH_URI + '/login/';
 export const BASE_REGISTRATION_URI = BASE_AUTH_URI + '/registration/';
+export const BASE_LOGIN_URI = BASE_AUTH_URI + '/login/';
+export const BASE_PASSWORD_RESET = BASE_AUTH_URI + '/password/reset/';
+export const BASE_PASSWORD_RESET_CONFIRM = BASE_AUTH_URI + '/password/reset/confirm/';
+export const BASE_PASSWORD_CHANGE = BASE_AUTH_URI + '/password/change/';
 export const BASE_LOGOUT_URI = BASE_AUTH_URI + '/logout/';
 export const BASE_SPEAKER_URI = BASE_URI + '/speakers/';
 export const BASE_CONTENT_URI = 'content';

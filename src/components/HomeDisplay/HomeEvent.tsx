@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FeatureRule, HomeRule } from '../../assets/models/datatype';
 import { HomeButtonContent, HomeEventContent } from '../../assets/models/home/datatype';
 import { CurrentTheme, randomTextGoogleColor } from '../../services/common.service';
-import { ACTIVE, DARK, HOME_CONTENT_KEY, INACTIVE, LOGO_ASSETS } from '../../services/constants';
+import { ACTIVE, DARK, HOME_CONTENT_KEY, HOME_ROUTE, INACTIVE, LOGO_ASSETS } from '../../services/constants';
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
 import { LoggedInContext } from '../../services/state.service';
@@ -125,7 +125,7 @@ const HomeEvent = () => {
           </p>
 
           <div className="flex flex-col lg:flex-row items-center justify-center min-w-3/4">
-            <Link to={ticketButtonRule?.state === ACTIVE ? ticketButtonRule?.link : '/'}>
+            <Link to={ticketButtonRule?.state === ACTIVE ? ticketButtonRule?.link : HOME_ROUTE}>
               <button type="button"
                 className={`py-2 px-10 rounded-3xl h-fit w-fit 
                             text-white bg-transparent border font-medium text-1xl lg:text-2xl
@@ -139,7 +139,7 @@ const HomeEvent = () => {
               </button>
             </Link>
             {loggedInState ? (
-              <Link to={cfsButtonRule?.state === ACTIVE ? cfsButtonRule?.link : '/'}>
+              <Link to={cfsButtonRule?.state === ACTIVE ? cfsButtonRule?.link : HOME_ROUTE}>
                 <button type="button"
                   className={`py-2 px-10 rounded-3xl h-fit w-fit mt-5 lg:ml-10 lg:mt-0
                               text-white bg-google-red border font-medium text-1xl lg:text-2xl

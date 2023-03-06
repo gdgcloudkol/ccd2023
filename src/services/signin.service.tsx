@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { LoginData, SignInPayload, SignUpPayload } from '../assets/models/login/datatype';
-import { ACCESS_TOKEN_KEY, BASE_AUTH_URI, BASE_EMAIL_RESEND_URL, BASE_EMAIL_VERIFICATION_URL, BASE_LOGIN_URI, BASE_LOGOUT_URI, BASE_REGISTRATION_URI, HOME_ROUTE, LOGGED_IN_KEY } from './constants';
+import { ACCESS_TOKEN_KEY, BASE_AUTH_URI, BASE_EMAIL_RESEND_URL, BASE_EMAIL_VERIFICATION_URL, BASE_LOGIN_URI, BASE_LOGOUT_URI, BASE_PASSWORD_RESET, BASE_PASSWORD_RESET_CONFIRM, BASE_REGISTRATION_URI, HOME_ROUTE, LOGGED_IN_KEY } from './constants';
 import { NavigateFunction } from 'react-router-dom';
 import { LoggedInState } from './state.service';
 
@@ -104,3 +104,36 @@ export async function ApiResendVerification(
     return e.response;
   }
 };
+
+export async function ApiResetPasswordLink(
+  payload: string
+): Promise<AxiosResponse> {
+  try {
+    const res = await axios.post(BASE_PASSWORD_RESET, { email: payload });
+    if (res?.status !== 200) {
+      throw new Error('Password Reset Error');
+    }
+    return res;
+  } catch (e: any) {
+    return e.response;
+  }
+}
+
+export async function ApiResetPasswordConfirmLink(
+  payload: {
+    new_password1: string,
+    new_password2: string,
+    token: string,
+    uid: string
+  }
+): Promise<AxiosResponse> {
+  try {
+    const res = await axios.post(BASE_PASSWORD_RESET_CONFIRM, payload);
+    if (res?.status !== 200) {
+      throw new Error('Password Reset Error');
+    }
+    return res;
+  } catch (e: any) {
+    return e.response;
+  }
+}
