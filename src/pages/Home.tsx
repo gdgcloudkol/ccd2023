@@ -37,7 +37,7 @@ const Home = () => {
       {/* home section 1 starts here */}
       <div
         id="home-grid"
-        className={`z-10 w-full items-center justify-start flex flex-col lg:flex-row pt-10 px-5 lg:pt-36`}
+        className={`relative z-10 w-full items-center justify-start flex flex-col lg:flex-row pt-10 px-5 lg:pt-36`}
       >
         {/* event description starts here */}
         <HomeEvent />

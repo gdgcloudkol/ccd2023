@@ -125,49 +125,33 @@ const HomeEvent = () => {
           </p>
 
           <div className="flex flex-col lg:flex-row items-center justify-center min-w-3/4">
-            <Disclosure>
-              <Link to={ticketButtonRule?.state === ACTIVE ? ticketButtonRule?.link : '/'}>
+            <Link to={ticketButtonRule?.state === ACTIVE ? ticketButtonRule?.link : '/'}>
+              <button type="button"
+                className={`py-2 px-10 rounded-3xl h-fit w-fit 
+                            text-white bg-transparent border font-medium text-1xl lg:text-2xl
+                            transition ease-in-out duration-300
+                            hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                            cursor-${ticketButtonRule?.state === INACTIVE ? 'not-allowed' : 'pointer'}
+                          `}
+                aria-disabled={ticketButtonRule?.state === INACTIVE}
+              >
+                {ticketButtonRule?.title}
+              </button>
+            </Link>
+            {loggedInState ? (
+              <Link to={cfsButtonRule?.state === ACTIVE ? cfsButtonRule?.link : '/'}>
                 <button type="button"
-                  className={`py-2 px-10 rounded-3xl h-fit w-fit 
-                              text-white bg-transparent border font-medium text-1xl lg:text-2xl
+                  className={`py-2 px-10 rounded-3xl h-fit w-fit mt-5 lg:ml-10 lg:mt-0
+                              text-white bg-google-red border font-medium text-1xl lg:text-2xl
                               transition ease-in-out duration-300
                               hover:shadow-xl hover:scale-105 hover:ease-in duration-300
                               cursor-${ticketButtonRule?.state === INACTIVE ? 'not-allowed' : 'pointer'}
                             `}
-                  aria-disabled={ticketButtonRule?.state === INACTIVE}
-                  onMouseEnter={() => {
-                    setTicketButtonColor(ticketButtonRule.hoverColor);
-                  }}
-                  onMouseLeave={() => {
-                    setTicketButtonColor(ticketButtonRule.color);
-                  }}
+                  aria-disabled={cfsButtonRule?.state === INACTIVE}
                 >
-                  {ticketButtonRule?.title}
+                  {cfsButtonRule?.title}
                 </button>
               </Link>
-            </Disclosure>
-            {loggedInState ? (
-              <Disclosure>
-                <Link to={cfsButtonRule?.state === ACTIVE ? cfsButtonRule?.link : '/'}>
-                  <button type="button"
-                    className={`py-2 px-10 rounded-3xl h-fit w-fit mt-5 lg:ml-10 lg:mt-0
-                                text-white bg-google-red border font-medium text-1xl lg:text-2xl
-                                transition ease-in-out duration-300
-                                hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                                cursor-${ticketButtonRule?.state === INACTIVE ? 'not-allowed' : 'pointer'}
-                              `}
-                    aria-disabled={cfsButtonRule?.state === INACTIVE}
-                    onMouseEnter={() => {
-                      setCfsButtonColor(cfsButtonRule.hoverColor);
-                    }}
-                    onMouseLeave={() => {
-                      setCfsButtonColor(cfsButtonRule.color);
-                    }}
-                  >
-                    {cfsButtonRule?.title}
-                  </button>
-                </Link>
-              </Disclosure>
             ) : null}
           </div>
         </div>
