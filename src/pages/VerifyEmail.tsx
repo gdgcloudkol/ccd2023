@@ -10,7 +10,7 @@ const VerifyEmail = () => {
   const [resendEnabler, setEnabler] = React.useState<boolean>(false);
   const [email, setEmail] = React.useState<string>('');
   const param = useParams();
-  let key: string = param.key + '';
+  let key: string = param.key + '/';
   const handleClick = async (email: string) => {
     if (email) {
       let result = await ApiResendVerification(email);
@@ -73,7 +73,7 @@ const VerifyEmail = () => {
                     name="Email"
                     type="email"
                     required
-                    className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                                  
+                    className={`appearance-none block w-full px-3 py-2 border text-black border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                                  
                   `}
                   />
                   <button

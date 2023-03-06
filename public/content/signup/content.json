@@ -33,7 +33,7 @@
     "password": {
       "name": "password1",
       "label": "Password",
-      "type": "passowrd",
+      "type": "password",
       "placeholder": "Password",
       "required": true
     },

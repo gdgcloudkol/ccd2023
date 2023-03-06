@@ -60,6 +60,20 @@ const Login = () => {
       password
     };
 
+    if (username === '') {
+      setFieldErrors({
+        username: 'Username cannot be blank'
+      });
+      return;
+    }
+
+    if (password === '') {
+      setFieldErrors({
+        password: 'Password cannot be blank',
+      });
+      return;
+    }
+
     const res = await ApiSignIn(payload, setLoggedInState);
 
     if (res.status === 200) {

@@ -61,6 +61,27 @@ const Signup = () => {
       password2
     };
 
+    if (email === '') {
+      setFieldErrors({
+        email: 'Email cannot be blank'
+      });
+      return;
+    }
+
+    if (username === '') {
+      setFieldErrors({
+        username: 'Username cannot be blank'
+      });
+      return;
+    }
+
+    if (password1 === '') {
+      setFieldErrors({
+        password1: 'Password cannot be blank',
+      });
+      return;
+    }
+
     if (password1 !== password2) {
       setFieldErrors({
         password1: 'Passwords do not match',
@@ -70,9 +91,9 @@ const Signup = () => {
     }
 
     const res = await ApiSignup(payload);
-    if (res.status === 400) {
-      setFieldErrors(res.data);
-    } else if (res.status === 200)
+    if (res?.status === 400) {
+      setFieldErrors(res?.data);
+    } else if (res?.status === 201)
       nav(VERIFY_EMAIL_ROUTE)
   }
 
@@ -142,13 +163,8 @@ const Signup = () => {
                           type={field.type}
                           autoComplete={field.name}
                           required={field.required}
-                          className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm
-                          
-                          ${fieldErrors[field.name] &&
-                            'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
-                            }
-                          
-                          `}
+                          className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
+                          ${fieldErrors[field.name] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
                         />
                       </div>
                       {fieldErrors[field.name] && (
