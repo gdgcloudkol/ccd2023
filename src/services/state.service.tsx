@@ -1,5 +1,14 @@
 import React, { Dispatch, SetStateAction, createContext, useEffect, useState } from 'react';
-import { LOGGED_IN_KEY } from './constants';
+import { UserData } from '../assets/models/login/datatype';
+import { ACCESS_TOKEN_KEY } from './constants';
+import { ApiFetchProfile } from './signin.service';
+
+export interface LoggedInState {
+  accessToken: string;
+  refreshToken: string;
+  isLoggedIn: boolean;
+  user?: UserData;
+}
 
 export function clearLocalStorage() {
   localStorage.clear();
@@ -10,30 +19,42 @@ export function clearSessionStorage() {
 }
 
 export const LoggedInContext = createContext<{
-  loggedInState: boolean;
-  setLoggedInState: Dispatch<SetStateAction<boolean>>;
+  loggedInState: LoggedInState;
+  setLoggedInState: Dispatch<SetStateAction<LoggedInState>>;
 }>(
   {} as {
-    loggedInState: boolean;
-    setLoggedInState: Dispatch<SetStateAction<boolean>>;
+    loggedInState: LoggedInState;
+    setLoggedInState: Dispatch<SetStateAction<LoggedInState>>;
   }
 );
 
 export const LoggedInStateProvider = ({ children }: any) => {
-  const [loggedInState, setLoggedInState] = useState(false);
+  const [loggedInState, setLoggedInState] = useState<LoggedInState>({
+    accessToken: '',
+    refreshToken: '',
+    isLoggedIn: false
+  });
+
+  const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
   useEffect(() => {
-    const state = localStorage.getItem(LOGGED_IN_KEY);
-    setLoggedInState(state === 'true');
-  }, [loggedInState]);
+    if (accessToken && !loggedInState.user) {
+      ApiFetchProfile(accessToken).then((res) => {
+        if (res.status === 200) {
+          setLoggedInState({
+            accessToken: accessToken,
+            refreshToken: '',
+            isLoggedIn: true,
+            user: res.data
+          });
+        }
+      });
+    }
+  }, [accessToken, loggedInState.user]);
 
   return (
     <LoggedInContext.Provider value={{ loggedInState, setLoggedInState }}>
       {children}
     </LoggedInContext.Provider>
   );
-};
-
-export const LoggedInState = () => {
-  return React.useContext(LoggedInContext);
 };

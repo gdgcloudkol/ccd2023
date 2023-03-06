@@ -13,14 +13,15 @@ import Toggle from '../Theme/ThemeToggle';
 import Navlink from './Navlink';
 
 const NavbarPage = () => {
-  const { loggedInState, } = useContext(LoggedInContext)
+  const { loggedInState } = useContext(LoggedInContext);
   const [content, setContent] = useState<NavbarContent>({} as NavbarContent);
+  const { isLoggedIn } = loggedInState;
+
   useEffect(() => {
     getContent<NavbarContent>(NAVBAR_CONTENT_KEY).then((data: void | NavbarContent) => {
       if (data) setContent(data);
     });
-  }, []);
-
+  }, [isLoggedIn]);
 
   const [navbarRule, setFeature] = useState<NavbarRule>({} as NavbarRule);
 
@@ -42,7 +43,7 @@ const NavbarPage = () => {
     });
   }, [loggedInState]);
 
-  if (loggedInState) {
+  if (isLoggedIn) {
     navigation.navbar_additional = navbarRule?.navbarSpatialLoggedIn
       ? content?.navbarSpatialLoggedIn
       : [];
