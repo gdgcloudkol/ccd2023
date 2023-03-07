@@ -49,7 +49,7 @@ export async function ApiSignup(
   try {
     const res = await axios.post(BASE_REGISTRATION_URI, payload);
     if (res?.status !== 200) {
-      throw 'Signup Error';
+      throw new Error('Signup Error');
     }
     return res;
   } catch (e: any) {
@@ -64,7 +64,7 @@ export async function ApiLogout(
   try {
     const res = await axios.get(BASE_LOGOUT_URI);
     if (res?.status !== 200) {
-      throw 'Logout Error';
+      throw new Error('Logout Error');
     }
     localStorage.removeItem(LOGGED_IN_KEY);
     localStorage.removeItem(ACCESS_TOKEN_KEY);
@@ -99,7 +99,7 @@ export async function ApiEmailVerification(
     let finalUrl = `${BASE_EMAIL_VERIFICATION_URL}${payload}`;
     const res = await axios.get(finalUrl);
     if (res?.status !== 200) {
-      throw 'Verification Error';
+      throw new Error('Verification Error');
     }
     return res;
   } catch (e: any) {
@@ -113,7 +113,7 @@ export async function ApiResendVerification(
   try {
     const res = await axios.post(BASE_EMAIL_RESEND_URL, { email: payload });
     if (res?.status !== 200) {
-      throw 'Resend Verification Error';
+      throw new Error('Resend Verification Error');
     }
     return res;
   } catch (e: any) {

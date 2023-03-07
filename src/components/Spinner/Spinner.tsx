@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Spinner = () => {
+const Spinner: React.FC<{ color?: string }> = (color) => {
   return (
-    <div role="status" className=" my-2">
+    <div role="status" className="">
       <svg
         aria-hidden="true"
-        className="w-8 h-8 m-auto text-gray-200 animate-spin dark:text-white dark:fill-google-blue fill-google-red"
+        className={`w-8 h-8 m-auto text-gray-200 animate-spin dark:text-white dark:fill-google-${color} fill-google-red`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
