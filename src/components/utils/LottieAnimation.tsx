@@ -17,9 +17,9 @@ const LottieAnimation = ({
   ...props
 }: LottieAnimationProps) => {
   const animationContainer = useRef<HTMLDivElement>(null);
-  let anim: AnimationItem | undefined;
 
   useEffect(() => {
+    let anim: AnimationItem | undefined;
     if (animationContainer.current) {
       anim = lottie.loadAnimation({
         container: animationContainer.current,

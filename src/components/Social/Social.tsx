@@ -14,14 +14,16 @@ import { SOCIAL_CONTENT_KEY } from '../../services/constants';
 const Social = () => {
   const [content, setContent] = useState({} as SocialContent);
   useEffect(() => {
-    getContent<SocialContent>(SOCIAL_CONTENT_KEY).then((data: void | SocialContent) => {
-      if (data) setContent(data);
-    });
+    getContent<SocialContent>(SOCIAL_CONTENT_KEY).then(
+      (data: void | SocialContent) => {
+        if (data) setContent(data);
+      }
+    );
   }, []);
 
   const [disabledSocial, setdisabledSocial] = useState(['']);
   useEffect(() => {
-    getFeature().then(data => {
+    getFeature().then((data) => {
       if (data) setdisabledSocial(data.disabledSocial);
     });
   }, []);
@@ -32,31 +34,39 @@ const Social = () => {
         {content?.title}
       </h2>
       <div className="flex flex-row items-center justify-center space-x-4">
-        {
-          content?.social?.map((el: SocialItem, i: number) => {
-            return (
-              (disabledSocial?.every(i => i !== el.imgSrc)) ? (
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={el.hyperlink}
-                  key={i}
-                >
-                  <div className="relative inline-block text-left group ">
-                    <RandomColorWrapper>
-                      {(el.imgSrc === 'facebook') ? <FacebookSVGIcon fill="currentColor" className="w-8 h-8" /> : null}
-                      {(el.imgSrc === 'twitter') ? <TwitterSVGIcon fill="currentColor" className="w-8 h-8" /> : null}
-                      {(el.imgSrc === 'instagram') ? <InstagramSVGIcon fill="currentColor" className="w-8 h-8" /> : null}
-                      {(el.imgSrc === 'linkedin') ? <LinkedInSVGIcon fill="currentColor" className="w-8 h-8" /> : null}
-                      {(el.imgSrc === 'github') ? <GitHubSVGIcon fill="currentColor" className="w-8 h-8" /> : null}
-                      {(el.imgSrc === 'gmail') ? <GmailSVGIcon fill="currentColor" className="w-8 h-8" /> : null}
-                    </RandomColorWrapper>
-                  </div>
-                </a>
-              ) : null
-            )
-          })
-        }
+        {content?.social?.map((el: SocialItem, i: number) => {
+          return disabledSocial?.every((i) => i !== el.imgSrc) ? (
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={el.hyperlink}
+              key={i}
+            >
+              <div className="relative inline-block text-left group ">
+                <RandomColorWrapper>
+                  {el.imgSrc === 'facebook' ? (
+                    <FacebookSVGIcon fill="currentColor" className="w-8 h-8" />
+                  ) : null}
+                  {el.imgSrc === 'twitter' ? (
+                    <TwitterSVGIcon fill="currentColor" className="w-8 h-8" />
+                  ) : null}
+                  {el.imgSrc === 'instagram' ? (
+                    <InstagramSVGIcon fill="currentColor" className="w-8 h-8" />
+                  ) : null}
+                  {el.imgSrc === 'linkedin' ? (
+                    <LinkedInSVGIcon fill="currentColor" className="w-8 h-8" />
+                  ) : null}
+                  {el.imgSrc === 'github' ? (
+                    <GitHubSVGIcon fill="currentColor" className="w-8 h-8" />
+                  ) : null}
+                  {el.imgSrc === 'gmail' ? (
+                    <GmailSVGIcon fill="currentColor" className="w-8 h-8" />
+                  ) : null}
+                </RandomColorWrapper>
+              </div>
+            </a>
+          ) : null;
+        })}
       </div>
     </div>
   );
