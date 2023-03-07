@@ -1,6 +1,8 @@
 import {
+  FaFacebook,
   FaGithub,
   FaGlobeAsia,
+  FaInstagram,
   FaLinkedin,
   FaPlus,
   FaTwitter
@@ -14,6 +16,8 @@ const iconsMap: { [key: string]: IconType } = {
   linkedin: FaLinkedin,
   github: FaGithub,
   twitter: FaTwitter,
+  facebook: FaFacebook,
+  instagram: FaInstagram,
   website: FaGlobeAsia
 };
 
@@ -30,6 +34,8 @@ const getIconName = (url: string) => {
   if (url.includes('linkedin')) return 'linkedin';
   if (url.includes('github')) return 'github';
   if (url.includes('twitter')) return 'twitter';
+  if (url.includes('facebook')) return 'facebook';
+  if (url.includes('instagram')) return 'instagram';
   return 'website';
 };
 
