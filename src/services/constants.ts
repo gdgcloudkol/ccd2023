@@ -65,6 +65,7 @@ export const PROFILE_ROUTE = '/profile';
 export const TEAM_ROUTE = '/team';
 export const VERIFY_EMAIL_ROUTE = '/verify-email';
 export const LOGIN_ROUTE = '/login';
+export const CFS_ROUTE = '/cfs';
 
 // button states
 export const ACTIVE = 'active';

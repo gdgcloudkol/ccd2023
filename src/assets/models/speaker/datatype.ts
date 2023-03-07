@@ -8,10 +8,6 @@ export interface SpeakerModalData extends SpeakerData {
     bio: string;
 }
 
-export interface SpeakerPayload extends SpeakerModalData {
-
-}
-
 export type AccomodationRequired = 'AO' | 'TO' | 'TA' | 'NO';
 
 export interface SpeakerDataModel {
@@ -31,17 +27,19 @@ export interface SpeakerFormData {
     prevTalked: string;
     topicOfExperties: string;
 }
-export interface TechType {
+
+export interface TechTypeData {
     name: string;
     id: string;
     slug: string;
     description: string;
 }
 
-export interface OptionsType {
+export interface MultiSelectOptionsType {
     value: number;
     label: string;
 }
+
 export interface TalkData {
     title: string;
     description: string;
@@ -51,6 +49,7 @@ export interface TalkData {
     speakers: number[];
     technologies: number[];
 }
+
 export interface EventData {
     id: number;
     title: string;

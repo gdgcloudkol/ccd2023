@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ApiLogout } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
-import { LOGIN_ROUTE } from '../services/constants';
+import { CFS_ROUTE, LOGIN_ROUTE } from '../services/constants';
 import { countryCodeChoices } from '../services/countryCodes';
 
 const Profile = () => {
@@ -142,6 +142,14 @@ const Profile = () => {
             <div className='space-x-4'>
               <button
                 type="button"
+                className={` ${editMode ? 'hidden' : 'inline-flex'} items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                onClick={() => nav(CFS_ROUTE)}
+              >
+                {editMode ? '' : 'Apply For Speaker'}
+              </button>
+
+              <button
+                type="button"
                 className={` ${editMode ? 'inline-flex' : 'hidden'} items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
                 onClick={() => setEditMode(!editMode)}
               >
@@ -176,17 +184,11 @@ const Profile = () => {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4 px-2 w-full">
-              {profileFields.map((field) => {
+              {profileFields.map((field: any, i: number) => {
                 if (field.type === 'select') {
                   return (
-                    <div
-                      className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
-                        }`}
-                    >
-                      <label
-                        htmlFor="name"
-                        className="block text-xs font-medium"
-                      >
+                    <div key={i} className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''}`}>
+                      <label htmlFor="name" className="block text-xs font-medium">
                         {field.label}
                       </label>
                       <select
@@ -196,39 +198,24 @@ const Profile = () => {
                         defaultValue={field.value}
                         className="block w-full border-0 p-0 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
                       >
-                        {field &&
-                          field.options &&
-                          field?.options.map((option: any) => {
-                            return (
-                              <option value={option.value}>
-                                {option.label}
-                              </option>
-                            );
-                          })}
+                        {field && field.options && field?.options.map((option: any, j: number) => {
+                          return (
+                            <option value={option.value} key={j}>
+                              {option.label}
+                            </option>
+                          );
+                        })}
                       </select>
                     </div>
                   );
                 } else {
                   return (
-                    <div
-                      className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${editMode ? EDIT_MODE_CLASS : ''
-                        }`}
-                    >
-                      <label
-                        htmlFor="name"
-                        className="block text-xs font-medium"
-                      >
+                    <div key={i} className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${editMode ? EDIT_MODE_CLASS : ''}`}>
+                      <label htmlFor="name" className="block text-xs font-medium">
                         {field.label}
                       </label>
-                      <input
-                        type={field.type}
-                        name={field.name}
-                        id={field.name}
+                      <input type={field.type} name={field.name} id={field.name} placeholder={field.label} defaultValue={field.value} readOnly={!editMode} disabled={!editMode}
                         className="block w-full border-0 p-0 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
-                        placeholder={field.label}
-                        defaultValue={field.value}
-                        readOnly={!editMode}
-                        disabled={!editMode}
                       />
                     </div>
                   );
