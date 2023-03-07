@@ -86,13 +86,13 @@ const Router = () => {
           {navRule?.every((item) => '/resetPassword' !== item) ? (
             <Route path="/reset-password/:uid/:token" element={<ResetPassword />} />
           ) : null}
-          {navRule?.every((item) => '/profile' !== item) && loggedInState ? (
+          {navRule?.every((item) => '/profile' !== item) && loggedInState.isLoggedIn ? (
             <Route path="/profile" element={<Profile />} />
           ) : null}
-          {navRule?.every((item) => '/tickets' !== item) && loggedInState ? (
+          {navRule?.every((item) => '/tickets' !== item) && loggedInState.isLoggedIn ? (
             <Route path="/tickets" element={<Tickets />} />
           ) : null}
-          {navRule?.every((item) => '/dashboard' !== item) && loggedInState ? (
+          {navRule?.every((item) => '/dashboard' !== item) && loggedInState.isLoggedIn ? (
             <Route path="/dashboard" element={<Dashboard />} />
           ) : null}
           <Route path="/*" element={<NotFound />} />

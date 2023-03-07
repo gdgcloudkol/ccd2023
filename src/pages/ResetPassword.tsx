@@ -10,8 +10,7 @@ const ForgotPassword = () => {
   const [status, setStatus] = useState<string>('');
   const [spinnerFlag, setSpinnerFlag] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
-  const [password1, setPassword1] = useState<string>('');
-  const [password2, setPassword2] = useState<string>('');
+
   const param = useParams();
   let uid: string = param.uid + '';
   let token: string = param.token + '';

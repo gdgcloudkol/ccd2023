@@ -33,8 +33,8 @@ export default function HomeCFS() {
         setCfsRule(data.home?.cfs);
         for (let i of buttonContent) {
           if (
-            (loggedInState && i?.id === data.home?.cfsButtonStateLogin) ||
-            (!loggedInState && i?.id === data.home?.cfsButtonStateNotLogin)
+            (loggedInState.isLoggedIn && i?.id === data.home?.cfsButtonStateLogin) ||
+            (!loggedInState.isLoggedIn && i?.id === data.home?.cfsButtonStateNotLogin)
           ) {
             i.state = INACTIVE
             if (

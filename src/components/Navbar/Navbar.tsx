@@ -15,13 +15,12 @@ import Navlink from './Navlink';
 const NavbarPage = () => {
   const { loggedInState } = useContext(LoggedInContext);
   const [content, setContent] = useState<NavbarContent>({} as NavbarContent);
-  const { isLoggedIn } = loggedInState;
 
   useEffect(() => {
     getContent<NavbarContent>(NAVBAR_CONTENT_KEY).then((data: void | NavbarContent) => {
       if (data) setContent(data);
     });
-  }, [isLoggedIn]);
+  });
 
   const [navbarRule, setFeature] = useState<NavbarRule>({} as NavbarRule);
 
@@ -41,9 +40,9 @@ const NavbarPage = () => {
         setDisabledRoutes(data.disabledRoutes);
       }
     });
-  }, [loggedInState]);
+  });
 
-  if (isLoggedIn) {
+  if (loggedInState.isLoggedIn) {
     navigation.navbar_additional = navbarRule?.navbarSpatialLoggedIn
       ? content?.navbarSpatialLoggedIn
       : [];

@@ -1,10 +1,10 @@
-interface UserProfileData {
+export interface UserProfileData {
   college?: string;
   company?: string;
   country_code: string;
   course?: string;
   food_choice: string;
-  graduation_year: number;
+  graduation_year: string;
   phone?: string;
   role: string;
   tsize: string;

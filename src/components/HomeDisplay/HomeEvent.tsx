@@ -7,7 +7,6 @@ import { ACTIVE, DARK, HOME_CONTENT_KEY, HOME_ROUTE, INACTIVE, LOGO_ASSETS } fro
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
 import { LoggedInContext } from '../../services/state.service';
-import { Disclosure } from '@headlessui/react';
 
 const HomeEvent = () => {
   const { loggedInState } = useContext(LoggedInContext);
@@ -34,9 +33,9 @@ const HomeEvent = () => {
           if (homeContent?.ticketButton)
             for (let i of homeContent?.ticketButton) {
               if (
-                (loggedInState &&
+                (loggedInState.isLoggedIn &&
                   i?.id === data.home?.ticketButtonStateLogin) ||
-                (!loggedInState &&
+                (!loggedInState.isLoggedIn &&
                   i?.id === data.home?.ticketButtonStateNotLogin)
               ) {
                 i.state = INACTIVE;
@@ -53,8 +52,8 @@ const HomeEvent = () => {
           if (homeContent?.cfsButton)
             for (let i of homeContent?.cfsButton) {
               if (
-                (loggedInState && i.id === data.home?.cfsButtonStateLogin) ||
-                (!loggedInState && i.id === data.home?.cfsButtonStateNotLogin)
+                (loggedInState.isLoggedIn && i.id === data.home?.cfsButtonStateLogin) ||
+                (!loggedInState.isLoggedIn && i.id === data.home?.cfsButtonStateNotLogin)
               ) {
                 i.state = INACTIVE;
                 if (
@@ -138,7 +137,7 @@ const HomeEvent = () => {
                 {ticketButtonRule?.title}
               </button>
             </Link>
-            {loggedInState ? (
+            {loggedInState.isLoggedIn ? (
               <Link to={cfsButtonRule?.state === ACTIVE ? cfsButtonRule?.link : HOME_ROUTE}>
                 <button type="button"
                   className={`py-2 px-10 rounded-3xl h-fit w-fit mt-5 lg:ml-10 lg:mt-0

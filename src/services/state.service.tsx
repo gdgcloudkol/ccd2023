@@ -7,7 +7,7 @@ export interface LoggedInState {
   accessToken: string;
   refreshToken: string;
   isLoggedIn: boolean;
-  user?: UserData;
+  user: UserData;
 }
 
 export function clearLocalStorage() {
@@ -32,14 +32,15 @@ export const LoggedInStateProvider = ({ children }: any) => {
   const [loggedInState, setLoggedInState] = useState<LoggedInState>({
     accessToken: '',
     refreshToken: '',
-    isLoggedIn: false
+    isLoggedIn: false,
+    user: {} as UserData
   });
 
   const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
   useEffect(() => {
-    if (accessToken && !loggedInState.user) {
-      ApiFetchProfile(accessToken).then((res) => {
+    if (accessToken && (!loggedInState.isLoggedIn || !loggedInState.user)) {
+      ApiFetchProfile().then((res) => {
         if (res.status === 200) {
           setLoggedInState({
             accessToken: accessToken,
@@ -50,7 +51,7 @@ export const LoggedInStateProvider = ({ children }: any) => {
         }
       });
     }
-  }, [accessToken, loggedInState.user]);
+  }, [accessToken, loggedInState]);
 
   return (
     <LoggedInContext.Provider value={{ loggedInState, setLoggedInState }}>

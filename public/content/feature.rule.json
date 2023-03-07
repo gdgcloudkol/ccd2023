@@ -26,7 +26,11 @@
   },
   "disabledRoutes": [
     "/dashboard",
-    "/termsAndCondition"
+    "/termsAndCondition",
+    "/team",
+    "/speakers",
+    "/schedule",
+    "/tickets"
   ],
   "disabledPartnerTitles": [
     "Also Backed By"

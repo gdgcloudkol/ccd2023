@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
-import { LoginData, SignInPayload, SignUpPayload } from '../assets/models/login/datatype';
-import { ACCESS_TOKEN_KEY, BASE_AUTH_URI, BASE_EMAIL_RESEND_URL, BASE_EMAIL_VERIFICATION_URL, BASE_LOGIN_URI, BASE_LOGOUT_URI, BASE_PASSWORD_RESET, BASE_PASSWORD_RESET_CONFIRM, BASE_REGISTRATION_URI, HOME_ROUTE, LOGGED_IN_KEY } from './constants';
 import { NavigateFunction } from 'react-router-dom';
+import { LoginData, SignInPayload, SignUpPayload, UserData } from '../assets/models/login/datatype';
+import { ACCESS_TOKEN_KEY, BASE_AUTH_URI, BASE_EMAIL_RESEND_URL, BASE_EMAIL_VERIFICATION_URL, BASE_LOGIN_URI, BASE_LOGOUT_URI, BASE_PASSWORD_RESET, BASE_PASSWORD_RESET_CONFIRM, BASE_REGISTRATION_URI, HOME_ROUTE, LOGGED_IN_KEY } from './constants';
 import { LoggedInState } from './state.service';
 
 export async function ApiSignIn(
@@ -44,7 +44,7 @@ export async function ApiSignup(
 export async function ApiLogout(
   setLoggedInState: React.Dispatch<React.SetStateAction<LoggedInState>>,
   navigate: NavigateFunction
-) {
+): Promise<AxiosResponse> {
   try {
     const res = await axios.get(BASE_LOGOUT_URI);
     if (res?.status !== 200) {
@@ -55,7 +55,8 @@ export async function ApiLogout(
     setLoggedInState({
       accessToken: '',
       refreshToken: '',
-      isLoggedIn: false
+      isLoggedIn: false,
+      user: {} as UserData
     });
     navigate(HOME_ROUTE);
     return res;
@@ -64,12 +65,26 @@ export async function ApiLogout(
   }
 }
 
-export async function ApiFetchProfile(accessToken: string) {
+export async function ApiFetchProfile(): Promise<AxiosResponse> {
   try {
-    const headers = {
-      Authorization: `Bearer ${accessToken}`
-    };
+    const headers = { Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}` };
     const res = await axios.get(`${BASE_AUTH_URI}/user/`, { headers });
+    return res;
+  } catch (e: any) {
+    return e.response;
+  }
+}
+
+export async function ApiPostProfile(
+  payload: UserData
+): Promise<AxiosResponse> {
+  try {
+    const headers = { Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}` };
+    const res = await axios.patch(`${BASE_AUTH_URI}/user/`, {
+      profile: payload.profile,
+      username: payload.username,
+      first_name: payload.first_name
+    }, { headers });
     return res;
   } catch (e: any) {
     return e.response;

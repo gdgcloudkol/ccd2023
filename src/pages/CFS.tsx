@@ -1,15 +1,19 @@
 import { Switch } from '@headlessui/react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Select, { MultiValue } from 'react-select';
 import { AccomodationRequired, EventData, MultiSelectOptionsType, SpeakerDataModel, TalkData } from '../assets/models/speaker/datatype';
 import GoogleDotsLoader from "../components/Loader/GoogleDotsLoader";
-import { BACKGROUND_ASSETS } from '../services/constants';
+import { BACKGROUND_ASSETS, LOGIN_ROUTE, PROFILE_ROUTE } from '../services/constants';
 import { ApiEvent, ApiGetTalk, ApiSpeaker, ApiSpeakerList, ApiTalk, ApiTechnologies } from '../services/speaker.service';
 import Spinner from '../components/Spinner/Spinner';
 import { TechTypeData } from '../assets/models/speaker/datatype';
+import { useNavigate } from 'react-router';
+import { LoggedInContext } from '../services/state.service';
 
 
 const CFS = () => {
+  const { loggedInState } = useContext(LoggedInContext);
+  const nav = useNavigate();
   const [has_spoken_previously, setHasSpokenPreviously] = useState<boolean>(false);
   const [isSpeaker, setSpeaker] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -24,47 +28,38 @@ const CFS = () => {
   const [submittedTalks, setSubmittedTalks] = useState<TalkData[]>([]);
 
   useEffect(() => {
-    async function checkForSpeaker() {
-      setIsLoading(true);
-      let result = await ApiSpeakerList();
-      setIsLoading(false);
-      if (result.status === 200 && result.data.length > 0) {
+    if (!loggedInState.isLoggedIn) nav(PROFILE_ROUTE);
+  }, [loggedInState, nav]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    Promise.all([
+      ApiSpeakerList(),
+      ApiEvent(),
+      ApiTechnologies(),
+      ApiGetTalk()
+    ]).then(([speaker, event, tech, talk]) => {
+      if (speaker.status === 200 && speaker.data.length > 0) {
         setSpeaker(true);
-        setSpeakerData(result?.data?.map((i: any) => i.id));
-        return;
+        setSpeakerData(speaker?.data?.map((i: any) => i.id));
       }
-      else console.error(result);
-    }
 
-    async function fetchEvent() {
-      const result = await ApiEvent();
-      if (result.status === 200) setEvents(result?.data?.results);
-      else console.error(result);
-    }
+      if (event.status === 200) setEvents(event?.data?.results);
 
-    async function fetchTechnology() {
-      let result = await ApiTechnologies();
-      if (result.status === 200) {
-        let options: { label: string, value: number }[] = result?.data?.results?.map((i: TechTypeData) => {
+      if (tech.status === 200) {
+        let options: { label: string, value: number }[] = tech?.data?.results?.map((i: TechTypeData) => {
           return { label: i.name, value: i.id }
         });
         setTechnologiesList(options);
-      } else console.error(result);
-    };
+      }
 
-    async function getTalks() {
-      let result = await ApiGetTalk();
-      if (result.status === 200) {
+      if (talk.status === 200 && talk?.data?.length > 0) {
         setSpeaker(true);
         setSubmitted(true);
-        setSubmittedTalks(result.data);
-      } else console.error(result);
-    }
-
-    checkForSpeaker();
-    fetchEvent();
-    fetchTechnology();
-    getTalks();
+        setSubmittedTalks(talk.data);
+      }
+      setIsLoading(false);
+    })
   }, []);
 
   async function handleSubmit(e: any) {
@@ -158,6 +153,17 @@ const CFS = () => {
     }
   }
 
+  async function handleSubmitTalk(e: any) {
+    setIsLoading(true);
+    let speaker = await ApiSpeakerList();
+    if (speaker.status === 200 && speaker.data.length > 0) {
+      setSpeaker(true);
+      setSpeakerData(speaker?.data?.map((i: any) => i.id));
+      setSubmitted(false);
+      setIsLoading(false);
+    }
+  }
+
   const handleMultiChange = (e: MultiValue<MultiSelectOptionsType>, type: 's' | 't') => {
     if (type === 's')
       setTopics_of_expertise(e.map((i: MultiSelectOptionsType) => i.value));
@@ -176,7 +182,7 @@ const CFS = () => {
                   isSubmitted ? <div className='mx-auto flex items-center flex-col w-full max-w-sm lg:w-96 text-center'>
                     <div>
                       <h2 className="mt-6 py-10 text-2xl text-gray-900 dark:text-gray-100 tracking-tight">
-                        Your Have Submitted A Talk Already
+                        Your Have Submitted A Talk
                       </h2>
                     </div>
                     <button
@@ -312,7 +318,7 @@ const CFS = () => {
                               <button type="submit" onClick={handleSubmit}
                                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
                               >
-                                {isSpinnerLoading ? <Spinner color='red' /> : "Apply"}
+                                {isSpinnerLoading ? <Spinner color='red' /> : "Submit"}
                               </button>
                             </div>
                           </form>
@@ -328,10 +334,7 @@ const CFS = () => {
                       <button
                         type="submit"
                         className=" px-10 flex justify-center py-2  border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
-                        onClick={() => {
-                          setSpeaker(true)
-                          setSubmitted(false)
-                        }}
+                        onClick={handleSubmitTalk}
                       >
                         Submit A Talk
                       </button>
