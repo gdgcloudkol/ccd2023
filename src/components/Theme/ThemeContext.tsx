@@ -4,13 +4,13 @@ import { DARK, LIGHT, THEME_KEY } from '../../services/constants';
 const getInitialTheme = () => {
   const lsTheme = localStorage.getItem(THEME_KEY);
   if (typeof lsTheme === 'string') {
-    return lsTheme;
+    return DARK;
   }
   const userMedia = window?.matchMedia('(prefers-color-scheme: dark)');
   if (userMedia.matches) {
     return DARK;
   }
-  return LIGHT;
+  return DARK;
 };
 
 export const ThemeContext = createContext<{ theme: string | null, setTheme: Dispatch<SetStateAction<string>> }>
