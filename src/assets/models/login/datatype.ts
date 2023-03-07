@@ -1,12 +1,12 @@
 interface UserProfileData {
-  college?: string;
-  company?: string;
+  college: string | null;
+  company: string | null;
   country_code: string;
-  course?: string;
+  course: string | null;
   food_choice: string;
   graduation_year: number;
-  phone?: string;
-  role: string;
+  phone: string | null;
+  role: string | null;
   tsize: string;
 }
 
