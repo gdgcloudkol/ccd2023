@@ -70,7 +70,7 @@ export async function ApiTalk(
 export async function ApiEvent(): Promise<AxiosResponse> {
   try {
     const token = `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}`
-    const res = await axios.post(BASE_EVENTS_URI, {
+    const res = await axios.get(BASE_EVENTS_URI, {
       headers: { Authorization: token }
     });
     return res;

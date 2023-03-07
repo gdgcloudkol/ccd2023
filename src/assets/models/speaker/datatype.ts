@@ -47,7 +47,7 @@ export interface TalkData {
     description: string;
     format: string;
     overview: string;
-    event?: number[];
+    event?: number;
     speakers: number[];
     technologies: number[];
 }
@@ -57,4 +57,6 @@ export interface EventData {
     description: string;
     mode: string;
     technologies: number[];
+    volunteers: number[];
+    ts_event_code: string;
 }
