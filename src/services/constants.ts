@@ -12,6 +12,9 @@ export const BASE_CONTENT_URI = 'content';
 export const BASE_TICKET_URI = BASE_URI + '/tickets/';
 export const BASE_EMAIL_VERIFICATION_URL = BASE_URI + '/account-confirm-email/';
 export const BASE_EMAIL_RESEND_URL = BASE_REGISTRATION_URI + 'resend-email/';
+export const BASE_TECHNOLOGIES_URI = BASE_URI + '/technologies/';
+export const BASE_TALKS_URI = BASE_URI + '/talks/';
+export const BASE_EVENTS_URI = BASE_URI + '/events/';
 
 // assets URI
 export const BACKGROUND_ASSETS = '/ccd2023/images/background/';
@@ -21,19 +24,19 @@ export const LOGO_ASSETS = '/ccd2023/images/logos/';
 
 // content types
 export type ContentTypes =
-  | 'coc'
-  | 'faq'
-  | 'footer'
-  | 'forgetPassword'
-  | 'home'
-  | 'login'
-  | 'navbar'
-  | 'partners'
-  | 'signup'
-  | 'social'
-  | 'speakers'
-  | 'team'
-  | 'schedule';
+    | 'coc'
+    | 'faq'
+    | 'footer'
+    | 'forgetPassword'
+    | 'home'
+    | 'login'
+    | 'navbar'
+    | 'partners'
+    | 'signup'
+    | 'social'
+    | 'speakers'
+    | 'team'
+    | 'schedule';
 
 // constants storage keys
 export const FEATURE_RULE_KEY = 'featureRule';
