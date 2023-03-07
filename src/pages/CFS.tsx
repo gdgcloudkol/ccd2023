@@ -74,7 +74,7 @@ const CFS = () => {
     const travel_support_required = formData.get('travel_support_required') as AccomodationRequired;
     const format = formData.get('format') as string;
 
-    const payloadTalk: TalkData = { title, description, overview, format, speakers, technologies };
+    const payloadTalk: TalkData = { title, description, overview, format, speakers, technologies, event: parseInt(event) };
     const payloadProfile: SpeakerDataModel = { has_spoken_previously, previous_talk_links, travel_support_required, topics_of_expertise };
 
     if (isSpeaker) {
