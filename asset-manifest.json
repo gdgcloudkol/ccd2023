@@ -1,8 +1,10 @@
 {
   "files": {
-    "main.css": "/ccd2023/static/css/main.b152eb8f.css",
-    "main.js": "/ccd2023/static/js/main.3f131a3a.js",
+    "main.css": "/ccd2023/static/css/main.b2750748.css",
+    "main.js": "/ccd2023/static/js/main.0da26c52.js",
     "static/js/787.7fca0ed8.chunk.js": "/ccd2023/static/js/787.7fca0ed8.chunk.js",
+    "static/media/GoogleSans-Regular_0.ttf": "/ccd2023/static/media/GoogleSans-Regular_0.0d01ceaea2903216c4ee.ttf",
+    "static/media/GoogleSans-Bold-v1.27.ttf": "/ccd2023/static/media/GoogleSans-Bold-v1.27.18cab8ca4b802f600b69.ttf",
     "static/media/website.svg": "/ccd2023/static/media/website.bb85f546fc68cf8c6c47d4440b837c42.svg",
     "static/media/twitter.svg": "/ccd2023/static/media/twitter.bbd6b6eddbaf89ac6bc7ae20bdb473d8.svg",
     "static/media/gmail.svg": "/ccd2023/static/media/gmail.745d8c0418cd16d94cee0a7bc209eca9.svg",
@@ -11,12 +13,12 @@
     "index.html": "/ccd2023/index.html",
     "static/media/github.svg": "/ccd2023/static/media/github.639a8dabdf467d4200dfa109aca9c3a0.svg",
     "static/media/instagram.svg": "/ccd2023/static/media/instagram.0c5ec250d222fdc311eee862ef927854.svg",
-    "main.b152eb8f.css.map": "/ccd2023/static/css/main.b152eb8f.css.map",
-    "main.3f131a3a.js.map": "/ccd2023/static/js/main.3f131a3a.js.map",
+    "main.b2750748.css.map": "/ccd2023/static/css/main.b2750748.css.map",
+    "main.0da26c52.js.map": "/ccd2023/static/js/main.0da26c52.js.map",
     "787.7fca0ed8.chunk.js.map": "/ccd2023/static/js/787.7fca0ed8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b152eb8f.css",
-    "static/js/main.3f131a3a.js"
+    "static/css/main.b2750748.css",
+    "static/js/main.0da26c52.js"
   ]
 }
