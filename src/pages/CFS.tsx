@@ -1,13 +1,12 @@
 import { Switch } from '@headlessui/react';
 import { useContext, useEffect, useState } from 'react';
-import Select, { MultiValue } from 'react-select';
-import { AccomodationRequired, EventData, MultiSelectOptionsType, SpeakerDataModel, TalkData } from '../assets/models/speaker/datatype';
-import GoogleDotsLoader from "../components/Loader/GoogleDotsLoader";
-import { BACKGROUND_ASSETS, LOGIN_ROUTE, PROFILE_ROUTE } from '../services/constants';
-import { ApiEvent, ApiGetTalk, ApiSpeaker, ApiSpeakerList, ApiTalk, ApiTechnologies } from '../services/speaker.service';
-import Spinner from '../components/Spinner/Spinner';
-import { TechTypeData } from '../assets/models/speaker/datatype';
 import { useNavigate } from 'react-router';
+import Select, { MultiValue } from 'react-select';
+import { AccomodationRequired, EventData, MultiSelectOptionsType, SpeakerDataModel, TalkData, TechTypeData } from '../assets/models/speaker/datatype';
+import GoogleDotsLoader from "../components/Loader/GoogleDotsLoader";
+import Spinner from '../components/Spinner/Spinner';
+import { BACKGROUND_ASSETS, PROFILE_ROUTE } from '../services/constants';
+import { ApiEvent, ApiGetTalk, ApiSpeaker, ApiSpeakerList, ApiTalk, ApiTechnologies } from '../services/speaker.service';
 import { LoggedInContext } from '../services/state.service';
 
 
