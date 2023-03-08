@@ -33,11 +33,11 @@
     "/tickets"
   ],
   "disabledPartnerTitles": [
-    "Also Backed By"
+    "Also Backed By",
+    "Silver Sponsor",
+    "Gold Sponsor"
   ],
-  "disabledPartners": [
-    "sessonize"
-  ],
+  "disabledPartners": [],
   "disabledCommunityPartners": [
     "h4b",
     "wtm",
@@ -80,7 +80,7 @@
     "cfs": true,
     "location": false,
     "date": false,
-    "showCommunityPartners": true,
+    "showCommunityPartners": false,
     "showSponsors": true
   },
   "disabledFooterContent": {
