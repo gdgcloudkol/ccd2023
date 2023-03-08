@@ -1,7 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserData } from '../assets/models/login/datatype';
-import { BACKGROUND_ASSETS, CFS_ROUTE, DP_ASSETS, LOGIN_ROUTE } from '../services/constants';
+import {
+  BACKGROUND_ASSETS,
+  CFS_ROUTE,
+  DP_ASSETS,
+  LOGIN_ROUTE
+} from '../services/constants';
 import { countryCodeChoices } from '../services/countryCodes';
 import { ApiLogout, ApiPostProfile } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
@@ -14,7 +19,9 @@ const Profile = () => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [submitButtonText, setSubmitButtonText] = useState<string>('Submit');
   const [submitButton, setSubmitButton] = useState<boolean>(true);
-  const [formData, setFormData] = useState<UserData>(loggedInState.user as UserData);
+  const [formData, setFormData] = useState<UserData>(
+    loggedInState.user as UserData
+  );
   const [socials, setSocials] = useState(loggedInState.user?.profile?.socials);
 
   useEffect(() => {
@@ -37,10 +44,10 @@ const Profile = () => {
     //     [name]: e.target.value
     //   });
     // } else {
-      setFormData({
-        ...formData,
-        profile: { ...formData.profile, [name]: e.target.value }
-      });
+    setFormData({
+      ...formData,
+      profile: { ...formData.profile, [name]: e.target.value }
+    });
     // }
   };
 
@@ -136,7 +143,7 @@ const Profile = () => {
           src={BACKGROUND_ASSETS + 'victoria.svg'}
           alt=""
         />
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative">
           <div className="-mt-12 flex flex-col justify-between items-start sm:-mt-16 sm:space-x-5">
             <div className="flex">
               <img
@@ -146,6 +153,12 @@ const Profile = () => {
               />
             </div>
           </div>
+          <SocialProfile
+            socials={socials}
+            setSocials={setSocials}
+            editMode={editMode}
+            className="absolute right-0 top-16 p-2"
+          />
         </div>
         <section className="mt-4 pb-12 px-4 sm:px-6 lg:px-8 space-y-5">
           <div className="flex flex-row justify-between items-center">
@@ -157,8 +170,9 @@ const Profile = () => {
                   disabled={!editMode}
                   placeholder="Name"
                   defaultValue={loggedInState.user?.profile?.first_name}
-                  className={`bg-transparent capitalize text-lg ${editMode ? EDIT_MODE_CLASS : ''
-                    }`}
+                  className={`bg-transparent capitalize text-lg w-24 ${
+                    editMode ? EDIT_MODE_CLASS : ''
+                  }`}
                   onChange={(e) => {
                     handleChange(e, 'user', 'first_name');
                   }}
@@ -168,8 +182,9 @@ const Profile = () => {
                   disabled={!editMode}
                   placeholder="Last Name"
                   defaultValue={loggedInState.user?.profile?.last_name}
-                  className={`bg-transparent capitalize text-lg ${editMode ? EDIT_MODE_CLASS : 'hidden'
-                    }`}
+                  className={`bg-transparent capitalize text-lg w-24 ${
+                    editMode ? EDIT_MODE_CLASS : 'hidden'
+                  }`}
                   onChange={(e) => {
                     handleChange(e, 'user', 'last_name');
                   }}
@@ -181,21 +196,13 @@ const Profile = () => {
                 {/* no provision to change username as of now */}
                 <input
                   type="text"
-                  disabled={!editMode || true}
+                  disabled
                   placeholder="Username"
                   defaultValue={loggedInState.user?.username}
                   className={`bg-transparent text-lg ${editMode ? '' : ''}`}
-                  // onChange={(e) => {
-                  //   handleChange(e, 'user', 'username');
-                  // }}
                 />
               </span>
             </div>
-            <SocialProfile
-              socials={socials}
-              setSocials={setSocials}
-              editMode={editMode}
-            />
           </div>
 
           <div className="space-y-4">
@@ -210,8 +217,9 @@ const Profile = () => {
               {submitButton ? (
                 <button
                   onClick={() => handleSubmit()}
-                  className={` ${editMode ? '' : 'hidden'
-                    } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                  className={` ${
+                    editMode ? '' : 'hidden'
+                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
                 >
                   {editMode ? submitButtonText : ''}
                 </button>
@@ -220,8 +228,9 @@ const Profile = () => {
               )}
               <button
                 onClick={() => nav(CFS_ROUTE)}
-                className={` ${editMode ? 'hidden' : ''
-                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                className={` ${
+                  editMode ? 'hidden' : ''
+                } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
               >
                 {editMode ? '' : 'Speaker Profile'}
               </button>
@@ -249,8 +258,9 @@ const Profile = () => {
                   return (
                     <div
                       key={i}
-                      className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
-                        }`}
+                      className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${
+                        editMode ? EDIT_MODE_CLASS : ''
+                      }`}
                     >
                       <label
                         htmlFor="name"
@@ -284,8 +294,9 @@ const Profile = () => {
                   return (
                     <div
                       key={i}
-                      className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${editMode ? EDIT_MODE_CLASS : ''
-                        }`}
+                      className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${
+                        editMode ? EDIT_MODE_CLASS : ''
+                      }`}
                     >
                       <label
                         htmlFor="name"
