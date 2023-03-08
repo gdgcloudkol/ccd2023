@@ -180,8 +180,8 @@ const CFS = () => {
                 isSpeaker ?
                   isSubmitted ? <div className='mx-auto flex items-center flex-col w-full max-w-sm lg:w-96 text-center'>
                     <div>
-                      <h2 className="mt-6 py-10 text-2xl text-gray-900 dark:text-gray-100 tracking-tight">
-                        Your Have Submitted A Talk
+                      <h2 className="mt-6 py-10 text-2xl  text-gray-900 dark:text-gray-100 tracking-tight">
+                        You have submitted a talk for GCCD Kolkata 2023. Your proposal is under review
                       </h2>
                     </div>
                     <button
