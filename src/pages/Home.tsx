@@ -86,7 +86,7 @@ const Home = () => {
       {/* cfs section starts here */}
       <HomeCFS />
       {/* cfs section ends here */}
-      <div className='dark:bg-white'>
+      <div className='mt-6 dark:bg-white'>
         {/* sponsors section starts here */}
         {homeRule?.showSponsors ? (
           <Sponsors />

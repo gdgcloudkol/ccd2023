@@ -21,7 +21,7 @@ const Sponsors = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div
-        className={`block text-center pt-[16px] lg:pl-32 lg:pr-32 font-bold text-3xl leading-normal lg:text-6xl lg:leading-normal ${CurrentTheme() === DARK ? 'bg-white stroke-b-1px lg:stroke-b-2px text-white' : 'bg-black stroke-w-1px lg:stroke-w-2px text-black'}`}>
+        className={`pt-10 flex font-medium leading-14 text-2xl lg:text-8xl justify-center block uppercase ${CurrentTheme() === DARK ? 'stroke-b-1px lg:stroke-b-2px text-white ' : ' stroke-w-1px lg:stroke-w-2px text-black'}`}>
         {content?.title}
       </div>
       <br />
