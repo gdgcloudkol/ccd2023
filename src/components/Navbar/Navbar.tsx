@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import Navlink from './Navlink';
 
 const NavbarPage = () => {
-  const nav = useNavigate();
+  // const nav = useNavigate();
   const { loggedInState } = useContext(LoggedInContext);
   const [content, setContent] = useState<NavbarContent>({} as NavbarContent);
 
@@ -59,7 +59,7 @@ const NavbarPage = () => {
         <>
           <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-18">
             <div className="flex justify-between">
-              <div className="flex" onClick={() => { nav(HOME_ROUTE) }}>
+              <div className="flex">
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className={`block h-12 w-auto mt-2 lg:mt-3 ${CurrentTheme() === DARK ? 'filter brightness-0 invert' : ''}`}
