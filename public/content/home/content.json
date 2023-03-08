@@ -4,9 +4,10 @@
   "hashtagEventName": "#GoogleCloudCommunityDays",
   "description": "An event organized by the community that features industry experts presenting on exciting cloud topics. The shared belief powering this conference is that when developers come together to exchange ideas, amazing things can happen.",
   "dateTitle": "Date",
-  "date": "TBD",
+  "date": "7th May",
   "locationTitle": "Venue",
-  "location": "TBD",
+  "locationName": "Biswa Bangla Convention Centre (BBCC)",
+  "location": "https://www.google.com/maps/place/Biswa+Bangla+Convention+Centre/@22.5824471,88.4741328,15z/data=!4m6!3m5!1s0x3a027533fd17b983:0xb09288789f2f7388!8m2!3d22.5824471!4d88.4741328!16s%2Fg%2F11dxf0s217",
   "ticketButton": [
     {
       "id": "cs",

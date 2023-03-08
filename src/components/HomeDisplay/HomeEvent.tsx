@@ -103,21 +103,22 @@ const HomeEvent = () => {
             </span>
           </p>
 
-          <p className="text-xl mb-5 text-g-gray-8 dark:text-g-gray-4">
+          <p className="text-xl mb-5 flex flex-col text-g-gray-8 dark:text-g-gray-4">
             {homeRules?.date ? (
-              <>
-                {homeContent?.dateTitle + ' : ' + homeContent.date}
-                <sup className="mr-0.5"></sup> &nbsp;
-              </>
+              <div className='text-[20px] py-1 text-google-yellow '>
+                <span className=''>{homeContent?.dateTitle + " : "}</span>
+                {homeContent.date}
+              </div>
             ) : (
               ''
             )}
 
             {homeRules?.location ? (
-              <>
-                {homeContent?.locationTitle + ' : ' + homeContent.location}
-                <sup className="mr-0.5"></sup>
-              </>
+              <div className=' flex py-1 text-[20px] text-google-yellow '>
+                {homeContent?.locationTitle + " : "} &nbsp;
+                <a className='block md:hidden  ' href={homeContent.location} rel="noreferrer" target={'_blank'} >BBCC</a>
+                <a className=' hidden    md:block lg:block hover:underline ' href={homeContent.location} rel="noreferrer" target={'_blank'} >{homeContent.locationName}</a>
+              </div>
             ) : (
               ''
             )}
@@ -155,7 +156,7 @@ const HomeEvent = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
