@@ -1,24 +1,21 @@
-import {
-  FaFacebook,
-  FaGithub,
-  FaGlobeAsia,
-  FaInstagram,
-  FaLinkedin,
-  FaPlus,
-  FaTwitter
-} from 'react-icons/fa';
-import { IconType } from 'react-icons/lib';
+import { ReactComponent as FacebookSVGIcon } from '../../assets/icons/facebook.svg';
+import { ReactComponent as TwitterSVGIcon } from '../../assets/icons/twitter.svg';
+import { ReactComponent as InstagramSVGIcon } from '../../assets/icons/instagram.svg';
+import { ReactComponent as LinkedInSVGIcon } from '../../assets/icons/linkedin.svg';
+import { ReactComponent as GitHubSVGIcon } from '../../assets/icons/github.svg';
+import { ReactComponent as WebsiteSVGIcon } from '../../assets/icons/website.svg';
 import { Popover, Transition } from '@headlessui/react';
 import { useState } from 'react';
 import React from 'react';
+import { FaPlus } from 'react-icons/fa';
 
-const iconsMap: { [key: string]: IconType } = {
-  linkedin: FaLinkedin,
-  github: FaGithub,
-  twitter: FaTwitter,
-  facebook: FaFacebook,
-  instagram: FaInstagram,
-  website: FaGlobeAsia
+const iconsMap: { [key: string]: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string | undefined; }> } = {
+  linkedin: LinkedInSVGIcon,
+  github: GitHubSVGIcon,
+  twitter: TwitterSVGIcon,
+  facebook: FacebookSVGIcon,
+  instagram: InstagramSVGIcon,
+  website: WebsiteSVGIcon
 };
 
 const isValidUrl = (url: string) => {
@@ -42,6 +39,14 @@ const getIconName = (url: string) => {
 interface Socials {
   [key: string]: string;
 }
+
+const UrlIcon = ({ url }: { url: string }) => {
+  const SocialIcon: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string | undefined; }> = iconsMap[getIconName(url)] as React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string | undefined; }>;
+
+  return (
+    <SocialIcon fill='currentColor' className="text-4xl pt-1 hover:cursor-pointer flex items-center w-10 h-10" />
+  );
+};
 
 const SocialProfile = ({
   socials,
@@ -83,13 +88,14 @@ const SocialProfile = ({
 
   return (
     <div className="flex flex-row dark:text-white text-g-gray-8 ">
-      {Object.keys(socials).map((key) => {
-        const Icon: IconType = iconsMap[key] as IconType;
-        return (
-          <div className="relative">
+      {Object.keys(socials).map((key, i) => {
+        const SocialIcon: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string | undefined; }> = iconsMap[key];
+        return (SocialIcon ?
+          <div key={i} className="relative">
             <a href={socials[key]} target="_blank" rel="noreferrer">
-              <Icon
-                className="text-4xl p-1 hover:text-[#1da1f2] hover:cursor-pointer"
+              <SocialIcon
+                fill='currentColor'
+                className="text-4xl pt-1 hover:text-[#1da1f2] hover:cursor-pointer w-10 h-10"
                 key={key}
               />
             </a>
@@ -101,7 +107,7 @@ const SocialProfile = ({
                 ></button>
               </div>
             )}
-          </div>
+          </div> : null
         );
       })}
 
@@ -110,9 +116,8 @@ const SocialProfile = ({
           {({ open }) => (
             <>
               <Popover.Button
-                className={`${
-                  open ? 'text-[#1da1f2]' : 'text-g-gray-8'
-                } text-3xl p-1 hover:text-[#1da1f2] hover:cursor-pointer flex items-center`}
+                className={`${open ? 'text-[#1da1f2]' : 'text-g-gray-8'
+                  } text-3xl p-1 hover:text-[#1da1f2] hover:cursor-pointer flex items-center`}
               >
                 <FaPlus />
               </Popover.Button>
@@ -132,12 +137,11 @@ const SocialProfile = ({
                         <UrlIcon url={addSocial} />
                         <input
                           type="url"
-                          placeholder="Enter your social profile link"
-                          className={`bg-[#3c3c3c] text-white rounded-md p-2 mt-2 ${
-                            isValidUrl(addSocial)
-                              ? 'focus:ring-[#1da1f2] focus:ring-2 focus:outline-none'
-                              : 'focus:ring-red-500 focus:ring-2 focus:outline-none'
-                          }`}
+                          placeholder="Enter link to edit or add"
+                          className={`bg-[#3c3c3c] text-white rounded-md p-2 mt-2 ${isValidUrl(addSocial)
+                            ? 'focus:ring-[#1da1f2] focus:ring-2 focus:outline-none'
+                            : 'focus:ring-red-500 focus:ring-2 focus:outline-none'
+                            }`}
                           value={addSocial}
                           onChange={handleChange}
                         />
@@ -159,14 +163,6 @@ const SocialProfile = ({
         </Popover>
       )}
     </div>
-  );
-};
-
-const UrlIcon = ({ url }: { url: string }) => {
-  const Icon: IconType = iconsMap[getIconName(url)] as IconType;
-
-  return (
-    <Icon className="text-4xl p-1 hover:cursor-pointer flex items-center" />
   );
 };
 

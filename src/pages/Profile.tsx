@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserData } from '../assets/models/login/datatype';
-import { CFS_ROUTE, LOGIN_ROUTE } from '../services/constants';
+import { BACKGROUND_ASSETS, CFS_ROUTE, DP_ASSETS, LOGIN_ROUTE } from '../services/constants';
 import { countryCodeChoices } from '../services/countryCodes';
 import { ApiLogout, ApiPostProfile } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
@@ -14,10 +14,8 @@ const Profile = () => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [submitButtonText, setSubmitButtonText] = useState<string>('Submit');
   const [submitButton, setSubmitButton] = useState<boolean>(true);
-  const [formData, setFormData] = useState<UserData>(
-    loggedInState.user as UserData
-  );
-  const [socials, setSocials] = useState(loggedInState.user?.profile.socials);
+  const [formData, setFormData] = useState<UserData>(loggedInState.user as UserData);
+  const [socials, setSocials] = useState(loggedInState.user?.profile?.socials);
 
   useEffect(() => {
     if (!loggedInState.isLoggedIn) nav(LOGIN_ROUTE);
@@ -33,22 +31,22 @@ const Profile = () => {
   }
 
   const handleChange = (e: any, type: string, name: string) => {
-    if (type === 'user') {
-      setFormData({
-        ...formData,
-        [name]: e.target.value
-      });
-    } else {
+    // if (type === 'user') {
+    //   setFormData({
+    //     ...formData,
+    //     [name]: e.target.value
+    //   });
+    // } else {
       setFormData({
         ...formData,
         profile: { ...formData.profile, [name]: e.target.value }
       });
-    }
+    // }
   };
 
   async function handleSubmit() {
     setSubmitButton(false);
-    const result = await ApiPostProfile(loggedInState.user);
+    const result = await ApiPostProfile(formData as UserData);
     if (result.status === 200) {
       setEditMode(false);
       setSubmitButtonText('Submit');
@@ -135,15 +133,15 @@ const Profile = () => {
       <div className="max-w-3xl mt-8 mx-auto rounded-lg dark:bg-[#121212] bg-white shadow-lg">
         <img
           className="h-32 w-full object-cover lg:h-72 rounded-lg"
-          src="https://images.unsplash.com/photo-1600080077823-a44592513861?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          src={BACKGROUND_ASSETS + 'victoria.svg'}
           alt=""
         />
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="-mt-12 flex flex-col justify-between items-start sm:-mt-16 sm:space-x-5">
             <div className="flex">
               <img
-                className="h-24 w-24 rounded-full border border-l-google-blue border-t-google-red border-b-google-yellowx sm:h-32 sm:w-32"
-                src="https://thumbs.dreamstime.com/b/cute-cat-portrait-square-photo-beautiful-white-closeup-105311158.jpg"
+                className="h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
+                src={DP_ASSETS + 'yoda-1.png'}
                 alt=""
               />
             </div>
@@ -158,30 +156,38 @@ const Profile = () => {
                   type="text"
                   disabled={!editMode}
                   placeholder="Name"
-                  defaultValue={loggedInState.user?.first_name}
-                  className={`bg-transparent capitalize text-lg ${
-                    editMode ? EDIT_MODE_CLASS : ''
-                  }`}
+                  defaultValue={loggedInState.user?.profile?.first_name}
+                  className={`bg-transparent capitalize text-lg ${editMode ? EDIT_MODE_CLASS : ''
+                    }`}
                   onChange={(e) => {
                     handleChange(e, 'user', 'first_name');
+                  }}
+                />
+                <input
+                  type="text"
+                  disabled={!editMode}
+                  placeholder="Last Name"
+                  defaultValue={loggedInState.user?.profile?.last_name}
+                  className={`bg-transparent capitalize text-lg ${editMode ? EDIT_MODE_CLASS : 'hidden'
+                    }`}
+                  onChange={(e) => {
+                    handleChange(e, 'user', 'last_name');
                   }}
                 />
               </span>
 
               <span className="flex flex-row font-bold text-lg">
                 <span>@</span>
-
+                {/* no provision to change username as of now */}
                 <input
                   type="text"
-                  disabled={!editMode}
+                  disabled={!editMode || true}
                   placeholder="Username"
                   defaultValue={loggedInState.user?.username}
-                  className={`bg-transparent text-lg ${
-                    editMode ? EDIT_MODE_CLASS : ''
-                  }`}
-                  onChange={(e) => {
-                    handleChange(e, 'user', 'username');
-                  }}
+                  className={`bg-transparent text-lg ${editMode ? '' : ''}`}
+                  // onChange={(e) => {
+                  //   handleChange(e, 'user', 'username');
+                  // }}
                 />
               </span>
             </div>
@@ -191,6 +197,7 @@ const Profile = () => {
               editMode={editMode}
             />
           </div>
+
           <div className="space-y-4">
             <div className="flex flex-row justify-center lg:justify-end space-x-4">
               <button
@@ -203,9 +210,8 @@ const Profile = () => {
               {submitButton ? (
                 <button
                   onClick={() => handleSubmit()}
-                  className={` ${
-                    editMode ? '' : 'hidden'
-                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                  className={` ${editMode ? '' : 'hidden'
+                    } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
                 >
                   {editMode ? submitButtonText : ''}
                 </button>
@@ -214,9 +220,8 @@ const Profile = () => {
               )}
               <button
                 onClick={() => nav(CFS_ROUTE)}
-                className={` ${
-                  editMode ? 'hidden' : ''
-                } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                className={` ${editMode ? 'hidden' : ''
+                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
               >
                 {editMode ? '' : 'Speaker Profile'}
               </button>
@@ -244,9 +249,8 @@ const Profile = () => {
                   return (
                     <div
                       key={i}
-                      className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${
-                        editMode ? EDIT_MODE_CLASS : ''
-                      }`}
+                      className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
+                        }`}
                     >
                       <label
                         htmlFor="name"
@@ -280,9 +284,8 @@ const Profile = () => {
                   return (
                     <div
                       key={i}
-                      className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${
-                        editMode ? EDIT_MODE_CLASS : ''
-                      }`}
+                      className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${editMode ? EDIT_MODE_CLASS : ''
+                        }`}
                     >
                       <label
                         htmlFor="name"

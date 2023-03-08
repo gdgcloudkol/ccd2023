@@ -1,4 +1,6 @@
 export interface UserProfileData {
+  first_name: string;
+  last_name: string;
   college?: string;
   company?: string;
   country_code: string;
@@ -16,6 +18,7 @@ export interface UserProfileData {
 export interface UserData {
   email: string;
   first_name: string;
+  last_name: string;
   profile: UserProfileData;
   username: string;
 }
