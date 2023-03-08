@@ -9,7 +9,11 @@ import { useState } from 'react';
 import React from 'react';
 import { FaPlus } from 'react-icons/fa';
 
-const iconsMap: { [key: string]: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string | undefined; }> } = {
+const iconsMap: {
+  [key: string]: React.FunctionComponent<
+    React.SVGProps<SVGSVGElement> & { title?: string | undefined }
+  >;
+} = {
   linkedin: LinkedInSVGIcon,
   github: GitHubSVGIcon,
   twitter: TwitterSVGIcon,
@@ -41,10 +45,17 @@ interface Socials {
 }
 
 const UrlIcon = ({ url }: { url: string }) => {
-  const SocialIcon: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string | undefined; }> = iconsMap[getIconName(url)] as React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string | undefined; }>;
+  const SocialIcon: React.FunctionComponent<
+    React.SVGProps<SVGSVGElement> & { title?: string | undefined }
+  > = iconsMap[getIconName(url)] as React.FunctionComponent<
+    React.SVGProps<SVGSVGElement> & { title?: string | undefined }
+  >;
 
   return (
-    <SocialIcon fill='currentColor' className="text-4xl pt-1 hover:cursor-pointer flex items-center w-10 h-10" />
+    <SocialIcon
+      fill="currentColor"
+      className="text-4xl pt-1 hover:cursor-pointer flex items-center w-10 h-10"
+    />
   );
 };
 
@@ -77,7 +88,8 @@ const SocialProfile = ({
     });
   };
 
-  const addSocialHandler = () => {
+  const addSocialHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (!error && addSocial !== '') {
       setSocials((prev: any) => {
         return { ...prev, [getIconName(addSocial)]: addSocial };
@@ -89,12 +101,14 @@ const SocialProfile = ({
   return (
     <div className="flex flex-row dark:text-white text-g-gray-8 justify-end">
       {Object.keys(socials).map((key, i) => {
-        const SocialIcon: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string | undefined; }> = iconsMap[key];
-        return (SocialIcon ?
+        const SocialIcon: React.FunctionComponent<
+          React.SVGProps<SVGSVGElement> & { title?: string | undefined }
+        > = iconsMap[key];
+        return SocialIcon ? (
           <div key={i} className="relative">
             <a href={socials[key]} target="_blank" rel="noreferrer">
               <SocialIcon
-                fill='currentColor'
+                fill="currentColor"
                 className="text-4xl pt-1 hover:text-[#1da1f2] hover:cursor-pointer w-10 h-10"
                 key={key}
               />
@@ -107,8 +121,8 @@ const SocialProfile = ({
                 ></button>
               </div>
             )}
-          </div> : null
-        );
+          </div>
+        ) : null;
       })}
 
       {editMode && (
@@ -116,8 +130,9 @@ const SocialProfile = ({
           {({ open }) => (
             <>
               <Popover.Button
-                className={`${open ? 'text-[#1da1f2]' : 'text-g-gray-8'
-                  } text-3xl p-1 hover:text-[#1da1f2] hover:cursor-pointer flex items-center`}
+                className={`${
+                  open ? 'text-[#1da1f2]' : 'text-g-gray-8'
+                } text-3xl p-1 hover:text-[#1da1f2] hover:cursor-pointer flex items-center`}
               >
                 <FaPlus />
               </Popover.Button>
@@ -132,23 +147,26 @@ const SocialProfile = ({
               >
                 <Popover.Panel className="absolute z-10 top-0 right-0">
                   <div className="bg-white dark:bg-[#1c1c1c] rounded-md shadow-lg p-4">
-                    <form className="flex flex-col gap-2">
+                    <form
+                      className="flex flex-col gap-2"
+                      onSubmit={addSocialHandler}
+                    >
                       <div className="flex flex-row justify-between gap-2 items-center">
                         <UrlIcon url={addSocial} />
                         <input
                           type="url"
                           placeholder="Enter link to edit or add"
-                          className={`bg-[#3c3c3c] text-white rounded-md p-2 mt-2 ${isValidUrl(addSocial)
-                            ? 'focus:ring-[#1da1f2] focus:ring-2 focus:outline-none'
-                            : 'focus:ring-red-500 focus:ring-2 focus:outline-none'
-                            }`}
+                          className={`bg-[#3c3c3c] text-white rounded-md p-2 mt-2 ${
+                            isValidUrl(addSocial)
+                              ? 'focus:ring-[#1da1f2] focus:ring-2 focus:outline-none'
+                              : 'focus:ring-red-500 focus:ring-2 focus:outline-none'
+                          }`}
                           value={addSocial}
                           onChange={handleChange}
                         />
                         <button
                           type="submit"
                           className="bg-[#3c3c3c] text-white rounded-md p-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                          onClick={addSocialHandler}
                           disabled={error}
                         >
                           Add
