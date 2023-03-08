@@ -87,7 +87,7 @@ const SocialProfile = ({
   };
 
   return (
-    <div className="flex flex-row dark:text-white text-g-gray-8 ">
+    <div className="flex flex-row dark:text-white text-g-gray-8 justify-end">
       {Object.keys(socials).map((key, i) => {
         const SocialIcon: React.FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string | undefined; }> = iconsMap[key];
         return (SocialIcon ?

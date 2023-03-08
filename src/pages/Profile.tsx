@@ -37,10 +37,10 @@ const Profile = () => {
     //     [name]: e.target.value
     //   });
     // } else {
-      setFormData({
-        ...formData,
-        profile: { ...formData.profile, [name]: e.target.value }
-      });
+    setFormData({
+      ...formData,
+      profile: { ...formData.profile, [name]: e.target.value }
+    });
     // }
   };
 
@@ -149,15 +149,15 @@ const Profile = () => {
         </div>
         <section className="mt-4 pb-12 px-4 sm:px-6 lg:px-8 space-y-5">
           <div className="flex flex-row justify-between items-center">
-            <div className="flex flex-col items-start dark:text-white text-g-gray-8 pb-5">
-              <span className="flex flex-row text-lg">
+            <div className="flex flex-col items-start dark:text-white text-g-gray-8 pb-0 lg:pb-5 space-y-2">
+              <span className="flex flex-row text-lg space-x-2">
                 Hi,&nbsp;
                 <input
                   type="text"
                   disabled={!editMode}
                   placeholder="Name"
                   defaultValue={loggedInState.user?.profile?.first_name}
-                  className={`bg-transparent capitalize text-lg ${editMode ? EDIT_MODE_CLASS : ''
+                  className={`bg-transparent capitalize text-lg w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : ''
                     }`}
                   onChange={(e) => {
                     handleChange(e, 'user', 'first_name');
@@ -168,7 +168,7 @@ const Profile = () => {
                   disabled={!editMode}
                   placeholder="Last Name"
                   defaultValue={loggedInState.user?.profile?.last_name}
-                  className={`bg-transparent capitalize text-lg ${editMode ? EDIT_MODE_CLASS : 'hidden'
+                  className={`bg-transparent capitalize text-lg w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : 'hidden'
                     }`}
                   onChange={(e) => {
                     handleChange(e, 'user', 'last_name');
@@ -181,58 +181,22 @@ const Profile = () => {
                 {/* no provision to change username as of now */}
                 <input
                   type="text"
-                  disabled={!editMode || true}
+                  disabled
                   placeholder="Username"
                   defaultValue={loggedInState.user?.username}
                   className={`bg-transparent text-lg ${editMode ? '' : ''}`}
-                  // onChange={(e) => {
-                  //   handleChange(e, 'user', 'username');
-                  // }}
+                // onChange={(e) => {
+                //   handleChange(e, 'user', 'username');
+                // }}
                 />
               </span>
             </div>
+          </div>
             <SocialProfile
               socials={socials}
               setSocials={setSocials}
               editMode={editMode}
             />
-          </div>
-
-          <div className="space-y-4">
-            <div className="flex flex-row justify-center lg:justify-end space-x-4">
-              <button
-                onClick={handleEdit}
-                className=" items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
-              >
-                {editMode ? 'Cancel' : 'Edit Profile'}
-              </button>
-
-              {submitButton ? (
-                <button
-                  onClick={() => handleSubmit()}
-                  className={` ${editMode ? '' : 'hidden'
-                    } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
-                >
-                  {editMode ? submitButtonText : ''}
-                </button>
-              ) : (
-                <Spinner color="red" />
-              )}
-              <button
-                onClick={() => nav(CFS_ROUTE)}
-                className={` ${editMode ? 'hidden' : ''
-                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
-              >
-                {editMode ? '' : 'Speaker Profile'}
-              </button>
-              <button
-                onClick={logout}
-                className=" items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
-              >
-                Logout
-              </button>
-            </div>
-          </div>
 
           <div className="flex flex-col items-center justify-center border-2 border-l-google-blue border-t-google-red border-b-google-yellow border-r-google-green rounded-lg p-4">
             <div className="mt-2 mb-8 w-full">
@@ -310,6 +274,42 @@ const Profile = () => {
                   );
                 }
               })}
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex flex-row justify-center lg:justify-end space-x-4">
+              <button
+                onClick={handleEdit}
+                className=" items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
+              >
+                {editMode ? 'Cancel' : 'Edit Profile'}
+              </button>
+
+              {submitButton ? (
+                <button
+                  onClick={() => handleSubmit()}
+                  className={` ${editMode ? '' : 'hidden'
+                    } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                >
+                  {editMode ? submitButtonText : ''}
+                </button>
+              ) : (
+                <Spinner color="red" />
+              )}
+              <button
+                onClick={() => nav(CFS_ROUTE)}
+                className={` ${editMode ? 'hidden' : ''
+                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+              >
+                {editMode ? '' : 'Speaker Profile'}
+              </button>
+              <button
+                onClick={logout}
+                className=" items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
+              >
+                Logout
+              </button>
             </div>
           </div>
         </section>
