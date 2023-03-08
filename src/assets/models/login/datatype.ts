@@ -8,6 +8,9 @@ export interface UserProfileData {
   phone?: string;
   role: string;
   tsize: string;
+  socials: {
+    [key: string]: string;
+  };
 }
 
 export interface UserData {

@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserProfileData } from '../assets/models/login/datatype';
+import { UserData } from '../assets/models/login/datatype';
 import { CFS_ROUTE, LOGIN_ROUTE } from '../services/constants';
 import { countryCodeChoices } from '../services/countryCodes';
 import { ApiLogout, ApiPostProfile } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 import Spinner from '../components/Spinner/Spinner';
+import SocialProfile from '../components/SocialProfile/SocialProfile';
 
 const Profile = () => {
   const nav = useNavigate();
@@ -13,6 +14,10 @@ const Profile = () => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [submitButtonText, setSubmitButtonText] = useState<string>('Submit');
   const [submitButton, setSubmitButton] = useState<boolean>(true);
+  const [formData, setFormData] = useState<UserData>(
+    loggedInState.user as UserData
+  );
+  const [socials, setSocials] = useState(loggedInState.user?.profile.socials);
 
   useEffect(() => {
     if (!loggedInState.isLoggedIn) nav(LOGIN_ROUTE);
@@ -20,16 +25,30 @@ const Profile = () => {
 
   const logout = async () => {
     await ApiLogout(setLoggedInState, nav);
-  }
+  };
 
   function handleEdit() {
     setEditMode(!editMode);
     setSubmitButtonText('Submit');
   }
 
+  const handleChange = (e: any, type: string, name: string) => {
+    if (type === 'user') {
+      setFormData({
+        ...formData,
+        [name]: e.target.value
+      });
+    } else {
+      setFormData({
+        ...formData,
+        profile: { ...formData.profile, [name]: e.target.value }
+      });
+    }
+  };
+
   async function handleSubmit() {
     setSubmitButton(false);
-    const result = await ApiPostProfile(loggedInState.user)
+    const result = await ApiPostProfile(loggedInState.user);
     if (result.status === 200) {
       setEditMode(false);
       setSubmitButtonText('Submit');
@@ -108,7 +127,8 @@ const Profile = () => {
     }
   ];
 
-  const EDIT_MODE_CLASS = 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md border border-gray-300';
+  const EDIT_MODE_CLASS =
+    'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md border border-gray-300';
 
   return (
     <>
@@ -130,47 +150,82 @@ const Profile = () => {
           </div>
         </div>
         <section className="mt-4 pb-12 px-4 sm:px-6 lg:px-8 space-y-5">
-          <div className="">
-            <div className="flex flex-col items-start text-center dark:text-white text-g-gray-8 pb-5">
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-col items-start dark:text-white text-g-gray-8 pb-5">
               <span className="flex flex-row text-lg">
                 Hi,&nbsp;
-                <input type="text" disabled={!editMode} placeholder="Name" defaultValue={loggedInState.user?.first_name}
-                  className={`bg-transparent capitalize text-lg ${editMode ? EDIT_MODE_CLASS : ''}`}
-                  onChange={(e) => { loggedInState.user.first_name = e.currentTarget.value }} />
+                <input
+                  type="text"
+                  disabled={!editMode}
+                  placeholder="Name"
+                  defaultValue={loggedInState.user?.first_name}
+                  className={`bg-transparent capitalize text-lg ${
+                    editMode ? EDIT_MODE_CLASS : ''
+                  }`}
+                  onChange={(e) => {
+                    handleChange(e, 'user', 'first_name');
+                  }}
+                />
               </span>
 
               <span className="flex flex-row font-bold text-lg">
-                @
-                <input type="text" disabled={!editMode} placeholder="Username" defaultValue={loggedInState.user?.username}
-                  className={`bg-transparent text-lg ${editMode ? EDIT_MODE_CLASS : ''}`}
-                  onChange={(e) => { loggedInState.user.username = e.currentTarget.value }} />
+                <span>@</span>
+
+                <input
+                  type="text"
+                  disabled={!editMode}
+                  placeholder="Username"
+                  defaultValue={loggedInState.user?.username}
+                  className={`bg-transparent text-lg ${
+                    editMode ? EDIT_MODE_CLASS : ''
+                  }`}
+                  onChange={(e) => {
+                    handleChange(e, 'user', 'username');
+                  }}
+                />
               </span>
             </div>
+            <SocialProfile
+              socials={socials}
+              setSocials={setSocials}
+              editMode={editMode}
+            />
+          </div>
+          <div className="space-y-4">
+            <div className="flex flex-row justify-center lg:justify-end space-x-4">
+              <button
+                onClick={handleEdit}
+                className=" items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
+              >
+                {editMode ? 'Cancel' : 'Edit Profile'}
+              </button>
 
-            <div className='space-y-4'>
-              <div className='flex flex-row justify-center lg:justify-end space-x-4'>
-                <button onClick={handleEdit}
-                  className=" items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
+              {submitButton ? (
+                <button
+                  onClick={() => handleSubmit()}
+                  className={` ${
+                    editMode ? '' : 'hidden'
+                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
                 >
-                  {editMode ? 'Cancel' : 'Edit Profile'}
+                  {editMode ? submitButtonText : ''}
                 </button>
-
-                {submitButton ?
-                  <button onClick={() => handleSubmit()}
-                    className={` ${editMode ? '' : 'hidden'} items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}>
-                    {editMode ? submitButtonText : ''}
-                  </button> : <Spinner color='red' />
-                }
-                <button onClick={() => nav(CFS_ROUTE)}
-                  className={` ${editMode ? 'hidden' : ''} items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}>
-                  {editMode ? '' : 'Speaker Profile'}
-                </button>
-                <button onClick={logout}
-                  className=" items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
-                >
-                  Logout
-                </button>
-              </div>
+              ) : (
+                <Spinner color="red" />
+              )}
+              <button
+                onClick={() => nav(CFS_ROUTE)}
+                className={` ${
+                  editMode ? 'hidden' : ''
+                } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+              >
+                {editMode ? '' : 'Speaker Profile'}
+              </button>
+              <button
+                onClick={logout}
+                className=" items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
+              >
+                Logout
+              </button>
             </div>
           </div>
 
@@ -187,31 +242,67 @@ const Profile = () => {
               {profileFields.map((field: any, i: number) => {
                 if (field.type === 'select') {
                   return (
-                    <div key={i} className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''}`}>
-                      <label htmlFor="name" className="block text-xs font-medium">
+                    <div
+                      key={i}
+                      className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${
+                        editMode ? EDIT_MODE_CLASS : ''
+                      }`}
+                    >
+                      <label
+                        htmlFor="name"
+                        className="block text-xs font-medium"
+                      >
                         {field.label}
                       </label>
-                      <select name={field.name} id={field.name} disabled={!editMode} defaultValue={field.value}
-                        className="block w-full border-0 p-0 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl">
-                        {field && field.options && field?.options.map((option: any, j: number) => {
-                          return (
-                            <option value={option.value} key={j}>
-                              {option.label}
-                            </option>
-                          );
-                        })}
+                      <select
+                        name={field.name}
+                        id={field.name}
+                        disabled={!editMode}
+                        defaultValue={field.value}
+                        className="block w-full border-0 p-0 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
+                        onChange={(e) => {
+                          handleChange(e, 'profile', field.name);
+                        }}
+                      >
+                        {field &&
+                          field.options &&
+                          field?.options.map((option: any, j: number) => {
+                            return (
+                              <option value={option.value} key={j}>
+                                {option.label}
+                              </option>
+                            );
+                          })}
                       </select>
                     </div>
                   );
                 } else {
                   return (
-                    <div key={i} className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${editMode ? EDIT_MODE_CLASS : ''}`}>
-                      <label htmlFor="name" className="block text-xs font-medium">
+                    <div
+                      key={i}
+                      className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${
+                        editMode ? EDIT_MODE_CLASS : ''
+                      }`}
+                    >
+                      <label
+                        htmlFor="name"
+                        className="block text-xs font-medium"
+                      >
                         {field.label}
                       </label>
-                      <input type={field.type} name={field.name} id={field.name} placeholder={field.label} defaultValue={field.value} readOnly={!editMode} disabled={!editMode}
+                      <input
+                        type={field.type}
+                        name={field.name}
+                        id={field.name}
+                        placeholder={field.label}
+                        defaultValue={field.value}
+                        readOnly={!editMode}
+                        disabled={!editMode}
                         className="block w-full border-0 p-0 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
-                        onChange={(e) => { loggedInState.user.profile[field.name as keyof UserProfileData] = e.currentTarget.value }} />
+                        onChange={(e) => {
+                          handleChange(e, 'profile', field.name);
+                        }}
+                      />
                     </div>
                   );
                 }
