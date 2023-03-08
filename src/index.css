@@ -3,12 +3,25 @@
 @tailwind utilities;
 @tailwind variants;
 
+@font-face {
+  font-family: 'Google Sans';
+  src: local('Google Sans'), local('GoogleSans-Regular'),
+    url('./assets/fonts/GoogleSans-Regular_0.ttf');
+}
+
+@font-face {
+  font-family: 'Google Sans';
+  font-weight: 700;
+  src: local('Google Sans'), local('GoogleSans-Bold'),
+    url('./assets/fonts/GoogleSans-Bold-v1.27.ttf');
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-family: 'Google Sans', sans-serif;
   }
 }
-
 
 #fade-in-1 {
   position: absolute;
@@ -16,7 +29,7 @@
   left: 0;
   height: auto;
   width: inherit;
-  transition: .3s cubic-bezier(.25, .8, .5, 1);
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   transform: translateX(0);
   background: transparent;
 }
@@ -25,7 +38,7 @@
   height: auto;
   width: inherit;
   background: transparent;
-  transition: .3s cubic-bezier(.25, .8, .5, 1);
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   transform: translateX(100%);
 }
 
@@ -39,19 +52,23 @@
 
 @responsive {
   .stroke-b-1px {
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000;
   }
 
   .stroke-w-1px {
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+      1px 1px 0 #fff;
   }
 
   .stroke-b-2px {
-    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+      2px 2px 0 #000;
   }
 
   .stroke-w-2px {
-    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff,
+      2px 2px 0 #fff;
   }
 
   .yt-l {
@@ -79,27 +96,36 @@
   margin-top: -400px;
 }
 
-@media screen and (max-width:600px) {}
+@media screen and (max-width: 600px) {
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {}
+@media only screen and (min-width: 600px) {
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
+@media only screen and (min-width: 768px) {
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {}
+@media only screen and (min-width: 992px) {
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+@media only screen and (min-width: 1200px) {
+}
 
 /* Screens 1536 x 750*/
-@media only screen and (min-width: 1536px) {}
+@media only screen and (min-width: 1536px) {
+}
 
 /* FHD Screens 1920 x 1080*/
-@media only screen and (min-width: 1920px) {}
+@media only screen and (min-width: 1920px) {
+}
 
-@media only screen and (min-width: 2560px) {}
+@media only screen and (min-width: 2560px) {
+}
 
 /* QHD Screens 3840 x 2160*/
-@media only screen and (min-width: 3840px) {}
+@media only screen and (min-width: 3840px) {
+}
