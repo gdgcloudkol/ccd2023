@@ -28,7 +28,7 @@ const Home = () => {
   const [homeRule, setHome] = useState<SponsorRule>({} as SponsorRule);
   useEffect(() => {
     getFeature().then((data) => {
-      if (data) setHome({ showCommunityPartners: data.home?.showCommunityPartners, showSponsors: data.home?.showSponsors });
+      if (data) setHome({ showCommunityPartners: data?.home?.showCommunityPartners, showSponsors: data?.home?.showSponsors, timer: data?.home?.timer });
     });
   }, []);
 
@@ -47,10 +47,13 @@ const Home = () => {
           <HomeDisplay />
         </div>
         {/* photos section ends here */}
-        {/* timer ends here */}
-        <div className="w-full lg:fixed lg:right-0 lg:w-auto lg:inline-block lg:z-50 mt-10 lg:-mt-10">
-          <Timer />
-        </div>
+        {/* timer starts here */}
+        {
+          homeRule.timer &&
+          <div className="w-full lg:fixed lg:right-0 lg:w-auto lg:inline-block lg:z-50 mt-10 lg:-mt-10 home-timer">
+            <Timer />
+          </div>
+        }
         {/* timer ends here */}
       </div>
       <div className="opacity-50 lg:opacity-80 relative z-0 -mt-32 lg:-mt-80">

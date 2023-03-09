@@ -29,8 +29,7 @@
     "/termsAndCondition",
     "/team",
     "/speakers",
-    "/schedule",
-    "/tickets"
+    "/schedule"
   ],
   "disabledPartnerTitles": [
     "Also Backed By",
@@ -65,10 +64,8 @@
   ],
   "home": {
     "ticketButtonStateNotLogin": "gs",
-    "ticketButtonStateLogin": "cs",
+    "ticketButtonStateLogin": "bt",
     "disabledTicketButton": [
-      "bt",
-      "vt",
       "rt"
     ],
     "cfsButtonStateNotLogin": "cfsgs",
@@ -76,7 +73,7 @@
     "disabledCfsButton": [
       "cfsc"
     ],
-    "timer": false,
+    "timer": true,
     "cfs": true,
     "location": true,
     "date": true,

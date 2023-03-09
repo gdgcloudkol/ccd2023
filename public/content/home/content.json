@@ -28,14 +28,14 @@
       "title": "Buy Ticket",
       "color": "yellow",
       "hoverColor": "green",
-      "link": ""
+      "link": "/tickets"
     },
     {
       "id": "vt",
       "title": "View Ticket",
       "color": "green",
       "hoverColor": "yellow",
-      "link": ""
+      "link": "/tickets"
     },
     {
       "id": "rt",
