@@ -78,8 +78,8 @@
     ],
     "timer": false,
     "cfs": true,
-    "location": false,
-    "date": false,
+    "location": true,
+    "date": true,
     "showCommunityPartners": false,
     "showSponsors": true
   },
