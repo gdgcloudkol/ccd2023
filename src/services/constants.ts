@@ -1,5 +1,5 @@
 // base URIs
-export const BASE_URI = 'https://api.gdgcloud.kolkata.dev';
+export const BASE_URI = 'https://api2.gdgcloud.kolkata.dev';
 export const BASE_AUTH_URI = BASE_URI + '/auth/';
 export const BASE_SPEAKER_URI = BASE_URI + '/speakers/';
 export const BASE_TICKET_URI = BASE_URI + '/tickets/';
