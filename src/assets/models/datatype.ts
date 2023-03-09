@@ -3,6 +3,7 @@ export type AccountType = 'student' | 'professional' | 'speaker';
 export interface SponsorRule {
   showCommunityPartners: boolean;
   showSponsors: boolean;
+  timer?: boolean;
 }
 
 export interface HomeRule extends SponsorRule {
@@ -12,7 +13,6 @@ export interface HomeRule extends SponsorRule {
   cfsButtonStateNotLogin: string;
   cfsButtonStateLogin: string;
   disabledCfsButton: string[];
-  timer: boolean;
   cfs: boolean;
   location: boolean;
   date: boolean;

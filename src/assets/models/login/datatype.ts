@@ -65,3 +65,13 @@ export interface SignInContent {
   forgotPasswordLink: string;
   button: SigninFieldButtonContent[];
 }
+
+export interface GenericJson { [key: string]: string | undefined | number }
+
+export interface TownscriptProfileData extends GenericJson {
+  firstname: string;
+  lastname: string;
+  emailid: string;
+  cq1: string;
+  discountcode?: string;
+}
