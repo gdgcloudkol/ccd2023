@@ -16,6 +16,7 @@ export interface HomeEventContent {
   date: string;
   locationTitle: string;
   location: string;
+  locationName: string;
   ticketButton: HomeButtonContent[];
   cfsButton: HomeButtonContent[];
   landingPage: LandingPageContent;
