@@ -66,12 +66,9 @@ export interface SignInContent {
   button: SigninFieldButtonContent[];
 }
 
-export interface GenericJson { [key: string]: string | undefined | number }
-
-export interface TownscriptProfileData extends GenericJson {
-  firstname: string;
-  lastname: string;
-  emailid: string;
-  cq1: string;
-  discountcode?: string;
+export interface TownscriptProfileData {
+  first_name: string;
+  last_name: string;
+  email: string;
+  phoneNumber: string;
 }
