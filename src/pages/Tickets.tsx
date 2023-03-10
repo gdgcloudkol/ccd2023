@@ -47,13 +47,16 @@ const Tickets = () => {
             Buy Tickets
           </div>
 
+          <div className='flex text-white justify-center text-xl mt-5'>
+            Please edit the fields in the popup if not accurate or incomplete and update profile from profile section
+          </div>
+
           <div className='flex flex-row text-white justify-center mt-10 space-x-4'>
             <div className='flex flex-col items-end space-y-4 w-2/3'>
               <div>First Name: &nbsp;</div>
               <div>Last Name: &nbsp;</div>
               <div>Email Id: &nbsp;</div>
               <div>Phone No: &nbsp;</div>
-              <div>Discount Code &nbsp;</div>
             </div>
             <div className='flex flex-col items-start space-y-4 w-2/3'>
               <div>
@@ -66,10 +69,10 @@ const Tickets = () => {
                 {profileData.email}
               </div>
               <div>
-                {profileData.profile.phone}
-              </div>
-              <div>
-                <input type="text" className='text-black' onChange={(e) => setDiscountCode(e.currentTarget.value)} />
+                {profileData.profile.phone === '' ?
+                  <input type="text" className='text-black' /> :
+                  profileData.profile.phone
+                }
               </div>
             </div>
           </div>
@@ -91,6 +94,10 @@ const Tickets = () => {
             Tickets Bought
           </div>
 
+          <div className='flex text-white justify-center text-xl mt-5'>
+            Please contact &nbsp;<a className='text-google-blue' href="mailto:gdgcloudkol@gmail.com">gdgcloudkol@gmail.com</a>&nbsp; for further queries
+          </div>
+
           <div className='flex flex-row text-white justify-center mt-10 space-x-4'>
             <div className='flex flex-col items-end space-y-4 w-2/3'>
               <div>Ticket Type: &nbsp;</div>
@@ -106,7 +113,7 @@ const Tickets = () => {
                 {ticket?.ts_user_email_id}
               </div>
               <div>
-              ₹ {ticket?.amount}
+                ₹ {ticket?.amount}
               </div>
               <div>
                 {ticket?.ts_booking_id}
