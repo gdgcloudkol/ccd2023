@@ -30,7 +30,7 @@ export interface SpeakerFormData {
 
 export interface TechTypeData {
     name: string;
-    id: string;
+    id: number;
     slug: string;
     description: string;
 }

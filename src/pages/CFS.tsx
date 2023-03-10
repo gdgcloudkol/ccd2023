@@ -14,8 +14,8 @@ const sampleData: TalkData[] = [
   {
     title: "Sample 1",
     description: "This is Sample 1",
-    format: "",
-    overview: "short",
+    format: "Lightning Talk",
+    overview: "Hello",
     event: 0,
     speakers: [1],
     technologies: [1, 2, 3, 4]
@@ -23,8 +23,8 @@ const sampleData: TalkData[] = [
   {
     title: "Sample 2",
     description: "This is Sample 2",
-    format: "medium",
-    overview: "",
+    format: "Regular Talk",
+    overview: "Hello",
     event: 0,
     speakers: [1],
     technologies: [1, 2, 3, 4]
@@ -32,7 +32,7 @@ const sampleData: TalkData[] = [
   {
     title: "Sample 3",
     description: "This is Sample 3",
-    format: "short",
+    format: "Long Talk",
     overview: "",
     event: 0,
     speakers: [1],
@@ -42,7 +42,7 @@ const sampleData: TalkData[] = [
     title: "Sample 4",
     description: "This is Sample 4",
     format: "long",
-    overview: "",
+    overview: "hello",
     event: 0,
     speakers: [1],
     technologies: [1, 2, 3, 4]
@@ -213,16 +213,16 @@ const CFS = () => {
     <>
       {isLoading ? <GoogleDotsLoader /> :
         <div className="max-w-7xl mx-auto" data-aos="fade-up">
-          <div className="min-h-full flex">
-            <div className="flex-1 flex flex-col justify-center pt-8 pb-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+          <div className="min-h-full w-full flex">
+            <div className="flex-1 flex flex-col justify-center pt-1 pb-12 ">
               {
                 isSpeaker ?
                   isSubmitted ? <div className=' flex items-center flex-col w-full justify-center'>
-                    <div className=' w-full'>
-                      <h2 className="mt-6 py-10 text-2xl  text-gray-900 dark:text-gray-100 tracking-tight">
+                    <div className=' w-full flex flex-col items-center justify-center'>
+                      <h2 className="mt-6 py-5 text-2xl  text-gray-900 dark:text-gray-100 tracking-tight">
                         You have submitted a talk for GCCD Kolkata 2023. Your proposal is under review
                       </h2>
-                      <CFSSettings sampleData={sampleData} />
+                      <CFSSettings sampleData={submittedTalks} />
                     </div>
                     <button
                       type="submit"

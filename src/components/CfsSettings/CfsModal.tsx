@@ -11,7 +11,7 @@ interface Sample {
     title: string;
     description: string;
     overview: string;
-    event: number;
+    event?: number;
     format: string,
     speakers: number[]
     technologies: number[]
@@ -47,7 +47,7 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData }) => {
                                         Title
                                     </label>
                                     <div className="mt-1">
-                                        <input name="title" defaultValue={formData.event} type="text" autoComplete="" required id="title"
+                                        <input name="title" defaultValue={formData.title} type="text" autoComplete="" required id="title"
                                             className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
                                   ${fieldErrors["title"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
 
@@ -64,7 +64,7 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData }) => {
                                         Description
                                     </label>
                                     <div className="mt-1">
-                                        <input name="description" type="text" autoComplete="" required id="description"
+                                        <input name="description" defaultValue={formData.description} type="text" autoComplete="" required id="description"
                                             className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
                                   ${fieldErrors["description"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
 
@@ -81,7 +81,7 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData }) => {
                                         Overview
                                     </label>
                                     <div className="mt-1">
-                                        <input name="overview" type="text" autoComplete="" required id="overview"
+                                        <input name="overview" defaultValue={formData.overview} type="text" autoComplete="" required id="overview"
                                             className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
                                   ${fieldErrors["overview"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
 
@@ -100,8 +100,7 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData }) => {
                                     <select name="event" required id="event"
                                         className="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                     >
-                                        <option >Choose</option>
-                                        {[1].map((data: any, key: number) => <option key={key} value={data.id}>{data.title}</option>)}
+                                        <option disabled >GCCD</option>
                                     </select>
                                     {fieldErrors["event"] && (
                                         <p className="mt-2 text-sm text-red-600">
@@ -116,7 +115,7 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData }) => {
                                     <select name="format" required id="format"
                                         className="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                     >
-                                        <option value="">Choose</option>
+                                        <option selected value="" >{formData.format}</option>
                                         <option value="short">Lightning Talk</option>
                                         <option value="medium">Regular Talk</option>
                                         <option value="long">Long Talk</option>
@@ -145,7 +144,7 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData }) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
 
     )
