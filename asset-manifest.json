@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ccd2023/static/css/main.c513cba8.css",
-    "main.js": "/ccd2023/static/js/main.9c416582.js",
+    "main.js": "/ccd2023/static/js/main.e2fe5b8c.js",
     "static/js/787.7fca0ed8.chunk.js": "/ccd2023/static/js/787.7fca0ed8.chunk.js",
     "static/media/GoogleSans-Regular_0.ttf": "/ccd2023/static/media/GoogleSans-Regular_0.0d01ceaea2903216c4ee.ttf",
     "static/media/GoogleSans-Bold-v1.27.ttf": "/ccd2023/static/media/GoogleSans-Bold-v1.27.18cab8ca4b802f600b69.ttf",
@@ -14,11 +14,11 @@
     "static/media/github.svg": "/ccd2023/static/media/github.639a8dabdf467d4200dfa109aca9c3a0.svg",
     "static/media/instagram.svg": "/ccd2023/static/media/instagram.0c5ec250d222fdc311eee862ef927854.svg",
     "main.c513cba8.css.map": "/ccd2023/static/css/main.c513cba8.css.map",
-    "main.9c416582.js.map": "/ccd2023/static/js/main.9c416582.js.map",
+    "main.e2fe5b8c.js.map": "/ccd2023/static/js/main.e2fe5b8c.js.map",
     "787.7fca0ed8.chunk.js.map": "/ccd2023/static/js/787.7fca0ed8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c513cba8.css",
-    "static/js/main.9c416582.js"
+    "static/js/main.e2fe5b8c.js"
   ]
 }
