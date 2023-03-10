@@ -78,7 +78,7 @@ export const TEAM_ROUTE = '/team';
 export const VERIFY_EMAIL_ROUTE = '/verify-email';
 export const LOGIN_ROUTE = '/login';
 export const CFS_ROUTE = '/cfs';
-export const TICKET_ROUTE = '/tickets'
+export const TICKET_ROUTE = '/tickets';
 
 // button states
 export const ACTIVE = 'active';

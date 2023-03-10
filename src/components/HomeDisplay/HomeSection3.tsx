@@ -7,7 +7,7 @@ export default function HomeSection3(landingPageContent: LandingPageContent) {
         <p className="w-1/2 md:w-full text-right md:text-left">
           {landingPageContent?.subTitle2}
         </p>
-        <p className="no-shadow dark:text-white text-black">
+        <p className="no-shadow dark:text-white text-black ml-5 lg:ml-0">
           {landingPageContent?.description2}
         </p>
       </div>
@@ -15,7 +15,7 @@ export default function HomeSection3(landingPageContent: LandingPageContent) {
         <p className="w-1/2 md:w-full text-right md:text-left">
           {landingPageContent?.subTitle3}
         </p>
-        <p className="no-shadow dark:text-white text-black">
+        <p className="no-shadow dark:text-white text-black ml-5 lg:ml-0">
           {landingPageContent?.description3}
         </p>
       </div>
@@ -23,7 +23,7 @@ export default function HomeSection3(landingPageContent: LandingPageContent) {
         <p className="w-1/2 md:w-full text-right md:text-left">
           {landingPageContent?.subTitle4}
         </p>
-        <p className="no-shadow dark:text-white text-black">
+        <p className="no-shadow dark:text-white text-black ml-5 lg:ml-0">
           {landingPageContent?.description4}
         </p>
       </div>
@@ -31,7 +31,7 @@ export default function HomeSection3(landingPageContent: LandingPageContent) {
         <p className="w-1/2 md:w-full text-right md:text-left">
           {landingPageContent?.subTitle5}
         </p>
-        <p className="no-shadow dark:text-white text-black">
+        <p className="no-shadow dark:text-white text-black ml-5 lg:ml-0">
           {landingPageContent?.description5}
         </p>
       </div>
