@@ -32,7 +32,7 @@ export const BACKGROUND_ASSETS = '/ccd2023/images/background/';
 export const COMMUNITY_PARTNER_ASSETS = '/ccd2023/images/communityPartners/';
 export const SPONSORS_ASSETS = '/ccd2023/images/sponsors/';
 export const LOGO_ASSETS = '/ccd2023/images/logos/';
-export const DP_ASSETS = '/ccd2023/images/dp/';
+export const DP_ASSETS = '/ccd2023/images/dp/'; 
 
 // content types
 export type ContentTypes =
@@ -78,6 +78,7 @@ export const TEAM_ROUTE = '/team';
 export const VERIFY_EMAIL_ROUTE = '/verify-email';
 export const LOGIN_ROUTE = '/login';
 export const CFS_ROUTE = '/cfs';
+export const TICKETS_ROUTE = '/tickets';
 
 // button states
 export const ACTIVE = 'active';

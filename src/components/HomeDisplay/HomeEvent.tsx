@@ -103,7 +103,7 @@ const HomeEvent = () => {
             </span>
           </p>
 
-          <p className="text-xl mb-5 flex flex-col text-g-gray-8 dark:text-g-gray-4">
+          <div className="text-xl mb-5 flex flex-col text-g-gray-8 dark:text-g-gray-4">
             {homeRules?.date ? (
               <div className='text-[20px] py-1 text-google-yellow '>
                 <span className=''>{homeContent?.dateTitle + " : "}</span>
@@ -122,7 +122,7 @@ const HomeEvent = () => {
             ) : (
               ''
             )}
-          </p>
+          </div>
 
           <div className="flex flex-col lg:flex-row items-center justify-center min-w-3/4">
             <Link to={ticketButtonRule?.state === ACTIVE ? ticketButtonRule?.link : HOME_ROUTE}>

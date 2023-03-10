@@ -16,7 +16,6 @@ declare global {
 const Tickets = () => {
   const { loggedInState } = useContext(LoggedInContext);
   const [profileData] = useState<UserData>(loggedInState.user);
-  const [discountcode, setDiscountCode] = useState<string>('');
   const [ticket, setTicket] = useState<{ [key: string]: string | number }>({})
   const [buyTicket, setBuyTicket] = useState<boolean>(true);
   const [loader, setLoader] = useState<boolean>(true);
@@ -33,7 +32,7 @@ const Tickets = () => {
   })
 
   function handleBuy() {
-    window.popupWithParams('google-cloud-community-days-kolkata-2023', { emailid: profileData.email, firstname: profileData.profile.first_name, lastname: profileData.profile.last_name, cq1: profileData.profile.phone ? profileData.profile.phone : '', discountcode: discountcode })
+    window.popupWithParams('google-cloud-community-days-kolkata-2023', { emailid: profileData.email, firstname: profileData.profile.first_name, lastname: profileData.profile.last_name, cq1: profileData.profile.phone ? profileData.profile.phone : '' })
   }
 
   return (
@@ -47,7 +46,7 @@ const Tickets = () => {
             Buy Tickets
           </div>
 
-          <div className='flex text-white justify-center text-xl mt-5'>
+          <div className='flex text-white items-center justify-center text-xl text-justify m-5'>
             Please edit the fields in the popup if not accurate or incomplete and update profile from profile section
           </div>
 
@@ -94,7 +93,7 @@ const Tickets = () => {
             Tickets Bought
           </div>
 
-          <div className='flex text-white justify-center text-xl mt-5'>
+          <div className='flex flex-col text-white items-center justify-center text-xl m-5'>
             Please contact &nbsp;<a className='text-google-blue' href="mailto:gdgcloudkol@gmail.com">gdgcloudkol@gmail.com</a>&nbsp; for further queries
           </div>
 

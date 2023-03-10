@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { UserData } from '../assets/models/login/datatype';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserData, UserProfileData } from '../assets/models/login/datatype';
 import {
+  ACCESS_TOKEN_KEY,
   BACKGROUND_ASSETS,
   CFS_ROUTE,
   DP_ASSETS,
-  LOGIN_ROUTE
+  LOGIN_ROUTE,
+  TICKETS_ROUTE
 } from '../services/constants';
 import { countryCodeChoices } from '../services/countryCodes';
 import { ApiLogout, ApiPostProfile } from '../services/signin.service';
@@ -53,7 +55,6 @@ const Profile = () => {
 
   async function handleSubmit() {
     setSubmitButton(false);
-    console.log(socials);
     const payload = {
       ...formData,
       profile: { ...formData.profile, socials }
@@ -62,6 +63,25 @@ const Profile = () => {
     if (result.status === 200) {
       setEditMode(false);
       setSubmitButtonText('Submit');
+      const userData = loggedInState.user;
+      userData.profile.first_name = result.data.first_name;
+      userData.profile.last_name = result.data.last_name;
+      userData.profile.phone = result.data.phone;
+      userData.profile.college = result.data.college;
+      userData.profile.company = result.data.company;
+      userData.profile.country_code = result.data.country_code;
+      userData.profile.course = result.data.course;
+      userData.profile.food_choice = result.data.food_choice;
+      userData.profile.graduation_year = result.data.graduation_year;
+      userData.profile.role = result.data.role;
+      userData.profile.tsize = result.data.tsize;
+      userData.profile.socials = result.data.socials;
+      setLoggedInState({
+        accessToken: loggedInState.accessToken,
+        isLoggedIn: loggedInState.isLoggedIn,
+        refreshToken: loggedInState.refreshToken,
+        user: userData
+      })
     } else {
       setSubmitButtonText('Submit Again');
     }
@@ -148,15 +168,32 @@ const Profile = () => {
           src={BACKGROUND_ASSETS + 'victoria.svg'}
           alt=""
         />
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="-mt-12 flex flex-col justify-between items-start sm:-mt-16 sm:space-x-5">
-            <div className="flex">
-              <img
-                className="h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
-                src={DP_ASSETS + 'yoda-1.png'}
-                alt=""
-              />
+        <div className='flex flex-row mt-10 mb-10 lg:mt-0 lg:mb-0'>
+          <div className="max-w-5xl px-4 sm:px-6 lg:px-8 w-1/2">
+            <div className="-mt-12 flex flex-col justify-start items-start sm:-mt-16 sm:space-x-5">
+              <div className="flex">
+                <img
+                  className="h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
+                  src={DP_ASSETS + 'yoda-1.png'}
+                  alt=""
+                />
+              </div>
             </div>
+          </div>
+          <div className='flex lg:hidden md:hidden justify-center items center w-full'>
+            {!editMode &&
+              <Link to={TICKETS_ROUTE}>
+                <button
+                  className=" mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
+                text-white bg-transparent border font-medium text-1xl lg:text-2xl
+                transition ease-in-out duration-300
+                hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                cursor-pointer"
+                >
+                  Buy Tickets
+                </button>
+              </Link>
+            }
           </div>
         </div>
         <section className="mt-4 pb-12 px-4 sm:px-6 lg:px-8 space-y-5">
@@ -169,9 +206,8 @@ const Profile = () => {
                   disabled={!editMode}
                   placeholder="Name"
                   defaultValue={loggedInState.user?.profile?.first_name}
-                  className={`bg-transparent capitalize text-lg w-5/6 lg:w-full ${
-                    editMode ? EDIT_MODE_CLASS + ' pl-2 ' : ''
-                  }`}
+                  className={`bg-transparent capitalize text-lg w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : ''
+                    }`}
                   onChange={(e) => {
                     handleChange(e, 'user', 'first_name');
                   }}
@@ -181,9 +217,8 @@ const Profile = () => {
                   disabled={!editMode}
                   placeholder="Last Name"
                   defaultValue={loggedInState.user?.profile?.last_name}
-                  className={`bg-transparent capitalize text-lg w-5/6 lg:w-full ${
-                    editMode ? EDIT_MODE_CLASS + ' pl-2 ' : 'hidden'
-                  }`}
+                  className={`bg-transparent capitalize text-lg w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : 'hidden'
+                    }`}
                   onChange={(e) => {
                     handleChange(e, 'user', 'last_name');
                   }}
@@ -199,9 +234,9 @@ const Profile = () => {
                   placeholder="Username"
                   defaultValue={loggedInState.user?.username}
                   className={`bg-transparent text-lg ${editMode ? '' : ''}`}
-                  // onChange={(e) => {
-                  //   handleChange(e, 'user', 'username');
-                  // }}
+                // onChange={(e) => {
+                //   handleChange(e, 'user', 'username');
+                // }}
                 />
               </span>
             </div>
@@ -227,9 +262,8 @@ const Profile = () => {
                   return (
                     <div
                       key={i}
-                      className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${
-                        editMode ? EDIT_MODE_CLASS : ''
-                      }`}
+                      className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
+                        }`}
                     >
                       <label
                         htmlFor="name"
@@ -263,9 +297,8 @@ const Profile = () => {
                   return (
                     <div
                       key={i}
-                      className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${
-                        editMode ? EDIT_MODE_CLASS : ''
-                      }`}
+                      className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${editMode ? EDIT_MODE_CLASS : ''
+                        }`}
                     >
                       <label
                         htmlFor="name"
@@ -305,9 +338,8 @@ const Profile = () => {
               {submitButton ? (
                 <button
                   onClick={() => handleSubmit()}
-                  className={` ${
-                    editMode ? '' : 'hidden'
-                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                  className={` ${editMode ? '' : 'hidden'
+                    } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
                 >
                   {editMode ? submitButtonText : ''}
                 </button>
@@ -316,9 +348,8 @@ const Profile = () => {
               )}
               <button
                 onClick={() => nav(CFS_ROUTE)}
-                className={` ${
-                  editMode ? 'hidden' : ''
-                } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                className={` ${editMode ? 'hidden' : ''
+                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
               >
                 {editMode ? '' : 'Speaker Profile'}
               </button>
