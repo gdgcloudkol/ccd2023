@@ -3,12 +3,51 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Select, { MultiValue } from 'react-select';
 import { AccomodationRequired, EventData, MultiSelectOptionsType, SpeakerDataModel, TalkData, TechTypeData } from '../assets/models/speaker/datatype';
+import CFSSettings from '../components/CfsSettings/CFSSettings';
 import GoogleDotsLoader from "../components/Loader/GoogleDotsLoader";
 import Spinner from '../components/Spinner/Spinner';
 import { BACKGROUND_ASSETS, PROFILE_ROUTE } from '../services/constants';
 import { ApiEvent, ApiGetTalk, ApiSpeaker, ApiSpeakerList, ApiTalk, ApiTechnologies } from '../services/speaker.service';
 import { LoggedInContext } from '../services/state.service';
 
+const sampleData: TalkData[] = [
+  {
+    title: "Sample 1",
+    description: "This is Sample 1",
+    format: "",
+    overview: "short",
+    event: 0,
+    speakers: [1],
+    technologies: [1, 2, 3, 4]
+  },
+  {
+    title: "Sample 2",
+    description: "This is Sample 2",
+    format: "medium",
+    overview: "",
+    event: 0,
+    speakers: [1],
+    technologies: [1, 2, 3, 4]
+  },
+  {
+    title: "Sample 3",
+    description: "This is Sample 3",
+    format: "short",
+    overview: "",
+    event: 0,
+    speakers: [1],
+    technologies: [1, 2, 3, 4]
+  },
+  {
+    title: "Sample 4",
+    description: "This is Sample 4",
+    format: "long",
+    overview: "",
+    event: 0,
+    speakers: [1],
+    technologies: [1, 2, 3, 4]
+  }
+]
 
 const CFS = () => {
   const { loggedInState } = useContext(LoggedInContext);
@@ -178,11 +217,12 @@ const CFS = () => {
             <div className="flex-1 flex flex-col justify-center pt-8 pb-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
               {
                 isSpeaker ?
-                  isSubmitted ? <div className='mx-auto flex items-center flex-col w-full max-w-sm lg:w-96 text-center'>
-                    <div>
+                  isSubmitted ? <div className=' flex items-center flex-col w-full justify-center'>
+                    <div className=' w-full'>
                       <h2 className="mt-6 py-10 text-2xl  text-gray-900 dark:text-gray-100 tracking-tight">
                         You have submitted a talk for GCCD Kolkata 2023. Your proposal is under review
                       </h2>
+                      <CFSSettings sampleData={sampleData} />
                     </div>
                     <button
                       type="submit"
@@ -444,7 +484,7 @@ const CFS = () => {
                     </div>
               }
             </div>
-            {!isLoading && <div className="hidden lg:block relative w-0 flex-1">
+            {!isLoading && !isSubmitted && <div className="hidden lg:block relative w-0 flex-1">
               <img
                 className="absolute inset-0 h-full w-full object-fill"
                 src={BACKGROUND_ASSETS + `victoria.svg`}

@@ -5,9 +5,18 @@ import { MultiSelectOptionsType } from '../../assets/models/speaker/datatype';
 
 interface SetModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    formData: Sample
 }
-
-const CfsModal: React.FC<SetModal> = ({ setModalOpen }) => {
+interface Sample {
+    title: string;
+    description: string;
+    overview: string;
+    event: number;
+    format: string,
+    speakers: number[]
+    technologies: number[]
+}
+const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData }) => {
     const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
     const [topics_of_expertise, setTopics_of_expertise] = useState<number[]>([]);
     const [technologies, setTechnologied] = useState<number[]>([]);
@@ -38,7 +47,7 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen }) => {
                                         Title
                                     </label>
                                     <div className="mt-1">
-                                        <input name="title" type="text" autoComplete="" required id="title"
+                                        <input name="title" defaultValue={formData.event} type="text" autoComplete="" required id="title"
                                             className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
                                   ${fieldErrors["title"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
 
