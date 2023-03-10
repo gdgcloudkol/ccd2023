@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { TownscriptProfileData, UserData } from '../assets/models/login/datatype';
 import { CurrentTheme } from '../services/common.service';
-import { DARK, PROFILE_ROUTE } from '../services/constants';
+import { DARK, PROFILE_ROUTE, TICKET_PURCHASED_KEY } from '../services/constants';
 import { LoggedInContext } from '../services/state.service';
 import { ApiViewTickets } from '../services/ticket.service';
 import { Link } from 'react-router-dom';
@@ -28,10 +28,9 @@ const Tickets = () => {
   const [buyTicket, setBuyTicket] = useState<boolean>(true);
   const [loader, setLoader] = useState<boolean>(true);
   const [editMode, setEditMode] = useState<boolean>(false)
-  const [submitButton, setSubmitButton] = useState<boolean>(true);
   const [editFormdata, setEditFormData] = useState<EditFormData>({
-    first_name: loggedInState.user.first_name,
-    last_name: loggedInState.user.last_name,
+    first_name: loggedInState.user.profile.first_name,
+    last_name: loggedInState.user.profile.last_name,
     phone: loggedInState.user.profile.phone
   })
 
@@ -39,24 +38,36 @@ const Tickets = () => {
 
   const handleEdit = async () => {
     console.log(editFormdata)
-    // let result = await ApiPostProfile(editFormdata)
+    const userData = { ...loggedInState.user };
+    userData.profile.first_name = editFormdata.first_name;
+    userData.profile.last_name = editFormdata.last_name + '';
+    userData.profile.phone = editFormdata.phone;
+    console.log(userData);
+    let result = await ApiPostProfile(userData)
+    console.log(result);
+    if (result.status === 200) {
+      setEditMode(!editMode);
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let current = e.currentTarget.name
-    setEditFormData({ ...editFormdata, [current]: e.currentTarget.value })
-    console.log(editFormdata)
+    let current = e.currentTarget.name;
+    if (e.currentTarget.value && e.currentTarget.value !== '')
+      setEditFormData({ ...editFormdata, [current]: e.currentTarget.value })
   }
+
   useEffect(() => {
     Promise.all([ApiViewTickets()])
       .then(([data]) => {
         if (data.data.length > 0) {
+          sessionStorage.setItem(TICKET_PURCHASED_KEY, 'true');
           setBuyTicket(false);
           setTicket(data.data[0]);
         }
         setLoader(false);
       })
-  })
+  }, [ticket])
+
   function handleBuy() {
     window.popupWithParams('google-cloud-community-days-kolkata-2023', { emailid: profileData.email, firstname: profileData.profile.first_name, lastname: profileData.profile.last_name, cq1: profileData.profile.phone ? profileData.profile.phone : '' })
   }
@@ -72,11 +83,11 @@ const Tickets = () => {
             Buy Tickets
           </div>
 
-          <div className='flex text-white items-center justify-center text-xl text-justify m-5'>
-            Please edit the fields in the popup if not accurate or incomplete and update profile from profile section
+          <div className='flex text-white justify-center text-xl text-justify m-5'>
+            Please edit the fields if not accurate or incomplete and update profile from profile section
           </div>
-
-          <div className='flex w-full text-white items-center justify-center m-auto mt-10 space-x-4'>
+          {/*<hr className='border-white w-5/6' />*/}
+          <div className='flex w-full text-white items-center justify-center m-auto mt-5 space-x-4'>
             <div className='flex flex-col items-center justify-center '>
               <div className=' flex w-full items-center my-3 '>
                 <div className=" mr-5">Email&nbsp;Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -132,39 +143,45 @@ const Tickets = () => {
           </div>
 
           <div className="flex flex-col items-center">
-            <button onClick={handleBuy} type="button"
-              className={`py-2 mt-8 px-10 rounded-3xl h-fit w-fit 
-                    text-white bg-transparent border font-medium text-1xl lg:text-2xl
+            <div className='mt-5 flex items-center space-x-4'>
+              {!editMode &&
+                <button onClick={handleBuy} type="button"
+                  className={`py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
+                    text-white bg-transparent border font-medium text-1xl lg:text-xl
                     transition ease-in-out duration-300
                     hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                    cursor-pointer'}
+                    cursor-pointer
                 `}>
-              Buy
-            </button>
-            <div className='mt-5 flex items-center'>
+                  Buy Ticket
+                </button>
+              }
               <button
                 onClick={() => {
-                  setEditMode(true)
-                  setSubmitButton(true)
+                  setEditMode(!editMode)
                 }}
-                className=" mx-3 items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
+                className=" py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
+                text-white bg-transparent border font-medium text-1xl lg:text-xl
+                transition ease-in-out duration-300
+                hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                cursor-pointer"
               >
-                {editMode ? 'Cancel' : 'Edit Profile'}
+                {editMode ? 'Cancel' : 'Update Details'}
               </button>
-              {submitButton && (
+              {editMode && (
                 <button
                   onClick={() => {
                     handleEdit()
-                    setEditMode(false)
-                    setSubmitButton(false)
                   }}
                   className={` ${editMode ? '' : 'hidden'
-                    } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                    } py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
+                    text-white bg-transparent border font-medium text-1xl lg:text-xl
+                    transition ease-in-out duration-300
+                    hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                    cursor-pointer`}
                 >
-                  {editMode ? "submit" : <Spinner color="red" />}
+                  {editMode ? "Submit" : <Spinner color="red" />}
                 </button>
               )}
-
             </div>
           </div>
         </div>

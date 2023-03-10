@@ -1,19 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserData, UserProfileData } from '../assets/models/login/datatype';
-import {
-  ACCESS_TOKEN_KEY,
-  BACKGROUND_ASSETS,
-  CFS_ROUTE,
-  DP_ASSETS,
-  LOGIN_ROUTE,
-  TICKETS_ROUTE
-} from '../services/constants';
+import { UserData } from '../assets/models/login/datatype';
+import SocialProfile from '../components/SocialProfile/SocialProfile';
+import Spinner from '../components/Spinner/Spinner';
+import { BACKGROUND_ASSETS, CFS_ROUTE, DP_ASSETS, LOGIN_ROUTE, TICKET_ROUTE, TICKET_PURCHASED_KEY } from '../services/constants';
 import { countryCodeChoices } from '../services/countryCodes';
 import { ApiLogout, ApiPostProfile } from '../services/signin.service';
+import { ApiSpeakerList } from '../services/speaker.service';
 import { LoggedInContext } from '../services/state.service';
-import Spinner from '../components/Spinner/Spinner';
-import SocialProfile from '../components/SocialProfile/SocialProfile';
+import { ApiViewTickets } from '../services/ticket.service';
 
 const Profile = () => {
   const nav = useNavigate();
@@ -21,14 +16,28 @@ const Profile = () => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [submitButtonText, setSubmitButtonText] = useState<string>('Submit');
   const [submitButton, setSubmitButton] = useState<boolean>(true);
-  const [formData, setFormData] = useState<UserData>(
-    loggedInState.user as UserData
-  );
+  const [formData, setFormData] = useState<UserData>(loggedInState.user as UserData);
   const [socials, setSocials] = useState(loggedInState.user?.profile?.socials);
+  const [buyTicket, setBuyTicket] = useState<boolean>(true);
+  const [dp, setDp] = useState<1 | 2 | 3>(1);
 
   useEffect(() => {
     if (!loggedInState.isLoggedIn) nav(LOGIN_ROUTE);
   }, [loggedInState, nav]);
+
+  useEffect(() => {
+    Promise.all([ApiViewTickets(), ApiSpeakerList()])
+      .then(([data, speaker]) => {
+        if (data.data.length > 0) {
+          sessionStorage.setItem(TICKET_PURCHASED_KEY, 'true');
+          setDp(2);
+          setBuyTicket(false);
+        }
+        if (speaker.data.length > 0) {
+          setDp(3);
+        }
+      })
+  }, [])
 
   const logout = async () => {
     await ApiLogout(setLoggedInState, nav);
@@ -174,7 +183,7 @@ const Profile = () => {
               <div className="flex">
                 <img
                   className="h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
-                  src={DP_ASSETS + 'yoda-1.png'}
+                  src={DP_ASSETS + 'yoda-' + dp + '.png'}
                   alt=""
                 />
               </div>
@@ -182,7 +191,7 @@ const Profile = () => {
           </div>
           <div className='flex lg:hidden md:hidden justify-center items center w-full'>
             {!editMode &&
-              <Link to={TICKETS_ROUTE}>
+              <Link to={TICKET_ROUTE}>
                 <button
                   className=" mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
                 text-white bg-transparent border font-medium text-1xl lg:text-2xl
@@ -190,7 +199,7 @@ const Profile = () => {
                 hover:shadow-xl hover:scale-105 hover:ease-in duration-300
                 cursor-pointer"
                 >
-                  Buy Tickets
+                  {buyTicket ? 'Buy Ticket' : 'View TIcket'}
                 </button>
               </Link>
             }
