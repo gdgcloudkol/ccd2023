@@ -1,4 +1,4 @@
-import React from "react"
+import { useContext } from "react"
 import { ThemeContext } from "../components/Theme/ThemeContext"
 import { DARK, LIGHT, THEME_KEY } from "./constants"
 
@@ -23,7 +23,7 @@ export const rawRandomGoogleColor = () => {
 }
 
 export const CurrentTheme = () => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   if (theme === DARK) return DARK;
   return LIGHT;
 }

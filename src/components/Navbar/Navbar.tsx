@@ -1,27 +1,27 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useContext, useEffect, useState } from 'react';
-import { FeatureRule } from '../../assets/models/datatype';
+import { FeatureRule, NavbarRule } from '../../assets/models/datatype';
 import { NavbarContent, NavbarItemContent } from '../../assets/models/navbar/datatype';
-import { NavbarRule } from '../../assets/models/datatype';
 import { CurrentTheme } from '../../services/common.service';
-import { DARK, LOGO_ASSETS, NAVBAR_CONTENT_KEY } from '../../services/constants';
+import { DARK, HOME_ROUTE, LOGO_ASSETS, NAVBAR_CONTENT_KEY } from '../../services/constants';
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
 import { LoggedInContext } from '../../services/state.service';
-import Toggle from '../Theme/ThemeToggle';
+// import Toggle from '../Theme/ThemeToggle';
+import { useNavigate } from 'react-router-dom';
 import Navlink from './Navlink';
 
 const NavbarPage = () => {
+  // const nav = useNavigate();
   const { loggedInState } = useContext(LoggedInContext);
   const [content, setContent] = useState<NavbarContent>({} as NavbarContent);
-  const { isLoggedIn } = loggedInState;
 
   useEffect(() => {
     getContent<NavbarContent>(NAVBAR_CONTENT_KEY).then((data: void | NavbarContent) => {
       if (data) setContent(data);
     });
-  }, [isLoggedIn]);
+  });
 
   const [navbarRule, setFeature] = useState<NavbarRule>({} as NavbarRule);
 
@@ -41,9 +41,9 @@ const NavbarPage = () => {
         setDisabledRoutes(data.disabledRoutes);
       }
     });
-  }, [loggedInState]);
+  });
 
-  if (isLoggedIn) {
+  if (loggedInState.isLoggedIn) {
     navigation.navbar_additional = navbarRule?.navbarSpatialLoggedIn
       ? content?.navbarSpatialLoggedIn
       : [];

@@ -1,13 +1,13 @@
+import { Disclosure } from "@headlessui/react";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FeatureRule } from "../../assets/models/datatype";
 import { HomeButtonContent, HomeCFSContent, HomeEventContent } from "../../assets/models/home/datatype";
 import { CurrentTheme } from "../../services/common.service";
-import { ACTIVE, DARK, HOME_CONTENT_KEY, INACTIVE } from "../../services/constants";
+import { ACTIVE, DARK, HOME_CONTENT_KEY, HOME_ROUTE, INACTIVE } from "../../services/constants";
 import { getContent } from "../../services/content.service";
 import { getFeature } from "../../services/feature.service";
 import { LoggedInContext } from "../../services/state.service";
-import { Disclosure } from "@headlessui/react";
 
 export default function HomeCFS() {
   const { loggedInState } = useContext(LoggedInContext)
@@ -33,8 +33,8 @@ export default function HomeCFS() {
         setCfsRule(data.home?.cfs);
         for (let i of buttonContent) {
           if (
-            (loggedInState && i?.id === data.home?.cfsButtonStateLogin) ||
-            (!loggedInState && i?.id === data.home?.cfsButtonStateNotLogin)
+            (loggedInState.isLoggedIn && i?.id === data.home?.cfsButtonStateLogin) ||
+            (!loggedInState.isLoggedIn && i?.id === data.home?.cfsButtonStateNotLogin)
           ) {
             i.state = INACTIVE
             if (
@@ -67,7 +67,7 @@ export default function HomeCFS() {
           {
             cfsRule ? (
               <Disclosure>
-                <Link to={buttonDisplay?.state === ACTIVE ? buttonDisplay?.link : '/'}>
+                <Link to={buttonDisplay?.state === ACTIVE ? buttonDisplay?.link : HOME_ROUTE}>
                   <button
                     className={`py-2 px-10 rounded-3xl h-fit w-fit mt-5 lg:mt-0
                                 text-white bg-google-red border font-medium text-1xl lg:text-2xl

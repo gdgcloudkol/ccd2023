@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
-import { LoginData, SignInPayload, SignUpPayload } from '../assets/models/login/datatype';
-import { ACCESS_TOKEN_KEY, BASE_AUTH_URI, BASE_EMAIL_RESEND_URL, BASE_EMAIL_VERIFICATION_URL, BASE_LOGIN_URI, BASE_LOGOUT_URI, BASE_REGISTRATION_URI, HOME_ROUTE, LOGGED_IN_KEY } from './constants';
 import { NavigateFunction } from 'react-router-dom';
+import { LoginData, SignInPayload, SignUpPayload, UserData } from '../assets/models/login/datatype';
+import { ACCESS_TOKEN_KEY, BASE_AUTH_USER_URI, BASE_EMAIL_RESEND_URL, BASE_EMAIL_VERIFICATION_URL, BASE_LOGIN_URI, BASE_LOGOUT_URI, BASE_PASSWORD_RESET, BASE_PASSWORD_RESET_CONFIRM, BASE_REGISTRATION_URI, BASE_USERS_UPDATE_URI, HOME_ROUTE, LOGGED_IN_KEY } from './constants';
 import { LoggedInState } from './state.service';
 
 export async function ApiSignIn(
@@ -33,7 +33,7 @@ export async function ApiSignup(
   try {
     const res = await axios.post(BASE_REGISTRATION_URI, payload);
     if (res?.status !== 200) {
-      throw "Signup Error";
+      throw new Error('Signup Error');
     }
     return res;
   } catch (e: any) {
@@ -44,18 +44,19 @@ export async function ApiSignup(
 export async function ApiLogout(
   setLoggedInState: React.Dispatch<React.SetStateAction<LoggedInState>>,
   navigate: NavigateFunction
-) {
+): Promise<AxiosResponse> {
   try {
     const res = await axios.get(BASE_LOGOUT_URI);
     if (res?.status !== 200) {
-      throw "Logout Error";
+      throw new Error('Logout Error');
     }
     localStorage.removeItem(LOGGED_IN_KEY);
     localStorage.removeItem(ACCESS_TOKEN_KEY);
     setLoggedInState({
       accessToken: '',
       refreshToken: '',
-      isLoggedIn: false
+      isLoggedIn: false,
+      user: {} as UserData
     });
     navigate(HOME_ROUTE);
     return res;
@@ -64,12 +65,22 @@ export async function ApiLogout(
   }
 }
 
-export async function ApiFetchProfile(accessToken: string) {
+export async function ApiFetchProfile(): Promise<AxiosResponse> {
   try {
-    const headers = {
-      Authorization: `Bearer ${accessToken}`
-    };
-    const res = await axios.get(`${BASE_AUTH_URI}/user/`, { headers });
+    const headers = { Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}` };
+    const res = await axios.get(BASE_AUTH_USER_URI, { headers });
+    return res;
+  } catch (e: any) {
+    return e.response;
+  }
+}
+
+export async function ApiPostProfile(
+  payload: UserData
+): Promise<AxiosResponse> {
+  try {
+    const headers = { Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}` };
+    const res = await axios.post(BASE_USERS_UPDATE_URI, { ...payload.profile }, { headers });
     return res;
   } catch (e: any) {
     return e.response;
@@ -83,7 +94,7 @@ export async function ApiEmailVerification(
     let finalUrl = `${BASE_EMAIL_VERIFICATION_URL}${payload}`;
     const res = await axios.get(finalUrl);
     if (res?.status !== 200) {
-      throw "Verification Error";
+      throw new Error('Verification Error');
     }
     return res;
   } catch (e: any) {
@@ -97,10 +108,43 @@ export async function ApiResendVerification(
   try {
     const res = await axios.post(BASE_EMAIL_RESEND_URL, { email: payload });
     if (res?.status !== 200) {
-      throw "Resend Verification Error";
+      throw new Error('Resend Verification Error');
     }
     return res;
   } catch (e: any) {
     return e.response;
   }
 };
+
+export async function ApiResetPasswordLink(
+  payload: string
+): Promise<AxiosResponse> {
+  try {
+    const res = await axios.post(BASE_PASSWORD_RESET, { email: payload });
+    if (res?.status !== 200) {
+      throw new Error('Password Reset Error');
+    }
+    return res;
+  } catch (e: any) {
+    return e.response;
+  }
+}
+
+export async function ApiResetPasswordConfirmLink(
+  payload: {
+    new_password1: string,
+    new_password2: string,
+    token: string,
+    uid: string
+  }
+): Promise<AxiosResponse> {
+  try {
+    const res = await axios.post(BASE_PASSWORD_RESET_CONFIRM, payload);
+    if (res?.status !== 200) {
+      throw new Error('Password Reset Error');
+    }
+    return res;
+  } catch (e: any) {
+    return e.response;
+  }
+}

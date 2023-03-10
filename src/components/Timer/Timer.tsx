@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 const Timer = () => {
   const getTime = (_time: string) => {
@@ -17,7 +17,7 @@ const Timer = () => {
 
   let eventDate = getTime('2023/05/07');
 
-  const [parsedTime, setParsed] = React.useState({
+  const [parsedTime, setParsed] = useState({
     day: eventDate.days,
     hour: eventDate.hours,
     minute: eventDate.minutes,
@@ -34,9 +34,10 @@ const Timer = () => {
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const tick = setInterval(() => converter(), 1000);
     return () => clearInterval(tick);
+    // eslint-disable-next-line
   }, [parsedTime]);
 
   return (

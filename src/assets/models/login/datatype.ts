@@ -1,18 +1,24 @@
-interface UserProfileData {
+export interface UserProfileData {
+  first_name: string;
+  last_name: string;
   college?: string;
   company?: string;
   country_code: string;
   course?: string;
   food_choice: string;
-  graduation_year: number;
+  graduation_year: string;
   phone?: string;
   role: string;
   tsize: string;
+  socials: {
+    [key: string]: string;
+  };
 }
 
 export interface UserData {
   email: string;
   first_name: string;
+  last_name: string;
   profile: UserProfileData;
   username: string;
 }
@@ -58,4 +64,14 @@ export interface SignInContent {
   forgotPassword: string;
   forgotPasswordLink: string;
   button: SigninFieldButtonContent[];
+}
+
+export interface GenericJson { [key: string]: string | undefined | number }
+
+export interface TownscriptProfileData extends GenericJson {
+  firstname: string;
+  lastname: string;
+  emailid: string;
+  cq1: string;
+  discountcode?: string;
 }

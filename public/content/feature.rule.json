@@ -26,14 +26,17 @@
   },
   "disabledRoutes": [
     "/dashboard",
-    "/termsAndCondition"
+    "/termsAndCondition",
+    "/team",
+    "/speakers",
+    "/schedule"
   ],
   "disabledPartnerTitles": [
-    "Also Backed By"
+    "Also Backed By",
+    "Silver Sponsor",
+    "Gold Sponsor"
   ],
-  "disabledPartners": [
-    "sessonize"
-  ],
+  "disabledPartners": [],
   "disabledCommunityPartners": [
     "h4b",
     "wtm",
@@ -61,10 +64,8 @@
   ],
   "home": {
     "ticketButtonStateNotLogin": "gs",
-    "ticketButtonStateLogin": "cs",
+    "ticketButtonStateLogin": "bt",
     "disabledTicketButton": [
-      "bt",
-      "vt",
       "rt"
     ],
     "cfsButtonStateNotLogin": "cfsgs",
@@ -72,11 +73,11 @@
     "disabledCfsButton": [
       "cfsc"
     ],
-    "timer": false,
+    "timer": true,
     "cfs": true,
-    "location": false,
-    "date": false,
-    "showCommunityPartners": true,
+    "location": true,
+    "date": true,
+    "showCommunityPartners": false,
     "showSponsors": true
   },
   "disabledFooterContent": {

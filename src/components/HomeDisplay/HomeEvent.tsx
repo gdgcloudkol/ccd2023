@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import { FeatureRule, HomeRule } from '../../assets/models/datatype';
 import { HomeButtonContent, HomeEventContent } from '../../assets/models/home/datatype';
 import { CurrentTheme, randomTextGoogleColor } from '../../services/common.service';
-import { ACTIVE, DARK, HOME_CONTENT_KEY, INACTIVE, LOGO_ASSETS } from '../../services/constants';
+import { ACTIVE, DARK, HOME_CONTENT_KEY, HOME_ROUTE, INACTIVE, LOGO_ASSETS } from '../../services/constants';
 import { getContent } from '../../services/content.service';
 import { getFeature } from '../../services/feature.service';
 import { LoggedInContext } from '../../services/state.service';
-import { Disclosure } from '@headlessui/react';
 
 const HomeEvent = () => {
   const { loggedInState } = useContext(LoggedInContext);
@@ -34,9 +33,9 @@ const HomeEvent = () => {
           if (homeContent?.ticketButton)
             for (let i of homeContent?.ticketButton) {
               if (
-                (loggedInState &&
+                (loggedInState.isLoggedIn &&
                   i?.id === data.home?.ticketButtonStateLogin) ||
-                (!loggedInState &&
+                (!loggedInState.isLoggedIn &&
                   i?.id === data.home?.ticketButtonStateNotLogin)
               ) {
                 i.state = INACTIVE;
@@ -53,8 +52,8 @@ const HomeEvent = () => {
           if (homeContent?.cfsButton)
             for (let i of homeContent?.cfsButton) {
               if (
-                (loggedInState && i.id === data.home?.cfsButtonStateLogin) ||
-                (!loggedInState && i.id === data.home?.cfsButtonStateNotLogin)
+                (loggedInState.isLoggedIn && i.id === data.home?.cfsButtonStateLogin) ||
+                (!loggedInState.isLoggedIn && i.id === data.home?.cfsButtonStateNotLogin)
               ) {
                 i.state = INACTIVE;
                 if (
@@ -104,28 +103,29 @@ const HomeEvent = () => {
             </span>
           </p>
 
-          <p className="text-xl mb-5 text-g-gray-8 dark:text-g-gray-4">
+          <div className="text-xl mb-5 flex flex-col text-g-gray-8 dark:text-g-gray-4">
             {homeRules?.date ? (
-              <>
-                {homeContent?.dateTitle + ' : ' + homeContent.date}
-                <sup className="mr-0.5"></sup> &nbsp;
-              </>
+              <div className='text-[20px] py-1 text-google-yellow '>
+                <span className=''>{homeContent?.dateTitle + " : "}</span>
+                {homeContent.date}
+              </div>
             ) : (
               ''
             )}
 
             {homeRules?.location ? (
-              <>
-                {homeContent?.locationTitle + ' : ' + homeContent.location}
-                <sup className="mr-0.5"></sup>
-              </>
+              <div className=' flex py-1 text-[20px] text-google-yellow '>
+                {homeContent?.locationTitle + " : "} &nbsp;
+                <a className='block md:hidden  ' href={homeContent.location} rel="noreferrer" target={'_blank'} >BBCC</a>
+                <a className=' hidden    md:block lg:block hover:underline ' href={homeContent.location} rel="noreferrer" target={'_blank'} >{homeContent.locationName}</a>
+              </div>
             ) : (
               ''
             )}
-          </p>
+          </div>
 
           <div className="flex flex-col lg:flex-row items-center justify-center min-w-3/4">
-            <Link to={ticketButtonRule?.state === ACTIVE ? ticketButtonRule?.link : '/'}>
+            <Link to={ticketButtonRule?.state === ACTIVE ? ticketButtonRule?.link : HOME_ROUTE}>
               <button type="button"
                 className={`py-2 px-10 rounded-3xl h-fit w-fit 
                             text-white bg-transparent border font-medium text-1xl lg:text-2xl
@@ -138,8 +138,8 @@ const HomeEvent = () => {
                 {ticketButtonRule?.title}
               </button>
             </Link>
-            {loggedInState ? (
-              <Link to={cfsButtonRule?.state === ACTIVE ? cfsButtonRule?.link : '/'}>
+            {loggedInState.isLoggedIn ? (
+              <Link to={cfsButtonRule?.state === ACTIVE ? cfsButtonRule?.link : HOME_ROUTE}>
                 <button type="button"
                   className={`py-2 px-10 rounded-3xl h-fit w-fit mt-5 lg:ml-10 lg:mt-0
                               text-white bg-google-red border font-medium text-1xl lg:text-2xl
@@ -156,7 +156,7 @@ const HomeEvent = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

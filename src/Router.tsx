@@ -19,6 +19,7 @@ import { LoggedInContext } from './services/state.service';
 import Footer from './components/Footer/Footer';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import VerifyEmail from './pages/VerifyEmail';
+import ResetPassword from './pages/ResetPassword';
 
 const ScrollToTop = ({ children }: { children: ReactElement }) => {
   const location = useLocation();
@@ -79,13 +80,19 @@ const Router = () => {
           {navRule?.every((item) => '/verifyEmail' !== item) ? (
             <Route path="/verify-email/:key" element={<VerifyEmail />} />
           ) : null}
-          {navRule?.every((item) => '/profile' !== item) && loggedInState ? (
+          {navRule?.every((item) => '/resetPassword' !== item) ? (
+            <Route path="/reset-password/" element={<ResetPassword />} />
+          ) : null}
+          {navRule?.every((item) => '/resetPassword' !== item) ? (
+            <Route path="/reset-password/:uid/:token" element={<ResetPassword />} />
+          ) : null}
+          {navRule?.every((item) => '/profile' !== item) && loggedInState.isLoggedIn ? (
             <Route path="/profile" element={<Profile />} />
           ) : null}
-          {navRule?.every((item) => '/tickets' !== item) && loggedInState ? (
+          {navRule?.every((item) => '/tickets' !== item) && loggedInState.isLoggedIn ? (
             <Route path="/tickets" element={<Tickets />} />
           ) : null}
-          {navRule?.every((item) => '/dashboard' !== item) && loggedInState ? (
+          {navRule?.every((item) => '/dashboard' !== item) && loggedInState.isLoggedIn ? (
             <Route path="/dashboard" element={<Dashboard />} />
           ) : null}
           <Route path="/*" element={<NotFound />} />
