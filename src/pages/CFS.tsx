@@ -222,7 +222,7 @@ const CFS = () => {
                               <div className="mt-1">
                                 <input name="title" type="text" autoComplete="" required id="title"
                                   className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
-                          ${fieldErrors["title"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
+                                  ${fieldErrors["title"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
 
                                 />
                               </div>
@@ -239,7 +239,7 @@ const CFS = () => {
                               <div className="mt-1">
                                 <input name="description" type="text" autoComplete="" required id="description"
                                   className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
-                          ${fieldErrors["description"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
+                                  ${fieldErrors["description"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
 
                                 />
                               </div>
@@ -256,7 +256,7 @@ const CFS = () => {
                               <div className="mt-1">
                                 <input name="overview" type="text" autoComplete="" required id="overview"
                                   className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
-                          ${fieldErrors["overview"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
+                                  ${fieldErrors["overview"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
 
                                 />
                               </div>
