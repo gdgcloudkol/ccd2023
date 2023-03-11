@@ -199,7 +199,7 @@ const Profile = () => {
                 hover:shadow-xl hover:scale-105 hover:ease-in duration-300
                 cursor-pointer"
                 >
-                  {buyTicket ? 'Buy Ticket' : 'View TIcket'}
+                  {buyTicket ? 'Buy Ticket' : 'View Ticket'}
                 </button>
               </Link>
             }
