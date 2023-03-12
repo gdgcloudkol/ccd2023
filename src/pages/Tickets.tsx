@@ -105,7 +105,7 @@ const Tickets = () => {
                   type="text"
                   onChange={(e) => handleChange(e)}
                   disabled={!editMode}
-                  placeholder="Username"
+                  placeholder="First Name"
                   defaultValue={profileData.profile.first_name}
                   className={inputBoxStyle}
                 />
@@ -117,7 +117,7 @@ const Tickets = () => {
                   type="text"
                   onChange={(e) => handleChange(e)}
                   disabled={!editMode}
-                  placeholder="Username"
+                  placeholder="Last Name"
                   defaultValue={profileData.profile.last_name}
                   className={inputBoxStyle}
                 />
@@ -129,7 +129,7 @@ const Tickets = () => {
                   name='phone'
                   onChange={(e) => handleChange(e)}
                   disabled={!editMode}
-                  placeholder="Username"
+                  placeholder="Phone Number"
                   defaultValue={
                     profileData.profile.phone
                   }

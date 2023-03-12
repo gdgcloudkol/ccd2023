@@ -205,33 +205,47 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className='flex lg:hidden md:hidden justify-center items center w-full'>
-            {!editMode &&
-              <Link to={TICKET_ROUTE}>
-                <button
-                  className=" mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
+          <div className='flex justify-center items center w-full'>
+            {
+              !editMode &&
+              <>
+                <Link to={TICKET_ROUTE}>
+                  <button
+                    className="mr-5 py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
+                text-white border font-medium text-1xl lg:text-2xl
+                transition ease-in-out duration-300
+                hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                cursor-pointer"
+                  >
+                    {buyTicket ? 'Buy Ticket' : 'View Ticket'}
+                  </button>
+                </Link>
+                <Link to={TICKET_ROUTE}>
+                  <button
+                    className="mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
                 text-white bg-transparent border font-medium text-1xl lg:text-2xl
                 transition ease-in-out duration-300
                 hover:shadow-xl hover:scale-105 hover:ease-in duration-300
                 cursor-pointer"
-                >
-                  {buyTicket ? 'Buy Ticket' : 'View Ticket'}
-                </button>
-              </Link>
+                  >
+                    {buyTicket ? 'Edit Profile' : 'Edit Profile'}
+                  </button>
+                </Link>
+              </>
             }
           </div>
         </div>
         <section className="mt-4 pb-12 px-4 sm:px-6 lg:px-8 space-y-5">
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-col items-start dark:text-white text-g-gray-8 pb-0 lg:pb-5 space-y-2">
-              <span className="flex flex-row text-lg space-x-2">
+              <span className="flex flex-row text-2xl space-x-2">
                 Hi,&nbsp;
                 <input
                   type="text"
                   disabled={!editMode}
                   placeholder="Name"
                   defaultValue={loggedInState.user?.profile?.first_name}
-                  className={`bg-transparent capitalize text-lg w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : ''
+                  className={`bg-transparent capitalize text-2xl w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : ''
                     }`}
                   onChange={(e) => {
                     handleChange(e, 'user', 'first_name');
@@ -242,7 +256,7 @@ const Profile = () => {
                   disabled={!editMode}
                   placeholder="Last Name"
                   defaultValue={loggedInState.user?.profile?.last_name}
-                  className={`bg-transparent capitalize text-lg w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : 'hidden'
+                  className={`bg-transparent capitalize text-2xl w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : 'hidden'
                     }`}
                   onChange={(e) => {
                     handleChange(e, 'user', 'last_name');
@@ -250,7 +264,7 @@ const Profile = () => {
                 />
               </span>
 
-              <span className="flex flex-row font-bold text-lg">
+              <span className="flex flex-row font-bold text-2xl">
                 <span>@</span>
                 {/* no provision to change username as of now */}
                 <input
@@ -258,10 +272,7 @@ const Profile = () => {
                   disabled
                   placeholder="Username"
                   defaultValue={loggedInState.user?.username}
-                  className={`bg-transparent text-lg ${editMode ? '' : ''}`}
-                // onChange={(e) => {
-                //   handleChange(e, 'user', 'username');
-                // }}
+                  className={`bg-transparent ${editMode ? '' : ''}`}
                 />
               </span>
             </div>
