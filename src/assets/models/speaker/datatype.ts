@@ -41,15 +41,16 @@ export interface MultiSelectOptionsType {
 }
 
 export interface TalkData {
-    id?: number;
-    title: string;
     added_at?: string;
     description: string;
-    format: string;
-    overview: string;
     event: number;
+    format: string;
+    id?: number;
+    overview: string;
     speakers: number[];
+    status?: string;
     technologies: number[];
+    title: string;
 }
 
 export interface EventData {

@@ -62,8 +62,8 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData, technologiesList
     return ReactDOM.createPortal(
         <>
             <div className="z-[99] backdrop-blur-md fixed pl-10 pr-10 md:w-full w-full mx-auto lg:w-full top-0 bottom-0 flex justify-center items-center">
-                <div className="relative  bg-white rounded-lg shadow dark:bg-gray-700 overflow-y-scroll flex items-center justify-center  w-full md:w-3/6 lg:w-2/6 h-5/6 ">
-                    <div className="relative mt-52 md:mt-30 lg:mt-[16rem] md:w-full">
+                <div className="relative  bg-white rounded-lg shadow dark:bg-gray-700 overflow-y-scroll flex items-center justify-center w-full md:w-3/6 lg:w-2/6 h-5/6 ">
+                    <div className="block md:w-full h-full">
                         <div className="px-6 py-6 lg:px-8">
                             <div className="flex mb-4 justify-between items-center align-middle">
                                 <h3 className=" text-xl font-medium text-gray-900 dark:text-white">

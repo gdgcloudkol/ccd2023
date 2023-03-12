@@ -196,7 +196,7 @@ const CFS = () => {
                   isSubmitted ? <div className='flex m-5 items-center flex-col justify-center'>
                     <div className='w-full flex flex-col items-center justify-center'>
                       <h2 className="mt-6 py-5 text-2xl lg:text-4xl text-gray-900 text-center dark:text-gray-100 tracking-tight">
-                        You have submitted a talk for GCCD Kolkata 2023. <br /> Your proposal is under review
+                      Submitted Talks Status
                       </h2>
                       <CFSSettings technologiesList={technologiesList} talkData={submittedTalks} refreshTalkList={refreshTalkList} />
                     </div>

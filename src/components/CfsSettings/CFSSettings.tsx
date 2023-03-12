@@ -1,32 +1,20 @@
 import { FC, useEffect, useState } from 'react'
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa"
-import { MultiSelectOptionsType } from '../../assets/models/speaker/datatype'
+import { MultiSelectOptionsType, TalkData } from '../../assets/models/speaker/datatype'
 import { ApiDeleteTalk } from '../../services/speaker.service'
 import CfsModal from './CfsModal'
 
 interface TalkProps {
-    talkData?: Talk[];
+    talkData?: TalkData[];
     technologiesList: MultiSelectOptionsType[];
     refreshTalkList: any;
 }
 
-interface Talk {
-    id?: number | undefined;
-    title: string;
-    added_at?: string;
-    description: string;
-    overview: string;
-    event?: number;
-    format: string;
-    speakers: number[];
-    technologies: number[]
-}
-
 const CFSSettings: FC<TalkProps> = ({ talkData, technologiesList, refreshTalkList }) => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
-    const [formaData, setFormData] = useState<Talk>({ id: undefined, title: "", description: "", format: "", overview: "", event: 0, technologies: [], speakers: [] })
+    const [formaData, setFormData] = useState<TalkData>({} as TalkData)
 
-    const handleFormData = (i: Talk) => {
+    const handleFormData = (i: TalkData) => {
         setFormData({ ...formaData, id: i.id, title: i.title, format: i.format, description: i.description, overview: i.overview, technologies: [...i.technologies], event: i.event, speakers: i.speakers })
     }
 
@@ -34,7 +22,7 @@ const CFSSettings: FC<TalkProps> = ({ talkData, technologiesList, refreshTalkLis
         refreshTalkList();
     }, [isModalOpen])
 
-    async function deleteTalk(i: Talk) {
+    async function deleteTalk(i: TalkData) {
         let result = await ApiDeleteTalk(i.id + '');
         if (result.status === 204) {
             refreshTalkList();
@@ -49,7 +37,7 @@ const CFSSettings: FC<TalkProps> = ({ talkData, technologiesList, refreshTalkLis
                         <CfsModal technologiesList={technologiesList} setModalOpen={setModalOpen} formData={formaData} />
                     </div>}
                 <div className=' relative flex  flex-col  justify-center items-center  w-full mt-10'>
-                    {talkData?.map((i: Talk, key: number) => {
+                    {talkData?.map((i: TalkData, key: number) => {
                         return (
                             <div className='w-full md:w-5/6 lg:w-4/6' key={key}>
                                 <div className="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
@@ -73,18 +61,30 @@ const CFSSettings: FC<TalkProps> = ({ talkData, technologiesList, refreshTalkLis
                                                         <span className="font-bold">Overview: </span>{i.overview.substring(0, 30) + "..."}
                                                     </span>
                                                 </div>
-                                                <span className={`inline-flex gap-2 justify-between mt-2 bg-google-yellow items-center py-1.5 px-5 font-normal text-black p-1 rounded-sm`}>
-                                                    <p className='font-bold text-lg'>
-                                                        Under Review
-                                                    </p>
-                                                    <FaRegEdit className='cursor-pointer' onClick={() => {
-                                                        setModalOpen(true)
-                                                        handleFormData(i)
-                                                    }} size={24} />
-                                                    <FaRegTrashAlt className='cursor-pointer' onClick={() => {
-                                                        deleteTalk(i);
-                                                    }} size={24} />
-                                                </span>
+                                                <div className='flex flex-row space-x-2'>
+                                                    <span className={`inline-flex gap-2 justify-between mt-2 
+                                                                        bg-google-${i.status === 'review' ? 'yellow' : i.status === 'accepted' ? 'green' : 'red'} items-center py-1.5 px-5 font-normal text-black p-1 rounded-md`}>
+                                                        <p className='font-bold text-lg capitalize'>
+                                                            {i.status}
+                                                        </p>
+                                                    </span>
+                                                    {
+                                                        i.status === 'review' &&
+                                                        <>
+                                                            <span className='inline-flex cursor-pointer gap-2 justify-between mt-2 bg-google-blue items-center py-1.5 px-5 font-normal text-black p-1'>
+                                                                <FaRegEdit className='cursor-pointer' onClick={() => {
+                                                                    setModalOpen(true)
+                                                                    handleFormData(i)
+                                                                }} size={24} />
+                                                            </span>
+                                                            <span className='inline-flex cursor-pointer gap-2 justify-between mt-2 bg-google-red items-center py-1.5 px-5 font-normal text-black p-1'>
+                                                                <FaRegTrashAlt className='cursor-pointer' fill='black' onClick={() => {
+                                                                    deleteTalk(i);
+                                                                }} size={24} />
+                                                            </span>
+                                                        </>
+                                                    }
+                                                </div>
                                             </div>
                                         </li>
 
