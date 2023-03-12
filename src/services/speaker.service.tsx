@@ -58,6 +58,33 @@ export async function ApiTalk(
   }
 };
 
+export async function ApiUpdateTalk(
+  payload: TalkData
+): Promise<AxiosResponse> {
+  try {
+    if (payload.id) {
+      const headers = { Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}` };
+      const res = await axios.put(BASE_TALKS_URI + payload.id + '/', payload, { headers });
+      return res;
+    }
+    throw new Error('Talk Id Unknown');
+  } catch (e: any) {
+    return e.response;
+  }
+};
+
+export async function ApiDeleteTalk(
+  id: string
+): Promise<AxiosResponse> {
+  try {
+    const headers = { Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}` };
+    const res = await axios.delete(BASE_TALKS_URI + id + '/', { headers });
+    return res;
+  } catch (e: any) {
+    return e.response;
+  }
+};
+
 export async function ApiGetTalk(): Promise<AxiosResponse> {
   try {
     const headers = { Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}` };
