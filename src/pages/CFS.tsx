@@ -120,6 +120,12 @@ const CFS = () => {
         setSpinnerLoading(false);
         setFieldErrors({ error: 'There is a problem submitting talk' });
       }
+      result = await ApiGetTalk()
+      if (result?.status > 199 && result?.status < 301) {
+        setSpeaker(true);
+        setSubmitted(true);
+        setSubmittedTalks(result.data);
+      }
     }
     else {
       if (previous_talk_links === '') {
@@ -163,6 +169,15 @@ const CFS = () => {
     }
   }
 
+  async function refreshTalkList() {
+    const result = await ApiGetTalk()
+    if (result?.status > 199 && result?.status < 301) {
+      setSpeaker(true);
+      setSubmitted(true);
+      setSubmittedTalks(result.data);
+    }
+  }
+
   const handleMultiChange = (e: MultiValue<MultiSelectOptionsType>, type: 's' | 't') => {
     if (type === 's')
       setTopics_of_expertise(e.map((i: MultiSelectOptionsType) => i.value));
@@ -175,22 +190,22 @@ const CFS = () => {
       {isLoading ? <GoogleDotsLoader /> :
         <div className="max-w-7xl mx-auto" data-aos="fade-up">
           <div className="min-h-full w-full flex">
-            <div className="flex-1 flex flex-col justify-center pt-1 pb-12 ">
+            <div className="flex-1 flex flex-col justify-center m-5 ">
               {
                 isSpeaker ?
                   isSubmitted ? <div className='flex m-5 items-center flex-col justify-center'>
-                    <div className=' w-full flex flex-col items-center justify-center'>
-                      <h2 className="mt-6 py-5 text-2xl  text-gray-900 text-center dark:text-gray-100 tracking-tight">
+                    <div className='w-full flex flex-col items-center justify-center'>
+                      <h2 className="mt-6 py-5 text-2xl lg:text-4xl text-gray-900 text-center dark:text-gray-100 tracking-tight">
                         You have submitted a talk for GCCD Kolkata 2023. <br /> Your proposal is under review
                       </h2>
-                      <CFSSettings technologiesList={technologiesList} talkData={submittedTalks} />
+                      <CFSSettings technologiesList={technologiesList} talkData={submittedTalks} refreshTalkList={refreshTalkList} />
                     </div>
                     <div className="flex space-x-4 mt-8 lg:mt-10  items-center justify-center ">
                       <button
                         type="submit"
-                        className=" flex px-10 justify-center p-2 border border-transparent rounded-md shadow-sm text-lg lg:text-xl font-medium text-white bg-google-blue
+                        className=" flex px-8 justify-center p-2 border border-transparent rounded-md shadow-sm text-lg lg:text-xl font-medium text-white bg-google-blue
                                      hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
-                        onClick={() => { setSubmitted(false) }}
+                        onClick={() => { nav(PROFILE_ROUTE) }}
                       >
                         Profile
                       </button>
@@ -200,14 +215,14 @@ const CFS = () => {
                                      hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
                         onClick={() => { setSubmitted(false) }}
                       >
-                        Submit Another Talk
+                        Submit New Talk
                       </button>
                     </div>
                   </div> :
                     <div className="mx-auto w-full max-w-sm lg:w-96">
                       <div>
-                        <h2 className="mt-6 text-2xl text-gray-900 dark:text-gray-100 tracking-tight">
-                          Submit A Talk for GCCD Kolkata 2023
+                        <h2 className="flex mt-6 text-2xl text-gray-900 dark:text-gray-100 items-center justify-center tracking-tight">
+                          Talk for GCCD Kolkata 2023
                         </h2>
                       </div>
                       <div className="mt-8">
@@ -248,7 +263,7 @@ const CFS = () => {
                                 Description
                               </label>
                               <div className="mt-1">
-                                <input name="description" type="text" autoComplete="" required id="description"
+                                <textarea name="description" rows={5} autoComplete="" required id="description"
                                   className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
                                   ${fieldErrors["description"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
 
@@ -265,7 +280,7 @@ const CFS = () => {
                                 Overview
                               </label>
                               <div className="mt-1">
-                                <input name="overview" type="text" autoComplete="" required id="overview"
+                                <textarea name="overview" rows={10} autoComplete="" required id="overview"
                                   className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
                                   ${fieldErrors["overview"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
 
@@ -282,7 +297,7 @@ const CFS = () => {
                                 Event
                               </label>
                               <select name="event" required id="event"
-                                className="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                className="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                               >
                                 <option >Choose</option>
                                 {events.map((data: EventData, key: number) => <option key={key} value={data.id}>{data.title}</option>)}
@@ -324,7 +339,12 @@ const CFS = () => {
                                 </p>
                               )}
                             </div>
-                            <div>
+                            <div className='flex gap-3'>
+                              <button onClick={() => { setSubmitted(true) }}
+                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                              >
+                                Back
+                              </button>
                               <button type="submit" onClick={handleSubmit}
                                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
                               >
@@ -341,13 +361,22 @@ const CFS = () => {
                           Speaker Profile Created.
                         </h2>
                       </div>
-                      <button
-                        type="submit"
-                        className=" px-10 flex justify-center py-2  border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
-                        onClick={handleSubmitTalk}
-                      >
-                        Submit A Talk
-                      </button>
+                      <div className='flex'>
+                        <button
+                          type="submit"
+                          className=" px-10 flex justify-center py-2  border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                          onClick={() => { nav(PROFILE_ROUTE) }}
+                        >
+                          Profile
+                        </button>
+                        <button
+                          type="submit"
+                          className=" px-10 flex justify-center py-2  border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                          onClick={handleSubmitTalk}
+                        >
+                          Submit A Talk
+                        </button>
+                      </div>
                     </div>
                     :
                     <div className=' mx-auto w-full max-w-sm lg:w-96 dark:text-black text-white'>

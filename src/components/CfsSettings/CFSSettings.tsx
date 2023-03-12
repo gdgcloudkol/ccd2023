@@ -1,14 +1,15 @@
-import React, { FC, useEffect, useState } from 'react'
-import { MultiSelectOptionsType, TalkData, TechTypeData } from '../../assets/models/speaker/datatype'
-import { RiDeleteBin6Line } from "react-icons/ri"
-import { FaRegEdit } from "react-icons/fa"
+import { FC, useEffect, useState } from 'react'
+import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa"
+import { MultiSelectOptionsType } from '../../assets/models/speaker/datatype'
+import { ApiDeleteTalk } from '../../services/speaker.service'
 import CfsModal from './CfsModal'
-import { ApiGetTalk, ApiTechnologies } from '../../services/speaker.service'
 
 interface TalkProps {
-    talkData?: Talk[]
-    technologiesList: MultiSelectOptionsType[]
+    talkData?: Talk[];
+    technologiesList: MultiSelectOptionsType[];
+    refreshTalkList: any;
 }
+
 interface Talk {
     id?: number | undefined;
     title: string;
@@ -20,16 +21,24 @@ interface Talk {
     speakers: number[];
     technologies: number[]
 }
-const CFSSettings: FC<TalkProps> = ({ talkData, technologiesList }) => {
+
+const CFSSettings: FC<TalkProps> = ({ talkData, technologiesList, refreshTalkList }) => {
     const [isModalOpen, setModalOpen] = useState<boolean>(false);
     const [formaData, setFormData] = useState<Talk>({ id: undefined, title: "", description: "", format: "", overview: "", event: 0, technologies: [], speakers: [] })
 
     const handleFormData = (i: Talk) => {
-        setFormData({ ...formaData, id: i.id, title: i.title, format: i.format, description: i.description, overview: i.overview, technologies: [...i.technologies], event: i.event })
+        setFormData({ ...formaData, id: i.id, title: i.title, format: i.format, description: i.description, overview: i.overview, technologies: [...i.technologies], event: i.event, speakers: i.speakers })
     }
 
-    function randomColor() {
-        return `hsl(${Math.floor(Math.random() * 360)}, 95%, 90%)`
+    useEffect(() => {
+        refreshTalkList();
+    }, [isModalOpen])
+
+    async function deleteTalk(i: Talk) {
+        let result = await ApiDeleteTalk(i.id + '');
+        if (result.status === 204) {
+            refreshTalkList();
+        }
     }
 
     return (
@@ -43,55 +52,13 @@ const CFSSettings: FC<TalkProps> = ({ talkData, technologiesList }) => {
                     {talkData?.map((i: Talk, key: number) => {
                         return (
                             <div className='w-full md:w-5/6 lg:w-4/6' key={key}>
-                                {/* <div className=' hidden md:hidden  text-white border rounded-md py-3 bg-g-gray-9  mb-3 w-2/3 m-auto lg:flex justify-between items-center'>
-                                    <h2 className=" w-fit pl-10">{i.title}</h2>
-                                    <div className=" w-1/2">
-                                        <div
-                                            className="flex">
-                                            <div className=" flex-auto items-center ">
-                                                <div className=' text-center'>
-                                                    Submitted
-                                                </div>
-                                                <div className=" flex items-center leading-[1.3rem]  before:mr-2  before:flex-1  after:ml-2 after:h-px after:w-full after:flex-1 after:bg-[#e0e0e0] after:content-[''] focus:outline-none dark:before:bg-neutral-600 dark:after:bg-neutral-600 ">
-                                                    <span className="my-6 mr-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-google-blue text-white text-sm font-medium ">
-                                                        1
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div className=" flex-auto justify-center items-center justify-cneter ">
-                                                <div className=" text-center ">
-                                                    Under review
-                                                </div>
-                                                <div className="flex items-center leading-[1.3rem]  before:mr-2 before:h-px before:w-full before:flex-1 before:bg-[#e0e0e0] before:content-[''] after:ml-2 after:h-px after:w-full after:flex-1 after:bg-[#e0e0e0] after:content-[''] focus:outline-none dark:before:bg-neutral-600 dark:after:bg-neutral-600 ">
-                                                    <span className="my-6 mr-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]">
-                                                        2
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div className="flex-auto justify-center items-center justify-cneter ">
-                                                <div className=' text-center'>
-                                                    Status
-                                                </div>
-                                                <div className="flex items-center leading-[1.3rem]  before:mr-2 before:h-px before:w-full before:flex-1 before:bg-[#e0e0e0] before:content-[''] after:ml-2   after:flex-1   focus:outline-none dark:before:bg-neutral-600 dark:after:bg-neutral-600 ">
-                                                    <span
-                                                        className="my-6 mr-2 flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-full bg-[#ebedef] text-sm font-medium text-[#40464f]">
-                                                        3
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className=' flex mr-10 gap-10'>
-                                        <RiDeleteBin6Line size={24} />
-                                        <FaRegEdit onClick={() => {
-                                            setModalOpen(true)
-                                            handleFormData(i)
-                                        }} size={24} />
-                                    </div>
-                                </div> */}
                                 <div className="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                                    <time className="text-lg font-semibold text-gray-900 dark:text-white">
-                                        {i.added_at}</time>
+                                    <span className=" my-1 text-gray-900 dark:text-white">
+                                        <span className='text-xl font-bold'>Submitted On: </span>
+                                    </span>
+                                    <time className="text-lg underline text-gray-900 dark:text-white">
+                                        {i.added_at && new Intl.DateTimeFormat('en-IN', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(Date.parse(i.added_at))}
+                                    </time>
                                     <ol className="mt-3 divide-y divider-gray-200 dark:divide-gray-700">
                                         <li>
                                             <div className="text-gray-600 dark:text-gray-400">
@@ -105,13 +72,17 @@ const CFSSettings: FC<TalkProps> = ({ talkData, technologiesList }) => {
                                                     <span className=" my-2 text-gray-900 dark:text-white">
                                                         <span className="font-bold">Overview: </span>{i.overview.substring(0, 30) + "..."}
                                                     </span>
-
                                                 </div>
-                                                <span className={`inline-flex gap-2 justify-between mt-2 bg-google-yellow items-center text-xs py-1.5 px-5 font-normal text-black p-1 rounded-sm`}>
-                                                    Under Review
-                                                    <FaRegEdit onClick={() => {
+                                                <span className={`inline-flex gap-2 justify-between mt-2 bg-google-yellow items-center py-1.5 px-5 font-normal text-black p-1 rounded-sm`}>
+                                                    <p className='font-bold text-lg'>
+                                                        Under Review
+                                                    </p>
+                                                    <FaRegEdit className='cursor-pointer' onClick={() => {
                                                         setModalOpen(true)
                                                         handleFormData(i)
+                                                    }} size={24} />
+                                                    <FaRegTrashAlt className='cursor-pointer' onClick={() => {
+                                                        deleteTalk(i);
                                                     }} size={24} />
                                                 </span>
                                             </div>
@@ -119,8 +90,10 @@ const CFSSettings: FC<TalkProps> = ({ talkData, technologiesList }) => {
 
                                     </ol>
                                 </div>
-                            </div>)
-                    })}</div>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         </>
     )

@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import { MultiValue } from 'react-select';
 import Select from 'react-select';
-import { MultiSelectOptionsType } from '../../assets/models/speaker/datatype';
+import { MultiSelectOptionsType, TalkData } from '../../assets/models/speaker/datatype';
 import ReactDOM from 'react-dom';
+import { ApiUpdateTalk } from '../../services/speaker.service';
 
 interface SetModal {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     formData: FormData;
-    technologiesMap?: { label: string; value: number }[]
-    technologiesList?: MultiSelectOptionsType[]
-
+    technologiesMap?: { label: string; value: number }[];
+    technologiesList?: MultiSelectOptionsType[];
 }
+
 interface FormData {
     id?: number;
     title: string;
@@ -21,6 +22,7 @@ interface FormData {
     speakers?: number[]
     technologies: number[]
 }
+
 const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData, technologiesList }) => {
     const [editedData, setEditedData] = useState<FormData>({
         id: formData.id,
@@ -37,13 +39,15 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData, technologiesList
     };
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLSelectElement>) => {
         let current = e.target.name;
-        setEditedData({ ...editedData, [current]: e.target.value })
-        console.log(editedData)
+        setEditedData({ ...editedData, [current]: e.target.value });
     }
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault()
-        console.log(editedData)
+    async function handleSubmit(e: any) {
+        e.preventDefault();
+        let result = await ApiUpdateTalk({ ...editedData, speakers: formData.speakers } as TalkData);
+        if (result.status === 200) {
+            setModalOpen(false);
+        }
     }
 
     const setter = () => {
@@ -59,8 +63,8 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData, technologiesList
         <>
             <div className="z-[99] backdrop-blur-md fixed pl-10 pr-10 md:w-full w-full mx-auto lg:w-full top-0 bottom-0 flex justify-center items-center">
                 <div className="relative  bg-white rounded-lg shadow dark:bg-gray-700 overflow-y-scroll flex items-center justify-center  w-full md:w-3/6 lg:w-2/6 h-5/6 ">
-                    <div className="relative mt-56  md:mt-36 lg:mt-[16rem]">
-                        <div className="px-6  py-6 lg:px-8">
+                    <div className="relative mt-52 md:mt-30 lg:mt-[16rem] md:w-full">
+                        <div className="px-6 py-6 lg:px-8">
                             <div className="flex mb-4 justify-between items-center align-middle">
                                 <h3 className=" text-xl font-medium text-gray-900 dark:text-white">
                                     Edit Your Tallk
@@ -72,64 +76,66 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData, technologiesList
                             </div>
                             <form className="space-y-2 lg:space-y-6" >
                                 <div>
-                                    <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                                    <label htmlFor="title" className="block text-sm lg:text-lg font-medium text-gray-700 dark:text-gray-200">
                                         Title
                                     </label>
                                     <div className="mt-1">
                                         <input onChange={(e) => handleChange(e)} name="title" defaultValue={formData.title} type="text" autoComplete="" required id="title"
-                                            className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                                            className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm lg:text-lg`}
 
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                                    <label htmlFor="description" className="block text-sm lg:text-lg font-medium text-gray-700 dark:text-gray-200">
                                         Description
                                     </label>
                                     <div className="mt-1">
                                         <textarea rows={5} onChange={(e) => handleChange(e)} name="description" defaultValue={formData.description} autoComplete="" required id="description"
-                                            className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                                            className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm lg:text-lg`}
 
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <label htmlFor="overview" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                                    <label htmlFor="overview" className="block text-sm lg:text-lg font-medium text-gray-700 dark:text-gray-200">
                                         Overview
                                     </label>
                                     <div className="mt-1">
                                         <textarea rows={10} onChange={(e) => handleChange(e)} name="overview" defaultValue={formData.overview} autoComplete="" required id="overview"
-                                            className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
+                                            className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm lg:text-lg                          
                                   `}
 
                                         />
                                     </div>
                                 </div>
-                                <div>
-                                    <label htmlFor="event" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-                                        Event
-                                    </label>
-                                    <select name="event" required id="event" defaultValue={"GCCD"}
-                                        className="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                                    >
-                                        <option disabled >GCCD</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label htmlFor="format" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-                                        Type of Talk
-                                    </label>
-                                    <select onChange={(e) => handleChange(e)} name="format" required id="format" defaultValue={formData.format}
-                                        className="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                                    >
+                                <div className='flex space-y-4 lg:space-x-4 lg:space-y-0 flex-col lg:flex-row'>
+                                    <div className='cursor-not-allowed'>
+                                        <label htmlFor="event" className="cursor-not-allowed block text-sm lg:text-lg font-medium text-gray-700 dark:text-gray-200 mb-1">
+                                            Event
+                                        </label>
+                                        <select name="event" required id="event" defaultValue={"GCCD '23"}
+                                            className="cursor-not-allowed block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                        >
+                                            <option disabled >GCCD '23</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="format" className="block text-sm lg:text-lg font-medium text-gray-700 dark:text-gray-200 mb-1">
+                                            Type of Talk
+                                        </label>
+                                        <select onChange={(e) => handleChange(e)} name="format" required id="format" defaultValue={formData.format}
+                                            className="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                        >
 
-                                        <option value="short">Lightning Talk</option>
-                                        <option value="medium">Regular Talk</option>
-                                        <option value="long">Long Talk</option>
-                                    </select>
+                                            <option value="short">Lightning Talk</option>
+                                            <option value="medium">Regular Talk</option>
+                                            <option value="long">Long Talk</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div>
-                                    <label htmlFor="technologies" className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+                                    <label htmlFor="technologies" className="block text-sm lg:text-lg font-medium text-gray-700 dark:text-gray-200 mb-1">
                                         Technologies
                                     </label>
                                     <Select closeMenuOnSelect={false} isMulti options={technologiesList as MultiSelectOptionsType[]} name="technologies"
@@ -137,8 +143,8 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData, technologiesList
                                     />
                                 </div>
                                 <div className=" flex gap-3">
-                                    <button onClick={(e) => handleSubmit(e)} className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 mt-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cancel</button>
-                                    <button onClick={(e) => handleSubmit(e)} className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 mt-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</button>
+                                    <button onClick={() => { setModalOpen(false) }} className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 mt-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cancel</button>
+                                    <button onClick={(e) => handleSubmit(e)} className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 mt-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
                                 </div>
                             </form>
                         </div>
