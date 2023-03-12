@@ -10,5 +10,5 @@ export async function getFeature() {
   return await axios.get(BASE_CONTENT_URI + '/feature.rule.json').then(data => {
     sessionStorage.setItem(FEATURE_RULE_KEY, JSON.stringify(data.data))
     return data.data
-  }).catch(e => console.log(e));
+  }).catch(e => console.error(e));
 }

@@ -9,5 +9,5 @@ export async function getContent<T>(contentFolder: ContentTypes) {
   return await axios.get<T>(BASE_CONTENT_URI + `/${contentFolder}/content.json`).then(data => {
     sessionStorage.setItem(contentFolder, JSON.stringify(data.data))
     return data.data
-  }).catch(e => console.log(e));
+  }).catch(e => console.error(e));
 }

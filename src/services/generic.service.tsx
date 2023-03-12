@@ -7,7 +7,6 @@ export async function ApiGeneric<T, U>(
 ): Promise<U> {
   try {
     const res = await axios[callType]<T>(url, payload);
-    console.log(res);
     return res as U;
   } catch (e: any) {
     return e.response;

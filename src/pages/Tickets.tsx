@@ -37,14 +37,11 @@ const Tickets = () => {
   let inputBoxStyle = !editMode ? "bg-transparent text-lg" : " text-black appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm "
 
   const handleEdit = async () => {
-    console.log(editFormdata)
     const userData = { ...loggedInState.user };
     userData.profile.first_name = editFormdata.first_name;
     userData.profile.last_name = editFormdata.last_name + '';
     userData.profile.phone = editFormdata.phone;
-    console.log(userData);
-    let result = await ApiPostProfile(userData)
-    console.log(result);
+    let result = await ApiPostProfile(userData);
     if (result.status === 200) {
       setEditMode(!editMode);
     }
