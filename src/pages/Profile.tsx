@@ -19,7 +19,7 @@ const Profile = () => {
   const [formData, setFormData] = useState<UserData>(loggedInState.user as UserData);
   const [socials, setSocials] = useState(loggedInState.user?.profile?.socials);
   const [buyTicket, setBuyTicket] = useState<boolean>(true);
-  const [dp, setDp] = useState<1 | 2 | 3>(1);
+  const [dp, setDp] = useState<1 | 2 | 3 | 4>(1);
 
   useEffect(() => {
     if (!loggedInState.isLoggedIn) nav(LOGIN_ROUTE);
@@ -32,6 +32,8 @@ const Profile = () => {
           sessionStorage.setItem(TICKET_PURCHASED_KEY, 'true');
           setDp(2);
           setBuyTicket(false);
+        } else {
+          setDp(4);
         }
         if (speaker.data.length > 0) {
           setDp(3);
@@ -181,11 +183,25 @@ const Profile = () => {
           <div className="max-w-5xl px-4 sm:px-6 lg:px-8 w-1/2">
             <div className="-mt-12 flex flex-col justify-start items-start sm:-mt-16 sm:space-x-5">
               <div className="flex">
-                <img
-                  className="h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
-                  src={DP_ASSETS + 'yoda-' + dp + '.png'}
-                  alt=""
-                />
+                {dp !== 4 ?
+                  <img
+                    className="h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
+                    src={DP_ASSETS + 'yoda-' + dp + '.png'}
+                    alt=""
+                  /> :
+                  <>
+                    <img
+                      className="hidden lg:block bg-gray-300 h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
+                      src={DP_ASSETS + 'yoda-' + dp + '.2.png'}
+                      alt=""
+                    />
+                    <img
+                      className="block lg:hidden bg-gray-300 h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
+                      src={DP_ASSETS + 'yoda-' + dp + '.1.png'}
+                      alt=""
+                    />
+                  </>
+                }
               </div>
             </div>
           </div>
