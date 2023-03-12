@@ -10,45 +10,6 @@ import { BACKGROUND_ASSETS, PROFILE_ROUTE } from '../services/constants';
 import { ApiEvent, ApiGetTalk, ApiSpeaker, ApiSpeakerList, ApiTalk, ApiTechnologies } from '../services/speaker.service';
 import { LoggedInContext } from '../services/state.service';
 
-const sampleData: TalkData[] = [
-  {
-    title: "Sample 1",
-    description: "This is Sample 1",
-    format: "Lightning Talk",
-    overview: "Hello",
-    event: 0,
-    speakers: [1],
-    technologies: [1, 2, 3, 4]
-  },
-  {
-    title: "Sample 2",
-    description: "This is Sample 2",
-    format: "Regular Talk",
-    overview: "Hello",
-    event: 0,
-    speakers: [1],
-    technologies: [1, 2, 3, 4]
-  },
-  {
-    title: "Sample 3",
-    description: "This is Sample 3",
-    format: "Long Talk",
-    overview: "",
-    event: 0,
-    speakers: [1],
-    technologies: [1, 2, 3, 4]
-  },
-  {
-    title: "Sample 4",
-    description: "This is Sample 4",
-    format: "long",
-    overview: "hello",
-    event: 0,
-    speakers: [1],
-    technologies: [1, 2, 3, 4]
-  }
-]
-
 const CFS = () => {
   const { loggedInState } = useContext(LoggedInContext);
   const nav = useNavigate();
@@ -60,7 +21,7 @@ const CFS = () => {
   const [events, setEvents] = useState<EventData[]>([]);
   const [isSpinnerLoading, setSpinnerLoading] = useState<boolean>(false)
   const [isSubmitted, setSubmitted] = useState<boolean>(false)
-  const [technologies, setTechnologied] = useState<number[]>([]);
+  const [technologies, setTechnologies] = useState<number[]>([]);
   const [speakers, setSpeakerData] = useState<number[]>([]);
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
   const [submittedTalks, setSubmittedTalks] = useState<TalkData[]>([]);
@@ -206,7 +167,7 @@ const CFS = () => {
     if (type === 's')
       setTopics_of_expertise(e.map((i: MultiSelectOptionsType) => i.value));
     else if (type === 't')
-      setTechnologied(e.map((i: MultiSelectOptionsType) => i.value));
+      setTechnologies(e.map((i: MultiSelectOptionsType) => i.value));
   };
 
   return (
@@ -217,21 +178,31 @@ const CFS = () => {
             <div className="flex-1 flex flex-col justify-center pt-1 pb-12 ">
               {
                 isSpeaker ?
-                  isSubmitted ? <div className=' flex items-center flex-col w-full justify-center'>
+                  isSubmitted ? <div className='flex m-5 items-center flex-col justify-center'>
                     <div className=' w-full flex flex-col items-center justify-center'>
-                      <h2 className="mt-6 py-5 text-2xl  text-gray-900 dark:text-gray-100 tracking-tight">
-                        You have submitted a talk for GCCD Kolkata 2023. Your proposal is under review
+                      <h2 className="mt-6 py-5 text-2xl  text-gray-900 text-center dark:text-gray-100 tracking-tight">
+                        You have submitted a talk for GCCD Kolkata 2023. <br /> Your proposal is under review
                       </h2>
-                      <CFSSettings sampleData={submittedTalks} />
+                      <CFSSettings technologiesList={technologiesList} talkData={submittedTalks} />
                     </div>
-                    <button
-                      type="submit"
-                      className="px-10 flex justify-center py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue 
-                                   hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
-                      onClick={() => { setSubmitted(false) }}
-                    >
-                      Submit Another Talk
-                    </button>
+                    <div className="flex space-x-4 mt-8 lg:mt-10  items-center justify-center ">
+                      <button
+                        type="submit"
+                        className=" flex px-10 justify-center p-2 border border-transparent rounded-md shadow-sm text-lg lg:text-xl font-medium text-white bg-google-blue
+                                     hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                        onClick={() => { setSubmitted(false) }}
+                      >
+                        Profile
+                      </button>
+                      <button
+                        type="submit"
+                        className=" flex px-5 lg:px-10 justify-center p-2 border border-transparent rounded-md shadow-sm text-lg lg:text-xl font-medium text-white bg-google-blue
+                                     hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                        onClick={() => { setSubmitted(false) }}
+                      >
+                        Submit Another Talk
+                      </button>
+                    </div>
                   </div> :
                     <div className="mx-auto w-full max-w-sm lg:w-96">
                       <div>

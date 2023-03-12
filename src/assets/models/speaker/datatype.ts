@@ -41,6 +41,7 @@ export interface MultiSelectOptionsType {
 }
 
 export interface TalkData {
+    id?: number;
     title: string;
     description: string;
     format: string;

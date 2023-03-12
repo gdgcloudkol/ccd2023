@@ -48,7 +48,6 @@ const Router = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/settings" element={<CFSSettings />} />
           {navRule?.every((item) => '/team' !== item) ? (
             <Route path="/team" element={<Team />} />
           ) : null}
