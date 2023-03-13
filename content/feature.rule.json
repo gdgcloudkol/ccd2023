@@ -39,7 +39,6 @@
   "disabledPartners": [],
   "disabledCommunityPartners": [
     "h4b",
-    "wtm",
     "devorld",
     "devdungeos",
     "flutter_kolkata",
@@ -49,7 +48,6 @@
     "dsc_gcect",
     "dsc_iiitk",
     "dsc_jis",
-    "dsc_tiu",
     "dsc_nsec",
     "dsc_uemk",
     "dsc_dbcrecd",
@@ -77,7 +75,7 @@
     "cfs": true,
     "location": true,
     "date": true,
-    "showCommunityPartners": false,
+    "showCommunityPartners": true,
     "showSponsors": true
   },
   "disabledFooterContent": {
