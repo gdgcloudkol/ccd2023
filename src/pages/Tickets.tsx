@@ -33,8 +33,9 @@ const Tickets = () => {
     last_name: loggedInState.user.profile.last_name,
     phone: loggedInState.user.profile.phone
   });
+  const [fieldErrors, setFieldErrors] = useState<any>({});
 
-  let inputBoxStyle = !editMode ? 'bg-transparent text-lg lg:text-2xl w-full' : 'text-black text-lg lg:text-2xl appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue ';
+  let inputBoxStyle = !editMode ? 'bg-transparent text-lg lg:text-2xl w-full' : 'text-black text-lg lg:text-2xl appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400';
 
   const handleEdit = async () => {
     const userData = { ...loggedInState.user };
@@ -46,6 +47,23 @@ const Tickets = () => {
       setEditMode(!editMode);
     }
   };
+
+  function validateFields() {
+    formFields.forEach((field) => {
+      const value = editFormdata[field.name as keyof EditFormData];
+      if (field.validation?.required && (!value || value === '')) {
+        fieldErrors[field.name] = `${field.label} is required.`;
+      } else if (
+        field.validation?.pattern &&
+        !field.validation.pattern.test(value + '')
+      ) {
+        fieldErrors[field.name] = field.validation.message;
+      } else {
+        delete (fieldErrors[field.name]);
+      }
+    });
+    setFieldErrors(fieldErrors);
+  }
 
   const formFields = [
     {
@@ -64,8 +82,8 @@ const Tickets = () => {
       type: 'text',
       value: editFormdata.first_name,
       placeholder: 'First Name',
-      disabled: !editMode,
-      readOnly: !editMode,
+      disabled: false,
+      readOnly: false,
       className: inputBoxStyle
     },
     {
@@ -74,26 +92,35 @@ const Tickets = () => {
       type: 'text',
       value: editFormdata.last_name,
       placeholder: 'Last Name',
-      disabled: !editMode,
-      readOnly: !editMode,
+      disabled: false,
+      readOnly: false,
       className: inputBoxStyle
     },
     {
       name: 'phone',
       label: 'Phone',
-      type: 'text',
+      type: 'number',
       value: editFormdata.phone,
       placeholder: 'Phone',
-      disabled: !editMode,
-      readOnly: !editMode,
-      className: inputBoxStyle
+      disabled: false,
+      readOnly: false,
+      className: inputBoxStyle,
+      validation: {
+        required: true,
+        pattern: /^\d{10}$/,
+        message: 'Phone number must be a valid 10 digit number.'
+      }
     }
   ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let current = e.currentTarget.name;
-    if (e.currentTarget.value && e.currentTarget.value !== '')
-      setEditFormData({ ...editFormdata, [current]: e.currentTarget.value });
+    validateFields();
+    setEditFormData({ ...editFormdata, [current]: e.currentTarget.value });
+  };
+
+  const handleBlur = () => {
+    validateFields();
   };
 
   useEffect(() => {
@@ -108,12 +135,17 @@ const Tickets = () => {
   }, [ticket]);
 
   function handleBuy() {
-    window.popupWithParams('google-cloud-community-days-kolkata-2023', {
-      emailid: profileData.email,
-      firstname: profileData.profile.first_name,
-      lastname: profileData.profile.last_name,
-      cq1: profileData.profile.phone ? profileData.profile.phone : ''
-    });
+    validateFields();
+    if (Object.keys(fieldErrors).length > 0) {
+      return;
+    }
+    if (editFormdata.first_name && editFormdata.last_name && editFormdata.phone)
+      window.popupWithParams('google-cloud-community-days-kolkata-2023', {
+        emailid: profileData.email,
+        firstname: profileData.profile.first_name,
+        lastname: profileData.profile.last_name,
+        cq1: profileData.profile.phone ? profileData.profile.phone : ''
+      });
   }
 
   return loader ? (
@@ -137,10 +169,17 @@ const Tickets = () => {
       <div className="flex mt-3 divide-y divider-gray-200 dark:divide-gray-700 justify-center items-center">
         <div className="flex flex-col w-full lg:w-auto p-3 lg:p-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 text-base font-normal">
           {formFields.map((field) => (
-            <span key={field.name} className="flex my-1 text-gray-900 dark:text-white w-full justify-end items-center">
-              <span className='flex text-lg lg:text-2xl font-bold align-middle justify-end w-3/6 lg:w-3/6 mr-3'>{field.label}: </span>
-              <input onChange={(e) => handleChange(e)} {...field} />
-            </span>
+            <>
+              <span key={field.name} className="flex my-1 text-gray-900 dark:text-white w-full justify-end items-center">
+                <span className='flex text-lg lg:text-2xl font-bold align-middle justify-end w-3/6 lg:w-3/6 mr-3'>{field.label}: </span>
+                <input onBlur={handleBlur} onChange={(e) => handleChange(e)} {...field} />
+              </span>
+              {fieldErrors[field.name] && (
+                <div className="flex text-red-500 text-md justify-end items-center">
+                  {fieldErrors[field.name]}
+                </div>
+              )}
+            </>
           ))}
         </div>
       </div>
