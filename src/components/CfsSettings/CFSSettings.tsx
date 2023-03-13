@@ -87,7 +87,6 @@ const CFSSettings: FC<TalkProps> = ({ talkData, technologiesList, refreshTalkLis
                                                 </div>
                                             </div>
                                         </li>
-
                                     </ol>
                                 </div>
                             </div>

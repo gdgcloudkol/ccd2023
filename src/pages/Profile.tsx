@@ -20,6 +20,7 @@ const Profile = () => {
   const [socials, setSocials] = useState(loggedInState.user?.profile?.socials);
   const [buyTicket, setBuyTicket] = useState<boolean>(true);
   const [dp, setDp] = useState<1 | 2 | 3 | 4>(1);
+  const [fieldErrors, setFieldErrors] = useState<any>({});
 
   useEffect(() => {
     if (!loggedInState.isLoggedIn) nav(LOGIN_ROUTE);
@@ -38,17 +39,47 @@ const Profile = () => {
         if (speaker.data.length > 0) {
           setDp(3);
         }
-      })
-  }, [])
+      });
+  }, []);
 
   const logout = async () => {
     await ApiLogout(setLoggedInState, nav);
   };
 
+  function validateFields() {
+    const data: any = formData;
+    const fieldErrors: any = {};
+
+    profileFields.forEach((field) => {
+      const value = data.profile[field.name];
+      if (field?.options) {
+        // for select fields
+        const option = field.options.find(
+          (option: any) => option.value === value
+        );
+        if (!option) {
+          fieldErrors[field.name] = field.validation.message;
+        }
+      } else if (field.validation?.required && (!value || value === '')) {
+        fieldErrors[field.name] = `${field.label} is required.`;
+      } else if (
+        field.validation?.pattern &&
+        !field.validation.pattern.test(value)
+      ) {
+        fieldErrors[field.name] = field.validation.message;
+      }
+    });
+    setFieldErrors(fieldErrors);
+  }
+
   function handleEdit() {
     setEditMode(!editMode);
     setSubmitButtonText('Submit');
   }
+
+  const handleBlur = () => {
+    validateFields();
+  };
 
   const handleChange = (e: any, type: string, name: string) => {
     setFormData({
@@ -58,6 +89,11 @@ const Profile = () => {
   };
 
   async function handleSubmit() {
+    // chack field errors and set submit button to false
+    validateFields();
+    if (Object.keys(fieldErrors).length > 0) {
+      return;
+    }
     setSubmitButton(false);
     const payload = {
       ...formData,
@@ -85,7 +121,7 @@ const Profile = () => {
         isLoggedIn: loggedInState.isLoggedIn,
         refreshToken: loggedInState.refreshToken,
         user: userData
-      })
+      });
     } else {
       setSubmitButtonText('Submit Again');
     }
@@ -97,37 +133,63 @@ const Profile = () => {
       label: 'Phone No',
       name: 'phone',
       type: 'text',
-      value: loggedInState.user?.profile.phone
+      value: loggedInState.user?.profile.phone,
+      validation: {
+        required: true,
+        pattern: /^\d{10}$/,
+        message: 'Phone number must be a valid 10 digit number.'
+      }
     },
     {
       label: 'College',
       name: 'college',
       type: 'text',
-      value: loggedInState.user?.profile.college
+      value: loggedInState.user?.profile.college,
+      validation: {
+        required: true,
+        pattern: /^[a-zA-Z0-9\s]*$/,
+        message: 'Invalid college name.'
+      }
     },
     {
       label: 'Course',
       name: 'course',
       type: 'text',
-      value: loggedInState.user?.profile.course
+      value: loggedInState.user?.profile.course,
+      validation: {
+        required: true,
+        pattern: /^[a-zA-Z0-9\s]*$/,
+        message: 'Invalid course name.'
+      }
     },
     {
       label: 'Graduation Year',
       name: 'graduation_year',
       type: 'number',
-      value: loggedInState.user?.profile.graduation_year
+      value: loggedInState.user?.profile.graduation_year,
+      validation: {
+        required: true,
+        pattern: /^\d{4}$/,
+        message: 'Graduation year must be a valid 4 digit number.'
+      }
     },
     {
       label: 'Company',
       name: 'company',
       type: 'text',
-      value: loggedInState.user?.profile.company
+      value: loggedInState.user?.profile.company,
+      validation: {
+        required: false
+      }
     },
     {
       label: 'Designation',
       name: 'role',
       type: 'text',
-      value: loggedInState.user?.profile.role
+      value: loggedInState.user?.profile.role,
+      validation: {
+        required: false
+      }
     },
     {
       label: 'Food Choice',
@@ -137,7 +199,11 @@ const Profile = () => {
       options: [
         { label: 'Veg', value: 'VEG' },
         { label: 'Non-Veg', value: 'NON-VEG' }
-      ]
+      ],
+      validation: {
+        required: true,
+        message: 'Food choice is required.'
+      }
     },
     {
       label: 'T-Shirt Size',
@@ -150,14 +216,22 @@ const Profile = () => {
         { label: 'L', value: 'L' },
         { label: 'XL', value: 'XL' },
         { label: 'XXL', value: 'XXL' }
-      ]
+      ],
+      validation: {
+        required: true,
+        message: 'T-Shirt size is required.'
+      }
     },
     {
       label: 'Country Code',
       name: 'country_code',
       type: 'select',
       value: loggedInState.user?.profile.country_code,
-      options: countryCodeChoices
+      options: countryCodeChoices,
+      validation: {
+        required: true,
+        message: 'Country code is required.'
+      }
     }
   ];
 
@@ -172,7 +246,7 @@ const Profile = () => {
           src={BACKGROUND_ASSETS + 'victoria.svg'}
           alt=""
         />
-        <div className='flex flex-row mt-10 mb-10 lg:mt-0 lg:mb-0'>
+        <div className="flex flex-row mt-10 mb-10 lg:mt-0 lg:mb-0">
           <div className="max-w-5xl px-4 sm:px-6 lg:px-8 w-1/2">
             <div className="-mt-12 flex flex-col justify-start items-start sm:-mt-16 sm:space-x-5">
               <div className="flex">
@@ -213,17 +287,17 @@ const Profile = () => {
                     {buyTicket ? 'Buy Ticket' : 'View Ticket'}
                   </button>
                 </Link>
-                <Link to={TICKET_ROUTE}>
-                  <button
-                    className="mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
+                <button
+                  onClick={handleEdit}
+                  className={`${editMode ? 'hidden' : ''
+                    } mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
                 text-white bg-transparent border font-medium text-1xl lg:text-2xl
                 transition ease-in-out duration-300
                 hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                cursor-pointer"
-                  >
-                    {buyTicket ? 'Edit Profile' : 'Edit Profile'}
-                  </button>
-                </Link>
+                cursor-pointer`}
+                >
+                  Edit Profile
+                </button>
               </>
             }
           </div>
@@ -289,38 +363,46 @@ const Profile = () => {
               {profileFields.map((field: any, i: number) => {
                 if (field.type === 'select') {
                   return (
-                    <div
-                      key={i}
-                      className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
-                        }`}
-                    >
-                      <label
-                        htmlFor="name"
-                        className="block text-xs font-medium"
+                    <>
+                      <div
+                        key={i}
+                        className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
+                          }`}
                       >
-                        {field.label}
-                      </label>
-                      <select
-                        name={field.name}
-                        id={field.name}
-                        disabled={!editMode}
-                        defaultValue={field.value}
-                        className="block w-full border-0 p-0 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
-                        onChange={(e) => {
-                          handleChange(e, 'profile', field.name);
-                        }}
-                      >
-                        {field &&
-                          field.options &&
-                          field?.options.map((option: any, j: number) => {
-                            return (
-                              <option value={option.value} key={j}>
-                                {option.label}
-                              </option>
-                            );
-                          })}
-                      </select>
-                    </div>
+                        <label
+                          htmlFor="name"
+                          className="block text-xs font-medium"
+                        >
+                          {field.label}
+                        </label>
+                        <select
+                          name={field.name}
+                          id={field.name}
+                          disabled={!editMode}
+                          defaultValue={field.value}
+                          className="block w-full border-0 p-0 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
+                          onChange={(e) => {
+                            handleChange(e, 'profile', field.name);
+                          }}
+                          onBlur={handleBlur}
+                        >
+                          {field &&
+                            field.options &&
+                            field?.options.map((option: any, j: number) => {
+                              return (
+                                <option value={option.value} key={j}>
+                                  {option.label}
+                                </option>
+                              );
+                            })}
+                        </select>
+                        {fieldErrors[field.name] && (
+                          <div className="text-red-500 text-xs">
+                            {fieldErrors[field.name]}
+                          </div>
+                        )}
+                      </div>
+                    </>
                   );
                 } else {
                   return (
@@ -347,7 +429,13 @@ const Profile = () => {
                         onChange={(e) => {
                           handleChange(e, 'profile', field.name);
                         }}
+                        onBlur={handleBlur}
                       />
+                      {fieldErrors[field.name] && (
+                        <div className="text-red-500 text-xs">
+                          {fieldErrors[field.name]}
+                        </div>
+                      )}
                     </div>
                   );
                 }
