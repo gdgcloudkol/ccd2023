@@ -34,7 +34,7 @@ const Tickets = () => {
     phone: loggedInState.user.profile.phone
   });
 
-  let inputBoxStyle = !editMode ? 'bg-transparent text-2xl' : 'text-black text-2xl appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue ';
+  let inputBoxStyle = !editMode ? 'bg-transparent text-lg lg:text-2xl w-full' : 'text-black text-lg lg:text-2xl appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue ';
 
   const handleEdit = async () => {
     const userData = { ...loggedInState.user };
@@ -135,10 +135,10 @@ const Tickets = () => {
       </div>
 
       <div className="flex mt-3 divide-y divider-gray-200 dark:divide-gray-700 justify-center items-center">
-        <div className="p-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 text-base flex flex-col font-normal">
+        <div className="flex flex-col w-full lg:w-auto p-3 lg:p-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 text-base font-normal">
           {formFields.map((field) => (
             <span key={field.name} className="flex my-1 text-gray-900 dark:text-white w-full justify-end items-center">
-              <span className='flex text-2xl font-bold align-middle justify-end w-3/6 mr-3'>{field.label}: </span>
+              <span className='flex text-lg lg:text-2xl font-bold align-middle justify-end w-3/6 lg:w-3/6 mr-3'>{field.label}: </span>
               <input onChange={(e) => handleChange(e)} {...field} />
             </span>
           ))}

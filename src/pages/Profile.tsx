@@ -272,13 +272,13 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className='flex justify-center items center w-full'>
+          <div className='flex justify-center flex-col lg:flex-row md:flex-row items-center w-full'>
             {
               !editMode &&
               <>
                 <Link to={TICKET_ROUTE}>
                   <button
-                    className="mr-5 py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
+                    className="mr-5 mb-4 lg:mb-0 md:mb-0  py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
                 text-white border font-medium text-1xl lg:text-2xl
                 transition ease-in-out duration-300
                 hover:shadow-xl hover:scale-105 hover:ease-in duration-300
@@ -305,30 +305,39 @@ const Profile = () => {
         <section className="mt-4 pb-12 px-4 sm:px-6 lg:px-8 space-y-5">
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-col items-start dark:text-white text-g-gray-8 pb-0 lg:pb-5 space-y-2">
-              <span className="flex flex-row text-2xl space-x-2">
+              <span className="flex flex-row items-center text-2xl space-x-2">
                 Hi,&nbsp;
-                <input
-                  type="text"
-                  disabled={!editMode}
-                  placeholder="Name"
-                  defaultValue={loggedInState.user?.profile?.first_name}
-                  className={`bg-transparent capitalize text-2xl w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : ''
-                    }`}
-                  onChange={(e) => {
-                    handleChange(e, 'user', 'first_name');
-                  }}
-                />
-                <input
-                  type="text"
-                  disabled={!editMode}
-                  placeholder="Last Name"
-                  defaultValue={loggedInState.user?.profile?.last_name}
-                  className={`bg-transparent capitalize text-2xl w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : 'hidden'
-                    }`}
-                  onChange={(e) => {
-                    handleChange(e, 'user', 'last_name');
-                  }}
-                />
+                {!editMode ?
+                  <div>
+                    <span className=' text-2xl text-white'>{loggedInState.user?.profile.first_name + " "}</span>
+                    <span className=' text-2xl text-white'>{loggedInState.user?.profile.last_name}</span>
+                  </div>
+                  :
+                  <div className=' flex'>
+                    <input
+                      type="text"
+                      disabled={!editMode}
+                      placeholder="Name"
+                      defaultValue={loggedInState.user?.profile?.first_name}
+                      className={`bg-transparent capitalize text-2xl w-5/6 lg:w-full mr-2 ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : ''
+                        }`}
+                      onChange={(e) => {
+                        handleChange(e, 'user', 'first_name');
+                      }}
+                    />
+                    <input
+                      type="text"
+                      disabled={!editMode}
+                      placeholder="Last Name"
+                      defaultValue={loggedInState.user?.profile?.last_name}
+                      className={`bg-transparent capitalize text-2xl w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : 'hidden'
+                        }`}
+                      onChange={(e) => {
+                        handleChange(e, 'user', 'last_name');
+                      }}
+                    />
+                  </div>
+                }
               </span>
 
               <span className="flex flex-row font-bold text-2xl">
@@ -359,7 +368,7 @@ const Profile = () => {
                 Please fill in your details to complete your profile.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-4 px-2 w-full">
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4 px-2 w-full">
               {profileFields.map((field: any, i: number) => {
                 if (field.type === 'select') {
                   return (
