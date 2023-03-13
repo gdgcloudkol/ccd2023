@@ -21,17 +21,17 @@ const Sponsors = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div
-        className={`pt-10 flex font-medium leading-14 text-2xl lg:text-8xl justify-center block uppercase ${CurrentTheme() === DARK ? 'stroke-b-1px lg:stroke-b-2px text-white ' : ' stroke-w-1px lg:stroke-w-2px text-black'}`}>
+        className={`pt-10 flex font-bold leading-14 text-6xl lg:text-8xl justify-center block uppercase ${CurrentTheme() === DARK ? 'stroke-b-1px lg:stroke-b-2px text-white ' : ' stroke-w-1px lg:stroke-w-2px text-black'}`}>
         {content?.title}
       </div>
       <br />
       <span className="mb-4 lg:mb-16 font-light text-center text-black dark:text-black mt-8 sm:text-xl ">
         <p
-          className=" text-lg text-center lg:text-clip text-g-gray-7 dark:text-black"
+          className=" text-2xl text-center lg:text-clip text-g-gray-7 dark:text-black"
           dangerouslySetInnerHTML={{ __html: content?.description?.substring(3) }}
         ></p>
       </span>
-      <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+      <hr className="my-6 border-[1px] border-g-gray-2 sm:mx-auto lg:my-8" />
       <div className="grid grid-cols-1 gap-6 gap-y-10 place-items-center">
         {content?.partners?.map((partner: PartnerContent, i: number) => (
           <SponsorCard
@@ -41,7 +41,7 @@ const Sponsors = () => {
           />
         ))}
       </div>
-      <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+      <hr className="my-6 border-[1px] border-g-gray-3 sm:mx-auto lg:my-8" />
     </div>
   );
 };
