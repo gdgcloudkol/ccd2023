@@ -51,17 +51,10 @@ const Profile = () => {
   }
 
   const handleChange = (e: any, type: string, name: string) => {
-    // if (type === 'user') {
-    //   setFormData({
-    //     ...formData,
-    //     [name]: e.target.value
-    //   });
-    // } else {
     setFormData({
       ...formData,
       profile: { ...formData.profile, [name]: e.target.value }
     });
-    // }
   };
 
   async function handleSubmit() {

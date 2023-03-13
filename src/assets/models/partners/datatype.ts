@@ -8,6 +8,7 @@ export interface SponsorContent {
 export interface PartnerContent {
   title: string;
   sponsors: [SponsorContent];
+  description?: string;
 }
 
 export interface PartnerSponsorContent {
