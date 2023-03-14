@@ -36,7 +36,7 @@ const Tickets = () => {
   const [isDisabled, setDisabled] = useState<boolean>(false)
   const [fieldErrors, setFieldErrors] = useState<any>({});
 
-  let inputBoxStyle = !editMode ? 'bg-transparent text-lg lg:text-2xl w-full' : 'text-black text-lg lg:text-2xl appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400';
+  let inputBoxStyle = !editMode ? 'bg-transparent text-lg lg:text-xl w-full' : 'text-black text-lg lg:text-2xl appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400';
 
   const handleEdit = async () => {
     validateFields();
@@ -221,11 +221,11 @@ const Tickets = () => {
       </div>
 
       <div className="flex mt-3 divide-y divider-gray-200 dark:divide-gray-700 justify-center items-center">
-        <div className="flex flex-col w-full lg:w-4/5 p-3 lg:p-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 text-base font-normal">
+        <div className="flex flex-col w-full lg:w-2/5 p-3 lg:p-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 text-base font-normal">
           {formFields.map((field) => (
             <>
               <span key={field.name} className="flex my-1 text-gray-900 dark:text-white w-full justify-end items-center">
-                <span className='flex text-lg lg:text-2xl font-bold align-middle justify-end w-3/6 lg:w-3/6 mr-3'>{field.label}: </span>
+                <span className='flex text-lg lg:text-xl font-regular align-middle justify-end w-3/6 lg:w-3/6 mr-3'>{field.label}: </span>
                 <input onBlur={handleBlur} onChange={(e) => handleChange(e)} {...field} />
               </span>
               {fieldErrors[field.name] && (
