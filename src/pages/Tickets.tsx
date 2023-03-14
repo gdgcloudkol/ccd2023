@@ -33,9 +33,10 @@ const Tickets = () => {
     last_name: loggedInState.user.profile.last_name,
     phone: loggedInState.user.profile.phone
   });
+  const [isDisabled, setDisabled] = useState<boolean>(false)
+  const [fieldErrors, setFieldErrors] = useState<any>({});
 
-  let inputBoxStyle = !editMode ? 'bg-transparent text-lg lg:text-2xl w-full' : 'text-black text-lg lg:text-2xl appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue ';
-
+  let inputBoxStyle = !editMode ? 'bg-transparent text-lg lg:text-2xl w-full' : 'text-black text-lg lg:text-2xl appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400';
   const handleEdit = async () => {
     const userData = { ...loggedInState.user };
     userData.profile.first_name = editFormdata.first_name;
@@ -44,8 +45,27 @@ const Tickets = () => {
     let result = await ApiPostProfile(userData);
     if (result.status === 200) {
       setEditMode(!editMode);
+      setFieldErrors({})
     }
   };
+
+  function validateFields() {
+    formFields.forEach((field) => {
+      const value = editFormdata[field.name as keyof EditFormData];
+      if (field.validation?.required && (!value || value === '')) {
+        fieldErrors[field.name] = `${field.label} is required.`;
+
+      } else if (
+        field.validation?.pattern &&
+        !field.validation.pattern.test(value + '')
+      ) {
+        fieldErrors[field.name] = field.validation.message;
+      } else {
+        delete (fieldErrors[field.name]);
+      }
+    });
+    setFieldErrors(fieldErrors);
+  }
 
   const formFields = [
     {
@@ -66,7 +86,12 @@ const Tickets = () => {
       placeholder: 'First Name',
       disabled: !editMode,
       readOnly: !editMode,
-      className: inputBoxStyle
+      className: inputBoxStyle,
+      validation: {
+        required: true,
+        pattern: /^[a-zA-Z0-9\s]*$/,
+        message: 'Invalid First Name.'
+      }
     },
     {
       name: 'last_name',
@@ -76,24 +101,38 @@ const Tickets = () => {
       placeholder: 'Last Name',
       disabled: !editMode,
       readOnly: !editMode,
-      className: inputBoxStyle
+      className: inputBoxStyle,
+      validation: {
+        required: true,
+        pattern: /^[a-zA-Z0-9\s]*$/,
+        message: 'Invalid Last Name.'
+      }
     },
     {
       name: 'phone',
       label: 'Phone',
-      type: 'text',
+      type: 'tel',
       value: editFormdata.phone,
       placeholder: 'Phone',
       disabled: !editMode,
       readOnly: !editMode,
-      className: inputBoxStyle
+      className: inputBoxStyle,
+      validation: {
+        required: true,
+        pattern: /^\d{9}$/,
+        message: 'Phone number must be a valid 10 digit number.'
+      }
     }
   ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let current = e.currentTarget.name;
-    if (e.currentTarget.value && e.currentTarget.value !== '')
-      setEditFormData({ ...editFormdata, [current]: e.currentTarget.value });
+    let current = e.target.name;
+    validateFields();
+    setEditFormData({ ...editFormdata, [current]: e.target.value });
+  };
+
+  const handleBlur = () => {
+    validateFields();
   };
 
   useEffect(() => {
@@ -107,13 +146,28 @@ const Tickets = () => {
     });
   }, [ticket]);
 
+  useEffect(() => {
+    if (editFormdata.first_name === "" || editFormdata.last_name === "" || editFormdata.phone === "") {
+      setDisabled(true)
+      setFieldErrors({ incomplete: "Please update all the fields to buy tickets." })
+    }
+    else setDisabled(false)
+  }, [editFormdata, fieldErrors.incomplete])
+
   function handleBuy() {
-    window.popupWithParams('google-cloud-community-days-kolkata-2023', {
-      emailid: profileData.email,
-      firstname: profileData.profile.first_name,
-      lastname: profileData.profile.last_name,
-      cq1: profileData.profile.phone ? profileData.profile.phone : ''
-    });
+    validateFields();
+    console.log("clicked")
+    console.log(editFormdata.first_name, editFormdata.last_name, editFormdata.phone)
+    if (Object.keys(fieldErrors).length > 0) {
+      return;
+    }
+    if (editFormdata.first_name && editFormdata.last_name && editFormdata.phone)
+      window.popupWithParams('google-cloud-community-days-kolkata-2023', {
+        emailid: profileData.email,
+        firstname: profileData.profile.first_name,
+        lastname: profileData.profile.last_name,
+        cq1: profileData.profile.phone ? profileData.profile.phone : ''
+      });
   }
 
   return loader ? (
@@ -128,34 +182,53 @@ const Tickets = () => {
       >
         Buy Tickets
       </div>
-
+      {isDisabled && <div className="items-center flex justify-center mt-8">
+        {fieldErrors["incomplete"] && (
+          <div className="rounded-md w-full lg:w-1/2 bg-red-50 p-4" data-aos="fade-in">
+            <div className=" text-center">
+              <div className="ml-3">
+                <h3 className="text-sm font-medium text-red-800">
+                  {fieldErrors["incomplete"]}
+                </h3>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>}
       <div className="flex text-white justify-center text-xl text-justify m-5">
         Please edit the fields if not accurate or incomplete and update profile
         from profile section
       </div>
 
       <div className="flex mt-3 divide-y divider-gray-200 dark:divide-gray-700 justify-center items-center">
-        <div className="flex flex-col w-full lg:w-auto p-3 lg:p-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 text-base font-normal">
+        <div className="flex flex-col w-full lg:w-4/5 p-3 lg:p-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 text-base font-normal">
           {formFields.map((field) => (
-            <span key={field.name} className="flex my-1 text-gray-900 dark:text-white w-full justify-end items-center">
-              <span className='flex text-lg lg:text-2xl font-bold align-middle justify-end w-3/6 lg:w-3/6 mr-3'>{field.label}: </span>
-              <input onChange={(e) => handleChange(e)} {...field} />
-            </span>
+            <>
+              <span key={field.name} className="flex my-1 text-gray-900 dark:text-white w-full justify-end items-center">
+                <span className='flex text-lg lg:text-2xl font-bold align-middle justify-end w-3/6 lg:w-3/6 mr-3'>{field.label}: </span>
+                <input onBlur={handleBlur} onChange={(e) => handleChange(e)} {...field} />
+              </span>
+              {fieldErrors[field.name] && (
+                <div className="flex text-red-500 text-md justify-end items-center">
+                  {fieldErrors[field.name]}
+                </div>
+              )}
+            </>
           ))}
         </div>
       </div>
-
       <div className="flex flex-col items-center">
         <div className="mt-5 flex items-center space-x-4">
           {!editMode && (
             <button
               onClick={handleBuy}
+              disabled={isDisabled}
               type="button"
-              className={`py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
+              className={`py-2 ${isDisabled ? "cursor-not-allowed opacity-60 " : "cursor-pointer"} mt-5 px-10 rounded-3xl h-fit w-fit 
                     text-white border font-medium text-1xl lg:text-xl
                     transition ease-in-out duration-300
-                    hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                    cursor-pointer bg-google-green
+                    hover:shadow-xl hover:scale-105 hover:ease-in
+                     bg-google-green
                 `}
             >
               Buy Ticket
@@ -163,12 +236,17 @@ const Tickets = () => {
           )}
           <button
             onClick={() => {
+              setEditFormData({
+                first_name: loggedInState.user.profile.first_name,
+                last_name: loggedInState.user.profile.last_name,
+                phone: loggedInState.user.profile.phone
+              })
               setEditMode(!editMode);
             }}
             className=" py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
                 text-white bg-transparent border font-medium text-1xl lg:text-xl
                 transition ease-in-out duration-300
-                hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                hover:shadow-xl hover:scale-105 hover:ease-in
                 cursor-pointer"
           >
             {editMode ? 'Cancel' : 'Update Details'}
@@ -182,7 +260,7 @@ const Tickets = () => {
                 } py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
                     text-white bg-transparent border font-medium text-1xl lg:text-xl
                     transition ease-in-out duration-300
-                    hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                    hover:shadow-xl hover:scale-105 hover:ease-in
                     cursor-pointer`}
             >
               {editMode ? 'Submit' : <Spinner color="red" />}
