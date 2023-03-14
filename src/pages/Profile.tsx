@@ -19,7 +19,8 @@ const Profile = () => {
   const [formData, setFormData] = useState<UserData>(loggedInState.user as UserData);
   const [socials, setSocials] = useState(loggedInState.user?.profile?.socials);
   const [buyTicket, setBuyTicket] = useState<boolean>(true);
-  const [dp, setDp] = useState<1 | 2 | 3>(1);
+  const [dp, setDp] = useState<1 | 2 | 3 | 4>(1);
+  const [fieldErrors, setFieldErrors] = useState<any>({});
 
   useEffect(() => {
     if (!loggedInState.isLoggedIn) nav(LOGIN_ROUTE);
@@ -32,37 +33,67 @@ const Profile = () => {
           sessionStorage.setItem(TICKET_PURCHASED_KEY, 'true');
           setDp(2);
           setBuyTicket(false);
+        } else {
+          setDp(4);
         }
         if (speaker.data.length > 0) {
           setDp(3);
         }
-      })
-  }, [])
+      });
+  }, []);
 
   const logout = async () => {
     await ApiLogout(setLoggedInState, nav);
   };
+
+  function validateFields() {
+    const data: any = formData;
+    const fieldErrors: any = {};
+
+    profileFields.forEach((field) => {
+      const value = data.profile[field.name];
+      if (field?.options) {
+        // for select fields
+        const option = field.options.find(
+          (option: any) => option.value === value
+        );
+        if (!option) {
+          fieldErrors[field.name] = field.validation.message;
+        }
+      } else if (field.validation?.required && (!value || value === '')) {
+        fieldErrors[field.name] = `${field.label} is required.`;
+      } else if (
+        field.validation?.pattern &&
+        !field.validation.pattern.test(value)
+      ) {
+        fieldErrors[field.name] = field.validation.message;
+      }
+    });
+    setFieldErrors(fieldErrors);
+  }
 
   function handleEdit() {
     setEditMode(!editMode);
     setSubmitButtonText('Submit');
   }
 
+  const handleBlur = () => {
+    validateFields();
+  };
+
   const handleChange = (e: any, type: string, name: string) => {
-    // if (type === 'user') {
-    //   setFormData({
-    //     ...formData,
-    //     [name]: e.target.value
-    //   });
-    // } else {
     setFormData({
       ...formData,
       profile: { ...formData.profile, [name]: e.target.value }
     });
-    // }
   };
 
   async function handleSubmit() {
+    // chack field errors and set submit button to false
+    validateFields();
+    if (Object.keys(fieldErrors).length > 0) {
+      return;
+    }
     setSubmitButton(false);
     const payload = {
       ...formData,
@@ -90,7 +121,7 @@ const Profile = () => {
         isLoggedIn: loggedInState.isLoggedIn,
         refreshToken: loggedInState.refreshToken,
         user: userData
-      })
+      });
     } else {
       setSubmitButtonText('Submit Again');
     }
@@ -102,37 +133,63 @@ const Profile = () => {
       label: 'Phone No',
       name: 'phone',
       type: 'text',
-      value: loggedInState.user?.profile.phone
+      value: loggedInState.user?.profile.phone,
+      validation: {
+        required: true,
+        pattern: /^\d{10}$/,
+        message: 'Phone number must be a valid 10 digit number.'
+      }
     },
     {
       label: 'College',
       name: 'college',
       type: 'text',
-      value: loggedInState.user?.profile.college
+      value: loggedInState.user?.profile.college,
+      validation: {
+        required: true,
+        pattern: /^[a-zA-Z0-9\s]*$/,
+        message: 'Invalid college name.'
+      }
     },
     {
       label: 'Course',
       name: 'course',
       type: 'text',
-      value: loggedInState.user?.profile.course
+      value: loggedInState.user?.profile.course,
+      validation: {
+        required: true,
+        pattern: /^[a-zA-Z0-9\s]*$/,
+        message: 'Invalid course name.'
+      }
     },
     {
       label: 'Graduation Year',
       name: 'graduation_year',
       type: 'number',
-      value: loggedInState.user?.profile.graduation_year
+      value: loggedInState.user?.profile.graduation_year,
+      validation: {
+        required: true,
+        pattern: /^\d{4}$/,
+        message: 'Graduation year must be a valid 4 digit number.'
+      }
     },
     {
       label: 'Company',
       name: 'company',
       type: 'text',
-      value: loggedInState.user?.profile.company
+      value: loggedInState.user?.profile.company,
+      validation: {
+        required: false
+      }
     },
     {
       label: 'Designation',
       name: 'role',
       type: 'text',
-      value: loggedInState.user?.profile.role
+      value: loggedInState.user?.profile.role,
+      validation: {
+        required: false
+      }
     },
     {
       label: 'Food Choice',
@@ -142,7 +199,11 @@ const Profile = () => {
       options: [
         { label: 'Veg', value: 'VEG' },
         { label: 'Non-Veg', value: 'NON-VEG' }
-      ]
+      ],
+      validation: {
+        required: true,
+        message: 'Food choice is required.'
+      }
     },
     {
       label: 'T-Shirt Size',
@@ -155,19 +216,27 @@ const Profile = () => {
         { label: 'L', value: 'L' },
         { label: 'XL', value: 'XL' },
         { label: 'XXL', value: 'XXL' }
-      ]
+      ],
+      validation: {
+        required: true,
+        message: 'T-Shirt size is required.'
+      }
     },
     {
       label: 'Country Code',
       name: 'country_code',
       type: 'select',
       value: loggedInState.user?.profile.country_code,
-      options: countryCodeChoices
+      options: countryCodeChoices,
+      validation: {
+        required: true,
+        message: 'Country code is required.'
+      }
     }
   ];
 
   const EDIT_MODE_CLASS =
-    'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md border border-gray-300';
+    'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 focus:border-indigo-500 sm:text-xl rounded-md border border-gray-300';
 
   return (
     <>
@@ -177,64 +246,97 @@ const Profile = () => {
           src={BACKGROUND_ASSETS + 'victoria.svg'}
           alt=""
         />
-        <div className='flex flex-row mt-10 mb-10 lg:mt-0 lg:mb-0'>
+        <div className="flex flex-row mt-10 mb-10 lg:mt-0 lg:mb-0">
           <div className="max-w-5xl px-4 sm:px-6 lg:px-8 w-1/2">
             <div className="-mt-12 flex flex-col justify-start items-start sm:-mt-16 sm:space-x-5">
               <div className="flex">
-                <img
-                  className="h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
-                  src={DP_ASSETS + 'yoda-' + dp + '.png'}
-                  alt=""
-                />
+                {dp !== 4 ?
+                  <img
+                    className="h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
+                    src={DP_ASSETS + 'yoda-' + dp + '.png'}
+                    alt=""
+                  /> :
+                  <>
+                    <img
+                      className="hidden lg:block bg-gray-300 h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
+                      src={DP_ASSETS + 'yoda-' + dp + '.2.png'}
+                      alt=""
+                    />
+                    <img
+                      className="block lg:hidden bg-gray-300 h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
+                      src={DP_ASSETS + 'yoda-' + dp + '.1.png'}
+                      alt=""
+                    />
+                  </>
+                }
               </div>
             </div>
           </div>
-          <div className='flex lg:hidden md:hidden justify-center items center w-full'>
-            {!editMode &&
-              <Link to={TICKET_ROUTE}>
+          <div className='flex justify-center flex-col lg:flex-row md:flex-row items-center w-full'>
+            {
+              <>
+                <Link to={TICKET_ROUTE}>
+                  <button
+                    className={`${editMode ? "hidden" : null} mr-5 mb-4 lg:mb-0 md:mb-0  py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
+                text-white border font-medium text-1xl lg:text-2xl
+                transition ease-in-out 
+                hover:shadow-xl hover:scale-105 hover:ease-in 
+                cursor-pointer`}
+                  >
+                    {buyTicket ? 'Buy Ticket' : 'View Ticket'}
+                  </button>
+                </Link>
                 <button
-                  className=" mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
+                  onClick={handleEdit}
+                  className={` mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
                 text-white bg-transparent border font-medium text-1xl lg:text-2xl
                 transition ease-in-out duration-300
-                hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                cursor-pointer"
+                hover:shadow-xl hover:scale-105 hover:ease-in
+                cursor-pointer`}
                 >
-                  {buyTicket ? 'Buy Ticket' : 'View TIcket'}
+                  {!editMode ? "Edit Profile" : "Cancel Edit"}
                 </button>
-              </Link>
+              </>
             }
           </div>
         </div>
         <section className="mt-4 pb-12 px-4 sm:px-6 lg:px-8 space-y-5">
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-col items-start dark:text-white text-g-gray-8 pb-0 lg:pb-5 space-y-2">
-              <span className="flex flex-row text-lg space-x-2">
+              <span className="flex flex-row items-center text-2xl space-x-2">
                 Hi,&nbsp;
-                <input
-                  type="text"
-                  disabled={!editMode}
-                  placeholder="Name"
-                  defaultValue={loggedInState.user?.profile?.first_name}
-                  className={`bg-transparent capitalize text-lg w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : ''
-                    }`}
-                  onChange={(e) => {
-                    handleChange(e, 'user', 'first_name');
-                  }}
-                />
-                <input
-                  type="text"
-                  disabled={!editMode}
-                  placeholder="Last Name"
-                  defaultValue={loggedInState.user?.profile?.last_name}
-                  className={`bg-transparent capitalize text-lg w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : 'hidden'
-                    }`}
-                  onChange={(e) => {
-                    handleChange(e, 'user', 'last_name');
-                  }}
-                />
+                {!editMode ?
+                  <div>
+                    <span className=' text-2xl text-white'>{loggedInState.user?.profile.first_name + " "}</span>
+                    <span className=' text-2xl text-white'>{loggedInState.user?.profile.last_name}</span>
+                  </div>
+                  :
+                  <div className=' flex'>
+                    <input
+                      type="text"
+                      disabled={!editMode}
+                      placeholder="Name"
+                      defaultValue={loggedInState.user?.profile?.first_name}
+                      className={`bg-transparent capitalize w-5/6 lg:w-full mr-2 pl-2 ${EDIT_MODE_CLASS}`}
+                      onChange={(e) => {
+                        handleChange(e, 'user', 'first_name');
+                      }}
+                    />
+                    <input
+                      type="text"
+                      disabled={!editMode}
+                      placeholder="Last Name"
+                      defaultValue={loggedInState.user?.profile?.last_name}
+                      className={`bg-transparent capitalize w-5/6 lg:w-full pl-2 ${EDIT_MODE_CLASS}`}
+                      onChange={(e) => {
+                        handleChange(e, 'user', 'last_name');
+                      }}
+                    />
+                  </div>
+                }
               </span>
 
-              <span className="flex flex-row font-bold text-lg">
+              <span className="flex flex-row font-bold text-2xl">
                 <span>@</span>
                 {/* no provision to change username as of now */}
                 <input
@@ -242,10 +344,7 @@ const Profile = () => {
                   disabled
                   placeholder="Username"
                   defaultValue={loggedInState.user?.username}
-                  className={`bg-transparent text-lg ${editMode ? '' : ''}`}
-                // onChange={(e) => {
-                //   handleChange(e, 'user', 'username');
-                // }}
+                  className={`bg-transparent ${editMode ? '' : ''}`}
                 />
               </span>
             </div>
@@ -265,42 +364,50 @@ const Profile = () => {
                 Please fill in your details to complete your profile.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-4 px-2 w-full">
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-4 px-2 w-full">
               {profileFields.map((field: any, i: number) => {
                 if (field.type === 'select') {
                   return (
-                    <div
-                      key={i}
-                      className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
-                        }`}
-                    >
-                      <label
-                        htmlFor="name"
-                        className="block text-xs font-medium"
+                    <>
+                      <div
+                        key={i}
+                        className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
+                          }`}
                       >
-                        {field.label}
-                      </label>
-                      <select
-                        name={field.name}
-                        id={field.name}
-                        disabled={!editMode}
-                        defaultValue={field.value}
-                        className="block w-full border-0 p-0 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
-                        onChange={(e) => {
-                          handleChange(e, 'profile', field.name);
-                        }}
-                      >
-                        {field &&
-                          field.options &&
-                          field?.options.map((option: any, j: number) => {
-                            return (
-                              <option value={option.value} key={j}>
-                                {option.label}
-                              </option>
-                            );
-                          })}
-                      </select>
-                    </div>
+                        <label
+                          htmlFor="name"
+                          className="block text-lg lg:text-xl font-medium"
+                        >
+                          {field.label}
+                        </label>
+                        <select
+                          name={field.name}
+                          id={field.name}
+                          disabled={!editMode}
+                          defaultValue={field.value}
+                          className="block w-full border-0 px-4 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
+                          onChange={(e) => {
+                            handleChange(e, 'profile', field.name);
+                          }}
+                          onBlur={handleBlur}
+                        >
+                          {field &&
+                            field.options &&
+                            field?.options.map((option: any, j: number) => {
+                              return (
+                                <option value={option.value} key={j}>
+                                  {option.label}
+                                </option>
+                              );
+                            })}
+                        </select>
+                        {fieldErrors[field.name] && (
+                          <div className="text-red-500 text-xs">
+                            {fieldErrors[field.name]}
+                          </div>
+                        )}
+                      </div>
+                    </>
                   );
                 } else {
                   return (
@@ -311,7 +418,7 @@ const Profile = () => {
                     >
                       <label
                         htmlFor="name"
-                        className="block text-xs font-medium"
+                        className="block text-lg lg:text-xl font-medium"
                       >
                         {field.label}
                       </label>
@@ -323,11 +430,17 @@ const Profile = () => {
                         defaultValue={field.value}
                         readOnly={!editMode}
                         disabled={!editMode}
-                        className="block w-full border-0 p-0 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
+                        className="block w-full border-0 px-4 focus:ring-0 sm:text-base h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
                         onChange={(e) => {
                           handleChange(e, 'profile', field.name);
                         }}
+                        onBlur={handleBlur}
                       />
+                      {fieldErrors[field.name] && (
+                        <div className="text-red-500 text-xs">
+                          {fieldErrors[field.name]}
+                        </div>
+                      )}
                     </div>
                   );
                 }

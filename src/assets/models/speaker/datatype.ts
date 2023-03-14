@@ -30,7 +30,7 @@ export interface SpeakerFormData {
 
 export interface TechTypeData {
     name: string;
-    id: string;
+    id: number;
     slug: string;
     description: string;
 }
@@ -41,13 +41,16 @@ export interface MultiSelectOptionsType {
 }
 
 export interface TalkData {
-    title: string;
+    added_at?: string;
     description: string;
+    event: number;
     format: string;
+    id?: number;
     overview: string;
-    event?: number;
     speakers: number[];
+    status?: string;
     technologies: number[];
+    title: string;
 }
 
 export interface EventData {

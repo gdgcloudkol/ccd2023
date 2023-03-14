@@ -30,6 +30,8 @@ export async function ApiSignIn(
 export async function ApiSignup(
   payload: SignUpPayload
 ): Promise<AxiosResponse> {
+  payload.username = payload.username.toLowerCase();
+  payload.email = payload.email.toLowerCase();
   try {
     const res = await axios.post(BASE_REGISTRATION_URI, payload);
     if (res?.status !== 200) {
@@ -100,7 +102,7 @@ export async function ApiEmailVerification(
   } catch (e: any) {
     return e.response;
   }
-};
+}
 
 export async function ApiResendVerification(
   payload: string
@@ -114,7 +116,7 @@ export async function ApiResendVerification(
   } catch (e: any) {
     return e.response;
   }
-};
+}
 
 export async function ApiResetPasswordLink(
   payload: string
@@ -132,10 +134,10 @@ export async function ApiResetPasswordLink(
 
 export async function ApiResetPasswordConfirmLink(
   payload: {
-    new_password1: string,
-    new_password2: string,
-    token: string,
-    uid: string
+    new_password1: string;
+    new_password2: string;
+    token: string;
+    uid: string;
   }
 ): Promise<AxiosResponse> {
   try {

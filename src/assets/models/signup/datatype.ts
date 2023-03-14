@@ -1,4 +1,4 @@
-import { AccountType } from "../datatype";
+import { AccountType } from '../datatype';
 
 export interface InputDataType {
   name: string;
@@ -7,6 +7,7 @@ export interface InputDataType {
   options?: string[];
   placeholder: string;
   required: boolean;
+  maxLength?: number;
 }
 
 export interface SpeakerContent {
@@ -23,14 +24,14 @@ export interface InitialProfileContent {
   password: InputDataType;
   confirmPassword: InputDataType;
   order: string[];
-};
+}
 
 export interface InitialProfileData {
   username: string;
   email: string;
   password: string;
   confirmPassword: string;
-};
+}
 
 export interface ProfileContent {
   fullName: InputDataType;
@@ -101,7 +102,7 @@ export interface SignupData {
     accomodation: boolean;
     sampleRecordings: string[];
   };
-  misc?: MiscData
+  misc?: MiscData;
 }
 
 export interface SignupContent {
@@ -121,5 +122,5 @@ export interface SignupContent {
     submit: string;
     reset: string;
     cancel: string;
-  }
+  };
 }

@@ -26,8 +26,12 @@
       "title": "Resources",
       "list": [
         {
+          "title": "Become a Community Partner",
+          "hyperlink": "https://bit.ly/gccdkol-community-partners"
+        },
+        {
           "title": "Become a Sponsor",
-          "link": "/"
+          "hyperlink": "https://bit.ly/gccdkol-sponsors"
         },
         {
           "title": "Call for Speakers",

@@ -21,28 +21,32 @@
       "label": "Username",
       "type": "text",
       "placeholder": "Username",
-      "required": true
+      "required": true,
+      "maxLength": 50
     },
     "email": {
       "name": "email",
       "label": "Email",
-      "type": "text",
+      "type": "email",
       "placeholder": "Email",
-      "required": true
+      "required": true,
+      "maxLength": 50
     },
     "password": {
       "name": "password1",
       "label": "Password",
       "type": "password",
       "placeholder": "Password",
-      "required": true
+      "required": true,
+      "maxLength": 50
     },
     "confirmPassword": {
       "name": "password2",
       "label": "Confirm Password",
       "type": "password",
       "placeholder": "Confirm Password",
-      "required": true
+      "required": true,
+      "maxLength": 50
     },
     "order": [
       "email",
