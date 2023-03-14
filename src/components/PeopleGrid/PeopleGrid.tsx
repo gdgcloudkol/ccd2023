@@ -32,7 +32,7 @@ const PeopleGrid = ({ peopleGrid, rule = [''] }: PeopleGridProp) => {
 
   return (
     <div
-      className="grid sm:grid-cols-1 md:grid-cols-3 grid-flow-row place-items-center p-5 lg:grid-cols-4 gap-4 max-w-7xl mx-auto"
+      className="grid sm:grid-cols-1 md:grid-cols-3 grid-flow-row place-items-center lg:grid-cols-4 gap-4 max-w-7xl mx-auto"
       id="speakers-grid"
     >
       {peopleGrid?.map((data: PeopleData, i: number) =>

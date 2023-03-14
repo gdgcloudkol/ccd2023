@@ -174,7 +174,7 @@ const Team = () => {
         return (
           <div
             key={key}
-            className="bg-[#1c1c1c] px-4 sm:px-6 lg:px-8 py-12 rounded-lg ring-1 ring-black ring-opacity-5"
+            className="bg-[#1c1c1c] px-4 sm:px-6 lg:px-8 py-12 rounded-lg ring-1 ring-black ring-opacity-5 space-y-5"
             data-aos={key % 2 === 0 ? 'fade-right' : 'fade-left'}
             data-aos-delay={key * 100}
           >
