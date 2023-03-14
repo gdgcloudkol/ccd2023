@@ -37,7 +37,12 @@ const Tickets = () => {
   const [fieldErrors, setFieldErrors] = useState<any>({});
 
   let inputBoxStyle = !editMode ? 'bg-transparent text-lg lg:text-2xl w-full' : 'text-black text-lg lg:text-2xl appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400';
+
   const handleEdit = async () => {
+    validateFields();
+    setEditFormData({ ...editFormdata });
+    if (Object.keys(fieldErrors).length > 0)
+      return
     const userData = { ...loggedInState.user };
     userData.profile.first_name = editFormdata.first_name;
     userData.profile.last_name = editFormdata.last_name + '';
@@ -51,17 +56,25 @@ const Tickets = () => {
 
   function validateFields() {
     formFields.forEach((field) => {
-      const value = editFormdata[field.name as keyof EditFormData];
-      if (field.validation?.required && (!value || value === '')) {
-        fieldErrors[field.name] = `${field.label} is required.`;
-
-      } else if (
-        field.validation?.pattern &&
-        !field.validation.pattern.test(value + '')
-      ) {
-        fieldErrors[field.name] = field.validation.message;
-      } else {
-        delete (fieldErrors[field.name]);
+      if (field.name !== 'email') {
+        const value = editFormdata[field.name as keyof EditFormData];
+        if (field.validation?.required && (!value || value === '')) {
+          fieldErrors[field.name] = `${field.label} is required.`;
+        }
+        else
+          delete (fieldErrors[field.name]);
+        if (
+          value &&
+          field.validation?.pattern &&
+          !field.validation.pattern.test(value)
+        ) {
+          fieldErrors[field.name] = field.validation.message;
+        } else {
+          setFieldErrors({
+            ...fieldErrors,
+            [field.name]: ''
+          })
+        }
       }
     });
     setFieldErrors(fieldErrors);
@@ -89,7 +102,7 @@ const Tickets = () => {
       className: inputBoxStyle,
       validation: {
         required: true,
-        pattern: /^[a-zA-Z0-9\s]*$/,
+        pattern: /^[a-zA-Z\s]*$/,
         message: 'Invalid First Name.'
       }
     },
@@ -104,7 +117,7 @@ const Tickets = () => {
       className: inputBoxStyle,
       validation: {
         required: true,
-        pattern: /^[a-zA-Z0-9\s]*$/,
+        pattern: /^[a-zA-Z\s]*$/,
         message: 'Invalid Last Name.'
       }
     },
@@ -119,7 +132,7 @@ const Tickets = () => {
       className: inputBoxStyle,
       validation: {
         required: true,
-        pattern: /^\d{9}$/,
+        pattern: /^\d{10}$/,
         message: 'Phone number must be a valid 10 digit number.'
       }
     }
@@ -133,6 +146,7 @@ const Tickets = () => {
 
   const handleBlur = () => {
     validateFields();
+    setEditFormData({ ...editFormdata });
   };
 
   useEffect(() => {
@@ -148,10 +162,16 @@ const Tickets = () => {
 
   useEffect(() => {
     if (editFormdata.first_name === "" || editFormdata.last_name === "" || editFormdata.phone === "") {
-      setDisabled(true)
+      setDisabled(true);
       setFieldErrors({ incomplete: "Please update all the fields to buy tickets." })
     }
-    else setDisabled(false)
+    else {
+      setDisabled(false);
+      setFieldErrors({});
+    }
+    if (Object.keys(fieldErrors).length > 0) {
+      setDisabled(true);
+    }
   }, [editFormdata, fieldErrors.incomplete])
 
   function handleBuy() {
@@ -182,7 +202,7 @@ const Tickets = () => {
       >
         Buy Tickets
       </div>
-      {isDisabled && <div className="items-center flex justify-center mt-8">
+      {isDisabled && fieldErrors["incomplete"] && <div className="items-center flex justify-center mt-8">
         {fieldErrors["incomplete"] && (
           <div className="rounded-md w-full lg:w-1/2 bg-red-50 p-4" data-aos="fade-in">
             <div className=" text-center">
@@ -221,7 +241,7 @@ const Tickets = () => {
         <div className="mt-5 flex items-center space-x-4">
           {!editMode && (
             <button
-              onClick={handleBuy}
+              onClick={() => { !isDisabled && handleBuy() }}
               disabled={isDisabled}
               type="button"
               className={`py-2 ${isDisabled ? "cursor-not-allowed opacity-60 " : "cursor-pointer"} mt-5 px-10 rounded-3xl h-fit w-fit 
@@ -253,10 +273,9 @@ const Tickets = () => {
           </button>
           {editMode && (
             <button
-              onClick={() => {
-                handleEdit();
-              }}
-              className={` ${editMode ? '' : 'hidden'
+              onClick={() => { !isDisabled && handleEdit() }}
+              disabled={isDisabled}
+              className={` ${isDisabled ? "cursor-not-allowed opacity-60 " : "cursor-pointer"} ${editMode ? '' : 'hidden'
                 } py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
                     text-white bg-transparent border font-medium text-1xl lg:text-xl
                     transition ease-in-out duration-300
