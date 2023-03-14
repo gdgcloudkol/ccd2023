@@ -236,7 +236,7 @@ const Profile = () => {
   ];
 
   const EDIT_MODE_CLASS =
-    'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md border border-gray-300';
+    'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 focus:border-indigo-500 sm:text-xl rounded-md border border-gray-300';
 
   return (
     <>
@@ -274,29 +274,27 @@ const Profile = () => {
           </div>
           <div className='flex justify-center flex-col lg:flex-row md:flex-row items-center w-full'>
             {
-              !editMode &&
               <>
                 <Link to={TICKET_ROUTE}>
                   <button
-                    className="mr-5 mb-4 lg:mb-0 md:mb-0  py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
+                    className={`${editMode ? "hidden" : null} mr-5 mb-4 lg:mb-0 md:mb-0  py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
                 text-white border font-medium text-1xl lg:text-2xl
-                transition ease-in-out duration-300
-                hover:shadow-xl hover:scale-105 hover:ease-in duration-300
-                cursor-pointer"
+                transition ease-in-out 
+                hover:shadow-xl hover:scale-105 hover:ease-in 
+                cursor-pointer`}
                   >
                     {buyTicket ? 'Buy Ticket' : 'View Ticket'}
                   </button>
                 </Link>
                 <button
                   onClick={handleEdit}
-                  className={`${editMode ? 'hidden' : ''
-                    } mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
+                  className={` mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
                 text-white bg-transparent border font-medium text-1xl lg:text-2xl
                 transition ease-in-out duration-300
-                hover:shadow-xl hover:scale-105 hover:ease-in duration-300
+                hover:shadow-xl hover:scale-105 hover:ease-in
                 cursor-pointer`}
                 >
-                  Edit Profile
+                  {!editMode ? "Edit Profile" : "Cancel Edit"}
                 </button>
               </>
             }
@@ -319,8 +317,7 @@ const Profile = () => {
                       disabled={!editMode}
                       placeholder="Name"
                       defaultValue={loggedInState.user?.profile?.first_name}
-                      className={`bg-transparent capitalize text-2xl w-5/6 lg:w-full mr-2 ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : ''
-                        }`}
+                      className={`bg-transparent capitalize w-5/6 lg:w-full mr-2 pl-2 ${EDIT_MODE_CLASS}`}
                       onChange={(e) => {
                         handleChange(e, 'user', 'first_name');
                       }}
@@ -330,8 +327,7 @@ const Profile = () => {
                       disabled={!editMode}
                       placeholder="Last Name"
                       defaultValue={loggedInState.user?.profile?.last_name}
-                      className={`bg-transparent capitalize text-2xl w-5/6 lg:w-full ${editMode ? EDIT_MODE_CLASS + ' pl-2 ' : 'hidden'
-                        }`}
+                      className={`bg-transparent capitalize w-5/6 lg:w-full pl-2 ${EDIT_MODE_CLASS}`}
                       onChange={(e) => {
                         handleChange(e, 'user', 'last_name');
                       }}
@@ -380,7 +376,7 @@ const Profile = () => {
                       >
                         <label
                           htmlFor="name"
-                          className="block text-xs font-medium"
+                          className="block text-lg lg:text-xl font-medium"
                         >
                           {field.label}
                         </label>
@@ -389,7 +385,7 @@ const Profile = () => {
                           id={field.name}
                           disabled={!editMode}
                           defaultValue={field.value}
-                          className="block w-full border-0 p-0 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
+                          className="block w-full border-0 px-4 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
                           onChange={(e) => {
                             handleChange(e, 'profile', field.name);
                           }}
@@ -422,7 +418,7 @@ const Profile = () => {
                     >
                       <label
                         htmlFor="name"
-                        className="block text-xs font-medium"
+                        className="block text-lg lg:text-xl font-medium"
                       >
                         {field.label}
                       </label>
@@ -434,7 +430,7 @@ const Profile = () => {
                         defaultValue={field.value}
                         readOnly={!editMode}
                         disabled={!editMode}
-                        className="block w-full border-0 p-0 focus:ring-0 sm:text-sm h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
+                        className="block w-full border-0 px-4 focus:ring-0 sm:text-base h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
                         onChange={(e) => {
                           handleChange(e, 'profile', field.name);
                         }}

@@ -37,7 +37,8 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData, technologiesList
         let temp = e.map((i: any) => { return i.value })
         setEditedData({ ...editedData, technologies: temp })
     };
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLSelectElement>) => {
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         let current = e.target.name;
         setEditedData({ ...editedData, [current]: e.target.value });
     }

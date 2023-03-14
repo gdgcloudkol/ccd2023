@@ -20,7 +20,6 @@ import Footer from './components/Footer/Footer';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import VerifyEmail from './pages/VerifyEmail';
 import ResetPassword from './pages/ResetPassword';
-import CFSSettings from './components/CfsSettings/CFSSettings';
 
 const ScrollToTop = ({ children }: { children: ReactElement }) => {
   const location = useLocation();
