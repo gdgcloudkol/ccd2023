@@ -14,6 +14,7 @@ const Profile = () => {
   const nav = useNavigate();
   const { loggedInState, setLoggedInState } = useContext(LoggedInContext);
   const [editMode, setEditMode] = useState<boolean>(false);
+  const [referral, setReferral] = useState<number>(0);
   const [submitButtonText, setSubmitButtonText] = useState<string>('Submit');
   const [submitButton, setSubmitButton] = useState<boolean>(true);
   const [formData, setFormData] = useState<UserData>(loggedInState.user as UserData);
@@ -272,9 +273,9 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className='flex justify-center flex-col lg:flex-row md:flex-row items-center w-full'>
+          <div className='flex justify-center flex-col items-center w-full'>
             {
-              <>
+              <div className=' flex flex-col lg:flex-row md:flex-row items-end w-full justify-end'>
                 <Link to={TICKET_ROUTE}>
                   <button
                     className={`${editMode ? "hidden" : null} mr-5 mb-4 lg:mb-0 md:mb-0  py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
@@ -296,13 +297,13 @@ const Profile = () => {
                 >
                   {!editMode ? "Edit Profile" : "Cancel Edit"}
                 </button>
-              </>
+              </div>
             }
           </div>
         </div>
         <section className="mt-4 pb-12 px-4 sm:px-6 lg:px-8 space-y-5">
-          <div className="flex flex-row justify-between items-center">
-            <div className="flex flex-col items-start dark:text-white text-g-gray-8 pb-0 lg:pb-5 space-y-2">
+          <div className="flex lg:my-5 flex-row justify-between items-center">
+            <div className={`flex flex-col ${!editMode && "w-1/2"} items-start dark:text-white text-g-gray-8 pb-0 lg:pb-5 space-y-2`}>
               <span className="flex flex-row items-center text-2xl space-x-2">
                 Hi,&nbsp;
                 {!editMode ?
@@ -348,6 +349,11 @@ const Profile = () => {
                 />
               </span>
             </div>
+            {!editMode && <div className="mr-2 mb-5 ">
+              <div className="animate-border inline-block rounded-md bg-white bg-gradient-to-r from-google-red via-google-blue to-google-green bg-[length:400%_400%] p-1">
+                <span className={`block rounded-md whitespace-nowrap bg-slate-900 px-2 lg:px-5 py-3 lg:font-bold ${referral ? "text-white" : "text-g-gray-5"}`}>Total referral : {referral}</span>
+              </div>
+            </div>}
           </div>
           <SocialProfile
             socials={socials}
