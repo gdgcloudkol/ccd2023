@@ -13,6 +13,7 @@ export interface UserProfileData {
   socials: {
     [key: string]: string;
   };
+  refferal: number;
 }
 
 export interface UserData {

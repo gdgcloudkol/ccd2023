@@ -24,9 +24,10 @@ export interface PeopleData {
 export interface PeopleGridProp {
   peopleGrid: PeopleData[];
   rule?: string[];
+  modelAllowed?: boolean;
 }
 
-const PeopleGrid = ({ peopleGrid, rule = [''] }: PeopleGridProp) => {
+const PeopleGrid = ({ peopleGrid, rule = [''], modelAllowed = true }: PeopleGridProp) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalData, setModalData]: any = useState<[]>([]);
 
@@ -42,7 +43,7 @@ const PeopleGrid = ({ peopleGrid, rule = [''] }: PeopleGridProp) => {
             className="flex w-full h-full dark:text-white flex-col rounded-2xl items-center p-4 transform hover:-translate-y-2 hover:shadow-xl cursor-pointer transition duration-300 border border-g-gray-8"
             onClick={() => {
               setModalData(data);
-              setShowModal(true);
+              modelAllowed && setShowModal(true);
             }}
           >
             <img
@@ -116,7 +117,7 @@ const PeopleGrid = ({ peopleGrid, rule = [''] }: PeopleGridProp) => {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <Dialog open={showModal} onClose={() => setShowModal(false)}>
+        <Dialog open={showModal} onClose={() => modelAllowed && setShowModal(false)}>
           <div className="fixed inset-0 bg-black/75" aria-hidden="true" />
 
           {/* Full-screen container to center the panel */}
@@ -202,7 +203,7 @@ const PeopleGrid = ({ peopleGrid, rule = [''] }: PeopleGridProp) => {
                   <button
                     className="text-google-red background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => modelAllowed && setShowModal(false)}
                   >
                     Close
                   </button>

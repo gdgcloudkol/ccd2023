@@ -1,13 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
-import { TownscriptProfileData, UserData } from '../assets/models/login/datatype';
-import { CurrentTheme } from '../services/common.service';
-import { DARK, PROFILE_ROUTE, TICKET_PURCHASED_KEY } from '../services/constants';
-import { LoggedInContext } from '../services/state.service';
-import { ApiViewTickets } from '../services/ticket.service';
 import { Link } from 'react-router-dom';
+import { TownscriptProfileData, UserData } from '../assets/models/login/datatype';
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 import Spinner from '../components/Spinner/Spinner';
+import { CurrentTheme } from '../services/common.service';
+import { DARK, PROFILE_ROUTE, TICKET_PURCHASED_KEY } from '../services/constants';
+import { getFeature } from '../services/feature.service';
 import { ApiPostProfile } from '../services/signin.service';
+import { LoggedInContext } from '../services/state.service';
+import { ApiReferral, ApiViewTickets } from '../services/ticket.service';
 
 declare global {
   interface Window {
@@ -29,7 +30,8 @@ const Tickets = () => {
   const [loader, setLoader] = useState<boolean>(true);
   const [isApplied, setIsApplied] = useState<boolean>(true);
   const [editMode, setEditMode] = useState<boolean>(false);
-  const [referralEmail, setReferralEmail] = useState<string>("")
+  const [referralEmail, setReferralEmail] = useState<string>('');
+  const [referralAllowed, setReferralAllowed] = useState<boolean>(true);
   const [editFormdata, setEditFormData] = useState<EditFormData>({
     first_name: loggedInState.user.profile.first_name,
     last_name: loggedInState.user.profile.last_name,
@@ -150,24 +152,30 @@ const Tickets = () => {
     validateFields();
     setEditFormData({ ...editFormdata });
   };
-  const handleApplyReferral = () => {
+
+  const handleApplyReferral = async () => {
     if (referralEmail.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
-      setIsApplied(!isApplied)
-      setFieldErrors({ invalidEmail: "" })
-      console.log("Hello")
+      setFieldErrors({ invalidEmail: "" });
+      let result = await ApiReferral();
+      if (result.status === 200)
+        setIsApplied(!isApplied);
+      else
+        setFieldErrors({ invalidEmail: "Please apply again" })
     }
-    else setFieldErrors({ invalidEmail: "Please enter a valid email." })
+    else setFieldErrors({ invalidEmail: "Please enter a valid email." });
   }
+
   useEffect(() => {
-    Promise.all([ApiViewTickets()]).then(([data]) => {
+    Promise.all([ApiViewTickets(), getFeature()]).then(([data, rule]) => {
       if (data.data.length > 0) {
         sessionStorage.setItem(TICKET_PURCHASED_KEY, 'true');
         setBuyTicket(false);
         setTicket(data.data[0]);
       }
+      setReferralAllowed(rule?.reffral);
       setLoader(false);
     });
-  }, [ticket]);
+  }, [buyTicket && ticket]);
 
   useEffect(() => {
     if (editFormdata.first_name === "" || editFormdata.last_name === "" || editFormdata.phone === "") {
@@ -228,11 +236,11 @@ const Tickets = () => {
       </div>
 
       <div className="flex mt-3 divide-y divider-gray-200 dark:divide-gray-700 justify-center items-center">
-        <div className="flex flex-col w-full lg:w-3/5 p-3  lg:p-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 text-base font-normal">
+        <div className="flex flex-col w-full lg:w-1/3 p-3  lg:p-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 text-base font-normal">
           {formFields.map((field) => (
             <div key={field.name}>
               <span className="flex my-1 text-gray-900 dark:text-white w-full justify-end items-center">
-                <span className='flex text-lg lg:text-xl font-regular align-middle justify-end w-3/6 lg:w-3/6 mr-3'>{field.label}: </span>
+                <span className='flex text-lg lg:text-xl font-regular align-middle justify-start w-3/6 lg:w-3/6 mr-3'>{field.label}: </span>
                 <input onBlur={handleBlur} onChange={(e) => handleChange(e)} {...field} />
               </span>
               {fieldErrors[field.name] && (
@@ -242,7 +250,7 @@ const Tickets = () => {
               )}
             </div>
           ))}
-          {!editMode && <div className='flex flex-col items-center justify-center  '>
+          {!editMode && referralAllowed && <div className='flex flex-col items-center justify-center  '>
             <div className="flex items-center border-b py-2 border-teal-500 justify-center w-4/5 md:w-3/5 lg:w-3/6">
               <input disabled={!isApplied} value={referralEmail} onChange={(e) => setReferralEmail(e.target.value)} className={`appearance-none ${isApplied && "focus:text-white"} bg-transparent border-none w-full text-g-gray-4 mr-3 py-1 px-2 leading-tight focus:outline-none`} type="email" placeholder="Got any referral email?" aria-label="Referral Email" />
               {!isApplied ?

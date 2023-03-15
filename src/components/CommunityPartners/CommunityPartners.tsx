@@ -67,7 +67,8 @@ const CommunityPartners = () => {
                   </a>
                 </div>
                 : (
-                  <div className='col-span-1 h-full md:col-span-2 lg:col-span-1 align-middle border-[0.5rem] rounded-lg hover:border-t-google-red hover:border-l-google-blue hover:border-r-google-green hover:border-b-google-yellow lg:grayscale hover:grayscale-0 hover:shadow-xl hover:scale-105 hover:ease-in duration-300'>
+                  <div key={sponsor?.sponsorId}
+                    className='col-span-1 h-full md:col-span-2 lg:col-span-1 align-middle border-[0.5rem] rounded-lg hover:border-t-google-red hover:border-l-google-blue hover:border-r-google-green hover:border-b-google-yellow lg:grayscale hover:grayscale-0 hover:shadow-xl hover:scale-105 hover:ease-in duration-300'>
                     <a
                       className='text-center'
                       href={sponsor?.hyperlink}

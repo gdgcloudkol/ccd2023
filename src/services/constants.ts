@@ -8,6 +8,7 @@ export const BASE_EMAIL_VERIFICATION_URL = BASE_URI + '/account-confirm-email/';
 export const BASE_TALKS_URI = BASE_URI + '/talks/';
 export const BASE_EVENTS_URI = BASE_URI + '/events/';
 export const BASE_USERS_URI = BASE_URI + '/users/';
+export const BASE_REFERRAL_URI = BASE_URI + '/referral/';
 
 // auth
 export const BASE_REGISTRATION_URI = BASE_AUTH_URI + 'registration/';

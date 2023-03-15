@@ -1,0 +1,383 @@
+[
+  {
+    "team": "Organizing Team",
+    "data": [
+      {
+        "fullName": "Jyoti Mishra",
+        "bio": "",
+        "profilePicture": "https://github.com/jstjyoti.png",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/Jyoti_Mi"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/jyotim29/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/jstjyoti"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/whereisjyoti/"
+          }
+        ],
+        "tagLine": "Organizer"
+      },
+      {
+        "fullName": "Anubhav Singh",
+        "bio": "",
+        "profilePicture": "https://github.com/xprilion.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": "https://fb.com/xprilion"
+          },
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/xprilion"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/xprilion"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/xprilion"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://ig.me/xprilion"
+          }
+        ],
+        "tagLine": "Organizer"
+      },
+      {
+        "fullName": "Md Nasirul Haque",
+        "bio": "",
+        "profilePicture": "https://github.com/lurisan.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/lurisan.euqah"
+          },
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/mdnasirulhaque"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/mdnasirulhaque"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/lurisan"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/md_nasirul_haque"
+          }
+        ],
+        "tagLine": "Organizer"
+      },
+      {
+        "fullName": "Snehangshu Bhattacharya",
+        "bio": "",
+        "profilePicture": "https://github.com/forkbomb-666.png",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/snehangshu_"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/snehangshu-bhattacharya-3891b5153/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/forkbomb-666"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/snehangshu_b/"
+          }
+        ],
+        "tagLine": "Organizer"
+      }
+    ]
+  },
+  {
+    "team": "Web Team",
+    "data": [
+      {
+        "fullName": "Maaz Ahmed",
+        "bio": "",
+        "profilePicture": "https://github.com/maaz619.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/maazahmedlfc"
+          },
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/imox919"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/maaz-ahmed-699484199"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/maaz619"
+          }
+        ],
+        "tagLine": "Web Dev"
+      },
+      {
+        "fullName": "Srijan Gupta",
+        "bio": "",
+        "profilePicture": "https://github.com/geekymeeky.png",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/srijankrgupta"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/srijankrgupta/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/geekymeeky"
+          }
+        ],
+        "tagLine": "Web Dev"
+      },
+      {
+        "fullName": "Sugato Bagchi",
+        "bio": "",
+        "profilePicture": "https://github.com/SugatoBagchi.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": "https://fb.com/sugato.bagchi.50"
+          },
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/sugato_bagchi"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/sugatobagchi"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/SugatoBagchi"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://ig.me/sugatobagchi"
+          }
+        ],
+        "tagLine": "Web Dev"
+      }
+    ]
+  },
+  {
+    "team": "App Team",
+    "data": [
+      {
+        "fullName": "Shubhayu Majumdar",
+        "bio": "",
+        "profilePicture": "https://github.com/shubhayu-64.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/shubhayu64"
+          },
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/shubhayu64"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/shubhayumajumdar/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/shubhayu-64"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/shubhayu.majumdar/"
+          }
+        ],
+        "tagLine": "App Dev"
+      },
+      {
+        "fullName": "Shatanik Mahanty",
+        "bio": "",
+        "profilePicture": "https://github.com/shatanikmahanty.png",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/MahantyShatanik"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/shatanikmahanty/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/shatanikmahanty"
+          }
+        ],
+        "tagLine": "App Dev"
+      },
+      {
+        "fullName": "Priyasu Guin",
+        "bio": "",
+        "profilePicture": "https://github.com/priyasu-cx.png",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/CODEXposer25"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/priyasu-guin/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/priyasu-cx"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/priyasu_cx/"
+          }
+        ],
+        "tagLine": "App Dev"
+      }
+    ]
+  },
+  {
+    "team": "Backend Team",
+    "data": [
+      {
+        "fullName": "Debika Basu",
+        "bio": "",
+        "profilePicture": "https://github.com/DebikaBasu.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": "https://m.facebook.com/debika.basu.9655"
+          },
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/devika_basu2?t=WPlNDpmaGf8wYnyUMJamZQ&s=09"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/debikabasu"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/DebikaBasu"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/devika.basu/"
+          }
+        ],
+        "tagLine": "Python Dev"
+      },
+      {
+        "fullName": "Ankan Ghosh",
+        "bio": "",
+        "profilePicture": "https://github.com/0xSynapse.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": "https://fb.com/0xSynapse"
+          },
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/0xSynapse"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/0xsynapse"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/0xSynapse/"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://ig.me/0xsynapse"
+          }
+        ],
+        "tagLine": "Python Developer"
+      }
+    ]
+  },
+  {
+    "team": "UX Team",
+    "data": [
+      {
+        "fullName": "Arindam Dutta",
+        "bio": "",
+        "profilePicture": "https://github.com/iarindamofficial.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/iarindamd/"
+          },
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/arindamoriginal"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/iarindamofficial/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/iarindamofficial"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/arindamoriginal/"
+          }
+        ],
+        "tagLine": "UX Designer"
+      },
+      {
+        "fullName": "Anurag",
+        "bio": "",
+        "profilePicture": "https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": ""
+          },
+          {
+            "title": "Twitter",
+            "url": ""
+          },
+          {
+            "title": "LinkedIn",
+            "url": ""
+          },
+          {
+            "title": "Github",
+            "url": ""
+          }
+        ],
+        "tagLine": "UX Designer"
+      }
+    ]
+  }
+]

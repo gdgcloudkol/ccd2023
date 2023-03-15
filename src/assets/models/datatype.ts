@@ -54,4 +54,5 @@ export interface FeatureRule {
   home: HomeRule;
   disabledFooterContent: FooterRule;
   disabledSocial: string[];
+  referral: boolean;
 }
