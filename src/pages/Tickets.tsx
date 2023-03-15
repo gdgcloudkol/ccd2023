@@ -27,7 +27,9 @@ const Tickets = () => {
   const [ticket, setTicket] = useState<{ [key: string]: string | number }>({});
   const [buyTicket, setBuyTicket] = useState<boolean>(true);
   const [loader, setLoader] = useState<boolean>(true);
+  const [isApplied, setIsApplied] = useState<boolean>(true);
   const [editMode, setEditMode] = useState<boolean>(false);
+  const [referralEmail, setReferralEmail] = useState<string>("")
   const [editFormdata, setEditFormData] = useState<EditFormData>({
     first_name: loggedInState.user.profile.first_name,
     last_name: loggedInState.user.profile.last_name,
@@ -148,7 +150,14 @@ const Tickets = () => {
     validateFields();
     setEditFormData({ ...editFormdata });
   };
-
+  const handleApplyReferral = () => {
+    if (referralEmail.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+      setIsApplied(!isApplied)
+      setFieldErrors({ invalidEmail: "" })
+      console.log("Hello")
+    }
+    else setFieldErrors({ invalidEmail: "Please enter a valid email." })
+  }
   useEffect(() => {
     Promise.all([ApiViewTickets()]).then(([data]) => {
       if (data.data.length > 0) {
@@ -176,9 +185,7 @@ const Tickets = () => {
 
   function handleBuy() {
     validateFields();
-    console.log("clicked")
-    console.log(editFormdata.first_name, editFormdata.last_name, editFormdata.phone)
-    if (Object.keys(fieldErrors).length > 0) {
+    if (fieldErrors["invalidEmail"] && Object.keys(fieldErrors).length > 1) {
       return;
     }
     if (editFormdata.first_name && editFormdata.last_name && editFormdata.phone)
@@ -221,10 +228,10 @@ const Tickets = () => {
       </div>
 
       <div className="flex mt-3 divide-y divider-gray-200 dark:divide-gray-700 justify-center items-center">
-        <div className="flex flex-col w-full lg:w-2/5 p-3 lg:p-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 text-base font-normal">
+        <div className="flex flex-col w-full lg:w-3/5 p-3  lg:p-5 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 text-base font-normal">
           {formFields.map((field) => (
-            <>
-              <span key={field.name} className="flex my-1 text-gray-900 dark:text-white w-full justify-end items-center">
+            <div key={field.name}>
+              <span className="flex my-1 text-gray-900 dark:text-white w-full justify-end items-center">
                 <span className='flex text-lg lg:text-xl font-regular align-middle justify-end w-3/6 lg:w-3/6 mr-3'>{field.label}: </span>
                 <input onBlur={handleBlur} onChange={(e) => handleChange(e)} {...field} />
               </span>
@@ -233,8 +240,25 @@ const Tickets = () => {
                   {fieldErrors[field.name]}
                 </div>
               )}
-            </>
+            </div>
           ))}
+          {!editMode && <div className='flex flex-col items-center justify-center  '>
+            <div className="flex items-center border-b py-2 border-teal-500 justify-center w-4/5 md:w-3/5 lg:w-3/6">
+              <input disabled={!isApplied} value={referralEmail} onChange={(e) => setReferralEmail(e.target.value)} className={`appearance-none ${isApplied && "focus:text-white"} bg-transparent border-none w-full text-g-gray-4 mr-3 py-1 px-2 leading-tight focus:outline-none`} type="email" placeholder="Got any referral email?" aria-label="Referral Email" />
+              {!isApplied ?
+                <svg className="h-8 w-8 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg> :
+                <button onClick={handleApplyReferral} className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+                  Apply
+                </button>}
+            </div>
+            {fieldErrors["invalidEmail"] && (
+              <p className="mt-2 text-sm text-red-600">
+                {fieldErrors["invalidEmail"]}
+              </p>
+            )}
+          </div>}
         </div>
       </div>
       <div className="flex flex-col items-center">
