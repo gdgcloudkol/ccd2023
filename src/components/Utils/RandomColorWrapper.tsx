@@ -2,13 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import { randomTextGoogleColor } from '../../services/common.service';
 
-const defaultColor: string = 'text-gray-600';
-
 export default function RandomColorWrapper({
   children,
+  defaultColor = 'text-gray-600',
   ...props
 }: {
   children: React.ReactNode;
+  defaultColor?: string;
   style?: React.CSSProperties;
 }) {
   const [textColor, setTextColor] = useState(defaultColor);
