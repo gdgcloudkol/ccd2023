@@ -82,6 +82,12 @@
         "imgSrc": "tfug.png"
       },
       {
+        "sponsorId": "dsc_gcect",
+        "sponsorName": "Government College of Engineering and Ceramic Technology",
+        "hyperlink": "https://gdsc.community.dev/government-college-of-engineering-ceramic-technology-kolkata/",
+        "imgSrc": ""
+      },
+      {
         "sponsorId": "dsc_gnit",
         "sponsorName": "Guru Nanak Institute of Technology - Kolkata",
         "hyperlink": "https://gdsc.community.dev/guru-nanak-institute-of-technology-kolkata/",
@@ -97,6 +103,12 @@
         "sponsorId": "dsc_tiu",
         "sponsorName": "Techno India University",
         "hyperlink": "https://gdsc.community.dev/techno-india-university-kolkata/",
+        "imgSrc": ""
+      },
+      {
+        "sponsorId": "dsc_tib",
+        "sponsorName": "Techno International Batanagar",
+        "hyperlink": "https://gdsc.community.dev/techno-international-batanagar-maheshtala/",
         "imgSrc": ""
       },
       {
@@ -127,12 +139,6 @@
         "sponsorId": "dsc_gce",
         "sponsorName": "Developers Students Club Gaya College of Engineering",
         "hyperlink": "https://gdsc.community.dev/gaya-college-of-engineering-gaya/",
-        "imgSrc": ""
-      },
-      {
-        "sponsorId": "dsc_gcect",
-        "sponsorName": "Developers Students Club GCECT",
-        "hyperlink": "https://gdsc-gcect.web.app/",
         "imgSrc": ""
       },
       {
