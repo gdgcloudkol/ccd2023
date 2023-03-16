@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import FeatureRuleData from '../../assets/content/feature.rule.json';
+import SocialContentData from '../../assets/content/social/content.json';
 import { ReactComponent as FacebookSVGIcon } from '../../assets/icons/facebook.svg';
 import { ReactComponent as GitHubSVGIcon } from '../../assets/icons/github.svg';
 import { ReactComponent as GmailSVGIcon } from '../../assets/icons/gmail.svg';
@@ -7,24 +9,11 @@ import { ReactComponent as LinkedInSVGIcon } from '../../assets/icons/linkedin.s
 import { ReactComponent as TwitterSVGIcon } from '../../assets/icons/twitter.svg';
 import { SocialContent, SocialItem } from '../../assets/models/social/datatype';
 import { CurrentTheme } from '../../services/common.service';
-import { DARK, SOCIAL_CONTENT_KEY } from '../../services/constants';
-import { getContent } from '../../services/content.service';
-import { getFeature } from '../../services/feature.service';
+import { DARK } from '../../services/constants';
 
 const HomeSocials = () => {
-  const [socialContent, setContent] = useState<SocialContent>({} as SocialContent);
-  useEffect(() => {
-    getContent<SocialContent>(SOCIAL_CONTENT_KEY).then((data: void | SocialContent) => {
-      if (data) setContent(data);
-    });
-  }, []);
-
-  const [disabledSocial, setdisabledSocial] = useState<string[]>(['']);
-  useEffect(() => {
-    getFeature().then((data) => {
-      if (data) setdisabledSocial(data.disabledSocial);
-    });
-  }, []);
+  const [socialContent] = useState<SocialContent>(SocialContentData as SocialContent);
+  const [disabledSocial] = useState<string[]>(FeatureRuleData.disabledSocial as string[]);
 
   return (
     <div className={`dark:bg-black dark:text-white bg-white text-black`}>

@@ -1,47 +1,36 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FeatureRule, SignInRule } from '../assets/models/datatype';
-import { SignInContent, SigninFieldButtonContent, SigninFieldContent, SignInPayload } from '../assets/models/login/datatype';
-import { BACKGROUND_ASSETS, LOGIN_CONTENT_KEY, PROFILE_ROUTE } from '../services/constants';
-import { getContent } from '../services/content.service';
-import { getFeature } from '../services/feature.service';
+import FeatureRuleData from '../assets/content/feature.rule.json';
+import LoginContentData from '../assets/content/login/content.json';
+import { SignInRule } from '../assets/models/datatype';
+import { SignInContent, SignInPayload, SigninFieldButtonContent, SigninFieldContent } from '../assets/models/login/datatype';
+import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
+import { BACKGROUND_ASSETS, PROFILE_ROUTE } from '../services/constants';
 import { ApiSignIn } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
-import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 
 const Login = () => {
+  const nav = useNavigate();
   const { loggedInState, setLoggedInState } = useContext(LoggedInContext);
+  const [signInContent] = useState<SignInContent>(LoginContentData as SignInContent);
+  const [signInRule] = useState<SignInRule>(FeatureRuleData.login as SignInRule);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
-  const nav = useNavigate();
-
-  const [signInRule, setsignInRule] = useState<SignInRule>({} as SignInRule);
-  useEffect(() => {
-    if (loggedInState.isLoggedIn) nav(PROFILE_ROUTE);
-    getFeature().then((data: FeatureRule) => {
-      if (data) setsignInRule(data.login as SignInRule);
-    });
-  }, [loggedInState, nav]);
-
   const [signInFields, setSignInFields] = useState<SigninFieldContent[]>([]);
 
-  const [signInContent, setSignInContent] = useState<SignInContent>({} as SignInContent);
   useEffect(() => {
-    getContent<SignInContent>(LOGIN_CONTENT_KEY).then(
-      (data: void | SignInContent) => {
-        if (data) {
-          setSignInContent(data);
-          const tmpArr: SigninFieldContent[] = [];
-          for (let el of data.fields) {
-            el.show = signInRule[el.name] || false;
-            fieldErrors[el.name] = '';
-            el.error = fieldErrors[el.name];
-            tmpArr.push(el);
-          }
-          setSignInFields(tmpArr);
-        }
-      }
-    );
+    if (loggedInState.isLoggedIn) nav(PROFILE_ROUTE);
+  }, [loggedInState, nav]);
+
+  useEffect(() => {
+    const tmpArr: SigninFieldContent[] = [];
+    for (let el of signInContent.fields) {
+      el.show = signInRule[el.name] || false;
+      fieldErrors[el.name] = '';
+      el.error = fieldErrors[el.name];
+      tmpArr.push(el);
+    }
+    setSignInFields(tmpArr);
     // eslint-disable-next-line
   }, [signInRule]);
 
@@ -199,7 +188,7 @@ const Login = () => {
             <div className="hidden lg:block relative w-0 flex-1">
               <img
                 className="absolute inset-0 h-full w-full object-fill"
-                src={BACKGROUND_ASSETS + `victoria.svg`}
+                src={BACKGROUND_ASSETS + `victoria.png`}
                 alt="Victoria SVG"
               />
             </div>

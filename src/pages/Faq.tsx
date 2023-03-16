@@ -1,17 +1,10 @@
 import { useEffect, useState } from 'react';
+import FAQContentData from '../assets/content/faq/content.json';
 import { FAQContent, FAQContentFAQ } from '../assets/models/faq/datatype';
 import { randomTextGoogleColor } from '../services/common.service';
-import { FAQ_CONTENT_KEY } from '../services/constants';
-import { getContent } from '../services/content.service';
 
 const FaqPage = () => {
-  const [content, setContent] = useState<FAQContent>({} as FAQContent);
-  useEffect(() => {
-    getContent<FAQContent>(FAQ_CONTENT_KEY).then((data: void | FAQContent) => {
-      if (data) setContent(data);
-    });
-  }, []);
-
+  const [content] = useState<FAQContent>(FAQContentData as FAQContent);
   const [selectedQuestion, setSelectedQuestion] = useState<number>(content?.faq?.length);
   const [borderOpen, setOpen] = useState<boolean>(false);
 

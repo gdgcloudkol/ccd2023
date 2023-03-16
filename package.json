@@ -29,7 +29,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
+    "buildlin": "GENERATE_SOURCEMAP=false react-scripts build",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build"

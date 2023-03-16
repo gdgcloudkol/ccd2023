@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { BASE_CONTENT_URI, ContentTypes } from './constants';
 
+// getContent is not used anymore anywhere, its depricated in the applciation
 export async function getContent<T>(contentFolder: ContentTypes) {
   if (sessionStorage.getItem(contentFolder) !== null) {
     const data = sessionStorage.getItem(contentFolder)

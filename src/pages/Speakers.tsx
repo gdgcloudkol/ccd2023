@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
+import SpeakerContentData from '../assets/content/speakers/content.json';
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 import PeopleGrid from '../components/PeopleGrid/PeopleGrid';
-import { getContent } from '../services/content.service';
-import { getFeature } from '../services/feature.service';
 
 const Speakers = () => {
   const [speakersDetails, setSpeakersDetails] = useState([]);
+  const [speakerRule, setFeature] = useState(['']);
 
   useEffect(() => {
     fetch('https://sessionize.com/api/v2/kirmfltc/view/Speakers')
@@ -16,25 +16,7 @@ const Speakers = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  const [speakerContent, setContent] = useState(
-    {} as { title: string; description: string }
-  );
-  useEffect(() => {
-    getContent<{ title: string; description: string }>('navbar').then(
-      (data: void | { title: string; description: string }) => {
-        if (data) setContent(data);
-      }
-    );
-  }, []);
-
-  const [speakerRule, setFeature] = useState(['']);
-  useEffect(() => {
-    getFeature().then((data) => {
-      if (data) {
-        setFeature(data.disabledSpeakers);
-      }
-    });
-  }, []);
+  const [speakerContent] = useState(SpeakerContentData as { title: string; description: string });
 
   return (
     <>

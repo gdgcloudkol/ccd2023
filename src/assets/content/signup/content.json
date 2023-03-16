@@ -5,6 +5,7 @@
   "signinLink": "/login",
   "verifiedEmail": "Email Verified",
   "accountType": {
+    "name": "accountType",
     "label": "Account Type",
     "type": "option",
     "placeholder": "Account Type",

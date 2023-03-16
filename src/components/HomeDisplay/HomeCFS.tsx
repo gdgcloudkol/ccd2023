@@ -1,54 +1,36 @@
 import { Disclosure } from "@headlessui/react";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FeatureRule } from "../../assets/models/datatype";
-import { HomeButtonContent, HomeCFSContent, HomeEventContent } from "../../assets/models/home/datatype";
+import FeatureRuleData from '../../assets/content/feature.rule.json';
+import HomeContentData from '../../assets/content/home/content.json';
+import { HomeButtonContent, HomeCFSContent } from "../../assets/models/home/datatype";
 import { CurrentTheme } from "../../services/common.service";
-import { ACTIVE, DARK, HOME_CONTENT_KEY, HOME_ROUTE, INACTIVE } from "../../services/constants";
-import { getContent } from "../../services/content.service";
-import { getFeature } from "../../services/feature.service";
+import { ACTIVE, DARK, HOME_ROUTE, INACTIVE } from "../../services/constants";
 import { LoggedInContext } from "../../services/state.service";
 
 export default function HomeCFS() {
   const { loggedInState } = useContext(LoggedInContext)
-  const [cfsContent, setCfsContent] = useState<HomeCFSContent>({} as HomeCFSContent);
-  const [buttonContent, setButtonContent] = useState<HomeButtonContent[]>([{}] as HomeButtonContent[])
-  useEffect(() => {
-    getContent<HomeEventContent>(HOME_CONTENT_KEY).then(
-      (data: void | HomeEventContent) => {
-        if (data) {
-          setButtonContent(data.cfsButton)
-          setCfsContent(data.cfs);
-        }
-      }
-    );
-  }, []);
-
-  const [cfsRule, setCfsRule] = useState<boolean>(false);
+  const [cfsContent] = useState<HomeCFSContent>(HomeContentData.cfs as HomeCFSContent);
+  const [buttonContent] = useState<HomeButtonContent[]>(HomeContentData.cfsButton as HomeButtonContent[])
+  const [cfsRule] = useState<boolean>(FeatureRuleData.home.cfs);
   const [buttonDisplay, setButtonDisplay] = useState<HomeButtonContent>({} as HomeButtonContent)
-  const [buttonLocalColor, setButtonLocalColor] = useState<string>(buttonDisplay.color)
+
   useEffect(() => {
-    getFeature().then((data: FeatureRule) => {
-      if (data) {
-        setCfsRule(data.home?.cfs);
-        for (let i of buttonContent) {
-          if (
-            (loggedInState.isLoggedIn && i?.id === data.home?.cfsButtonStateLogin) ||
-            (!loggedInState.isLoggedIn && i?.id === data.home?.cfsButtonStateNotLogin)
-          ) {
-            i.state = INACTIVE
-            if (
-              data.home.disabledCfsButton.every(
-                (item: string) => i.id !== item
-              )
-            )
-              i.state = ACTIVE;
-            setButtonDisplay(i);
-            setButtonLocalColor(i.color)
-          }
-        }
+    for (let i of buttonContent) {
+      if (
+        (loggedInState.isLoggedIn && i?.id === FeatureRuleData.home?.cfsButtonStateLogin) ||
+        (!loggedInState.isLoggedIn && i?.id === FeatureRuleData.home?.cfsButtonStateNotLogin)
+      ) {
+        i.state = INACTIVE
+        if (
+          FeatureRuleData.home.disabledCfsButton.every(
+            (item: string) => i.id !== item
+          )
+        )
+          i.state = ACTIVE;
+        setButtonDisplay(i);
       }
-    });
+    }
   }, [cfsRule, loggedInState, buttonContent]);
 
   return (
@@ -76,8 +58,6 @@ export default function HomeCFS() {
                                 cursor-${buttonDisplay?.state === INACTIVE ? 'not-allowed' : 'pointer'}
                               `}
                     aria-disabled={buttonDisplay?.state === INACTIVE}
-                    onMouseEnter={() => { setButtonLocalColor(buttonDisplay.hoverColor) }}
-                    onMouseLeave={() => { setButtonLocalColor(buttonDisplay.color) }}
                   >
                     {buttonDisplay?.title}
                   </button>

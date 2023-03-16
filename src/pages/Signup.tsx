@@ -1,36 +1,26 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FeatureRule } from '../assets/models/datatype';
+import FeatureRuleData from '../assets/content/feature.rule.json';
+import SignupContentData from '../assets/content/signup/content.json';
 import { SignUpPayload } from '../assets/models/login/datatype';
 import { InitialProfileContent, InputDataType, SignupContent } from '../assets/models/signup/datatype';
-import { BACKGROUND_ASSETS, PROFILE_ROUTE, SIGNUP_CONTENT_KEY, VERIFY_EMAIL_ROUTE } from '../services/constants';
-import { getContent } from '../services/content.service';
-import { getFeature } from '../services/feature.service';
+import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
+import { BACKGROUND_ASSETS, PROFILE_ROUTE, VERIFY_EMAIL_ROUTE } from '../services/constants';
 import { ApiSignup } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
-import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 
 const Signup = () => {
   const nav = useNavigate();
-  const [signupContent, setSignupContent] = useState<SignupContent>({} as SignupContent);
+  const [signupContent] = useState<SignupContent>(SignupContentData as SignupContent);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { loggedInState } = useContext(LoggedInContext);
+  const [signupRule] = useState<string[]>(FeatureRuleData.signup as string[]);
+  const [initialProfileContentFileds, setInitialProfileContentFields] = useState<InputDataType[]>([] as InputDataType[]);
 
   useEffect(() => {
     if (loggedInState.isLoggedIn) nav(PROFILE_ROUTE);
-    getContent<SignupContent>(SIGNUP_CONTENT_KEY).then((data: void | SignupContent) => {
-      if (data) setSignupContent(data);
-    });
   }, [loggedInState, nav]);
 
-  const [signupRule, setSignupRule] = useState<string[]>(['']);
-  useEffect(() => {
-    getFeature().then((data: FeatureRule) => {
-      if (data) setSignupRule(data.signup);
-    });
-  }, []);
-
-  const [initialProfileContentFileds, setInitialProfileContentFields] = useState<InputDataType[]>([] as InputDataType[]);
   useEffect(() => {
     if (signupContent?.initialProfile) {
       const order = signupContent?.initialProfile?.order;

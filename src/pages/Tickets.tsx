@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import FeatureRuleData from '../assets/content/feature.rule.json';
 import { TownscriptProfileData, UserData } from '../assets/models/login/datatype';
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 import Spinner from '../components/Spinner/Spinner';
 import { CurrentTheme } from '../services/common.service';
 import { DARK, PROFILE_ROUTE, TICKET_PURCHASED_KEY } from '../services/constants';
-import { getFeature } from '../services/feature.service';
 import { ApiPostProfile } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 import { ApiReferral, ApiViewTickets } from '../services/ticket.service';
@@ -31,7 +31,7 @@ const Tickets = () => {
   const [isApplied, setIsApplied] = useState<boolean>(true);
   const [editMode, setEditMode] = useState<boolean>(false);
   const [referralEmail, setReferralEmail] = useState<string>('');
-  const [referralAllowed, setReferralAllowed] = useState<boolean>(true);
+  const [referralAllowed] = useState<boolean>(FeatureRuleData.referral);
   const [editFormdata, setEditFormData] = useState<EditFormData>({
     first_name: loggedInState.user.profile.first_name,
     last_name: loggedInState.user.profile.last_name,
@@ -166,13 +166,12 @@ const Tickets = () => {
   }
 
   useEffect(() => {
-    Promise.all([ApiViewTickets(), getFeature()]).then(([data, rule]) => {
+    Promise.resolve(ApiViewTickets()).then((data) => {
       if (data.data.length > 0) {
         sessionStorage.setItem(TICKET_PURCHASED_KEY, 'true');
         setBuyTicket(false);
         setTicket(data.data[0]);
       }
-      setReferralAllowed(rule?.reffral);
       setLoader(false);
     });
   }, [buyTicket && ticket]);

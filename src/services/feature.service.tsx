@@ -2,6 +2,7 @@ import axios from 'axios';
 import { FeatureRule } from '../assets/models/datatype';
 import { BASE_CONTENT_URI, FEATURE_RULE_KEY } from './constants';
 
+// depricated in latest build not to be used anymore
 export async function getFeature() {
   if (sessionStorage.getItem(FEATURE_RULE_KEY) !== null) {
     const data = sessionStorage.getItem(FEATURE_RULE_KEY)

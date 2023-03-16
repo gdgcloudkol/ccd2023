@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
-import PeopleGrid, { PeopleData } from '../components/PeopleGrid/PeopleGrid';
-import { getContent } from '../services/content.service';
-import { TEAM_CONTENT_KEY } from '../services/constants';
+import { useState } from 'react';
+import TeamContentData from '../assets/content/team/content.json';
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
+import PeopleGrid, { PeopleData } from '../components/PeopleGrid/PeopleGrid';
 
 interface TeamData {
   team: string;
@@ -10,16 +9,8 @@ interface TeamData {
 }
 
 const Team = () => {
-  const [TeamDetails, setTeamDetails] = useState<TeamData[]>([{}] as TeamData[]);
-  const [loader, setLoader] = useState<boolean>(true);
-  useEffect(() => {
-    getContent<TeamData[]>(TEAM_CONTENT_KEY).then((data: void | TeamData[]) => {
-      if (data) {
-        setTeamDetails(data);
-        setLoader(false);
-      }
-    });
-  }, []);
+  const [TeamDetails] = useState<TeamData[]>(TeamContentData as TeamData[]);
+  const [loader] = useState<boolean>(false);
 
   return (
     loader ? <GoogleDotsLoader /> :

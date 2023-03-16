@@ -1,19 +1,11 @@
-import React from 'react';
-import {
-  SpeakerData,
-  SessionData,
-  RoomData,
-  TimeSlot,
-  ScheduleData,
-  CategoryData,
-  CategoryItems
-} from '../assets/models/schedule/datatype';
-import { getContent } from '../services/content.service';
+import { useState } from 'react';
+import ScheduleContentData from '../assets/content/schedule/content.json';
+import { CategoryData, CategoryItems, RoomData, ScheduleData, SessionData, SpeakerData, TimeSlot } from '../assets/models/schedule/datatype';
 
 const Schedule = () => {
-  const [day, setDay] = React.useState(1);
-  const [currentDayData, setData] = React.useState<ScheduleData>();
-  const [sessionData, setSessionData] = React.useState<ScheduleData[]>([]);
+  const [day, setDay] = useState(1);
+  const [currentDayData, setData] = useState<ScheduleData>(ScheduleContentData[0] as ScheduleData);
+  const [sessionData] = useState<ScheduleData[]>(ScheduleContentData as ScheduleData[]);
 
   const eventLength = Array.from(
     { length: sessionData.length },
@@ -26,23 +18,13 @@ const Schedule = () => {
       d.getHours() === 0
         ? 12
         : d.getHours() > 12
-        ? d.getHours() - 12
-        : d.getHours();
+          ? d.getHours() - 12
+          : d.getHours();
     const min = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();
     const ampm = d.getHours() < 12 ? 'AM' : 'PM';
     const time = hour + ':' + min + ' ' + ampm;
     return time;
   };
-  React.useEffect(() => {
-    getContent<ScheduleData[]>('schedule').then(
-      (data: void | ScheduleData[]) => {
-        if (data) {
-          setData(data[0]);
-          setSessionData(data);
-        }
-      }
-    );
-  }, []);
 
   return (
     <div

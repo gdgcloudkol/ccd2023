@@ -1,28 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FeatureRule, FooterRule } from '../../assets/models/datatype';
+import FooterContentData from '../../assets/content/footer/content.json';
+import { FooterRule } from '../../assets/models/datatype';
 import { FooterContent, FooterListContent, FooterSectionContent } from '../../assets/models/footer/datatype';
-import { FOOTER_CONTENT_KEY } from '../../services/constants';
-import { getContent } from '../../services/content.service';
-import { getFeature } from '../../services/feature.service';
 import Social from '../Social/Social';
 
+import FeatureRuleData from '../../assets/content/feature.rule.json';
 const Footer = () => {
-  const [content, setContent] = useState<FooterContent>({} as FooterContent);
-  useEffect(() => {
-    getContent<FooterContent>(FOOTER_CONTENT_KEY).then(
-      (data: void | FooterContent) => {
-        if (data) setContent(data);
-      }
-    );
-  }, []);
-
-  const [disabledFooterContent, setdisabledFooterContent] = useState<FooterRule>({} as FooterRule);
-  useEffect(() => {
-    getFeature().then((data: FeatureRule) => {
-      if (data) setdisabledFooterContent(data.disabledFooterContent);
-    });
-  }, []);
+  const [content] = useState<FooterContent>(FooterContentData as FooterContent);
+  const [disabledFooterContent] = useState<FooterRule>(FeatureRuleData.disabledFooterContent as FooterRule);
 
   return (
     <footer className="p-4 bg-white dark:bg-black sm:p-6">

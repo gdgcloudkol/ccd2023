@@ -196,10 +196,10 @@ const CFS = () => {
                   isSubmitted ? <div className='flex m-5 items-center flex-col justify-center'>
                     <div className='w-full flex flex-col items-center justify-center'>
                       <h2 className="mt-6 text-2xl lg:text-4xl text-gray-900 text-center dark:text-gray-100 tracking-tight">
-                      Submitted Talks Status
+                        Submitted Talks Status
                       </h2>
                       <h4 className="py-2 text-lg lg:text-xl text-center text-google-yellow tracking-tight">
-                      Note: Talks can be editted only upto 72 hours post submission
+                        Note: Talks can be editted only upto 72 hours post submission
                       </h4>
                       <CFSSettings technologiesList={technologiesList} talkData={submittedTalks} refreshTalkList={refreshTalkList} />
                     </div>
@@ -249,7 +249,7 @@ const CFS = () => {
                                 Title
                               </label>
                               <div className="mt-1">
-                                <input name="title" type="text" autoComplete="" required id="title"
+                                <input name="title" type="text" autoComplete="" required id="title" placeholder='Title of the talk'
                                   className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
                                   ${fieldErrors["title"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
 
@@ -266,7 +266,7 @@ const CFS = () => {
                                 Description
                               </label>
                               <div className="mt-1">
-                                <textarea name="description" rows={5} autoComplete="" required id="description"
+                                <textarea name="description" rows={5} autoComplete="" required id="description" placeholder='This will be used for internal analysis'
                                   className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
                                   ${fieldErrors["description"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
 
@@ -283,7 +283,7 @@ const CFS = () => {
                                 Overview
                               </label>
                               <div className="mt-1">
-                                <textarea name="overview" rows={10} autoComplete="" required id="overview"
+                                <textarea name="overview" rows={10} autoComplete="" required id="overview" placeholder='This will be displayed to the public after talk is selected'
                                   className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
                                   ${fieldErrors["overview"] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
 
@@ -490,7 +490,7 @@ const CFS = () => {
             {!isLoading && !isSubmitted && <div className="hidden lg:block relative w-0 flex-1">
               <img
                 className="absolute inset-0 h-full w-full object-fill"
-                src={BACKGROUND_ASSETS + `victoria.svg`}
+                src={BACKGROUND_ASSETS + `victoria.png`}
                 alt="Victoria SVG"
               />
             </div>}

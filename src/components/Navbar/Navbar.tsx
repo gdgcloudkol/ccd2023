@@ -1,29 +1,21 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useContext, useEffect, useState } from 'react';
-import { FeatureRule, NavbarRule } from '../../assets/models/datatype';
+import { useContext, useState } from 'react';
+import FeatureRuleData from '../../assets/content/feature.rule.json';
+import NavbarContentData from '../../assets/content/navbar/content.json';
+import { NavbarRule } from '../../assets/models/datatype';
 import { NavbarContent, NavbarItemContent } from '../../assets/models/navbar/datatype';
 import { CurrentTheme } from '../../services/common.service';
-import { DARK, HOME_ROUTE, LOGO_ASSETS, NAVBAR_CONTENT_KEY } from '../../services/constants';
-import { getContent } from '../../services/content.service';
-import { getFeature } from '../../services/feature.service';
+import { DARK, LOGO_ASSETS } from '../../services/constants';
 import { LoggedInContext } from '../../services/state.service';
-// import Toggle from '../Theme/ThemeToggle';
-import { useNavigate } from 'react-router-dom';
 import Navlink from './Navlink';
 
 const NavbarPage = () => {
-  // const nav = useNavigate();
   const { loggedInState } = useContext(LoggedInContext);
-  const [content, setContent] = useState<NavbarContent>({} as NavbarContent);
+  const [content] = useState<NavbarContent>(NavbarContentData as NavbarContent);
 
-  useEffect(() => {
-    getContent<NavbarContent>(NAVBAR_CONTENT_KEY).then((data: void | NavbarContent) => {
-      if (data) setContent(data);
-    });
-  });
-
-  const [navbarRule, setFeature] = useState<NavbarRule>({} as NavbarRule);
+  const [navbarRule] = useState<NavbarRule>(FeatureRuleData.navbar as NavbarRule);
+  const [disabledRoutes] = useState<string[]>(FeatureRuleData.disabledRoutes as string[]);
 
   const navigation: {
     navbarPermanent: NavbarItemContent[];
@@ -32,16 +24,6 @@ const NavbarPage = () => {
     navbarPermanent: navbarRule?.navbarPermanent ? content?.navbarPermanent : [],
     navbar_additional: []
   };
-
-  const [disabledRoutes, setDisabledRoutes] = useState(['']);
-  useEffect(() => {
-    getFeature().then((data: FeatureRule) => {
-      if (data) {
-        setFeature(data.navbar);
-        setDisabledRoutes(data.disabledRoutes);
-      }
-    });
-  });
 
   if (loggedInState.isLoggedIn) {
     navigation.navbar_additional = navbarRule?.navbarSpatialLoggedIn

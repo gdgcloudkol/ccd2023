@@ -1,37 +1,24 @@
 import { useEffect, useState } from 'react';
-import { HomeEventContent, LandingPageContent } from '../assets/models/home/datatype';
+import FeatureRuleData from '../assets/content/feature.rule.json';
+import LandingPageContentData from '../assets/content/home/content.json';
+import { SponsorRule } from '../assets/models/datatype';
+import { LandingPageContent } from '../assets/models/home/datatype';
 import CommunityPartners from '../components/CommunityPartners/CommunityPartners';
 import HomeCFS from '../components/HomeDisplay/HomeCFS';
 import HomeDisplay from '../components/HomeDisplay/HomeDisplay';
-import HomeSection3 from '../components/HomeDisplay/HomeSection3';
 import HomeEvent from '../components/HomeDisplay/HomeEvent';
+import HomeSection3 from '../components/HomeDisplay/HomeSection3';
+import HomeSocials from '../components/HomeDisplay/HomeSocials';
+import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 import Sponsors from '../components/Sponsors/Sponsors';
+import Timer from '../components/Timer/Timer';
 import Youtube from '../components/Youtube/Youtube';
 import { CurrentTheme } from '../services/common.service';
-import { getContent } from '../services/content.service';
-import { getFeature } from '../services/feature.service';
-import Timer from '../components/Timer/Timer';
-import HomeSocials from '../components/HomeDisplay/HomeSocials';
-import { BACKGROUND_ASSETS, DARK, HOME_CONTENT_KEY } from '../services/constants';
-import { SponsorRule } from '../assets/models/datatype';
-import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
+import { BACKGROUND_ASSETS, DARK } from '../services/constants';
 
 const Home = () => {
-  const [landingPageContent, setLandingPageContent] = useState<LandingPageContent>({} as LandingPageContent);
-  useEffect(() => {
-    getContent<HomeEventContent>(HOME_CONTENT_KEY).then(
-      (data: void | HomeEventContent) => {
-        if (data) setLandingPageContent(data.landingPage);
-      }
-    );
-  }, []);
-
-  const [homeRule, setHome] = useState<SponsorRule>({} as SponsorRule);
-  useEffect(() => {
-    getFeature().then((data) => {
-      if (data) setHome({ showCommunityPartners: data?.home?.showCommunityPartners, showSponsors: data?.home?.showSponsors, timer: data?.home?.timer });
-    });
-  }, []);
+  const [landingPageContent] = useState<LandingPageContent>(LandingPageContentData.landingPage as LandingPageContent);
+  const [homeRule] = useState<SponsorRule>({ showCommunityPartners: FeatureRuleData?.home?.showCommunityPartners, showSponsors: FeatureRuleData?.home?.showSponsors, timer: FeatureRuleData?.home?.timer } as SponsorRule);
 
   const [wait, setWait] = useState<boolean>(true);
   useEffect(() => {
@@ -66,7 +53,7 @@ const Home = () => {
           {/* timer ends here */}
         </div>
         <div className="opacity-50 lg:opacity-80 relative z-0 -mt-32 lg:-mt-80">
-          <img src={BACKGROUND_ASSETS + `victoria.svg`} className='w-full' alt="Victoria Memorial" />
+          <img src={BACKGROUND_ASSETS + `victoria.png`} className='w-full' alt="Victoria Memorial" />
         </div>
         {/* home section 1 ends here */}
         {/* home section 2 starts here */}

@@ -1,20 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import FeatureRuleData from '../../assets/content/feature.rule.json';
 import { PartnerContent, SponsorContent } from '../../assets/models/partners/datatype';
 import { CurrentTheme } from '../../services/common.service';
 import { DARK, SPONSORS_ASSETS } from '../../services/constants';
-import { getFeature } from '../../services/feature.service';
 
 const SponsorCard = ({ title, sponsors }: PartnerContent) => {
-  const [disabledPartners, setdisabledPartners] = useState(['']);
-  const [disabledPartnerTitles, setdisabledPartnerTitles] = useState(['']);
-  useEffect(() => {
-    getFeature().then((data) => {
-      if (data) {
-        setdisabledPartners(data.disabledPartners);
-        setdisabledPartnerTitles(data.disabledPartnerTitles);
-      }
-    });
-  }, []);
+  const [disabledPartners] = useState<string[]>(FeatureRuleData.disabledPartners);
+  const [disabledPartnerTitles] = useState<string[]>(FeatureRuleData.disabledPartnerTitles);
 
   return disabledPartnerTitles.every((i) => i !== title) ? (
     <div className="flex flex-col items-center justify-center space-y-4 max-w-s">

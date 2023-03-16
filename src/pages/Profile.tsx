@@ -257,7 +257,7 @@ const Profile = () => {
       <div className="max-w-3xl mt-8 mx-auto rounded-lg dark:bg-[#121212] bg-white shadow-lg">
         <img
           className="h-32 w-full object-cover lg:h-72 rounded-lg"
-          src={BACKGROUND_ASSETS + 'victoria.svg'}
+          src={BACKGROUND_ASSETS + 'victoria.png'}
           alt=""
         />
         <div className="flex flex-row mt-10 mb-10 lg:mt-0 lg:mb-0">

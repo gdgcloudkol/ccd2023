@@ -1,19 +1,12 @@
 import { useEffect, useState } from 'react';
+import COCContentData from '../assets/content/coc/content.json';
 import { COCContent, COCContentSection } from '../assets/models/coc/datatype';
 import { randomTextGoogleColor } from '../services/common.service';
-import { COC_CONTENT_KEY } from '../services/constants';
-import { getContent } from '../services/content.service';
 
 const Coc = () => {
-  const [content, setContent] = useState<COCContent>({} as COCContent);
-
-  useEffect(() => {
-    getContent<COCContent>(COC_CONTENT_KEY).then((data: void | COCContent) => {
-      if (data) setContent(data);
-    });
-  }, []);
-
+  const [content] = useState<COCContent>(COCContentData as COCContent);
   const [headingColor, setColor] = useState<string>('text-google-gray-3');
+
   useEffect(() => {
     return setColor(randomTextGoogleColor());
   }, []);
