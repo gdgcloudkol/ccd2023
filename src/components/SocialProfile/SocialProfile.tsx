@@ -8,6 +8,7 @@ import { Popover, Transition } from '@headlessui/react';
 import { useState } from 'react';
 import React from 'react';
 import { FaPlus } from 'react-icons/fa';
+import { TrashIcon } from '@heroicons/react/24/outline';
 
 const iconsMap: {
   [key: string]: React.FunctionComponent<
@@ -99,31 +100,41 @@ const SocialProfile = ({
   };
 
   return (
-    <div className="flex flex-row dark:text-white text-g-gray-8 justify-end">
+    <div className="flex flex-row dark:text-white text-g-gray-8 items-center justify-center">
       {Object.keys(socials).map((key, i) => {
         const SocialIcon: React.FunctionComponent<
           React.SVGProps<SVGSVGElement> & { title?: string | undefined }
         > = iconsMap[key];
+
         return SocialIcon ? (
           <div key={i} className="relative">
             <a href={socials[key]} target="_blank" rel="noreferrer">
               <SocialIcon
                 fill="currentColor"
-                className="text-4xl pt-1 hover:text-[#1da1f2] hover:cursor-pointer w-10 h-10"
+                className="text-4xl pt-1 hover:text-[#1da1f2] hover:cursor-pointer w-10 h-10 object-contain"
                 key={key}
               />
             </a>
             {editMode && (
               <div className="absolute -top-1 right-0">
                 <button
-                  className=" text-google-red text-xs rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+                  className=" text-google-red text-xs rounded-full disabled:opacity-50 disabled:cursor-not-allowed bg-[#3c3c3c] hover:bg-google-red hover:text-white p-1 ring-1 ring-google-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white transition ease-in-out duration-150"
                   onClick={() => handleDelete(key)}
-                ></button>
+                >
+                  <span className="sr-only">Delete</span>
+                  <TrashIcon className="w-4 h-4" />
+                </button>
               </div>
             )}
           </div>
         ) : null;
       })}
+
+      {!editMode && Object.keys(socials).length === 0 && (
+        <div className="text-base p-1 hover:cursor-help flex items-center bg-[#3c3c3c] rounded-md px-2">
+          Add socials by editing your profile.
+        </div>
+      )}
 
       {editMode && (
         <Popover className="relative">
@@ -131,9 +142,10 @@ const SocialProfile = ({
             <>
               <Popover.Button
                 className={`${
-                  open ? 'text-[#1da1f2]' : 'text-g-gray-8'
-                } text-3xl p-1 hover:text-[#1da1f2] hover:cursor-pointer flex items-center`}
+                  open ? 'text-[#1da1f2]' : 'text-white'
+                } text-base p-1 hover:text-[#1da1f2] hover:cursor-pointer flex items-center bg-[#3c3c3c] rounded-md px-2 gap-2`}
               >
+                <span>Add social</span>
                 <FaPlus />
               </Popover.Button>
               <Transition
