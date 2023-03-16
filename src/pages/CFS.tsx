@@ -195,9 +195,12 @@ const CFS = () => {
                 isSpeaker ?
                   isSubmitted ? <div className='flex m-5 items-center flex-col justify-center'>
                     <div className='w-full flex flex-col items-center justify-center'>
-                      <h2 className="mt-6 py-5 text-2xl lg:text-4xl text-gray-900 text-center dark:text-gray-100 tracking-tight">
+                      <h2 className="mt-6 text-2xl lg:text-4xl text-gray-900 text-center dark:text-gray-100 tracking-tight">
                       Submitted Talks Status
                       </h2>
+                      <h4 className="py-2 text-lg lg:text-xl text-center text-google-yellow tracking-tight">
+                      Note: Talks can be editted only upto 72 hours post submission
+                      </h4>
                       <CFSSettings technologiesList={technologiesList} talkData={submittedTalks} refreshTalkList={refreshTalkList} />
                     </div>
                     <div className="flex space-x-4 mt-8 lg:mt-10  items-center justify-center ">

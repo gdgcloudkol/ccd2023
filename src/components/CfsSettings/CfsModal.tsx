@@ -46,7 +46,7 @@ const CfsModal: React.FC<SetModal> = ({ setModalOpen, formData, technologiesList
     async function handleSubmit(e: any) {
         e.preventDefault();
         let result = await ApiUpdateTalk({ ...editedData, speakers: formData.speakers } as TalkData);
-        if (result.status === 200) {
+        if (result?.status === 200) {
             setModalOpen(false);
         }
     }

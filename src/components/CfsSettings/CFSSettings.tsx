@@ -69,7 +69,7 @@ const CFSSettings: FC<TalkProps> = ({ talkData, technologiesList, refreshTalkLis
                                                         </p>
                                                     </span>
                                                     {
-                                                        i.status === 'review' &&
+                                                        i.status === 'review' && i.added_at && parseInt(new Intl.DateTimeFormat('en-IN', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(Date.parse(Date())).split('/')[0]) - parseInt(new Intl.DateTimeFormat('en-IN', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(Date.parse(i.added_at)).split('/')[0]) < 4 &&
                                                         <>
                                                             <span className='inline-flex cursor-pointer gap-2 justify-between mt-2 bg-google-blue items-center py-1.5 px-5 font-normal text-black p-1'>
                                                                 <FaRegEdit className='cursor-pointer' onClick={() => {
