@@ -48,7 +48,7 @@ const PeopleGrid = ({ peopleGrid, rule = [''], modelAllowed = true }: PeopleGrid
           >
             <img
               loading="lazy"
-              className="inline-block h-36 w-36 border-4 border-solid rounded-full ring-2 border-b-google-blue border-t-google-red border-r-google-yellow border-l-google-green"
+              className="inline-block h-36 w-36 border-4 border-solid rounded-full ring-2 border-b-google-blue border-t-google-red border-r-google-yellow border-l-google-green bg-white"
               src={data?.profilePicture}
               alt=""
             />
