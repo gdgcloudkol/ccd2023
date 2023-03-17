@@ -3,6 +3,46 @@
     "team": "Organizing Team",
     "data": [
       {
+        "fullName": "Abhishek Nandy",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Abhishek Nandy.jpg",
+        "links": [
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/abhishek-nandy/"
+          }
+        ],
+        "tagLine": "Organizer"
+      },
+      {
+        "fullName": "Anubhav Singh",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Anubhav Singh.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/xprilion"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/xprilion"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/xprilion"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://fb.com/xprilion"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://ig.me/xprilion"
+          }
+        ],
+        "tagLine": "Organizer"
+      },
+      {
         "fullName": "Jyoti Mishra",
         "bio": "",
         "profilePicture": "https://github.com/jstjyoti.png",
@@ -27,29 +67,13 @@
         "tagLine": "Organizer"
       },
       {
-        "fullName": "Anubhav Singh",
+        "fullName": "Kazi Haque",
         "bio": "",
-        "profilePicture": "https://github.com/xprilion.png",
+        "profilePicture": "/ccd2023/images/team/Kazi Haque.jpg",
         "links": [
           {
-            "title": "Facebook",
-            "url": "https://fb.com/xprilion"
-          },
-          {
-            "title": "Twitter",
-            "url": "https://twitter.com/xprilion"
-          },
-          {
             "title": "LinkedIn",
-            "url": "https://www.linkedin.com/in/xprilion"
-          },
-          {
-            "title": "Github",
-            "url": "https://github.com/xprilion"
-          },
-          {
-            "title": "Instagram",
-            "url": "https://ig.me/xprilion"
+            "url": "https://www.linkedin.com/in/haquekazi/"
           }
         ],
         "tagLine": "Organizer"
@@ -57,12 +81,8 @@
       {
         "fullName": "Md Nasirul Haque",
         "bio": "",
-        "profilePicture": "https://github.com/lurisan.png",
+        "profilePicture": "/ccd2023/images/team/Md Nasirul Haque.jpg",
         "links": [
-          {
-            "title": "Facebook",
-            "url": "https://www.facebook.com/lurisan.euqah"
-          },
           {
             "title": "Twitter",
             "url": "https://twitter.com/mdnasirulhaque"
@@ -78,6 +98,10 @@
           {
             "title": "Instagram",
             "url": "https://www.instagram.com/md_nasirul_haque"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/lurisan.euqah"
           }
         ],
         "tagLine": "Organizer"
@@ -85,7 +109,7 @@
       {
         "fullName": "Snehangshu Bhattacharya",
         "bio": "",
-        "profilePicture": "https://github.com/forkbomb-666.png",
+        "profilePicture": "/ccd2023/images/team/Snehangshu Bhattacharya.jpg",
         "links": [
           {
             "title": "Twitter",
@@ -109,12 +133,1070 @@
     ]
   },
   {
+    "team": "Design Team",
+    "data": [
+      {
+        "fullName": "Arindam Dutta",
+        "bio": "",
+        "profilePicture": "https://github.com/iarindamofficial.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/iarindamd/"
+          },
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/arindamoriginal"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/iarindamofficial/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/iarindamofficial"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/arindamoriginal/"
+          }
+        ],
+        "tagLine": "Design Team"
+      },
+      {
+        "fullName": "Anurag Singh",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Anurag Singh.jpg",
+        "links": [
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/anuragsingh228/"
+          }
+        ],
+        "tagLine": "Design Team"
+      },
+      {
+        "fullName": "Debarati Karmakar",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Debarati Karmakar.jpg",
+        "links": [
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/debarati-karmakar-8492aa200"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/Debaratikarmakar"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/debarati.karmakar.792"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/__debaaarati__"
+          }
+        ],
+        "tagLine": "Design Team"
+      },
+      {
+        "fullName": "Debmalya Shee",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Debmalya Shee.jpeg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://www.twitter.com/debmalyashee"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/debmalyashee"
+          },
+          {
+            "title": "Github",
+            "url": "https://www.github.com/debmalyashee"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/debmalyashee"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/debmalyashee"
+          }
+        ],
+        "tagLine": "Design Team"
+      },
+      {
+        "fullName": "Dev Kumar Gupta",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Dev Kumar Gupta.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/Dev_ikr"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/dev-kumar-gupta-02a4b2215"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/DevGupta-ikr"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/_devgupta"
+          }
+        ],
+        "tagLine": "Design Team"
+      },
+      {
+        "fullName": "Himanshu Rai",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Himanshu Rai.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/himanshuuu_2001"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/himanshu-rai-5599a11b8/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/HIMU-2001"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/profile.php?id=100057349726493"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/himanshuuu_2001?igshid=YzgyMTM2MGM="
+          }
+        ],
+        "tagLine": "Design Team"
+      },
+      {
+        "fullName": "Nishi Paul",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Nishi Paul.jpg",
+        "links": [
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/nishipaul"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/nishi-2"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/profile.php?id=100011603988559&mibextid=ZbWKwL"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/ni_shi16"
+          }
+        ],
+        "tagLine": "Design Team"
+      },
+      {
+        "fullName": "Randrita Sarkar",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Randrita Sarkar.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/sarkar_randrita"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/randrita-sarkar-8690591a1/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/Randrita"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/sumita.sarkar.12914216"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/randrita_sarkar/"
+          }
+        ],
+        "tagLine": "Design Team"
+      },
+      {
+        "fullName": "Rayirth Jaiswal",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Rayirth Jaiswal.png",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/JaiswalRayirth"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/rayirthjaiswal"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/Rayirth27"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://m.facebook.com/RayirthJaiswal"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/rayirth_jaiswal"
+          }
+        ],
+        "tagLine": "Design Team"
+      },
+      {
+        "fullName": "Tithi Bose",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Tithi B.png",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/TithiBose7"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/tithi-b-66b898179"
+          }
+        ],
+        "tagLine": "Design Team"
+      }
+    ]
+  },
+  {
+    "team": "Design and Videography Team",
+    "data": [
+      {
+        "fullName": "Satwik Das",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Satwik Das.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/shib9731"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/satwik-das-a476b6247"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/Satwikdas122"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/satwik.das.37"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/satwikdas122"
+          }
+        ],
+        "tagLine": "Design and Videography"
+      },
+      {
+        "fullName": "Srishti Manna",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Srishti Manna.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/Swisss_tea"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/srishti-manna-628b3b20b"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/srishti666"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/srishtimanna6/"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/sugar_.sparkles_/"
+          }
+        ],
+        "tagLine": "Design and Videography"
+      }
+    ]
+  },
+  {
+    "team": "Flutter App Team",
+    "data": [
+      {
+        "fullName": "Shatanik Mahanty",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Shatanik Mahanty.png",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/MahantyShatanik"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/shatanikmahanty/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/shatanikmahanty"
+          }
+        ],
+        "tagLine": "App Dev"
+      },
+      {
+        "fullName": "Shubhayu Majumdar",
+        "bio": "",
+        "profilePicture": "https://github.com/shubhayu-64.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/shubhayu64"
+          },
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/shubhayu64"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/shubhayumajumdar/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/shubhayu-64"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/shubhayu.majumdar/"
+          }
+        ],
+        "tagLine": "App Dev"
+      },
+      {
+        "fullName": "Priyasu Guin",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Priyasu Guin.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/CODEXposer25"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/priyasu-guin/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/priyasu-cx"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/priyasu_cx/"
+          }
+        ],
+        "tagLine": "App Dev"
+      }
+    ]
+  },
+  {
+    "team": "Outreach Team",
+    "data": [
+      {
+        "fullName": "Aniwesh Tiwari",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Aniwesh Tiwari.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/AniweshTiwari"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/aniwesh-tiwari"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Ayush Gupta",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Ayush Gupta.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/oxy_50mg"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/aayush-gupta-870032230"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/ppap1771"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/ayush_.1771"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Debanita Roy Bhowmick",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Debanita Roy Bhowmick.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/DebanitaRB"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "www.linkedin.com/in/debanita-roy-bhowmick"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/deyaorelse?igshid=NTE5MzUyOTU="
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Harshavardhan Bajoria",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Harshavardhan Bajoria.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/hvbajoria"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/harshavardhan-bajoria"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/HVBajoria"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/harshavardhanbajoria/"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Ishita Biswas",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Ishita Biswas.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/ishistarx "
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://linkedIn.com/in/ishita-biswas-521b191ba "
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/ishistarx"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/ig.ishitaa"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Kiran Mishra ",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Kiran Mishra.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/kiranmishra1706"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/kiranmishra21"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/Kirann21"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/mishraKiran21"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/mishrain_21"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Manish Kumar Barnwal",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Manish Kumar Barnwal.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/imanishbarnwal"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/imanishbarnwal/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/imanishbarnwal"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://facebook.com/imanishbarnwal"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/imanishbarnwal"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Prayag Dwivedi",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/dp/yoda-1.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": ""
+          },
+          {
+            "title": "Twitter",
+            "url": ""
+          },
+          {
+            "title": "LinkedIn",
+            "url": ""
+          },
+          {
+            "title": "Github",
+            "url": ""
+          },
+          {
+            "title": "Instagram",
+            "url": ""
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Prosenjit Swarnakar",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Prosenjit Swarnakar.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/ProsenjitSwarn5"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/prosenjit-swarnakar-5baa59236/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/PROSENJIT-RONI"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/prosenjit.swarnakar.393"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/prosenjit_02"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Rishiraj Acharya",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Rishiraj Acharya.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/RishirajAcharya"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://linkedin.com/in/rishirajacharya"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/rishiraj"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://facebook.com/acharyarishiraj"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/rishirajacharya"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Shubham Tribedi",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Shubham Tribedi.png",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/shubham-tribedi/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/CoderShubham2000"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/shubham.tribedi"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/shubhamtribedi/"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Sitam Meur",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Sitam Meur.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/sitammeur"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/sitam-meur-44b762223/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/sitamgithub-MSIT"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/profile.php?id=100084308359740"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/sitammeur3/"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Yash Shaw",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Yash Shaw.jpeg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/tweet_yasheroic"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/yshaw2002"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/yash-codes02"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/profile.php?id=100079989996844&mibextid=ZbWKwL"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/yasheroic/"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      }
+    ]
+  },
+  {
+    "team": "Photography Team",
+    "data": [
+      {
+        "fullName": "Anirban Saha",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Anirban Saha.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/AnbSaha"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/anbsaha/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/Anirban-Saha"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/AnirbanllSaha/"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/anbsaha/"
+          }
+        ],
+        "tagLine": "Photography and Videography Team"
+      },
+      {
+        "fullName": "Himadri Das",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Himadri Das.png",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/Lucifer8991"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/himadri-das-27487324a"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/Himadri8991"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/himadri.das.1829405"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/l.u.c_i_f.e_r/"
+          }
+        ],
+        "tagLine": "Photography and Videography Team"
+      },
+      {
+        "fullName": "Ritam Mishra",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Ritam Mishra.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/Ritam__Mishra"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/ritam-mishra-rm2002/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/ritam-mishra"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/birds_by_ritam/"
+          }
+        ],
+        "tagLine": "Photography Team"
+      },
+      {
+        "fullName": "Sambit Sarkar",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Sambit Sarkar.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/Sambits28225539"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/sambit-sarkar-12b041212"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/Sscuber03"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/sambit.sarkar2003?mibextid=ZbWKwL"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/ss_cuber2?igshid=ZDdkNTZiNTM="
+          }
+        ],
+        "tagLine": "Photography Team"
+      },
+      {
+        "fullName": "Supratim Dhara",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Supratim Dhara.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/supratimtwt"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/supratim-dhara-392b31215/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/supratim1609"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/profile.php?id=100011067211598"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/supratim_chitrography/"
+          }
+        ],
+        "tagLine": "Photography Team"
+      },
+      {
+        "fullName": "Suvradip Maity",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Suvradip Maity.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/suvradip_maity"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/suvradip-maity-5a566721a"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/suvrox"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/suvradip.maityx?mibextid=ZbWKwL"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/suvradip.maity?igshid=NDk5N2NlZjQ="
+          }
+        ],
+        "tagLine": "Photography and Videography Team"
+      }
+    ]
+  },
+  {
+    "team": "Videography Team",
+    "data": [
+      {
+        "fullName": "Ayushmaan Sural",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Ayushmaan Sural.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/ayushmaan0509"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/ayushmaan-sural-b16248210"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/oyegeeky"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/___inflammable___0509"
+          }
+        ],
+        "tagLine": "Videography Team"
+      },
+      {
+        "fullName": "Faiz Alam",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Faiz Alam.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/alamfaiz71"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/faiz276482"
+          },
+          {
+            "title": "Github",
+            "url": "https://www.github.com/faiz276482"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/faiz276482"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/faiz276482"
+          }
+        ],
+        "tagLine": "Videography Team"
+      },
+      {
+        "fullName": "Ronal Ghosh",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Ronal G.jpeg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/ronalghosh00"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/ronalg2/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/RonalG-2"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/ronalg2.0"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/ronal2.00/"
+          }
+        ],
+        "tagLine": "Photography and Videography Team"
+      },
+      {
+        "fullName": "Subhanjan Dutta",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Subhanjan Dutta.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/subhanjan_dutta"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/subhanjan-dutta/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/ethan-x11"
+          },
+          {
+            "title": "Facebook",
+            "url": "https://www.facebook.com/subhanjandutta0/"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/_subhanjan_dutta_/"
+          }
+        ],
+        "tagLine": "Videography Team"
+      }
+    ]
+  },
+  {
     "team": "Web Team",
     "data": [
       {
+        "fullName": "Ankan Ghosh",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Ankan Ghosh.jpg",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": "https://fb.com/0xSynapse"
+          },
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/0xSynapse"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/0xsynapse"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/0xSynapse/"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://ig.me/0xsynapse"
+          }
+        ],
+        "tagLine": "Python Developer"
+      },
+      {
+        "fullName": "Debika Basu",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Debika Basu.png",
+        "links": [
+          {
+            "title": "Facebook",
+            "url": "https://m.facebook.com/debika.basu.9655"
+          },
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/devika_basu2"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/debikabasu"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/DebikaBasu"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/devika.basu/"
+          }
+        ],
+        "tagLine": "Python Dev"
+      },
+      {
         "fullName": "Maaz Ahmed",
         "bio": "",
-        "profilePicture": "https://github.com/maaz619.png",
+        "profilePicture": "/ccd2023/images/team/Maaz Ahmed.jpg",
         "links": [
           {
             "title": "Facebook",
@@ -158,12 +1240,8 @@
       {
         "fullName": "Sugato Bagchi",
         "bio": "",
-        "profilePicture": "https://github.com/SugatoBagchi.png",
+        "profilePicture": "/ccd2023/images/team/Sugato Bagchi.jpeg",
         "links": [
-          {
-            "title": "Facebook",
-            "url": "https://fb.com/sugato.bagchi.50"
-          },
           {
             "title": "Twitter",
             "url": "https://twitter.com/sugato_bagchi"
@@ -177,206 +1255,15 @@
             "url": "https://github.com/SugatoBagchi"
           },
           {
+            "title": "Facebook",
+            "url": "https://fb.com/sugato.bagchi.50"
+          },
+          {
             "title": "Instagram",
             "url": "https://ig.me/sugatobagchi"
           }
         ],
         "tagLine": "Web Dev"
-      }
-    ]
-  },
-  {
-    "team": "App Team",
-    "data": [
-      {
-        "fullName": "Shubhayu Majumdar",
-        "bio": "",
-        "profilePicture": "https://github.com/shubhayu-64.png",
-        "links": [
-          {
-            "title": "Facebook",
-            "url": "https://www.facebook.com/shubhayu64"
-          },
-          {
-            "title": "Twitter",
-            "url": "https://twitter.com/shubhayu64"
-          },
-          {
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/in/shubhayumajumdar/"
-          },
-          {
-            "title": "Github",
-            "url": "https://github.com/shubhayu-64"
-          },
-          {
-            "title": "Instagram",
-            "url": "https://www.instagram.com/shubhayu.majumdar/"
-          }
-        ],
-        "tagLine": "App Dev"
-      },
-      {
-        "fullName": "Shatanik Mahanty",
-        "bio": "",
-        "profilePicture": "https://github.com/shatanikmahanty.png",
-        "links": [
-          {
-            "title": "Twitter",
-            "url": "https://twitter.com/MahantyShatanik"
-          },
-          {
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/in/shatanikmahanty/"
-          },
-          {
-            "title": "Github",
-            "url": "https://github.com/shatanikmahanty"
-          }
-        ],
-        "tagLine": "App Dev"
-      },
-      {
-        "fullName": "Priyasu Guin",
-        "bio": "",
-        "profilePicture": "https://github.com/priyasu-cx.png",
-        "links": [
-          {
-            "title": "Twitter",
-            "url": "https://twitter.com/CODEXposer25"
-          },
-          {
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/in/priyasu-guin/"
-          },
-          {
-            "title": "Github",
-            "url": "https://github.com/priyasu-cx"
-          },
-          {
-            "title": "Instagram",
-            "url": "https://www.instagram.com/priyasu_cx/"
-          }
-        ],
-        "tagLine": "App Dev"
-      }
-    ]
-  },
-  {
-    "team": "Backend Team",
-    "data": [
-      {
-        "fullName": "Debika Basu",
-        "bio": "",
-        "profilePicture": "https://github.com/DebikaBasu.png",
-        "links": [
-          {
-            "title": "Facebook",
-            "url": "https://m.facebook.com/debika.basu.9655"
-          },
-          {
-            "title": "Twitter",
-            "url": "https://twitter.com/devika_basu2?t=WPlNDpmaGf8wYnyUMJamZQ&s=09"
-          },
-          {
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/in/debikabasu"
-          },
-          {
-            "title": "Github",
-            "url": "https://github.com/DebikaBasu"
-          },
-          {
-            "title": "Instagram",
-            "url": "https://www.instagram.com/devika.basu/"
-          }
-        ],
-        "tagLine": "Python Dev"
-      },
-      {
-        "fullName": "Ankan Ghosh",
-        "bio": "",
-        "profilePicture": "https://github.com/0xSynapse.png",
-        "links": [
-          {
-            "title": "Facebook",
-            "url": "https://fb.com/0xSynapse"
-          },
-          {
-            "title": "Twitter",
-            "url": "https://twitter.com/0xSynapse"
-          },
-          {
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/in/0xsynapse"
-          },
-          {
-            "title": "Github",
-            "url": "https://github.com/0xSynapse/"
-          },
-          {
-            "title": "Instagram",
-            "url": "https://ig.me/0xsynapse"
-          }
-        ],
-        "tagLine": "Python Developer"
-      }
-    ]
-  },
-  {
-    "team": "UX Team",
-    "data": [
-      {
-        "fullName": "Arindam Dutta",
-        "bio": "",
-        "profilePicture": "https://github.com/iarindamofficial.png",
-        "links": [
-          {
-            "title": "Facebook",
-            "url": "https://www.facebook.com/iarindamd/"
-          },
-          {
-            "title": "Twitter",
-            "url": "https://twitter.com/arindamoriginal"
-          },
-          {
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/in/iarindamofficial/"
-          },
-          {
-            "title": "Github",
-            "url": "https://github.com/iarindamofficial"
-          },
-          {
-            "title": "Instagram",
-            "url": "https://www.instagram.com/arindamoriginal/"
-          }
-        ],
-        "tagLine": "UX Designer"
-      },
-      {
-        "fullName": "Anurag",
-        "bio": "",
-        "profilePicture": "https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png",
-        "links": [
-          {
-            "title": "Facebook",
-            "url": ""
-          },
-          {
-            "title": "Twitter",
-            "url": ""
-          },
-          {
-            "title": "LinkedIn",
-            "url": ""
-          },
-          {
-            "title": "Github",
-            "url": ""
-          }
-        ],
-        "tagLine": "UX Designer"
       }
     ]
   }

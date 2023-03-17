@@ -27,7 +27,6 @@
   "disabledRoutes": [
     "/dashboard",
     "/termsAndCondition",
-    "/team",
     "/speakers",
     "/schedule"
   ],
