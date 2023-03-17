@@ -190,7 +190,7 @@ const Signup = () => {
                         <div className="text-sm">
                           <Link
                             to={signupContent?.signinLink}
-                            className="font-medium text-google-blue hover:text-google-blue"
+                            className="font-medium text-google-yellow hover:text-google-yellow transition ease-in-out hover:underline cursor-pointer"
                           >
                             {signupContent?.signin}
                           </Link>
@@ -200,7 +200,9 @@ const Signup = () => {
                       <div>
                         <button
                           type="submit"
-                          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue transition ease-in-out 
+                          hover:shadow-xl hover:scale-105 hover:ease-in 
+                          cursor-pointer"
                           onClick={handleSubmit}
                         >
                           {signupContent?.button?.submit}

@@ -27,7 +27,11 @@ const VerifyEmail = () => {
   };
 
   useEffect(() => {
-    if (key !== 'check-inbox/') {
+    if (key === 'resend/') {
+      setEnabler(true);
+      setStatus('Resend Verification Mail');
+    }
+    else if (key !== 'check-inbox/') {
       const validate = async () => {
         let result: any = await ApiEmailVerification(key);
         if (result.status === 200) {

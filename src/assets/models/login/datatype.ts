@@ -64,6 +64,8 @@ export interface SignInContent {
   signUpLink: string;
   forgotPassword: string;
   forgotPasswordLink: string;
+  resendVerificationLink: string;
+  resendVerification?: string;
   button: SigninFieldButtonContent[];
 }
 

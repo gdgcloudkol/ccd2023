@@ -17,6 +17,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
   const [signInFields, setSignInFields] = useState<SigninFieldContent[]>([]);
+  const [resendVerification, setResendVerification] = useState<boolean>(false);
 
   useEffect(() => {
     if (loggedInState.isLoggedIn) nav(PROFILE_ROUTE);
@@ -35,6 +36,7 @@ const Login = () => {
   }, [signInRule]);
 
   async function handleSubmit(e: any): Promise<void> {
+    setResendVerification(false);
     e.preventDefault();
     setIsLoading(true);
     const formData = new FormData(
@@ -73,6 +75,8 @@ const Login = () => {
       nav(PROFILE_ROUTE);
     } else if (res.status === 400) {
       setFieldErrors(res.data);
+      if (res.data['non_field_errors'][0].includes('verified.'))
+        setResendVerification(true);
     }
     setIsLoading(false);
   }
@@ -146,18 +150,27 @@ const Login = () => {
                         <div className="text-sm">
                           <Link
                             to={signInContent?.signUpLink}
-                            className="font-medium text-google-blue hover:text-google-blue"
+                            className="font-medium text-google-yellow hover:text-google-yellow hover:underline cursor-pointer"
                           >
                             {signInContent?.signUp}
                           </Link>
                         </div>
                         <div className="text-sm">
-                          <Link
-                            to={signInContent?.forgotPasswordLink}
-                            className="font-medium text-google-blue hover:text-google-blue"
-                          >
-                            {signInContent?.forgotPassword}
-                          </Link>
+                          {resendVerification ?
+                            <Link
+                              to={signInContent?.resendVerificationLink}
+                              className="font-medium text-google-yellow hover:text-google-yellow hover:underline cursor-pointer"
+                            >
+                              {signInContent?.resendVerification}
+                            </Link>
+                            :
+                            <Link
+                              to={signInContent?.forgotPasswordLink}
+                              className="font-medium text-google-yellow hover:text-google-yellow hover:underline cursor-pointer"
+                            >
+                              {signInContent?.forgotPassword}
+                            </Link>
+                          }
                         </div>
                       </div>
                       <div>
@@ -172,7 +185,9 @@ const Login = () => {
                                       : () => { }
                                   }
                                   key={i}
-                                  className="block w-full text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue cursor-pointer"
+                                  className="block w-full text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue transition ease-in-out 
+                                  hover:shadow-xl hover:scale-105 hover:ease-in 
+                                  cursor-pointer"
                                 >
                                   {btn?.title}
                                 </button>
