@@ -14,7 +14,7 @@ const Team = () => {
 
   return (
     loader ? <GoogleDotsLoader /> :
-      <div className="max-w-7xl mx-auto mt-4 space-y-4">
+      <div className="max-w-7xl overflow-x-hidden mx-auto mt-4 space-y-4">
         {TeamDetails.map((teams: TeamData, key: number) => {
           return (
             <div
