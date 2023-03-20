@@ -33,7 +33,8 @@ export const BACKGROUND_ASSETS = '/ccd2023/images/background/';
 export const COMMUNITY_PARTNER_ASSETS = '/ccd2023/images/communityPartners/';
 export const SPONSORS_ASSETS = '/ccd2023/images/sponsors/';
 export const LOGO_ASSETS = '/ccd2023/images/logos/';
-export const DP_ASSETS = '/ccd2023/images/dp/'; 
+export const DP_ASSETS = '/ccd2023/images/dp/';
+export const TICKET_ASSETS = '/ccd2023/images/ticket/'; 
 
 // content types
 export type ContentTypes =

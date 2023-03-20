@@ -5,10 +5,12 @@ import { TownscriptProfileData, UserData } from '../assets/models/login/datatype
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 import Spinner from '../components/Spinner/Spinner';
 import { CurrentTheme } from '../services/common.service';
-import { DARK, PROFILE_ROUTE, TICKET_PURCHASED_KEY } from '../services/constants';
+import { DARK, PROFILE_ROUTE, TICKET_ASSETS, TICKET_PURCHASED_KEY } from '../services/constants';
 import { ApiPostProfile } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 import { ApiReferral, ApiViewTickets } from '../services/ticket.service';
+import QRcode from '../components/Tickets/QRcode';
+import html2canvas from 'html2canvas';
 
 declare global {
   interface Window {
@@ -24,7 +26,7 @@ interface EditFormData {
 
 const Tickets = () => {
   const { loggedInState } = useContext(LoggedInContext);
-  const [profileData] = useState<UserData>(loggedInState.user);
+  const [profileData] = useState<UserData>(loggedInState?.user);
   const [ticket, setTicket] = useState<{ [key: string]: string | number }>({});
   const [buyTicket, setBuyTicket] = useState<boolean>(true);
   const [loader, setLoader] = useState<boolean>(true);
@@ -33,9 +35,9 @@ const Tickets = () => {
   const [referralEmail, setReferralEmail] = useState<string>('');
   const [referralAllowed] = useState<boolean>(FeatureRuleData.referral);
   const [editFormdata, setEditFormData] = useState<EditFormData>({
-    first_name: loggedInState.user.profile.first_name,
-    last_name: loggedInState.user.profile.last_name,
-    phone: loggedInState.user.profile.phone
+    first_name: loggedInState?.user?.profile?.first_name,
+    last_name: loggedInState?.user?.profile?.last_name,
+    phone: loggedInState?.user?.profile?.phone
   });
   const [isDisabled, setDisabled] = useState<boolean>(false)
   const [fieldErrors, setFieldErrors] = useState<any>({});
@@ -47,7 +49,7 @@ const Tickets = () => {
     setEditFormData({ ...editFormdata });
     if (Object.keys(fieldErrors).length > 0)
       return
-    const userData = { ...loggedInState.user };
+    const userData = { ...loggedInState?.user };
     userData.profile.first_name = editFormdata.first_name;
     userData.profile.last_name = editFormdata.last_name + '';
     userData.profile.phone = editFormdata.phone;
@@ -62,7 +64,7 @@ const Tickets = () => {
     formFields.forEach((field) => {
       if (field.name !== 'email') {
         const value = editFormdata[field.name as keyof EditFormData];
-        if (field.validation?.required && (!value || value === '' || value === 'Wildcat' || value  === 'Anonymous')) {
+        if (field.validation?.required && (!value || value === '' || value === 'Wildcat' || value === 'Anonymous')) {
           fieldErrors[field.name] = `${field.label} is required.`;
         }
         else
@@ -189,7 +191,7 @@ const Tickets = () => {
     if (Object.keys(fieldErrors).length > 0) {
       setDisabled(true);
     }
-  }, [editFormdata, fieldErrors.incomplete])
+  }, [editFormdata, fieldErrors.incomplete]);
 
   function handleBuy() {
     validateFields();
@@ -205,6 +207,49 @@ const Tickets = () => {
       });
   }
 
+  async function downloadTicket(e: HTMLElement | null) {
+    if (e) {
+      const downloadTicket = e.cloneNode(true) as HTMLElement;
+      const img = downloadTicket.children[0] as HTMLElement;
+      const name = downloadTicket.children[1] as HTMLElement;
+      const qrcont = downloadTicket.children[2] as HTMLElement;
+      const qrc = downloadTicket.children[2].children[1] as HTMLImageElement;
+      downloadTicket.children[2].removeChild(downloadTicket.children[2].children[0]);
+
+      // append cloned ticket to the rear
+      downloadTicket.style.zIndex = '-1';
+      downloadTicket.style.position = 'absolute';
+      downloadTicket.style.top = '0';
+      downloadTicket.style.overflow = 'hidden';
+      document.body.appendChild(downloadTicket);
+
+      // change values for downloading
+      img.setAttribute('width', '500px');
+      name.style.fontSize = '40px';
+      name.style.marginTop = '-400px';
+      qrcont.style.width = '100%';
+      qrc.style.width = '200px';
+      qrc.style.height = '200px';
+      qrc.style.marginLeft = '55px';
+      qrc.style.marginTop = '45px';
+      downloadTicket.style.width = '500px';
+      downloadTicket.style.height = '1122px';
+
+      html2canvas(downloadTicket).then(canvas => {
+        // after screenshot remove the element
+        document.body.removeChild(downloadTicket);
+
+        // download the image for usage
+        var link = document.createElement('a');
+        link.download = ticket.ts_booking_id + '.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      }).catch(e => {
+        console.error(e)
+      });
+    }
+  }
+
   return loader ? (
     <GoogleDotsLoader />
   ) : buyTicket ? (
@@ -215,7 +260,7 @@ const Tickets = () => {
           : 'stroke-b-1px lg:stroke-b-2px text-white'
           }`}
       >
-        Buy Tickets
+        Buy Ticket
       </div>
       {isDisabled && fieldErrors["incomplete"] && <div className="items-center flex justify-center mt-8">
         {fieldErrors["incomplete"] && (
@@ -289,9 +334,9 @@ const Tickets = () => {
           <button
             onClick={() => {
               setEditFormData({
-                first_name: loggedInState.user.profile.first_name,
-                last_name: loggedInState.user.profile.last_name,
-                phone: loggedInState.user.profile.phone
+                first_name: loggedInState?.user?.profile?.first_name,
+                last_name: loggedInState?.user?.profile?.last_name,
+                phone: loggedInState?.user?.profile?.phone
               });
               validateFields();
               setEditMode(!editMode);
@@ -329,32 +374,42 @@ const Tickets = () => {
           : 'stroke-b-1px lg:stroke-b-2px text-white'
           }`}
       >
-        Tickets Bought
+        Ticket Bought
       </div>
-
-      <div className="flex flex-col text-white items-center justify-center text-xl m-5">
-        Please contact &nbsp;
-        <a className="text-google-blue" href="mailto:gdgcloudkol@gmail.com">
-          gdgcloudkol@gmail.com
-        </a>
-        &nbsp; for further queries
-      </div>
-
-      <div className="flex flex-row text-white justify-center mt-10 space-x-4">
-        <div className="flex flex-col items-end space-y-4 w-2/3">
-          <div>Ticket Type: &nbsp;</div>
-          <div>Email Id: &nbsp;</div>
-          <div>Amount Paid &nbsp;</div>
-          <div>Booking Id: &nbsp;</div>
+      <div className='flex flex-col lg:flex-row lg:space-y-4 space-x-4 justify-center items-center'>
+        <div id='ticket-container'>
+          <div id='ticket' className='mt-10' style={{ height: '458px' }}>
+            <img id='ticketImg' src={TICKET_ASSETS + 'ticket.png'} width={200} alt="" />
+            <div className='text-white flex justify-center font-bold' style={{ marginTop: '-160px' }}>{loggedInState.user.profile.first_name + ' ' + loggedInState.user.profile.last_name}</div>
+            <div id="qrcode" className='mt-5 block w-20 ml-9'></div>
+            <QRcode bookingId={ticket.ts_booking_id + ''} />
+          </div>
         </div>
-        <div className="flex flex-col items-start space-y-4 w-2/3">
-          <div>{ticket?.ts_ticket_name}</div>
-          <div>{ticket?.ts_user_email_id}</div>
-          <div>₹ {ticket?.amount}</div>
-          <div>{ticket?.ts_booking_id}</div>
+        <div className='mt-20'>
+          <div className="flex flex-col text-white items-center justify-center text-xl">
+            Please contact &nbsp;
+            <a className="text-google-blue" href="mailto:gdgcloudkol@gmail.com">
+              gdgcloudkol@gmail.com
+            </a>
+            &nbsp; for further queries
+          </div>
+          <div className="flex flex-row text-white justify-center mt-10 space-x-4 ml-12">
+            <div className="flex flex-col items-end space-y-4 w-2/3">
+              <div>Ticket Type: &nbsp;</div>
+              <div>Email Id: &nbsp;</div>
+              <div>Amount Paid &nbsp;</div>
+              <div>Booking Id: &nbsp;</div>
+            </div>
+            <div className="flex flex-col items-start space-y-4 w-2/3">
+              <div>{ticket?.ts_ticket_name}</div>
+              <div>{ticket?.ts_user_email_id}</div>
+              <div>₹ {ticket?.amount}</div>
+              <div>{ticket?.ts_booking_id}</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="mt-10 flex flex-col items-center">
+      <div className="mt-10 flex flex-col lg:flex-row justify-center items-center space-y-4 lg:space-y-0">
         <Link to={PROFILE_ROUTE}>
           <button
             className={`py-2 px-10 rounded-3xl h-fit w-fit 
@@ -367,6 +422,17 @@ const Tickets = () => {
             Profile
           </button>
         </Link>
+        <button
+          onClick={() => { downloadTicket(document.getElementById('ticket')) }}
+          className={`hidden lg:block lg:ml-10 py-2 px-10 rounded-3xl h-fit w-fit 
+                  text-white bg-google-green border font-medium text-1xl lg:text-2xl
+                  transition ease-in-out duration-300
+                  hover:shadow-xl hover:scale-105 hover:ease-in 
+                  cursor-pointer'}
+                `}
+        >
+          Download Ticket
+        </button>
       </div>
     </div>
   );
