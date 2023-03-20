@@ -62,7 +62,7 @@ const Tickets = () => {
     formFields.forEach((field) => {
       if (field.name !== 'email') {
         const value = editFormdata[field.name as keyof EditFormData];
-        if (field.validation?.required && (!value || value === '')) {
+        if (field.validation?.required && (!value || value === '' || value === 'Wildcat' || value  === 'Anonymous')) {
           fieldErrors[field.name] = `${field.label} is required.`;
         }
         else
@@ -77,7 +77,7 @@ const Tickets = () => {
           setFieldErrors({
             ...fieldErrors,
             [field.name]: ''
-          })
+          });
         }
       }
     });
@@ -166,6 +166,7 @@ const Tickets = () => {
   }
 
   useEffect(() => {
+    validateFields();
     Promise.resolve(ApiViewTickets()).then((data) => {
       if (data.data.length > 0) {
         sessionStorage.setItem(TICKET_PURCHASED_KEY, 'true');
@@ -291,7 +292,8 @@ const Tickets = () => {
                 first_name: loggedInState.user.profile.first_name,
                 last_name: loggedInState.user.profile.last_name,
                 phone: loggedInState.user.profile.phone
-              })
+              });
+              validateFields();
               setEditMode(!editMode);
             }}
             className=" py-2 mt-5 px-10 rounded-3xl h-fit w-fit 

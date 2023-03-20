@@ -70,16 +70,70 @@
         "imgSrc": "Algozenith-HIT.png"
       },
       {
+        "sponsorId": "cl",
+        "sponsorName": "ClueLess",
+        "hyperlink": "http://clueless.vercel.app",
+        "imgSrc": "cl.png"
+      },
+      {
+        "sponsorId": "cic",
+        "sponsorName": "CodeIN Community",
+        "hyperlink": "https://codeincommunity.com/",
+        "imgSrc": "CodeIN.png"
+      },
+      {
+        "sponsorId": "dw",
+        "sponsorName": "Devorld",
+        "hyperlink": "https://chat.whatsapp.com/DwWtDkykMu8I8pBdoRvb2I",
+        "imgSrc": "devorld.png"
+      },
+      {
+        "sponsorId": "flutter_kolkata",
+        "sponsorName": "Flutter Kolkata",
+        "hyperlink": "https://flutterkolkata.dev",
+        "imgSrc": "flutter kolkata.jpeg"
+      },
+      {
+        "sponsorId": "h4b",
+        "sponsorName": "Hack4Bengal",
+        "hyperlink": "https://hack4bengal.tech",
+        "imgSrc": "h4b.png"
+      },
+      {
         "sponsorId": "h4c",
         "sponsorName": "HackForCode",
         "hyperlink": "https://twitter.com/hackforcode?t=m0xeJFqGMOm2_2vDxzURNQ&s=09",
         "imgSrc": "h4c.png"
       },
       {
+        "sponsorId": "iictmsl",
+        "sponsorName": "Institutions Innovation Council, Techno Main Salt Lake",
+        "hyperlink": "https://www.iictmsl.com/",
+        "imgSrc": "iictmsl.png"
+      },
+      {
+        "sponsorId": "ocy",
+        "sponsorName": "Open Codeyard",
+        "hyperlink": "https://opencodeyard.tech/",
+        "imgSrc": "OCY.png"
+      },
+      {
         "sponsorId": "tfug",
         "sponsorName": "TensorFlow User Group Kolkata",
         "hyperlink": "https://tfug.kolkata.dev/",
         "imgSrc": "tfug.png"
+      },
+      {
+        "sponsorId": "dsc_bwu",
+        "sponsorName": "Brainware University",
+        "hyperlink": "https://gdsc.community.dev/brainware-university-kolkata/",
+        "imgSrc": ""
+      },
+      {
+        "sponsorId": "dsc_nitr",
+        "sponsorName": "NIT Rourkela",
+        "hyperlink": "https://dscnitrourkela.org",
+        "imgSrc": ""
       },
       {
         "sponsorId": "dsc_gcect",
@@ -91,6 +145,12 @@
         "sponsorId": "dsc_gnit",
         "sponsorName": "Guru Nanak Institute of Technology - Kolkata",
         "hyperlink": "https://gdsc.community.dev/guru-nanak-institute-of-technology-kolkata/",
+        "imgSrc": ""
+      },
+      {
+        "sponsorId": "dsc_rkmgec",
+        "sponsorName": "RKMGEC",
+        "hyperlink": "https://gdsc.in/",
         "imgSrc": ""
       },
       {
@@ -115,12 +175,6 @@
         "sponsorId": "dsc_tin",
         "sponsorName": "Techno International NewTown",
         "hyperlink": "https://gdsc.community.dev/techno-international-new-town-kolkata/",
-        "imgSrc": ""
-      },
-      {
-        "sponsorId": "flutter_kolkata",
-        "sponsorName": "Flutter Kolkata",
-        "hyperlink": "https://flutterkolkata.dev",
         "imgSrc": ""
       },
       {
@@ -193,12 +247,6 @@
         "sponsorId": "dsc_bppimt",
         "sponsorName": "Developers Students B.P.Poddar Institue of Management and Technology",
         "hyperlink": "https://dscbppimt.tech/",
-        "imgSrc": ""
-      },
-      {
-        "sponsorId": "dsc_bwu",
-        "sponsorName": "Developers Students Brainware University",
-        "hyperlink": "https://gdsc.community.dev/brainware-university-kolkata/",
         "imgSrc": ""
       },
       {
