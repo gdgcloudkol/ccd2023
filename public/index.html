@@ -19,7 +19,6 @@
   <div id="app-modal"></div>
 </body>
 <script src="https://www.townscript.com/static/Bookingflow/js/inject-modal.nocache.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script type="text/javascript">
   _linkedin_partner_id = "4592020";
   window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
@@ -42,18 +41,5 @@
   <img height="1" width="1" style="display:none;" alt=""
     src="https://px.ads.linkedin.com/collect/?pid=4592020&fmt=gif" />
 </noscript>
-<script>
-  function generateQR(bookingId) {
-    document.getElementById("qrcode").innerHTML = "";
-    return new QRCode("qrcode", {
-      text: bookingId + '',
-      width: 80,
-      height: 80,
-      colorDark: "#ffffff",
-      colorLight: "#000000",
-      correctLevel: QRCode.CorrectLevel.H,
-    });
-  }
-</script>
 
 </html>

@@ -5,12 +5,10 @@ import { TownscriptProfileData, UserData } from '../assets/models/login/datatype
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 import Spinner from '../components/Spinner/Spinner';
 import { CurrentTheme } from '../services/common.service';
-import { DARK, PROFILE_ROUTE, TICKET_ASSETS, TICKET_PURCHASED_KEY } from '../services/constants';
+import { DARK, PROFILE_ROUTE, TICKET_PURCHASED_KEY } from '../services/constants';
 import { ApiPostProfile } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 import { ApiReferral, ApiViewTickets } from '../services/ticket.service';
-import QRcode from '../components/Tickets/QRcode';
-import html2canvas from 'html2canvas';
 
 declare global {
   interface Window {
@@ -209,44 +207,14 @@ const Tickets = () => {
 
   async function downloadTicket(e: HTMLElement | null) {
     if (e) {
-      const downloadTicket = e.cloneNode(true) as HTMLElement;
-      const img = downloadTicket.children[0] as HTMLElement;
-      const name = downloadTicket.children[1] as HTMLElement;
-      const qrcont = downloadTicket.children[2] as HTMLElement;
-      const qrc = downloadTicket.children[2].children[1] as HTMLImageElement;
-      downloadTicket.children[2].removeChild(downloadTicket.children[2].children[0]);
-
-      // append cloned ticket to the rear
-      downloadTicket.style.zIndex = '-1';
-      downloadTicket.style.position = 'absolute';
-      downloadTicket.style.top = '0';
-      downloadTicket.style.overflow = 'hidden';
-      document.body.appendChild(downloadTicket);
-
-      // change values for downloading
-      img.setAttribute('width', '500px');
-      name.style.fontSize = '40px';
-      name.style.marginTop = '-400px';
-      qrcont.style.width = '100%';
-      qrc.style.width = '200px';
-      qrc.style.height = '200px';
-      qrc.style.marginLeft = '55px';
-      qrc.style.marginTop = '45px';
-      downloadTicket.style.width = '500px';
-      downloadTicket.style.height = '1122px';
-
-      html2canvas(downloadTicket).then(canvas => {
-        // after screenshot remove the element
-        document.body.removeChild(downloadTicket);
-
-        // download the image for usage
-        var link = document.createElement('a');
-        link.download = ticket.ts_booking_id + '.png';
-        link.href = canvas.toDataURL();
-        link.click();
-      }).catch(e => {
-        console.error(e)
-      });
+      const originalImage = `https://storage.googleapis.com/gccdkol23/tickets/${ticket.ts_booking_id}.png`;
+      const image = await fetch(originalImage)
+      const imageBlog = await image.blob()
+      const imageURL = URL.createObjectURL(imageBlog)
+      const link = document.createElement('a')
+      link.href = imageURL;
+      link.download = "GCCDKol23-Ticket-" + originalImage.split("/").pop();
+      link.click();
     }
   }
 
@@ -379,10 +347,7 @@ const Tickets = () => {
       <div className='flex flex-col lg:flex-row lg:space-y-4 space-x-4 justify-center items-center'>
         <div id='ticket-container'>
           <div id='ticket' className='mt-10' style={{ height: '458px' }}>
-            <img id='ticketImg' src={TICKET_ASSETS + 'ticket.png'} width={200} alt="" />
-            <div className='text-white flex justify-center font-bold' style={{ marginTop: '-160px' }}>{loggedInState.user.profile.first_name + ' ' + loggedInState.user.profile.last_name}</div>
-            <div id="qrcode" className='mt-5 block w-20 ml-9'></div>
-            <QRcode bookingId={ticket.ts_booking_id + ''} />
+            <img id='ticketImg' src={`http://storage.googleapis.com/gccdkol23/tickets/${ticket.ts_booking_id}.png`} width={200} alt="" />
           </div>
         </div>
         <div className='mt-20'>
@@ -394,10 +359,10 @@ const Tickets = () => {
             &nbsp; for further queries
           </div>
           <div className="flex flex-row text-white justify-center mt-10 space-x-4 ml-12">
-            <div className="flex flex-col items-end space-y-4 w-2/3">
+            <div className="flex flex-col items-start space-y-4 w-2/3">
               <div>Ticket Type: &nbsp;</div>
               <div>Email Id: &nbsp;</div>
-              <div>Amount Paid &nbsp;</div>
+              <div>Amount Paid: &nbsp;</div>
               <div>Booking Id: &nbsp;</div>
             </div>
             <div className="flex flex-col items-start space-y-4 w-2/3">
@@ -409,7 +374,7 @@ const Tickets = () => {
           </div>
         </div>
       </div>
-      <div className="mt-10 flex flex-col lg:flex-row justify-center items-center space-y-4 lg:space-y-0">
+      <div className="mt-10 flex flex-col lg:flex-row justify-center items-center lg:space-x-4 space-y-4 lg:space-y-0">
         <Link to={PROFILE_ROUTE}>
           <button
             className={`py-2 px-10 rounded-3xl h-fit w-fit 
@@ -423,15 +388,16 @@ const Tickets = () => {
           </button>
         </Link>
         <button
+          className={`py-2 px-10 rounded-3xl h-fit w-fit 
+                      text-white bg-google-green border font-medium text-1xl lg:text-2xl
+        transition ease-in-out duration-300
+        hover:shadow-xl hover:scale-105 hover:ease-in 
+        cursor-pointer'}
+        
+      `}
           onClick={() => { downloadTicket(document.getElementById('ticket')) }}
-          className={`hidden lg:block lg:ml-10 py-2 px-10 rounded-3xl h-fit w-fit 
-                  text-white bg-google-green border font-medium text-1xl lg:text-2xl
-                  transition ease-in-out duration-300
-                  hover:shadow-xl hover:scale-105 hover:ease-in 
-                  cursor-pointer'}
-                `}
         >
-          Download Ticket
+          Download
         </button>
       </div>
     </div>
