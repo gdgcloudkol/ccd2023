@@ -1,16 +1,14 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FeatureRuleData from '../assets/content/feature.rule.json';
 import { TownscriptProfileData, UserData } from '../assets/models/login/datatype';
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 import Spinner from '../components/Spinner/Spinner';
 import { CurrentTheme } from '../services/common.service';
-import { DARK, PROFILE_ROUTE, TICKET_ASSETS, TICKET_PURCHASED_KEY } from '../services/constants';
+import { DARK, PROFILE_ROUTE, TICKET_PURCHASED_KEY } from '../services/constants';
 import { ApiPostProfile } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 import { ApiReferral, ApiViewTickets } from '../services/ticket.service';
-import QRcode from '../components/Tickets/QRcode';
-import Share from '../components/Share/Share';
 
 declare global {
   interface Window {
@@ -209,21 +207,14 @@ const Tickets = () => {
 
   async function downloadTicket(e: HTMLElement | null) {
     if (e) {
-
-      const originalImage = `http://storage.googleapis.com/gccdkol23/tickets/${ticket.ts_booking_id}.png`
-      const image = await fetch(originalImage);
-
-      const nameSplit = originalImage.split("/");
-      const duplicateName = nameSplit.pop();
-
+      const originalImage = `https://storage.googleapis.com/gccdkol23/tickets/${ticket.ts_booking_id}.png`;
+      const image = await fetch(originalImage)
       const imageBlog = await image.blob()
       const imageURL = URL.createObjectURL(imageBlog)
       const link = document.createElement('a')
       link.href = imageURL;
-      link.download = "GCCD-Ticket-" + duplicateName;
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
+      link.download = "GCCDKol23-Ticket-" + originalImage.split("/").pop();
+      link.click();
     }
   }
 
@@ -383,7 +374,7 @@ const Tickets = () => {
           </div>
         </div>
       </div>
-      <div className="mt-10 flex flex-col lg:flex-row justify-center items-center space-y-4 lg:space-y-0">
+      <div className="mt-10 flex flex-col lg:flex-row justify-center items-center lg:space-x-4 space-y-4 lg:space-y-0">
         <Link to={PROFILE_ROUTE}>
           <button
             className={`py-2 px-10 rounded-3xl h-fit w-fit 
@@ -397,8 +388,16 @@ const Tickets = () => {
           </button>
         </Link>
         <button
+          className={`py-2 px-10 rounded-3xl h-fit w-fit 
+                      text-white bg-google-green border font-medium text-1xl lg:text-2xl
+        transition ease-in-out duration-300
+        hover:shadow-xl hover:scale-105 hover:ease-in 
+        cursor-pointer'}
+        
+      `}
+          onClick={() => { downloadTicket(document.getElementById('ticket')) }}
         >
-          <Share downloadTicket={downloadTicket} />
+          Download
         </button>
       </div>
     </div>
