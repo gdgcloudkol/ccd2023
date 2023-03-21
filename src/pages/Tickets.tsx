@@ -10,7 +10,7 @@ import { ApiPostProfile } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 import { ApiReferral, ApiViewTickets } from '../services/ticket.service';
 import QRcode from '../components/Tickets/QRcode';
-import html2canvas from 'html2canvas';
+import Share from '../components/Share/Share';
 
 declare global {
   interface Window {
@@ -235,18 +235,18 @@ const Tickets = () => {
       downloadTicket.style.width = '500px';
       downloadTicket.style.height = '1122px';
 
-      html2canvas(downloadTicket).then(canvas => {
-        // after screenshot remove the element
-        document.body.removeChild(downloadTicket);
+      // html2canvas(downloadTicket).then(canvas => {
+      //   // after screenshot remove the element
+      //   document.body.removeChild(downloadTicket);
 
-        // download the image for usage
-        var link = document.createElement('a');
-        link.download = ticket.ts_booking_id + '.png';
-        link.href = canvas.toDataURL();
-        link.click();
-      }).catch(e => {
-        console.error(e)
-      });
+      //   // download the image for usage
+      //   var link = document.createElement('a');
+      //   link.download = ticket.ts_booking_id + '.png';
+      //   link.href = canvas.toDataURL();
+      //   link.click();
+      // }).catch(e => {
+      //   console.error(e)
+      // });
     }
   }
 
@@ -379,10 +379,7 @@ const Tickets = () => {
       <div className='flex flex-col lg:flex-row lg:space-y-4 space-x-4 justify-center items-center'>
         <div id='ticket-container'>
           <div id='ticket' className='mt-10' style={{ height: '458px' }}>
-            <img id='ticketImg' src={TICKET_ASSETS + 'ticket.png'} width={200} alt="" />
-            <div className='text-white flex justify-center font-bold' style={{ marginTop: '-160px' }}>{loggedInState.user.profile.first_name + ' ' + loggedInState.user.profile.last_name}</div>
-            <div id="qrcode" className='mt-5 block w-20 ml-9'></div>
-            <QRcode bookingId={ticket.ts_booking_id + ''} />
+            <img id='ticketImg' src={`http://storage.googleapis.com/gccdkol23/tickets/${ticket.ts_booking_id}.png`} width={200} alt="" />
           </div>
         </div>
         <div className='mt-20'>
@@ -394,10 +391,10 @@ const Tickets = () => {
             &nbsp; for further queries
           </div>
           <div className="flex flex-row text-white justify-center mt-10 space-x-4 ml-12">
-            <div className="flex flex-col items-end space-y-4 w-2/3">
+            <div className="flex flex-col items-start space-y-4 w-2/3">
               <div>Ticket Type: &nbsp;</div>
               <div>Email Id: &nbsp;</div>
-              <div>Amount Paid &nbsp;</div>
+              <div>Amount Paid: &nbsp;</div>
               <div>Booking Id: &nbsp;</div>
             </div>
             <div className="flex flex-col items-start space-y-4 w-2/3">
@@ -423,15 +420,8 @@ const Tickets = () => {
           </button>
         </Link>
         <button
-          onClick={() => { downloadTicket(document.getElementById('ticket')) }}
-          className={`hidden lg:block lg:ml-10 py-2 px-10 rounded-3xl h-fit w-fit 
-                  text-white bg-google-green border font-medium text-1xl lg:text-2xl
-                  transition ease-in-out duration-300
-                  hover:shadow-xl hover:scale-105 hover:ease-in 
-                  cursor-pointer'}
-                `}
         >
-          Download Ticket
+          <Share />
         </button>
       </div>
     </div>
