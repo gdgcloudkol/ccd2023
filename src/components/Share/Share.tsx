@@ -44,7 +44,7 @@ const Share = ({ downloadTicket }: any) => {
                                     <a target="_blank" rel='noreferrer' href="https://www.twitter.com" className="hover:bg-blue-400 rounded">
                                         <TwitterSVGIcon fill="white" className="text-4xl py-1 hover:cursor-pointer flex items-center w-10 h-10" />
                                     </a>
-                                    <BsDownload onClick={() => downloadTicket(document.getElementById('ticket'))} color='white' size={28} />
+                                    <BsDownload onClick={(e) => downloadTicket(e)} color='white' size={28} />
 
                                     {/* <a target="_blank" rel='noreferrer' href="https://www.twitter.com" className=" hover:bg-green-400 rounded">
                                         <AiOutlineWhatsApp />

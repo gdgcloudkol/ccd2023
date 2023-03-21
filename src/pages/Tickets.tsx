@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FeatureRuleData from '../assets/content/feature.rule.json';
 import { TownscriptProfileData, UserData } from '../assets/models/login/datatype';
@@ -209,44 +209,21 @@ const Tickets = () => {
 
   async function downloadTicket(e: HTMLElement | null) {
     if (e) {
-      const downloadTicket = e.cloneNode(true) as HTMLElement;
-      const img = downloadTicket.children[0] as HTMLElement;
-      const name = downloadTicket.children[1] as HTMLElement;
-      const qrcont = downloadTicket.children[2] as HTMLElement;
-      const qrc = downloadTicket.children[2].children[1] as HTMLImageElement;
-      downloadTicket.children[2].removeChild(downloadTicket.children[2].children[0]);
 
-      // append cloned ticket to the rear
-      downloadTicket.style.zIndex = '-1';
-      downloadTicket.style.position = 'absolute';
-      downloadTicket.style.top = '0';
-      downloadTicket.style.overflow = 'hidden';
-      document.body.appendChild(downloadTicket);
+      const originalImage = `http://storage.googleapis.com/gccdkol23/tickets/${ticket.ts_booking_id}.png`
+      const image = await fetch(originalImage);
 
-      // change values for downloading
-      img.setAttribute('width', '500px');
-      name.style.fontSize = '40px';
-      name.style.marginTop = '-400px';
-      qrcont.style.width = '100%';
-      qrc.style.width = '200px';
-      qrc.style.height = '200px';
-      qrc.style.marginLeft = '55px';
-      qrc.style.marginTop = '45px';
-      downloadTicket.style.width = '500px';
-      downloadTicket.style.height = '1122px';
+      const nameSplit = originalImage.split("/");
+      const duplicateName = nameSplit.pop();
 
-      // html2canvas(downloadTicket).then(canvas => {
-      //   // after screenshot remove the element
-      //   document.body.removeChild(downloadTicket);
-
-      //   // download the image for usage
-      //   var link = document.createElement('a');
-      //   link.download = ticket.ts_booking_id + '.png';
-      //   link.href = canvas.toDataURL();
-      //   link.click();
-      // }).catch(e => {
-      //   console.error(e)
-      // });
+      const imageBlog = await image.blob()
+      const imageURL = URL.createObjectURL(imageBlog)
+      const link = document.createElement('a')
+      link.href = imageURL;
+      link.download = "GCCD-Ticket-" + duplicateName;
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
     }
   }
 
@@ -421,7 +398,7 @@ const Tickets = () => {
         </Link>
         <button
         >
-          <Share />
+          <Share downloadTicket={downloadTicket} />
         </button>
       </div>
     </div>
