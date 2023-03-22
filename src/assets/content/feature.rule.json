@@ -31,29 +31,10 @@
     "/speakers",
     "/schedule"
   ],
-  "disabledPartnerTitles": [
-    "Also Backed By",
-    "Silver Sponsor",
-    "Gold Sponsor"
-  ],
+  "disabledPartnerTitles": [],
   "disabledPartners": [],
   "disabledCommunityPartners": [
-    "devdungeos",
-    "celt",
-    "dsc_rcciit",
-    "dsc_gce",
-    "dsc_iiitk",
-    "dsc_jis",
-    "dsc_nsec",
-    "dsc_uemk",
-    "dsc_dbcrecd",
-    "dsc_ciem",
-    "dsc_gecb",
-    "dsc_sit",
-    "dsc_bppimt",
-    "dsc_sxc",
-    "dsc_snu",
-    "dsc_iem"
+    "devdungeos"
   ],
   "home": {
     "ticketButtonStateNotLogin": "gs",
