@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import FeatureRuleData from '../../assets/content/feature.rule.json';
 import NavbarContentData from '../../assets/content/navbar/content.json';
 import { NavbarRule } from '../../assets/models/datatype';
@@ -17,23 +17,39 @@ const NavbarPage = () => {
   const [navbarRule] = useState<NavbarRule>(FeatureRuleData.navbar as NavbarRule);
   const [disabledRoutes] = useState<string[]>(FeatureRuleData.disabledRoutes as string[]);
 
-  const navigation: {
+  const [navigation, setNavigation] = useState<{
     navbarPermanent: NavbarItemContent[];
     navbar_additional: NavbarItemContent[];
-  } = {
+  }>({
     navbarPermanent: navbarRule?.navbarPermanent ? content?.navbarPermanent : [],
     navbar_additional: []
-  };
+  });
 
-  if (loggedInState.isLoggedIn) {
-    navigation.navbar_additional = navbarRule?.navbarSpatialLoggedIn
-      ? content?.navbarSpatialLoggedIn
-      : [];
-  } else {
-    navigation.navbar_additional = navbarRule?.navbarSpatialNotLoggedIn
-      ? content?.navbarSpatialNotLoggedIn
-      : [];
-  }
+  useEffect(() => {
+    if (loggedInState.isLoggedIn && loggedInState.ticket) {
+      setNavigation({
+        navbarPermanent: navigation.navbarPermanent,
+        navbar_additional: navbarRule?.navbarSpatialLoggedInBT
+          ? content?.navbarSpatialLoggedInBT
+          : []
+      });
+    }
+    else if (loggedInState.isLoggedIn) {
+      setNavigation({
+        navbarPermanent: navigation.navbarPermanent,
+        navbar_additional: navbarRule?.navbarSpatialLoggedIn
+          ? content?.navbarSpatialLoggedIn
+          : []
+      });
+    } else {
+      setNavigation({
+        navbarPermanent: navigation.navbarPermanent,
+        navbar_additional: navbarRule?.navbarSpatialNotLoggedIn
+          ? content?.navbarSpatialNotLoggedIn
+          : []
+      });
+    }
+  }, [loggedInState.isLoggedIn, loggedInState.ticket])
 
   return (
     <Disclosure as="nav" className="bg-transparent dark:bg-black w-full z-10">

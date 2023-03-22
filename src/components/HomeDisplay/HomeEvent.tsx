@@ -20,6 +20,8 @@ const HomeEvent = () => {
       if (homeContent?.ticketButton)
         for (let i of homeContent?.ticketButton) {
           if (
+            (loggedInState.isLoggedIn && loggedInState.ticket &&
+              i?.id === FeatureRuleData.home?.ticketButtonBought) ||
             (loggedInState.isLoggedIn &&
               i?.id === FeatureRuleData.home?.ticketButtonStateLogin) ||
             (!loggedInState.isLoggedIn &&
@@ -51,7 +53,7 @@ const HomeEvent = () => {
           setCfsButton(i);
         }
       }
-  }, [ticketButtonRule, cfsButtonRule, homeContent, loggedInState]);
+  }, [ticketButtonRule, cfsButtonRule, homeContent, loggedInState.isLoggedIn, loggedInState.ticket]);
 
   const [headingColor, setColor] = useState<string>('text-google-gray-3');
   useEffect(() => {

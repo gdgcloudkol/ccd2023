@@ -13,7 +13,7 @@ const Speakers = () => {
       .then((data) => {
         setSpeakersDetails(data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   }, []);
 
   const [speakerContent] = useState(SpeakerContentData as { title: string; description: string });

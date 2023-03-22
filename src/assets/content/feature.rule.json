@@ -22,7 +22,8 @@
   "navbar": {
     "navbarPermanent": true,
     "navbarSpatialLoggedIn": true,
-    "navbarSpatialNotLoggedIn": true
+    "navbarSpatialNotLoggedIn": true,
+    "navbarSpatialLoggedInBT": true
   },
   "disabledRoutes": [
     "/dashboard",
@@ -57,6 +58,7 @@
   "home": {
     "ticketButtonStateNotLogin": "gs",
     "ticketButtonStateLogin": "bt",
+    "ticketButtonBought": "vt",
     "disabledTicketButton": [
       "rt"
     ],
