@@ -90,7 +90,7 @@ const Router = () => {
           {navRule?.every((item) => '/dashboard' !== item) && loggedInState.isLoggedIn ? (
             <Route path="/dashboard" element={<Dashboard />} />
           ) : null}
-          <Route path="/*" element={<NotFound />} />
+          <Route path="/:route" element={<NotFound />} />
         </Routes>
       </ScrollToTop>
       <Footer />

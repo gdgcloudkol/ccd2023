@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { HOME_ROUTE, LOGO_ASSETS } from '../services/constants';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { HOME_ROUTE, LOGIN_ROUTE, LOGO_ASSETS } from '../services/constants';
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 
 const NotFound = () => {
+  const nav = useNavigate();
   const [wait, setWait] = useState<boolean>(true);
+  const param = useParams();
   useEffect(() => {
+    if (['tickets', 'profile', 'dashboard'].includes(param.route + '')) {
+      nav(LOGIN_ROUTE);
+      return
+    }
     setTimeout(() => {
       setWait(false);
     }, 3000);
