@@ -106,7 +106,7 @@ const Tickets = () => {
       className: inputBoxStyle,
       validation: {
         required: true,
-        pattern: /^[a-zA-Z\s]*$/,
+        pattern: /^[a-zA-Z.\s]*$/,
         message: 'Invalid First Name.'
       }
     },
@@ -121,7 +121,7 @@ const Tickets = () => {
       className: inputBoxStyle,
       validation: {
         required: true,
-        pattern: /^[a-zA-Z\s]*$/,
+        pattern: /^[a-zA-Z.\s]*$/,
         message: 'Invalid Last Name.'
       }
     },
