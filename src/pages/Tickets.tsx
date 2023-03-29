@@ -37,8 +37,9 @@ const Tickets = () => {
     last_name: loggedInState?.user?.profile?.last_name,
     phone: loggedInState?.user?.profile?.phone
   });
-  const [isDisabled, setDisabled] = useState<boolean>(false)
+  const [isDisabled, setDisabled] = useState<boolean>(true)
   const [fieldErrors, setFieldErrors] = useState<any>({});
+  const [tnc, setTnc] = useState<boolean>(false);
 
   let inputBoxStyle = !editMode ? 'bg-transparent text-lg lg:text-xl w-full' : 'text-black text-lg lg:text-2xl appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400';
 
@@ -182,6 +183,9 @@ const Tickets = () => {
       setDisabled(true);
       setFieldErrors({ incomplete: "Please update all the fields to buy tickets." })
     }
+    else if (!tnc) {
+      setDisabled(true);
+    }
     else {
       setDisabled(false);
       setFieldErrors({});
@@ -193,7 +197,7 @@ const Tickets = () => {
 
   function handleBuy() {
     validateFields();
-    if (fieldErrors["invalidEmail"] && Object.keys(fieldErrors).length > 1) {
+    if (fieldErrors["invalidEmail"] || Object.keys(fieldErrors).length > 1 || !tnc) {
       return;
     }
     if (editFormdata.first_name && editFormdata.last_name && editFormdata.phone)
@@ -283,7 +287,10 @@ const Tickets = () => {
         </div>
       </div>
       <div className="flex flex-col items-center">
-        <div className="mt-5 flex items-center space-x-4">
+        <div className='mt-3 text-sm text-white'>
+          <input type='checkbox' className='h-[15px] w-[15px]' onChange={() => { setTnc(!tnc); setDisabled(tnc) }} /> I agree to the <a href='https://docs.google.com/document/d/1Ph3wfOQ9mcCzBSrCWkHQgtC1TdpPRedlfumyYieKO2Q/edit?usp=sharing' referrerPolicy='no-referrer' className='text-google-yellow'>Refund Policy and Terms and Conditions</a>
+        </div>
+        <div className="mt-1 flex items-center space-x-4">
           {!editMode && (
             <button
               onClick={() => { !isDisabled && handleBuy() }}
@@ -357,6 +364,7 @@ const Tickets = () => {
               gdgcloudkol@gmail.com
             </a>
             &nbsp; for further queries
+            <a href='https://docs.google.com/document/d/1Ph3wfOQ9mcCzBSrCWkHQgtC1TdpPRedlfumyYieKO2Q/edit?usp=sharing' referrerPolicy='no-referrer' className='text-sm mt-3 text-google-yellow'>Refund Policy and Terms and Conditions</a>
           </div>
           <div className="flex flex-row text-white justify-center mt-10 space-x-4 ml-12">
             <div className="flex flex-col items-start space-y-4 w-2/3">
