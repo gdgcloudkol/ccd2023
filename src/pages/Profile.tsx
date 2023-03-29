@@ -144,6 +144,23 @@ const Profile = () => {
 
   const profileFields = [
     {
+      label: 'Pronoun',
+      name: 'pronoun',
+      type: 'select',
+      value: loggedInState.user?.profile.pronoun,
+      options: [
+        { label: 'Prefer not to say', value: 'NA' },
+        { label: 'He/Him', value: 'he' },
+        { label: 'She/Her', value: 'she' },
+        { label: 'They/Them', value: 'they' },
+        { label: 'Other', value: 'other' }
+      ],
+      validation: {
+        required: true,
+        message: 'Select an option from the list'
+      }
+    },
+    {
       label: 'Phone No',
       name: 'phone',
       type: 'text',
@@ -292,9 +309,8 @@ const Profile = () => {
               <div className=" flex flex-col lg:flex-row md:flex-row items-end w-full justify-end">
                 <Link to={TICKET_ROUTE}>
                   <button
-                    className={`${
-                      editMode ? 'hidden' : null
-                    } mr-5 mb-4 lg:mb-0 md:mb-0  py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
+                    className={`${editMode ? 'hidden' : null
+                      } mr-5 mb-4 lg:mb-0 md:mb-0  py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
                 text-white border font-medium text-1xl lg:text-2xl
                 transition ease-in-out 
                 hover:shadow-xl hover:scale-105 hover:ease-in 
@@ -373,21 +389,19 @@ const Profile = () => {
             </div>
           </div>
           <div
-            className={`flex flex-row justify-end ${
-              loggedInState.user?.profile?.refferal &&
+            className={`flex flex-row justify-end ${loggedInState.user?.profile?.refferal &&
               !editMode &&
               'justify-between'
-            }`}
+              }`}
           >
             {!editMode && loggedInState.user?.profile?.refferal && (
               <div className="mr-2 mb-5 ">
                 <div className="animate-border inline-block rounded-md bg-white bg-gradient-to-r from-google-red via-google-blue to-google-green bg-[length:400%_400%] p-1">
                   <span
-                    className={`block rounded-md whitespace-nowrap bg-slate-900 px-2 lg:px-5 py-3 lg:font-bold ${
-                      loggedInState.user?.profile.refferal
-                        ? 'text-white'
-                        : 'text-g-gray-5'
-                    }`}
+                    className={`block rounded-md whitespace-nowrap bg-slate-900 px-2 lg:px-5 py-3 lg:font-bold ${loggedInState.user?.profile.refferal
+                      ? 'text-white'
+                      : 'text-g-gray-5'
+                      }`}
                   >
                     Total referral : {loggedInState.user?.profile?.refferal}
                   </span>
@@ -417,9 +431,8 @@ const Profile = () => {
                     <>
                       <div
                         key={i}
-                        className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${
-                          editMode ? EDIT_MODE_CLASS : ''
-                        }`}
+                        className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
+                          }`}
                       >
                         <label
                           htmlFor="name"
@@ -460,9 +473,8 @@ const Profile = () => {
                   return (
                     <div
                       key={i}
-                      className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${
-                        editMode ? EDIT_MODE_CLASS : ''
-                      }`}
+                      className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${editMode ? EDIT_MODE_CLASS : ''
+                        }`}
                     >
                       <label
                         htmlFor="name"
@@ -508,9 +520,8 @@ const Profile = () => {
               {submitButton ? (
                 <button
                   onClick={() => handleSubmit()}
-                  className={` ${
-                    editMode ? '' : 'hidden'
-                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                  className={` ${editMode ? '' : 'hidden'
+                    } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
                 >
                   {editMode ? submitButtonText : ''}
                 </button>
@@ -519,9 +530,8 @@ const Profile = () => {
               )}
               <button
                 onClick={() => nav(CFS_ROUTE)}
-                className={` ${
-                  editMode ? 'hidden' : ''
-                } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                className={` ${editMode ? 'hidden' : ''
+                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
               >
                 {editMode ? '' : 'Speaker Profile'}
               </button>

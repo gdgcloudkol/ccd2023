@@ -14,6 +14,7 @@ export interface UserProfileData {
     [key: string]: string;
   };
   refferal: number;
+  pronoun: string;
 }
 
 export interface UserData {
