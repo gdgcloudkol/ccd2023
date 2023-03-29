@@ -157,7 +157,7 @@ const Tickets = () => {
   const handleApplyReferral = async () => {
     if (referralEmail.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
       setFieldErrors({ invalidEmail: "" });
-      let result = await ApiReferral();
+      let result = await ApiReferral({ referrer: referralEmail });
       if (result.status === 200)
         setIsApplied(!isApplied);
       else

@@ -13,7 +13,7 @@ export interface UserProfileData {
   socials: {
     [key: string]: string;
   };
-  refferal: number;
+  referral_count: number;
   pronoun: string;
 }
 

@@ -396,21 +396,18 @@ const Profile = () => {
             </div>
           </div>
           <div
-            className={`flex flex-row justify-end ${loggedInState.user?.profile?.refferal &&
-              !editMode &&
-              'justify-between'
-              }`}
+            className={`flex flex-row justify-between`}
           >
-            {!editMode && loggedInState.user?.profile?.refferal && (
-              <div className="mr-2 mb-5 ">
+            {!editMode && (
+              <div className="mr-2 mb-5">
                 <div className="animate-border inline-block rounded-md bg-white bg-gradient-to-r from-google-red via-google-blue to-google-green bg-[length:400%_400%] p-1">
                   <span
-                    className={`block rounded-md whitespace-nowrap bg-slate-900 px-2 lg:px-5 py-3 lg:font-bold ${loggedInState.user?.profile.refferal
+                    className={`block rounded-md whitespace-nowrap bg-slate-900 px-2 lg:px-5 py-3 lg:font-bold ${loggedInState.user?.profile.referral_count
                       ? 'text-white'
                       : 'text-g-gray-5'
                       }`}
                   >
-                    Total referral : {loggedInState.user?.profile?.refferal}
+                    Total referral : {loggedInState.user?.profile?.referral_count}
                   </span>
                 </div>
               </div>

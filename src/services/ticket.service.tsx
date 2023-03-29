@@ -15,10 +15,10 @@ export async function ApiViewTickets(): Promise<AxiosResponse> {
   }
 }
 
-export async function ApiReferral(): Promise<AxiosResponse> {
+export async function ApiReferral(referrer: { referrer: string }): Promise<AxiosResponse> {
   try {
     const headers = { Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}` };
-    const res = await axios.get(BASE_REFERRAL_URI, { headers });
+    const res = await axios.patch(BASE_REFERRAL_URI, referrer, { headers });
     if (res.status === 200) {
       return res;
     }
