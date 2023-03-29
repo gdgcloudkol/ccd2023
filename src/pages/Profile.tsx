@@ -22,6 +22,7 @@ const Profile = () => {
   const { loggedInState, setLoggedInState } = useContext(LoggedInContext);
   const [editMode, setEditMode] = useState<boolean>(false);
   const [submitButtonText, setSubmitButtonText] = useState<string>('Submit');
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState<boolean>(true);
   const [submitButton, setSubmitButton] = useState<boolean>(true);
   const [formData, setFormData] = useState<UserData>(
     loggedInState.user as UserData
@@ -79,6 +80,11 @@ const Profile = () => {
         fieldErrors[field.name] = field.validation.message;
       }
     });
+    if (Object.keys(fieldErrors).length === 0)
+      setSubmitButtonDisabled(false);
+    else
+      setSubmitButtonDisabled(true);
+
     setFieldErrors(fieldErrors);
   }
 
@@ -100,6 +106,7 @@ const Profile = () => {
       ...formData,
       profile: { ...formData.profile, [name]: e.target.value }
     });
+    validateFields();
   };
 
   async function handleSubmit() {
@@ -327,7 +334,7 @@ const Profile = () => {
                 hover:shadow-xl hover:scale-105 hover:ease-in
                 cursor-pointer`}
                 >
-                  {!editMode ? 'Edit Profile' : 'Cancel Edit'}
+                  {!editMode ? 'Edit Profile' : 'Cancel'}
                 </button>
               </div>
             }
@@ -430,8 +437,8 @@ const Profile = () => {
                   return (
                     <>
                       <div
-                        key={i}
-                        className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
+                        key={field.name + '-' + i}
+                        className={`rounded-md px-3 py-2 shadow-sm dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
                           }`}
                       >
                         <label
@@ -451,15 +458,18 @@ const Profile = () => {
                           }}
                           onBlur={handleBlur}
                         >
-                          {field &&
-                            field.options &&
-                            field?.options.map((option: any, j: number) => {
-                              return (
-                                <option value={option.value} key={j}>
-                                  {option.label}
-                                </option>
-                              );
-                            })}
+                          <>
+                            <option value="null" defaultChecked unselectable='on'>Select</option>
+                            {field &&
+                              field.options &&
+                              field?.options.map((option: any, j: number) => {
+                                return (
+                                  <option value={option.value} key={field.name + '-' + option.value + '-' + j}>
+                                    {option.label}
+                                  </option>
+                                );
+                              })}
+                          </>
                         </select>
                         {fieldErrors[field.name] && (
                           <div className="text-red-500 text-xs">
@@ -472,7 +482,7 @@ const Profile = () => {
                 } else {
                   return (
                     <div
-                      key={i}
+                      key={field.name + '-' + i}
                       className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${editMode ? EDIT_MODE_CLASS : ''
                         }`}
                     >
@@ -490,7 +500,7 @@ const Profile = () => {
                         defaultValue={field.value}
                         readOnly={!editMode}
                         disabled={!editMode}
-                        className="block w-full border-0 px-4 focus:ring-0 sm:text-base h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
+                        className={`block w-full border-0 px-4 focus:ring-0 sm:text-base h-16 dark:bg-[#1c1c1c] dark:text-white ${editMode ? 'text-left' : 'text-right'} text-xl`}
                         onChange={(e) => {
                           handleChange(e, 'profile', field.name);
                         }}
@@ -512,16 +522,17 @@ const Profile = () => {
             <div className="flex flex-row justify-center lg:justify-end space-x-4">
               <button
                 onClick={handleEdit}
-                className=" items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
+                className=" items-center px-4 py-2 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue"
               >
                 {editMode ? 'Cancel' : 'Edit Profile'}
               </button>
 
               {submitButton ? (
                 <button
+                  disabled={submitButtonDisabled}
                   onClick={() => handleSubmit()}
-                  className={` ${editMode ? '' : 'hidden'
-                    } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                  className={` ${editMode ? '' : 'hidden'} ${submitButtonDisabled ? "cursor-not-allowed opacity-60 " : "cursor-pointer"} 
+                  items-center px-4 py-2 border border-transparent shadow-sm text-mg font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue`}
                 >
                   {editMode ? submitButtonText : ''}
                 </button>
@@ -531,13 +542,13 @@ const Profile = () => {
               <button
                 onClick={() => nav(CFS_ROUTE)}
                 className={` ${editMode ? 'hidden' : ''
-                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                  } items-center px-4 py-2 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue`}
               >
                 {editMode ? '' : 'Speaker Profile'}
               </button>
               <button
                 onClick={logout}
-                className=" items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
+                className=" items-center px-4 py-2 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-google-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue"
               >
                 Logout
               </button>

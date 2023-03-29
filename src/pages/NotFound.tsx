@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { HOME_ROUTE, LOGIN_ROUTE, LOGO_ASSETS } from '../services/constants';
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
+import { HOME_ROUTE, LOGIN_ROUTE, LOGO_ASSETS } from '../services/constants';
 
 const NotFound = () => {
   const nav = useNavigate();
   const [wait, setWait] = useState<boolean>(true);
   const param = useParams();
   useEffect(() => {
-    if (['tickets', 'profile', 'dashboard'].includes(param.route + '')) {
+    if (['tickets', 'dashboard'].includes(param.route + '')) {
       nav(LOGIN_ROUTE);
       return
     }
