@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import FeatureRuleData from '../assets/content/feature.rule.json';
 import {
@@ -45,8 +44,9 @@ const Tickets = () => {
     last_name: loggedInState?.user?.profile?.last_name,
     phone: loggedInState?.user?.profile?.phone
   });
-  const [isDisabled, setDisabled] = useState<boolean>(false);
+  const [isDisabled, setDisabled] = useState<boolean>(true);
   const [fieldErrors, setFieldErrors] = useState<any>({});
+  const [tnc, setTnc] = useState<boolean>(false);
 
   let inputBoxStyle = !editMode
     ? 'bg-transparent text-lg lg:text-xl w-full'
@@ -119,7 +119,7 @@ const Tickets = () => {
       className: inputBoxStyle,
       validation: {
         required: true,
-        pattern: /^[a-zA-Z\s]*$/,
+        pattern: /^[a-zA-Z.\s]*$/,
         message: 'Invalid First Name.'
       }
     },
@@ -134,7 +134,7 @@ const Tickets = () => {
       className: inputBoxStyle,
       validation: {
         required: true,
-        pattern: /^[a-zA-Z\s]*$/,
+        pattern: /^[a-zA-Z.\s]*$/,
         message: 'Invalid Last Name.'
       }
     },
@@ -169,7 +169,7 @@ const Tickets = () => {
   const handleApplyReferral = async () => {
     if (referralEmail.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
       setFieldErrors({ invalidEmail: '' });
-      let result = await ApiReferral();
+      let result = await ApiReferral({ referrer: referralEmail });
       if (result.status === 200) setIsApplied(!isApplied);
       else setFieldErrors({ invalidEmail: 'Please apply again' });
     } else setFieldErrors({ invalidEmail: 'Please enter a valid email.' });
@@ -197,6 +197,8 @@ const Tickets = () => {
       setFieldErrors({
         incomplete: 'Please update all the fields to buy tickets.'
       });
+    } else if (!tnc) {
+      setDisabled(true);
     } else {
       setDisabled(false);
       setFieldErrors({});
@@ -208,7 +210,11 @@ const Tickets = () => {
 
   function handleBuy() {
     validateFields();
-    if (fieldErrors['invalidEmail'] && Object.keys(fieldErrors).length > 1) {
+    if (
+      fieldErrors['invalidEmail'] ||
+      Object.keys(fieldErrors).length > 1 ||
+      !tnc
+    ) {
       return;
     }
     if (editFormdata.first_name && editFormdata.last_name && editFormdata.phone)
@@ -237,13 +243,6 @@ const Tickets = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Ticket | Google Cloud Community Days Kolkata 2023</title>
-        <meta
-          name="description"
-          content="Avail your ticket for Google Cloud Community Days Kolkata 2023"
-        />
-      </Helmet>
       {buyTicket ? (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
@@ -346,7 +345,25 @@ const Tickets = () => {
             </div>
           </div>
           <div className="flex flex-col items-center">
-            <div className="mt-5 flex items-center space-x-4">
+            <div className="mt-3 text-sm text-white">
+              <input
+                type="checkbox"
+                className="h-[15px] w-[15px]"
+                onChange={() => {
+                  setTnc(!tnc);
+                  setDisabled(tnc);
+                }}
+              />{' '}
+              I agree to the{' '}
+              <a
+                href="https://docs.google.com/document/d/1Ph3wfOQ9mcCzBSrCWkHQgtC1TdpPRedlfumyYieKO2Q/edit?usp=sharing"
+                referrerPolicy="no-referrer"
+                className="text-google-yellow"
+              >
+                Refund Policy and Terms and Conditions
+              </a>
+            </div>
+            <div className="mt-1 flex items-center space-x-4">
               {!editMode && (
                 <button
                   onClick={() => {
@@ -359,11 +376,11 @@ const Tickets = () => {
                       ? 'cursor-not-allowed opacity-60 '
                       : 'cursor-pointer'
                   } mt-5 px-10 rounded-3xl h-fit w-fit 
-                  text-white border font-medium text-1xl lg:text-xl
-                  transition ease-in-out duration-300
-                  hover:shadow-xl hover:scale-105 hover:ease-in
-                   bg-google-green
-              `}
+                    text-white border font-medium text-1xl lg:text-xl
+                    transition ease-in-out duration-300
+                    hover:shadow-xl hover:scale-105 hover:ease-in
+                     bg-google-green
+                `}
                 >
                   Buy Ticket
                 </button>
@@ -379,10 +396,10 @@ const Tickets = () => {
                   setEditMode(!editMode);
                 }}
                 className=" py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
-              text-white bg-transparent border font-medium text-1xl lg:text-xl
-              transition ease-in-out duration-300
-              hover:shadow-xl hover:scale-105 hover:ease-in
-              cursor-pointer"
+                text-white bg-transparent border font-medium text-1xl lg:text-xl
+                transition ease-in-out duration-300
+                hover:shadow-xl hover:scale-105 hover:ease-in
+                cursor-pointer"
               >
                 {editMode ? 'Cancel' : 'Update Details'}
               </button>
@@ -399,10 +416,10 @@ const Tickets = () => {
                   } ${
                     editMode ? '' : 'hidden'
                   } py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
-                  text-white bg-transparent border font-medium text-1xl lg:text-xl
-                  transition ease-in-out duration-300
-                  hover:shadow-xl hover:scale-105 hover:ease-in
-                  cursor-pointer`}
+                    text-white bg-transparent border font-medium text-1xl lg:text-xl
+                    transition ease-in-out duration-300
+                    hover:shadow-xl hover:scale-105 hover:ease-in
+                    cursor-pointer`}
                 >
                   {editMode ? 'Submit' : <Spinner color="red" />}
                 </button>
@@ -442,6 +459,13 @@ const Tickets = () => {
                   gdgcloudkol@gmail.com
                 </a>
                 &nbsp; for further queries
+                <a
+                  href="https://docs.google.com/document/d/1Ph3wfOQ9mcCzBSrCWkHQgtC1TdpPRedlfumyYieKO2Q/edit?usp=sharing"
+                  referrerPolicy="no-referrer"
+                  className="text-sm mt-3 text-google-yellow"
+                >
+                  Refund Policy and Terms and Conditions
+                </a>
               </div>
               <div className="flex flex-row text-white justify-center mt-10 space-x-4 ml-12">
                 <div className="flex flex-col items-start space-y-4 w-2/3">
