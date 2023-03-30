@@ -200,34 +200,6 @@
         "tagLine": "Design Team"
       },
       {
-        "fullName": "Debmalya Shee",
-        "bio": "",
-        "profilePicture": "/ccd2023/images/team/Debmalya Shee.jpeg",
-        "links": [
-          {
-            "title": "Twitter",
-            "url": "https://www.twitter.com/debmalyashee"
-          },
-          {
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/debmalyashee"
-          },
-          {
-            "title": "Github",
-            "url": "https://www.github.com/debmalyashee"
-          },
-          {
-            "title": "Facebook",
-            "url": "https://www.facebook.com/debmalyashee"
-          },
-          {
-            "title": "Instagram",
-            "url": "https://www.instagram.com/debmalyashee"
-          }
-        ],
-        "tagLine": "Design Team"
-      },
-      {
         "fullName": "Dev Kumar Gupta",
         "bio": "",
         "profilePicture": "/ccd2023/images/team/Dev Kumar Gupta.jpg",
@@ -374,59 +346,6 @@
           }
         ],
         "tagLine": "Design Team"
-      }
-    ]
-  },
-  {
-    "team": "Design and Videography Team",
-    "data": [
-      {
-        "fullName": "Satwik Das",
-        "bio": "",
-        "profilePicture": "/ccd2023/images/team/Satwik Das.jpg",
-        "links": [
-          {
-            "title": "Twitter",
-            "url": "https://twitter.com/shib9731"
-          },
-          {
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/in/satwik-das-a476b6247"
-          },
-          {
-            "title": "Github",
-            "url": "https://github.com/Satwikdas122"
-          },
-          {
-            "title": "Facebook",
-            "url": "https://www.facebook.com/satwik.das.37"
-          },
-          {
-            "title": "Instagram",
-            "url": "https://instagram.com/satwikdas122"
-          }
-        ],
-        "tagLine": "Design and Videography"
-      },
-      {
-        "fullName": "Srishti Manna",
-        "bio": "",
-        "profilePicture": "/ccd2023/images/team/Srishti Manna.jpg",
-        "links": [
-          {
-            "title": "Twitter",
-            "url": "https://twitter.com/Swisss_tea"
-          },
-          {
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/in/srishti-manna-628b3b20b"
-          },
-          {
-            "title": "Instagram",
-            "url": "https://www.instagram.com/sugar_.sparkles_/"
-          }
-        ],
-        "tagLine": "Design and Videography"
       }
     ]
   },
@@ -940,6 +859,26 @@
         "tagLine": "Photography Team"
       },
       {
+        "fullName": "Srishti Manna",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Srishti Manna.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/Swisss_tea"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/srishti-manna-628b3b20b"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/sugar_.sparkles_/"
+          }
+        ],
+        "tagLine": "Photography Team"
+      },
+      {
         "fullName": "Supratim Dhara",
         "bio": "",
         "profilePicture": "/ccd2023/images/team/Supratim Dhara.jpg",
@@ -993,7 +932,7 @@
             "url": "https://instagram.com/suvradip.maity?igshid=NDk5N2NlZjQ="
           }
         ],
-        "tagLine": "Photography and Videography Team"
+        "tagLine": "Photography Team"
       }
     ]
   },
