@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import FeatureRuleData from '../assets/content/feature.rule.json';
 import {
@@ -243,6 +244,13 @@ const Tickets = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Ticket | Google Cloud Community Days Kolkata 2023</title>
+        <meta
+          name="description"
+          content="Avail your ticket for Google Cloud Community Days Kolkata 2023"
+        />
+      </Helmet>
       {buyTicket ? (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
