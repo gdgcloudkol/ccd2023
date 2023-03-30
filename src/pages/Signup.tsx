@@ -1,21 +1,33 @@
 import { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link, useNavigate } from 'react-router-dom';
 import FeatureRuleData from '../assets/content/feature.rule.json';
 import SignupContentData from '../assets/content/signup/content.json';
 import { SignUpPayload } from '../assets/models/login/datatype';
-import { InitialProfileContent, InputDataType, SignupContent } from '../assets/models/signup/datatype';
+import {
+  InitialProfileContent,
+  InputDataType,
+  SignupContent
+} from '../assets/models/signup/datatype';
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
-import { BACKGROUND_ASSETS, PROFILE_ROUTE, VERIFY_EMAIL_ROUTE } from '../services/constants';
+import {
+  BACKGROUND_ASSETS,
+  PROFILE_ROUTE,
+  VERIFY_EMAIL_ROUTE
+} from '../services/constants';
 import { ApiSignup } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 
 const Signup = () => {
   const nav = useNavigate();
-  const [signupContent] = useState<SignupContent>(SignupContentData as SignupContent);
+  const [signupContent] = useState<SignupContent>(
+    SignupContentData as SignupContent
+  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { loggedInState } = useContext(LoggedInContext);
   const [signupRule] = useState<string[]>(FeatureRuleData.signup as string[]);
-  const [initialProfileContentFileds, setInitialProfileContentFields] = useState<InputDataType[]>([] as InputDataType[]);
+  const [initialProfileContentFileds, setInitialProfileContentFields] =
+    useState<InputDataType[]>([] as InputDataType[]);
 
   useEffect(() => {
     if (loggedInState.isLoggedIn) nav(PROFILE_ROUTE);
@@ -116,6 +128,13 @@ const Signup = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Signup | Google Cloud Community Days Kolkata 2023</title>
+        <meta
+          name="description"
+          content="Register for Google Cloud Community Days Kolkata 2023. Get access to the latest Google Cloud technologies, learn from Google Cloud experts, and connect with the Google Cloud community."
+        />
+      </Helmet>
       {isLoading ? (
         <GoogleDotsLoader />
       ) : (
@@ -172,9 +191,10 @@ const Signup = () => {
                                 required={field.required}
                                 maxLength={field.maxLength}
                                 className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
-                          ${fieldErrors[field.name] &&
-                                  'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
-                                  }`}
+                          ${
+                            fieldErrors[field.name] &&
+                            'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
+                          }`}
                               />
                             </div>
                             {fieldErrors[field.name] && (
