@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserData } from '../assets/models/login/datatype';
 import SocialProfile from '../components/SocialProfile/SocialProfile';
@@ -254,6 +255,13 @@ const Profile = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Profile | Google Cloud Community Days Kolkata 2023</title>
+        <meta
+          name="description"
+          content="Your profile page for Google Cloud Community Days Kolkata 2023. Edit your profile and get ready for the event."
+        />
+      </Helmet>
       <div className="max-w-3xl mt-8 mx-auto rounded-lg dark:bg-[#121212] bg-white shadow-lg">
         <img
           className="h-32 w-full object-cover lg:h-72 rounded-lg"

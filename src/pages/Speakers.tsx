@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import SpeakerContentData from '../assets/content/speakers/content.json';
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 import PeopleGrid from '../components/PeopleGrid/PeopleGrid';
@@ -16,10 +17,19 @@ const Speakers = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  const [speakerContent] = useState(SpeakerContentData as { title: string; description: string });
+  const [speakerContent] = useState(
+    SpeakerContentData as { title: string; description: string }
+  );
 
   return (
     <>
+      <Helmet>
+        <title>Speakers | Google Cloud Community Days Kolkata 2023</title>
+        <meta
+          name="description"
+          content="Meet the speakers of Google Cloud Community Days Kolkata 2023"
+        />
+      </Helmet>
       {!speakersDetails.length ? (
         <GoogleDotsLoader />
       ) : (
