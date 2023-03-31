@@ -254,11 +254,10 @@ const Tickets = () => {
       {buyTicket ? (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            className={`block text-center pt-[16px] lg:pl-32 lg:pr-32 font-bold text-3xl leading-normal lg:text-6xl lg:leading-normal ${
-              CurrentTheme() === DARK
-                ? 'stroke-w-1px lg:stroke-w-2px text-black'
-                : 'stroke-b-1px lg:stroke-b-2px text-white'
-            }`}
+            className={`block text-center pt-[16px] lg:pl-32 lg:pr-32 font-bold text-3xl leading-normal lg:text-6xl lg:leading-normal ${CurrentTheme() === DARK
+              ? 'stroke-w-1px lg:stroke-w-2px text-black'
+              : 'stroke-b-1px lg:stroke-b-2px text-white'
+              }`}
           >
             Buy Ticket
           </div>
@@ -308,16 +307,15 @@ const Tickets = () => {
               ))}
               {!editMode && referralAllowed && (
                 <div className="flex flex-col items-center justify-center  ">
-                  <div className="flex items-center border-b py-2 border-teal-500 justify-center w-4/5 md:w-3/5 lg:w-3/6">
+                  <div className="flex items-center border-b py-2 border-teal-500 justify-center w-4/5 md:w-3/5 lg:w-4/6">
                     <input
                       disabled={!isApplied}
                       value={referralEmail}
                       onChange={(e) => setReferralEmail(e.target.value)}
-                      className={`appearance-none ${
-                        isApplied && 'focus:text-white'
-                      } bg-transparent border-none w-full text-g-gray-4 mr-3 py-1 px-2 leading-tight focus:outline-none`}
+                      className={`appearance-none ${isApplied && 'focus:text-white'
+                        } bg-transparent border-none w-full text-g-gray-4 mr-3 py-1 px-2 leading-tight focus:outline-none`}
                       type="email"
-                      placeholder="Got any referral email?"
+                      placeholder="Referrer email ID"
                       aria-label="Referral Email"
                     />
                     {!isApplied ? (
@@ -379,11 +377,10 @@ const Tickets = () => {
                   }}
                   disabled={isDisabled}
                   type="button"
-                  className={`py-2 ${
-                    isDisabled
-                      ? 'cursor-not-allowed opacity-60 '
-                      : 'cursor-pointer'
-                  } mt-5 px-10 rounded-3xl h-fit w-fit 
+                  className={`py-2 ${isDisabled
+                    ? 'cursor-not-allowed opacity-60 '
+                    : 'cursor-pointer'
+                    } mt-5 px-10 rounded-3xl h-fit w-fit 
                     text-white border font-medium text-1xl lg:text-xl
                     transition ease-in-out duration-300
                     hover:shadow-xl hover:scale-105 hover:ease-in
@@ -417,13 +414,11 @@ const Tickets = () => {
                     !isDisabled && handleEdit();
                   }}
                   disabled={isDisabled}
-                  className={` ${
-                    isDisabled
-                      ? 'cursor-not-allowed opacity-60 '
-                      : 'cursor-pointer'
-                  } ${
-                    editMode ? '' : 'hidden'
-                  } py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
+                  className={` ${isDisabled
+                    ? 'cursor-not-allowed opacity-60 '
+                    : 'cursor-pointer'
+                    } ${editMode ? '' : 'hidden'
+                    } py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
                     text-white bg-transparent border font-medium text-1xl lg:text-xl
                     transition ease-in-out duration-300
                     hover:shadow-xl hover:scale-105 hover:ease-in
@@ -438,11 +433,10 @@ const Tickets = () => {
       ) : (
         <div>
           <div
-            className={`block text-center pt-[16px] lg:pl-32 lg:pr-32 font-bold text-3xl leading-normal lg:text-6xl lg:leading-normal ${
-              CurrentTheme() === DARK
-                ? 'stroke-w-1px lg:stroke-w-2px text-black'
-                : 'stroke-b-1px lg:stroke-b-2px text-white'
-            }`}
+            className={`block text-center pt-[16px] lg:pl-32 lg:pr-32 font-bold text-3xl leading-normal lg:text-6xl lg:leading-normal ${CurrentTheme() === DARK
+              ? 'stroke-w-1px lg:stroke-w-2px text-black'
+              : 'stroke-b-1px lg:stroke-b-2px text-white'
+              }`}
           >
             Ticket Bought
           </div>
