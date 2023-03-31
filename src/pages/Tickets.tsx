@@ -317,7 +317,7 @@ const Tickets = () => {
                         isApplied && 'focus:text-white'
                       } bg-transparent border-none w-full text-g-gray-4 mr-3 py-1 px-2 leading-tight focus:outline-none`}
                       type="email"
-                      placeholder="Got any referral email?"
+                      placeholder="Referrer Email ID"
                       aria-label="Referral Email"
                     />
                     {!isApplied ? (
