@@ -1,4 +1,142 @@
 {
   "title": "Our Amazing Speakers",
-  "description": "Hear from the Professionals who are building the future of cloud. Our speakers are influential folks & allies who have been associated with communities within their organisations, cities, country and beyond."
+  "description": "Hear from the Professionals who are building the future of cloud. Our speakers are influential folks & allies who have been associated with communities within their organisations, cities, country and beyond.",
+  "speakers": [
+    {
+      "fullName": "Avijit Patra",
+      "bio": "Avijit Patra is Director IT- Security working for PwC India. He has 23+ years of experience in Unix infrastructure management and Information Security. He is currently leading a Global team of Security Engineers who manage security tool's infrastructure for the organization. He has been an information security evangelist spreading awareness about information security risks and mitigation approaches.",
+      "profilePicture": "/ccd2023/images/speakers/Avijit.jpeg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/avis_shouts"
+        }
+      ],
+      "tagLine": "Director IT - Security at PWC India Pvt Ltd"
+    },
+    {
+      "fullName": "Dharmesh Vaya",
+      "bio": "I am a technologist known for my abilities of developing enterprise applications on Cloud Platforms and fostering a spirit of innovation among teams, with a diverse experience around Banking, -Commerce, Media/Entertainment to name a few. In my professional journey I have close to 16 years of IT experience and I work as a Solutions Architect at PaloAlto Networks where I specialize into Prisma Cloud for securing Cloud Workloads. I am a Google Developer Expert for Google Cloud Platform & Payments category and also actively manage the Google Cloud Developers Community, Mumbai.",
+      "profilePicture": "/ccd2023/images/speakers/Dharmesh.jpg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/DRVaya"
+        }
+      ],
+      "tagLine": "Solutions Architect - Prisma Cloud at PaloAlto Networks"
+    },
+    {
+      "fullName": "Kamesh Sampath",
+      "bio": "Kamesh is a multi-faceted professional who combines his roles as an author, consultant, and developer advocate to deliver exceptional results. As Director, Developer Advocate at Harness.io, he is dedicated to educating developers on cutting-edge technologies such as Kubernetes/OpenShift, Cloud Native CI/CD, Servicemesh, and Serverless. With a career spanning nearly two decades in the services industry, Kamesh has a proven track record of helping enterprise customers design and build robust enterprise applications.",
+      "profilePicture": "/ccd2023/images/speakers/Kamesh.jpeg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/kamesh_sampath"
+        }
+      ],
+      "tagLine": "Director, Developer Advocate at Harness.io"
+    },
+    {
+      "fullName": "Krupa Galiya",
+      "bio": "A PyGirl, working as a Senior Data Scientist at PatternAI, specializing in the development and research of advanced algorithms, Natural Language Processing (NLP), Machine Learning, Deep Learning, statistical analysis, and Data science methodologies. With a strong passion for continuous learning and development, She focuses on creating innovative AI-driven products and refining algorithmic approaches. As an active participant in the Google Developer Groups, Krupa contributes her expertise and serves as a facilitator for Google's Explore ML program, fostering knowledge sharing and collaboration within the data science community.",
+      "profilePicture": "/ccd2023/images/speakers/Krupa.jpg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/krupagaliya"
+        }
+      ],
+      "tagLine": "Senior Data Scientist at PatternAI"
+    },
+    {
+      "fullName": "Rahul Singh",
+      "bio": "Rahul is a Technical Architect at BlueVector AI and specialises in the end to end technical implementation of projects. He holds several cloud certifications and is an expert in all things Cloud. With years of experience in the field, Rahul is a key member of BlueVector AI's technical team, providing expert guidance and leadership in the development of new products and solutions. Rahul's expertise lies in his strong skills in Google Cloud. Rahul is passionate about using technology to solve real-world problems, and he has a track record of delivering innovative and effective solutions that have had a major impact on the success of his clients and employers. Outside of work, Rahul is an avid technology enthusiast, explorer, and a nerd.",
+      "profilePicture": "/ccd2023/images/speakers/Rahul.jpeg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/the_thappy"
+        }
+      ],
+      "tagLine": "Technical Architect at BlueVector AI"
+    },
+    {
+      "fullName": "Rohit Ghumare",
+      "bio": "I am a Platform Advocate at solo.io, and a Community evangelist running Keep Up as well as the DevOps community to empower students and professionals to achieve success in their careers. I am actively participating in various conferences as a speaker and panelist to bring awareness around DevOps, Security, and Application networking.",
+      "profilePicture": "/ccd2023/images/speakers/Rohit.jpg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/ghumare64"
+        }
+      ],
+      "tagLine": "Platform Advocate at solo.io"
+    },
+    {
+      "fullName": "Sayak Paul",
+      "bio": "Sayak works at Hugging Face focusing on Diffusers, TensorFlow, and other Computer Vision related things. He is ridiculously interested in open-source. Off work, you can catch him binge-watching Suits for the nth time on Netflix.",
+      "profilePicture": "/ccd2023/images/speakers/Sayak.jpg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/RisingSayak"
+        }
+      ],
+      "tagLine": "Batman at Hugging Face"
+    },
+    {
+      "fullName": "Tuhin Roychowdhury",
+      "bio": "Experience on data security, CASB with problem management. Experienced Solutions Architect, with good understanding of a customer security environment assessment.",
+      "profilePicture": "/ccd2023/images/speakers/Tuhin.jpeg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/baban013?s=21&t=AT7P9Kl_Jlg2-xAMaZZ4EQ"
+        }
+      ],
+      "tagLine": "Manager at Pricewaterhouse Coopers Pvt Ltd (PwC)"
+    },
+    {
+      "fullName": "Vaibhav Malpani",
+      "bio": "I am Google Developer Expert for GCP and Senior Software Engineer with 6+ years of expertise working with Cloud Technologies. I work in designing architecture for projects using cloud services. Organizer of GDG Cloud Mumbai.",
+      "profilePicture": "/ccd2023/images/speakers/Vaibhav.jpg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/IVaibhavMalpani"
+        }
+      ],
+      "tagLine": "Senior Software Engineer"
+    },
+    {
+      "fullName": "Vasundhara Shukla",
+      "bio": "Vasundhara is a Member of Technical Staff - 2 at VMWare where she works as the core developer and maintainer of the Open-source projects of the Tanzu Mission Control portfolio. She is the Founder and Lead Organiser of Google Developers Group, LUCKNOW and a Women Techmakers Ambassador. She has been awarded the Economic Times Campus Stars-2021 which accolades the brightest engineering minds of the country. She enjoys moving around the geography mostly for her community ventures that include conducting workshops and speaking in events. She is a trained Bharatnatyam dancer and enjoys her artistic ventures when she isn't on her system.",
+      "profilePicture": "/ccd2023/images/speakers/Vasundhara.jpg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/vasundharaas"
+        },
+        {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/vasundhara-shukla/"
+        }
+      ],
+      "tagLine": "Member of Technical Staff - 2 at VMWare"
+    },
+    {
+      "fullName": "Vrijraj Singh",
+      "bio": "Vrijraj is a Full Stack Developer & Tech Lead at agprop by profession and a community champion by passion. He is an organizer for TechFerment and a Google Developers Expert for Firebase and Web Technologies. He has given 200+ talks and workshops for communities over the past 5 years. His areas of expertise are around Web, Firebase, Google Cloud Platform, and UI/UX Design. He is always eager to learn new technologies and develop solutions based on them. He enjoys mentoring people and nurturing communities. Outside work, he is a foodie and enjoys watching YouTube videos.",
+      "profilePicture": "/ccd2023/images/speakers/Vrijraj.jpg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/SVrijraj"
+        }
+      ],
+      "tagLine": "Full Stack Developer & Tech Lead at agprop"
+    }
+  ]
 }

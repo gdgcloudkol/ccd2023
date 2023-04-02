@@ -28,7 +28,6 @@
   "disabledRoutes": [
     "/dashboard",
     "/termsAndCondition",
-    "/speakers",
     "/schedule"
   ],
   "disabledPartnerTitles": [],
@@ -62,6 +61,16 @@
         "title": "About",
         "hide": false,
         "nOI": 3
+      },
+      {
+        "title": "Resources",
+        "hide": false,
+        "nOI": 2
+      },
+      {
+        "title": "Legal",
+        "hide": false,
+        "nOI": 2
       }
     ]
   },

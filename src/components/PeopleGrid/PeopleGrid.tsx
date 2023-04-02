@@ -24,10 +24,11 @@ export interface PeopleData {
 export interface PeopleGridProp {
   peopleGrid: PeopleData[];
   rule?: string[];
+  tagline?: boolean;
   modelAllowed?: boolean;
 }
 
-const PeopleGrid = ({ peopleGrid, rule = [''], modelAllowed = true }: PeopleGridProp) => {
+const PeopleGrid = ({ peopleGrid, rule = [''], tagline = true, modelAllowed = true }: PeopleGridProp) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalData, setModalData]: any = useState<[]>([]);
 
@@ -52,10 +53,15 @@ const PeopleGrid = ({ peopleGrid, rule = [''], modelAllowed = true }: PeopleGrid
               src={data?.profilePicture}
               alt=""
             />
-            <div className="text-lg font-light mt-4 text-center">
+            <div className="text-2xl font-light mt-8 text-center mb-2">
               {data?.fullName}
             </div>
-
+            {
+              tagline ?
+                <div className='mt-2 ml-5 mr-5 h-12 text-md text-center'>
+                  {data?.tagLine}
+                </div> : null
+            }
             <div className="flex mt-5">
               {data?.links?.map((social: LinkType, j: number) => {
                 return (
@@ -123,11 +129,11 @@ const PeopleGrid = ({ peopleGrid, rule = [''], modelAllowed = true }: PeopleGrid
           {/* Full-screen container to center the panel */}
           <div className="fixed inset-0 flex items-center justify-center p-4">
             <Dialog.Panel>
-              <div className="border-0 rounded-lg shadow-lg flex flex-col bg-white dark:bg-black outline-none focus:outline-none max-w-lg">
+              <div className="border-2 rounded-lg shadow-lg flex flex-col bg-white dark:bg-black outline-none focus:outline-none max-w-lg">
                 <div className="flex items-center p-4 lg:flex-row flex-col-reverse justify-between border-b border-solid border-slate-200 ">
                   <div className="w-fit rounded-t">
                     <div className="text-3xl lg:w-fit w-full dark:text-white font-normal text-center">
-                      {modalData?.name}
+                      {modalData?.fullName}
                     </div>
                     <div className="text-sm w-full max-w-sm text-g-gray-7 dark:text-white mt-2">
                       {modalData?.tagLine}
