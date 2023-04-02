@@ -1,30 +1,18 @@
+import { useState } from 'react';
+import FeatureRuleData from '../../assets/content/feature.rule.json';
+import SocialContentData from '../../assets/content/social/content.json';
 import { ReactComponent as FacebookSVGIcon } from '../../assets/icons/facebook.svg';
-import { ReactComponent as TwitterSVGIcon } from '../../assets/icons/twitter.svg';
-import { ReactComponent as InstagramSVGIcon } from '../../assets/icons/instagram.svg';
-import { ReactComponent as LinkedInSVGIcon } from '../../assets/icons/linkedin.svg';
 import { ReactComponent as GitHubSVGIcon } from '../../assets/icons/github.svg';
 import { ReactComponent as GmailSVGIcon } from '../../assets/icons/gmail.svg';
-import RandomColorWrapper from '../Utils/RandomColorWrapper';
-import { useState, useEffect } from 'react';
-import { getContent } from '../../services/content.service';
+import { ReactComponent as InstagramSVGIcon } from '../../assets/icons/instagram.svg';
+import { ReactComponent as LinkedInSVGIcon } from '../../assets/icons/linkedin.svg';
+import { ReactComponent as TwitterSVGIcon } from '../../assets/icons/twitter.svg';
 import { SocialContent, SocialItem } from '../../assets/models/social/datatype';
-import { getFeature } from '../../services/feature.service';
-import { SOCIAL_CONTENT_KEY } from '../../services/constants';
+import RandomColorWrapper from '../Utils/RandomColorWrapper';
 
 const Social = () => {
-  const [content, setContent] = useState({} as SocialContent);
-  useEffect(() => {
-    getContent<SocialContent>(SOCIAL_CONTENT_KEY).then((data: void | SocialContent) => {
-      if (data) setContent(data);
-    });
-  }, []);
-
-  const [disabledSocial, setdisabledSocial] = useState(['']);
-  useEffect(() => {
-    getFeature().then(data => {
-      if (data) setdisabledSocial(data.disabledSocial);
-    });
-  }, []);
+  const [content] = useState(SocialContentData as SocialContent);
+  const [disabledSocial] = useState<string[]>(FeatureRuleData.disabledSocial as string[]);
 
   return (
     <div className="flex flex-col items-center justify-center w-full">

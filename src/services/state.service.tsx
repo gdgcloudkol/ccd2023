@@ -2,12 +2,14 @@ import React, { Dispatch, SetStateAction, createContext, useEffect, useState } f
 import { UserData } from '../assets/models/login/datatype';
 import { ACCESS_TOKEN_KEY } from './constants';
 import { ApiFetchProfile } from './signin.service';
+import { ApiViewTickets } from './ticket.service';
 
 export interface LoggedInState {
   accessToken: string;
   refreshToken: string;
   isLoggedIn: boolean;
   user: UserData;
+  ticket?: any;
 }
 
 export function clearLocalStorage() {
@@ -40,13 +42,17 @@ export const LoggedInStateProvider = ({ children }: any) => {
 
   useEffect(() => {
     if (accessToken && (!loggedInState.isLoggedIn || !loggedInState.user)) {
-      ApiFetchProfile().then((res) => {
+      Promise.all([
+        ApiFetchProfile(),
+        ApiViewTickets()
+      ]).then(([res, ticket]) => {
         if (res.status === 200) {
           setLoggedInState({
             accessToken: accessToken,
             refreshToken: '',
             isLoggedIn: true,
-            user: res.data
+            user: res.data,
+            ticket: ticket.data[0]
           });
         }
       });

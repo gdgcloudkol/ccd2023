@@ -1,200 +1,48 @@
+import { useState } from 'react';
+import { Helmet } from 'react-helmet';
+import TeamContentData from '../assets/content/team/content.json';
+import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 import PeopleGrid, { PeopleData } from '../components/PeopleGrid/PeopleGrid';
 
 interface TeamData {
   team: string;
-  data: PeopleData[]
+  data: PeopleData[];
 }
 
-const TeamDetails: TeamData[] = [
-  {
-    team: 'Web Team',
-    data: [
-      {
-        fullName: 'Maaz',
-        bio:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        profilePicture:
-          'https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png',
-        links: [
-          { title: 'Facebook', url: '' },
-          { title: 'Twitter', url: '' },
-          { title: 'LinkedIn', url: '' },
-          { title: 'GitHub', url: '' }
-        ],
-        tagLine: 'Web Dev'
-      },
-      {
-        fullName: 'Nasirul',
-        bio:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        profilePicture:
-          'https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png',
-        links: [
-          { title: 'Facebook', url: '' },
-          { title: 'Twitter', url: '' },
-          { title: 'LinkedIn', url: '' },
-          { title: 'GitHub', url: '' }
-        ],
-        tagLine: 'Web Dev'
-      },
-      {
-        fullName: 'Srijan',
-        bio:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        profilePicture:
-          'https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png',
-        links: [
-          { title: 'Facebook', url: '' },
-          { title: 'Twitter', url: '' },
-          { title: 'LinkedIn', url: '' },
-          { title: 'GitHub', url: '' }
-        ],
-        tagLine: 'Web Dev'
-      },
-      {
-        fullName: 'Sugato',
-        bio:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        profilePicture:
-          'https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png',
-        links: [
-          { title: 'Facebook', url: '' },
-          { title: 'Twitter', url: '' },
-          { title: 'LinkedIn', url: '' },
-          { title: 'GitHub', url: '' }
-        ],
-        tagLine: 'Web Dev'
-      }
-    ]
-  },
-  {
-    team: 'App Team',
-    data: [
-      {
-        fullName: 'Shubhayu',
-        bio:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        profilePicture:
-          'https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png',
-        links: [
-          { title: 'Facebook', url: '' },
-          { title: 'Twitter', url: '' },
-          { title: 'LinkedIn', url: '' },
-          { title: 'GitHub', url: '' }
-        ],
-        tagLine: 'App Dev'
-      },
-      {
-        fullName: 'Shantanik',
-        bio:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        profilePicture:
-          'https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png',
-        links: [
-          { title: 'Facebook', url: '' },
-          { title: 'Twitter', url: '' },
-          { title: 'LinkedIn', url: '' },
-          { title: 'GitHub', url: '' }
-        ],
-        tagLine: 'App Dev'
-      },
-      {
-        fullName: 'Priyasu',
-        bio:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        profilePicture:
-          'https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png',
-        links: [
-          { title: 'Facebook', url: '' },
-          { title: 'Twitter', url: '' },
-          { title: 'LinkedIn', url: '' },
-          { title: 'GitHub', url: '' }
-        ],
-        tagLine: 'App Dev'
-      }
-    ]
-  },
-  {
-    team: 'Backend Team',
-    data: [
-      {
-        fullName: 'Debika',
-        bio:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        profilePicture:
-          'https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png',
-        links: [
-          { title: 'Facebook', url: '' },
-          { title: 'Twitter', url: '' },
-          { title: 'LinkedIn', url: '' },
-          { title: 'GitHub', url: '' }
-        ],
-        tagLine: 'Python Dev'
-      },
-      {
-        fullName: 'Ankan',
-        bio:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        profilePicture:
-          'https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png',
-        links: [
-          { title: 'Facebook', url: '' },
-          { title: 'Twitter', url: '' },
-          { title: 'LinkedIn', url: '' },
-          { title: 'GitHub', url: '' }
-        ],
-        tagLine: 'Python Dev'
-      }
-    ]
-  },
-  {
-    team: 'UX Team',
-    data: [
-      {
-        fullName: 'Arindam',
-        bio:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        profilePicture:
-          'https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png',
-        links: [
-          { title: 'Facebook', url: '' },
-          { title: 'Twitter', url: '' },
-          { title: 'LinkedIn', url: '' },
-          { title: 'GitHub', url: '' }
-        ],
-        tagLine: 'Designer'
-      },
-      {
-        fullName: 'Anurag',
-        bio:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        profilePicture:
-          'https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_1280.png',
-        links: [
-          { title: 'Facebook', url: '' },
-          { title: 'Twitter', url: '' },
-          { title: 'LinkedIn', url: '' },
-          { title: 'GitHub', url: '' }
-        ],
-        tagLine: 'Designer'
-      }
-    ]
-  }
-];
-
 const Team = () => {
+  const [TeamDetails] = useState<TeamData[]>(TeamContentData as TeamData[]);
+  const [loader] = useState<boolean>(false);
+
   return (
     <>
-      {TeamDetails.map((teams: TeamData, key: number) => {
-        return (
-          <div key={key}>
-            <h1 className=" px:5 text-center lg:text-start md:text-start md:px-10 lg:px-20 py-2 lg:py-5 text-transparent text-4xl bg-clip-text bg-gradient-to-r from-purple-400 via-red-300 to-pink-600">
-              {teams?.team}
-            </h1>
-            <PeopleGrid peopleGrid={teams?.data} />
-          </div>
-        );
-      })}
+      <Helmet>
+        <title>Team | Google Cloud Community Days Kolkata 2023</title>
+        <meta
+          name="description"
+          content="Meet the awesome team behind Google Cloud Community Days Kolkata 2023"
+        />
+      </Helmet>
+      {loader ? (
+        <GoogleDotsLoader />
+      ) : (
+        <div className="max-w-7xl overflow-x-hidden mx-auto mt-4 space-y-4">
+          {TeamDetails.map((teams: TeamData, key: number) => {
+            return (
+              <div
+                key={key}
+                className="bg-[#1c1c1c] px-4 sm:px-6 lg:px-8 py-12 rounded-lg ring-1 ring-black ring-opacity-5 space-y-5"
+                data-aos={key % 2 === 0 ? 'fade-right' : 'fade-left'}
+                data-aos-delay={key * 100}
+              >
+                <h1 className="text-center text-4xl md:text-left font-extrabold leading-none md:text-5xl text-white w-fit pb-2">
+                  {teams?.team}
+                </h1>
+                <PeopleGrid peopleGrid={teams?.data} modelAllowed={false} />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </>
   );
 };

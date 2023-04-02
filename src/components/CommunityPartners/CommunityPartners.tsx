@@ -1,33 +1,14 @@
-import { useEffect, useState } from 'react';
-import { FeatureRule } from '../../assets/models/datatype';
+import { useState } from 'react';
+import FeatureRuleData from '../../assets/content/feature.rule.json';
+import PartnerSponsorContentData from '../../assets/content/partners/content.json';
 import { PartnerSponsorContent, SponsorContent } from '../../assets/models/partners/datatype';
-import { CurrentTheme, rawRandomGoogleColor } from '../../services/common.service';
-import { COMMUNITY_PARTNER_ASSETS, DARK, PARTNERS_CONTENT_KEY } from '../../services/constants';
-import { getContent } from '../../services/content.service';
-import { getFeature } from '../../services/feature.service';
+import { CurrentTheme } from '../../services/common.service';
+import { COMMUNITY_PARTNER_ASSETS, DARK } from '../../services/constants';
 import GdscBanner from '../GdscBanner/GdscBanner';
 
 const CommunityPartners = () => {
-  const [content, setContent] = useState<PartnerSponsorContent>({} as PartnerSponsorContent);
-  useEffect(() => {
-    getContent<PartnerSponsorContent>(PARTNERS_CONTENT_KEY).then(
-      (data: void | PartnerSponsorContent) => {
-        if (data) setContent(data);
-      }
-    );
-  }, []);
-
-  const [disabledCommunityPartners, setdisabledCommunityPartners] = useState<string[]>(['']);
-  useEffect(() => {
-    getFeature().then((data: FeatureRule) => {
-      if (data) setdisabledCommunityPartners(data.disabledCommunityPartners);
-    });
-  }, []);
-
-  const [rawColor, setColor] = useState<string>('text-google-gray-3');
-  useEffect(() => {
-    return setColor(rawRandomGoogleColor());
-  }, []);
+  const [content] = useState<PartnerSponsorContent>(PartnerSponsorContentData as PartnerSponsorContent);
+  const [disabledCommunityPartners, setdisabledCommunityPartners] = useState<string[]>(FeatureRuleData.disabledCommunityPartners);
 
   return (
     <section
@@ -67,7 +48,8 @@ const CommunityPartners = () => {
                   </a>
                 </div>
                 : (
-                  <div className='col-span-1 h-full md:col-span-2 lg:col-span-1 align-middle border-[0.5rem] rounded-lg hover:border-t-google-red hover:border-l-google-blue hover:border-r-google-green hover:border-b-google-yellow lg:grayscale hover:grayscale-0 hover:shadow-xl hover:scale-105 hover:ease-in duration-300'>
+                  <div key={sponsor?.sponsorId}
+                    className='col-span-1 h-full md:col-span-2 lg:col-span-1 align-middle border-[0.5rem] rounded-lg hover:border-t-google-red hover:border-l-google-blue hover:border-r-google-green hover:border-b-google-yellow lg:grayscale hover:grayscale-0 hover:shadow-xl hover:scale-105 hover:ease-in duration-300'>
                     <a
                       className='text-center'
                       href={sponsor?.hyperlink}

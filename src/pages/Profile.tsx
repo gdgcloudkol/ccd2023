@@ -1,9 +1,17 @@
 import { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserData } from '../assets/models/login/datatype';
 import SocialProfile from '../components/SocialProfile/SocialProfile';
 import Spinner from '../components/Spinner/Spinner';
-import { BACKGROUND_ASSETS, CFS_ROUTE, DP_ASSETS, LOGIN_ROUTE, TICKET_ROUTE, TICKET_PURCHASED_KEY } from '../services/constants';
+import {
+  BACKGROUND_ASSETS,
+  CFS_ROUTE,
+  DP_ASSETS,
+  LOGIN_ROUTE,
+  TICKET_ROUTE,
+  TICKET_PURCHASED_KEY
+} from '../services/constants';
 import { countryCodeChoices } from '../services/countryCodes';
 import { ApiLogout, ApiPostProfile } from '../services/signin.service';
 import { ApiSpeakerList } from '../services/speaker.service';
@@ -15,8 +23,11 @@ const Profile = () => {
   const { loggedInState, setLoggedInState } = useContext(LoggedInContext);
   const [editMode, setEditMode] = useState<boolean>(false);
   const [submitButtonText, setSubmitButtonText] = useState<string>('Submit');
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState<boolean>(true);
   const [submitButton, setSubmitButton] = useState<boolean>(true);
-  const [formData, setFormData] = useState<UserData>(loggedInState.user as UserData);
+  const [formData, setFormData] = useState<UserData>(
+    loggedInState.user as UserData
+  );
   const [socials, setSocials] = useState(loggedInState.user?.profile?.socials);
   const [buyTicket, setBuyTicket] = useState<boolean>(true);
   const [dp, setDp] = useState<1 | 2 | 3 | 4>(1);
@@ -27,8 +38,8 @@ const Profile = () => {
   }, [loggedInState, nav]);
 
   useEffect(() => {
-    Promise.all([ApiViewTickets(), ApiSpeakerList()])
-      .then(([data, speaker]) => {
+    Promise.all([ApiViewTickets(), ApiSpeakerList()]).then(
+      ([data, speaker]) => {
         if (data.data.length > 0) {
           sessionStorage.setItem(TICKET_PURCHASED_KEY, 'true');
           setDp(2);
@@ -39,7 +50,8 @@ const Profile = () => {
         if (speaker.data.length > 0) {
           setDp(3);
         }
-      });
+      }
+    );
   }, []);
 
   const logout = async () => {
@@ -69,10 +81,19 @@ const Profile = () => {
         fieldErrors[field.name] = field.validation.message;
       }
     });
+    if (Object.keys(fieldErrors).length === 0)
+      setSubmitButtonDisabled(false);
+    else
+      setSubmitButtonDisabled(true);
+
     setFieldErrors(fieldErrors);
   }
 
   function handleEdit() {
+    if (editMode) {
+      setFormData(loggedInState.user as UserData);
+      setSocials(loggedInState.user?.profile?.socials);
+    }
     setEditMode(!editMode);
     setSubmitButtonText('Submit');
   }
@@ -86,6 +107,7 @@ const Profile = () => {
       ...formData,
       profile: { ...formData.profile, [name]: e.target.value }
     });
+    validateFields();
   };
 
   async function handleSubmit() {
@@ -129,6 +151,23 @@ const Profile = () => {
   }
 
   const profileFields = [
+    {
+      label: 'Pronoun',
+      name: 'pronoun',
+      type: 'select',
+      value: loggedInState.user?.profile.pronoun,
+      options: [
+        { label: 'Prefer not to say', value: 'NA' },
+        { label: 'He/Him', value: 'he' },
+        { label: 'She/Her', value: 'she' },
+        { label: 'They/Them', value: 'they' },
+        { label: 'Other', value: 'other' }
+      ],
+      validation: {
+        required: true,
+        message: 'Select an option from the list'
+      }
+    },
     {
       label: 'Phone No',
       name: 'phone',
@@ -240,22 +279,30 @@ const Profile = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Profile | Google Cloud Community Days Kolkata 2023</title>
+        <meta
+          name="description"
+          content="Your profile page for Google Cloud Community Days Kolkata 2023. Edit your profile and get ready for the event."
+        />
+      </Helmet>
       <div className="max-w-3xl mt-8 mx-auto rounded-lg dark:bg-[#121212] bg-white shadow-lg">
         <img
           className="h-32 w-full object-cover lg:h-72 rounded-lg"
-          src={BACKGROUND_ASSETS + 'victoria.svg'}
+          src={BACKGROUND_ASSETS + 'victoria.png'}
           alt=""
         />
         <div className="flex flex-row mt-10 mb-10 lg:mt-0 lg:mb-0">
           <div className="max-w-5xl px-4 sm:px-6 lg:px-8 w-1/2">
             <div className="-mt-12 flex flex-col justify-start items-start sm:-mt-16 sm:space-x-5">
               <div className="flex">
-                {dp !== 4 ?
+                {dp !== 4 ? (
                   <img
                     className="h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
                     src={DP_ASSETS + 'yoda-' + dp + '.png'}
                     alt=""
-                  /> :
+                  />
+                ) : (
                   <>
                     <img
                       className="hidden lg:block bg-gray-300 h-24 w-24 border-2 rounded-full border-r-google-green border-l-google-blue border-t-google-red border-b-google-yellow lg:h-32 lg:w-32"
@@ -268,16 +315,17 @@ const Profile = () => {
                       alt=""
                     />
                   </>
-                }
+                )}
               </div>
             </div>
           </div>
-          <div className='flex justify-center flex-col lg:flex-row md:flex-row items-center w-full'>
+          <div className="flex justify-center flex-col items-center w-full">
             {
-              <>
+              <div className=" flex flex-col lg:flex-row md:flex-row items-end w-full justify-end">
                 <Link to={TICKET_ROUTE}>
                   <button
-                    className={`${editMode ? "hidden" : null} mr-5 mb-4 lg:mb-0 md:mb-0  py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
+                    className={`${editMode ? 'hidden' : null
+                      } mr-5 mb-4 lg:mb-0 md:mb-0  py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
                 text-white border font-medium text-1xl lg:text-2xl
                 transition ease-in-out 
                 hover:shadow-xl hover:scale-105 hover:ease-in 
@@ -294,24 +342,30 @@ const Profile = () => {
                 hover:shadow-xl hover:scale-105 hover:ease-in
                 cursor-pointer`}
                 >
-                  {!editMode ? "Edit Profile" : "Cancel Edit"}
+                  {!editMode ? 'Edit Profile' : 'Cancel'}
                 </button>
-              </>
+              </div>
             }
           </div>
         </div>
         <section className="mt-4 pb-12 px-4 sm:px-6 lg:px-8 space-y-5">
-          <div className="flex flex-row justify-between items-center">
-            <div className="flex flex-col items-start dark:text-white text-g-gray-8 pb-0 lg:pb-5 space-y-2">
+          <div className="flex lg:my-5 flex-row justify-between items-center">
+            <div
+              className={`flex flex-col items-start dark:text-white text-g-gray-8 pb-0 lg:pb-5 space-y-2`}
+            >
               <span className="flex flex-row items-center text-2xl space-x-2">
-                Hi,&nbsp;
-                {!editMode ?
+                <span>Hi,</span>
+                {!editMode ? (
                   <div>
-                    <span className=' text-2xl text-white'>{loggedInState.user?.profile.first_name + " "}</span>
-                    <span className=' text-2xl text-white'>{loggedInState.user?.profile.last_name}</span>
+                    <span className=" text-2xl text-white">
+                      {loggedInState.user?.profile.first_name + ' '}
+                    </span>
+                    <span className=" text-2xl text-white">
+                      {loggedInState.user?.profile.last_name}
+                    </span>
                   </div>
-                  :
-                  <div className=' flex'>
+                ) : (
+                  <div className=" flex">
                     <input
                       type="text"
                       disabled={!editMode}
@@ -333,7 +387,7 @@ const Profile = () => {
                       }}
                     />
                   </div>
-                }
+                )}
               </span>
 
               <span className="flex flex-row font-bold text-2xl">
@@ -349,11 +403,29 @@ const Profile = () => {
               </span>
             </div>
           </div>
-          <SocialProfile
-            socials={socials}
-            setSocials={setSocials}
-            editMode={editMode}
-          />
+          <div
+            className={`flex flex-row justify-between`}
+          >
+            {!editMode && (
+              <div className="mr-2 mb-5">
+                <div className="animate-border inline-block rounded-md bg-white bg-gradient-to-r from-google-red via-google-blue to-google-green bg-[length:400%_400%] p-1">
+                  <span
+                    className={`block rounded-md whitespace-nowrap bg-slate-900 px-2 lg:px-5 py-3 lg:font-bold ${loggedInState.user?.profile.referral_count
+                      ? 'text-white'
+                      : 'text-g-gray-5'
+                      }`}
+                  >
+                    Total referral : {loggedInState.user?.profile?.referral_count}
+                  </span>
+                </div>
+              </div>
+            )}
+            <SocialProfile
+              socials={socials}
+              setSocials={setSocials}
+              editMode={editMode}
+            />
+          </div>
 
           <div className="flex flex-col items-center justify-center border-2 border-l-google-blue border-t-google-red border-b-google-yellow border-r-google-green rounded-lg p-4">
             <div className="mt-2 mb-8 w-full">
@@ -370,8 +442,8 @@ const Profile = () => {
                   return (
                     <>
                       <div
-                        key={i}
-                        className={`rounded-md px-3 py-2 shadow-sm  dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
+                        key={field.name + '-' + i}
+                        className={`rounded-md px-3 py-2 shadow-sm dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
                           }`}
                       >
                         <label
@@ -391,15 +463,18 @@ const Profile = () => {
                           }}
                           onBlur={handleBlur}
                         >
-                          {field &&
-                            field.options &&
-                            field?.options.map((option: any, j: number) => {
-                              return (
-                                <option value={option.value} key={j}>
-                                  {option.label}
-                                </option>
-                              );
-                            })}
+                          <>
+                            <option value="null" defaultChecked unselectable='on'>Select</option>
+                            {field &&
+                              field.options &&
+                              field?.options.map((option: any, j: number) => {
+                                return (
+                                  <option value={option.value} key={field.name + '-' + option.value + '-' + j}>
+                                    {option.label}
+                                  </option>
+                                );
+                              })}
+                          </>
                         </select>
                         {fieldErrors[field.name] && (
                           <div className="text-red-500 text-xs">
@@ -412,7 +487,7 @@ const Profile = () => {
                 } else {
                   return (
                     <div
-                      key={i}
+                      key={field.name + '-' + i}
                       className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${editMode ? EDIT_MODE_CLASS : ''
                         }`}
                     >
@@ -430,7 +505,7 @@ const Profile = () => {
                         defaultValue={field.value}
                         readOnly={!editMode}
                         disabled={!editMode}
-                        className="block w-full border-0 px-4 focus:ring-0 sm:text-base h-16 dark:bg-[#1c1c1c] dark:text-white text-right text-xl"
+                        className={`block w-full border-0 px-4 focus:ring-0 sm:text-base h-16 dark:bg-[#1c1c1c] dark:text-white ${editMode ? 'text-left' : 'text-right'} text-xl`}
                         onChange={(e) => {
                           handleChange(e, 'profile', field.name);
                         }}
@@ -452,16 +527,17 @@ const Profile = () => {
             <div className="flex flex-row justify-center lg:justify-end space-x-4">
               <button
                 onClick={handleEdit}
-                className=" items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
+                className=" items-center px-4 py-2 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue"
               >
                 {editMode ? 'Cancel' : 'Edit Profile'}
               </button>
 
               {submitButton ? (
                 <button
+                  disabled={submitButtonDisabled}
                   onClick={() => handleSubmit()}
-                  className={` ${editMode ? '' : 'hidden'
-                    } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                  className={` ${editMode ? '' : 'hidden'} ${submitButtonDisabled ? "cursor-not-allowed opacity-60 " : "cursor-pointer"} 
+                  items-center px-4 py-2 border border-transparent shadow-sm text-mg font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue`}
                 >
                   {editMode ? submitButtonText : ''}
                 </button>
@@ -471,13 +547,13 @@ const Profile = () => {
               <button
                 onClick={() => nav(CFS_ROUTE)}
                 className={` ${editMode ? 'hidden' : ''
-                  } items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm`}
+                  } items-center px-4 py-2 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue`}
               >
                 {editMode ? '' : 'Speaker Profile'}
               </button>
               <button
                 onClick={logout}
-                className=" items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-google-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue sm:text-sm"
+                className=" items-center px-4 py-2 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-google-red focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue"
               >
                 Logout
               </button>

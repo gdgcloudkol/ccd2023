@@ -26,7 +26,9 @@
   "signUpLink": "/signup",
   "forgotPassword": "Forgot Password?",
   "forgotPasswordLink": "/reset-password",
-  "button": [ 
+  "resendVerification": "Resend Verification Link",
+  "resendVerificationLink": "/verify-email/resend",
+  "button": [
     {
       "name": "oneTimeLink",
       "title": "Click To Get One Time Link",

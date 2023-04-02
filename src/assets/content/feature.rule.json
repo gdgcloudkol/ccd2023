@@ -22,47 +22,24 @@
   "navbar": {
     "navbarPermanent": true,
     "navbarSpatialLoggedIn": true,
-    "navbarSpatialNotLoggedIn": true
+    "navbarSpatialNotLoggedIn": true,
+    "navbarSpatialLoggedInBT": true
   },
   "disabledRoutes": [
     "/dashboard",
     "/termsAndCondition",
-    "/team",
     "/speakers",
     "/schedule"
   ],
-  "disabledPartnerTitles": [
-    "Also Backed By",
-    "Silver Sponsor",
-    "Gold Sponsor"
-  ],
+  "disabledPartnerTitles": [],
   "disabledPartners": [],
   "disabledCommunityPartners": [
-    "h4b",
-    "devorld",
-    "devdungeos",
-    "flutter_kolkata",
-    "celt",
-    "dsc_rcciit",
-    "dsc_gce",
-    "dsc_gcect",
-    "dsc_iiitk",
-    "dsc_jis",
-    "dsc_nsec",
-    "dsc_uemk",
-    "dsc_dbcrecd",
-    "dsc_ciem",
-    "dsc_gecb",
-    "dsc_sit",
-    "dsc_bppimt",
-    "dsc_bwu",
-    "dsc_sxc",
-    "dsc_snu",
-    "dsc_iem"
+    "devdungeos"
   ],
   "home": {
     "ticketButtonStateNotLogin": "gs",
     "ticketButtonStateLogin": "bt",
+    "ticketButtonBought": "vt",
     "disabledTicketButton": [
       "rt"
     ],
@@ -91,5 +68,6 @@
   "disabledSocial": [],
   "disabledSpeakers": [
     "Md Nasirul Haque"
-  ]
+  ],
+  "referral": true
 }

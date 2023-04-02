@@ -1,7 +1,8 @@
-import { ReactElement, useContext, useEffect, useLayoutEffect, useState } from 'react';
+import { ReactElement, useContext, useLayoutEffect, useState } from 'react';
 import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
+import FeatureRuleData from '../src/assets/content/feature.rule.json';
+import Footer from './components/Footer/Footer';
 import NavbarPage from './components/Navbar/Navbar';
-import Team from './pages/Team';
 import CFS from './pages/CFS';
 import Coc from './pages/Coc';
 import Dashboard from './pages/Dashboard';
@@ -9,17 +10,16 @@ import FaqPage from './pages/Faq';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import Profile from './pages/Profile';
+import ResetPassword from './pages/ResetPassword';
 import Schedule from './pages/Schedule';
 import Signup from './pages/Signup';
 import Speakers from './pages/Speakers';
+import Team from './pages/Team';
 import Tickets from './pages/Tickets';
-import { getFeature } from './services/feature.service';
-import { LoggedInContext } from './services/state.service';
-import Footer from './components/Footer/Footer';
-import PrivacyPolicy from './pages/PrivacyPolicy';
 import VerifyEmail from './pages/VerifyEmail';
-import ResetPassword from './pages/ResetPassword';
+import { LoggedInContext } from './services/state.service';
 
 const ScrollToTop = ({ children }: { children: ReactElement }) => {
   const location = useLocation();
@@ -31,12 +31,7 @@ const ScrollToTop = ({ children }: { children: ReactElement }) => {
 
 const Router = () => {
   const { loggedInState } = useContext(LoggedInContext);
-  const [navRule, setNavRule] = useState(['']);
-  useEffect(() => {
-    getFeature().then((data) => {
-      if (data) setNavRule(data.disabledRoutes);
-    });
-  }, []);
+  const [navRule] = useState<string[]>(FeatureRuleData.disabledRoutes as string[]);
 
   return (
     <HashRouter>
@@ -95,7 +90,7 @@ const Router = () => {
           {navRule?.every((item) => '/dashboard' !== item) && loggedInState.isLoggedIn ? (
             <Route path="/dashboard" element={<Dashboard />} />
           ) : null}
-          <Route path="/*" element={<NotFound />} />
+          <Route path="/:route" element={<NotFound />} />
         </Routes>
       </ScrollToTop>
       <Footer />

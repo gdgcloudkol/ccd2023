@@ -22,7 +22,8 @@ export const BASE_AUTH_USER_URI = BASE_AUTH_URI + 'user/';
 export const BASE_EMAIL_RESEND_URL = BASE_REGISTRATION_URI + 'resend-email/';
 
 // user
-export const BASE_USERS_UPDATE_URI = BASE_USERS_URI + 'profile/'; 
+export const BASE_USERS_UPDATE_URI = BASE_USERS_URI + 'profile/';
+export const BASE_REFERRAL_URI = BASE_USERS_URI + 'add_referrer/';
 
 // local api
 export const BASE_CONTENT_URI = 'content';
@@ -32,7 +33,8 @@ export const BACKGROUND_ASSETS = '/ccd2023/images/background/';
 export const COMMUNITY_PARTNER_ASSETS = '/ccd2023/images/communityPartners/';
 export const SPONSORS_ASSETS = '/ccd2023/images/sponsors/';
 export const LOGO_ASSETS = '/ccd2023/images/logos/';
-export const DP_ASSETS = '/ccd2023/images/dp/'; 
+export const DP_ASSETS = '/ccd2023/images/dp/';
+export const TICKET_ASSETS = '/ccd2023/images/ticket/';
 
 // content types
 export type ContentTypes =

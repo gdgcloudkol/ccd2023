@@ -110,13 +110,13 @@ export interface SignupContent {
   signin: string;
   signinLink: string;
   bgImg: string;
-  accountType: string;
+  accountType: InputDataType;
   verifiedEmail: string;
   initialProfile: InitialProfileContent;
   profile: ProfileContent;
   social: SignupSocialContent;
   misc: MiscContent;
-  speakerProfile: string;
+  speakerProfile: InputDataType;
   speakerDetails: SpeakerContent;
   button: {
     submit: string;

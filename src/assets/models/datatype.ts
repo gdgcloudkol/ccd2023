@@ -9,6 +9,7 @@ export interface SponsorRule {
 export interface HomeRule extends SponsorRule {
   ticketButtonStateNotLogin: string;
   ticketButtonStateLogin: string;
+  ticketButtonBought: string;
   disabledTicketButton: string[];
   cfsButtonStateNotLogin: string;
   cfsButtonStateLogin: string;
@@ -31,6 +32,7 @@ export interface NavbarRule {
   navbarPermanent: boolean;
   navbarSpatialLoggedIn: boolean;
   navbarSpatialNotLoggedIn: boolean;
+  navbarSpatialLoggedInBT: boolean;
 }
 
 export interface FooterRule {
@@ -54,4 +56,5 @@ export interface FeatureRule {
   home: HomeRule;
   disabledFooterContent: FooterRule;
   disabledSocial: string[];
+  referral: boolean;
 }

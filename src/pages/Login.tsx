@@ -1,51 +1,52 @@
 import { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link, useNavigate } from 'react-router-dom';
-import { FeatureRule, SignInRule } from '../assets/models/datatype';
-import { SignInContent, SigninFieldButtonContent, SigninFieldContent, SignInPayload } from '../assets/models/login/datatype';
-import { BACKGROUND_ASSETS, LOGIN_CONTENT_KEY, PROFILE_ROUTE } from '../services/constants';
-import { getContent } from '../services/content.service';
-import { getFeature } from '../services/feature.service';
+import FeatureRuleData from '../assets/content/feature.rule.json';
+import LoginContentData from '../assets/content/login/content.json';
+import { SignInRule } from '../assets/models/datatype';
+import {
+  SignInContent,
+  SignInPayload,
+  SigninFieldButtonContent,
+  SigninFieldContent
+} from '../assets/models/login/datatype';
+import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
+import { BACKGROUND_ASSETS, PROFILE_ROUTE } from '../services/constants';
 import { ApiSignIn } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
-import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 
 const Login = () => {
+  const nav = useNavigate();
   const { loggedInState, setLoggedInState } = useContext(LoggedInContext);
+  const [signInContent] = useState<SignInContent>(
+    LoginContentData as SignInContent
+  );
+  const [signInRule] = useState<SignInRule>(
+    FeatureRuleData.login as SignInRule
+  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
-  const nav = useNavigate();
+  const [signInFields, setSignInFields] = useState<SigninFieldContent[]>([]);
+  const [resendVerification, setResendVerification] = useState<boolean>(false);
 
-  const [signInRule, setsignInRule] = useState<SignInRule>({} as SignInRule);
   useEffect(() => {
     if (loggedInState.isLoggedIn) nav(PROFILE_ROUTE);
-    getFeature().then((data: FeatureRule) => {
-      if (data) setsignInRule(data.login as SignInRule);
-    });
   }, [loggedInState, nav]);
 
-  const [signInFields, setSignInFields] = useState<SigninFieldContent[]>([]);
-
-  const [signInContent, setSignInContent] = useState<SignInContent>({} as SignInContent);
   useEffect(() => {
-    getContent<SignInContent>(LOGIN_CONTENT_KEY).then(
-      (data: void | SignInContent) => {
-        if (data) {
-          setSignInContent(data);
-          const tmpArr: SigninFieldContent[] = [];
-          for (let el of data.fields) {
-            el.show = signInRule[el.name] || false;
-            fieldErrors[el.name] = '';
-            el.error = fieldErrors[el.name];
-            tmpArr.push(el);
-          }
-          setSignInFields(tmpArr);
-        }
-      }
-    );
+    const tmpArr: SigninFieldContent[] = [];
+    for (let el of signInContent.fields) {
+      el.show = signInRule[el.name] || false;
+      fieldErrors[el.name] = '';
+      el.error = fieldErrors[el.name];
+      tmpArr.push(el);
+    }
+    setSignInFields(tmpArr);
     // eslint-disable-next-line
   }, [signInRule]);
 
   async function handleSubmit(e: any): Promise<void> {
+    setResendVerification(false);
     e.preventDefault();
     setIsLoading(true);
     const formData = new FormData(
@@ -72,7 +73,7 @@ const Login = () => {
 
     if (password === '') {
       setFieldErrors({
-        password: 'Password cannot be blank',
+        password: 'Password cannot be blank'
       });
       setIsLoading(false);
       return;
@@ -84,12 +85,21 @@ const Login = () => {
       nav(PROFILE_ROUTE);
     } else if (res.status === 400) {
       setFieldErrors(res.data);
+      if (res.data['non_field_errors'][0].includes('verified.'))
+        setResendVerification(true);
     }
     setIsLoading(false);
   }
 
   return (
     <>
+      <Helmet>
+        <title>Login | Google Cloud Community Days Kolkata 2023</title>
+        <meta
+          name="description"
+          content="Login to Google Cloud Community Days Kolkata 2023"
+        />
+      </Helmet>
       {isLoading ? (
         <GoogleDotsLoader />
       ) : (
@@ -105,7 +115,10 @@ const Login = () => {
 
                 <div className="mt-8">
                   {fieldErrors.non_field_errors && (
-                    <div className="rounded-md bg-red-50 p-4" data-aos="fade-in">
+                    <div
+                      className="rounded-md bg-red-50 p-4"
+                      data-aos="fade-in"
+                    >
                       <div className="flex">
                         <div className="ml-3">
                           <h3 className="text-sm font-medium text-red-800">
@@ -120,55 +133,68 @@ const Login = () => {
                 <div className="mt-8">
                   <div className="mt-6">
                     <form method="POST" className="space-y-6" id="login">
-                      {signInFields.map((field: SigninFieldContent, k: number) =>
-                        field?.show ? (
-                          <div key={k} id={field?.name + k}>
-                            <label
-                              htmlFor={field?.name}
-                              className="block text-sm font-medium text-gray-700 dark:text-gray-200 capitalize"
-                            >
-                              {field?.name}
-                            </label>
-                            <div className="mt-1">
-                              <input
-                                id={field?.name}
-                                name={field?.name}
-                                type={field?.type}
-                                autoComplete={field?.name}
-                                required
-                                className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 
-                                            focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm 
-                                            ${fieldErrors[field?.name] && 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'}`}
-                              />
-                            </div>
-                            {field?.error && (
-                              <p
-                                className="mt-2 text-sm text-red-600"
-                                id={`${field?.name}-error`}
+                      {signInFields.map(
+                        (field: SigninFieldContent, k: number) =>
+                          field?.show ? (
+                            <div key={k} id={field?.name + k}>
+                              <label
+                                htmlFor={field?.name}
+                                className="block text-sm font-medium text-gray-700 dark:text-gray-200 capitalize"
                               >
-                                {field?.error}
-                              </p>
-                            )}
-                          </div>
-                        ) : null
+                                {field?.name}
+                              </label>
+                              <div className="mt-1">
+                                <input
+                                  id={field?.name}
+                                  name={field?.name}
+                                  type={field?.type}
+                                  autoComplete={field?.name}
+                                  required
+                                  className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 
+                                            focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm 
+                                            ${
+                                              fieldErrors[field?.name] &&
+                                              'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
+                                            }`}
+                                />
+                              </div>
+                              {field?.error && (
+                                <p
+                                  className="mt-2 text-sm text-red-600"
+                                  id={`${field?.name}-error`}
+                                >
+                                  {field?.error}
+                                </p>
+                              )}
+                            </div>
+                          ) : null
                       )}
 
                       <div className="flex items-center justify-between">
                         <div className="text-sm">
                           <Link
                             to={signInContent?.signUpLink}
-                            className="font-medium text-google-blue hover:text-google-blue"
+                            className="font-medium text-google-yellow hover:text-google-yellow hover:underline cursor-pointer"
                           >
                             {signInContent?.signUp}
                           </Link>
                         </div>
                         <div className="text-sm">
-                          <Link
-                            to={signInContent?.forgotPasswordLink}
-                            className="font-medium text-google-blue hover:text-google-blue"
-                          >
-                            {signInContent?.forgotPassword}
-                          </Link>
+                          {resendVerification ? (
+                            <Link
+                              to={signInContent?.resendVerificationLink}
+                              className="font-medium text-google-yellow hover:text-google-yellow hover:underline cursor-pointer"
+                            >
+                              {signInContent?.resendVerification}
+                            </Link>
+                          ) : (
+                            <Link
+                              to={signInContent?.forgotPasswordLink}
+                              className="font-medium text-google-yellow hover:text-google-yellow hover:underline cursor-pointer"
+                            >
+                              {signInContent?.forgotPassword}
+                            </Link>
+                          )}
                         </div>
                       </div>
                       <div>
@@ -180,10 +206,12 @@ const Login = () => {
                                   onClick={
                                     btn?.name === 'submit'
                                       ? handleSubmit
-                                      : () => { }
+                                      : () => {}
                                   }
                                   key={i}
-                                  className="block w-full text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue cursor-pointer"
+                                  className="block w-full text-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue transition ease-in-out 
+                                  hover:shadow-xl hover:scale-105 hover:ease-in 
+                                  cursor-pointer"
                                 >
                                   {btn?.title}
                                 </button>
@@ -199,7 +227,7 @@ const Login = () => {
             <div className="hidden lg:block relative w-0 flex-1">
               <img
                 className="absolute inset-0 h-full w-full object-fill"
-                src={BACKGROUND_ASSETS + `victoria.svg`}
+                src={BACKGROUND_ASSETS + `victoria.png`}
                 alt="Victoria SVG"
               />
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { randomTextGoogleColor } from '../services/common.service';
 
 const PrivacyPolicy = (): JSX.Element => {
@@ -11,6 +12,14 @@ const PrivacyPolicy = (): JSX.Element => {
     'font-bold lg:font-semibold text-2xl text-black dark:text-white md:text-2xl pb-4 lg:text-3xl';
   return (
     <>
+      <Helmet>
+        <title>Privacy Policy | Google Cloud Community Days Kolkata 2023</title>
+        <meta
+          name="description"
+          content="Privacy Policy | Google Cloud Community Days Kolkata 2023"
+        />
+        <meta name="author" content="GDG Cloud Kolkata" />
+      </Helmet>
       <div className="px-8 md:px-12 lg:px-24 py-6 lg:py-12 text-g-gray-7 dark:text-white">
         <h1
           className={`${headingColor} text-2xl md:text-4xl pb-4 lg:text-4xl `}

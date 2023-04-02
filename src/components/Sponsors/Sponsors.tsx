@@ -1,22 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import PartnerContentData from '../../assets/content/partners/content.json';
 import { PartnerContent, PartnerSponsorContent } from '../../assets/models/partners/datatype';
-import { CurrentTheme, rawRandomGoogleColor } from '../../services/common.service';
-import { DARK, PARTNERS_CONTENT_KEY } from '../../services/constants';
-import { getContent } from '../../services/content.service';
+import { CurrentTheme } from '../../services/common.service';
+import { DARK } from '../../services/constants';
 import SponsorCard from './SponsorCard';
 
 const Sponsors = () => {
-  const [content, setContent] = useState({} as PartnerSponsorContent);
-  useEffect(() => {
-    getContent<PartnerSponsorContent>(PARTNERS_CONTENT_KEY).then((data: void | PartnerSponsorContent) => {
-      if (data) setContent(data);
-    });
-  }, []);
-
-  const [rawColor, setColor] = useState<string>('text-google-gray-3');
-  useEffect(() => {
-    return setColor(rawRandomGoogleColor());
-  }, []);
+  const [content] = useState(PartnerContentData as PartnerSponsorContent);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

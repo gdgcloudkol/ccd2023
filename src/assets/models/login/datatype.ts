@@ -13,6 +13,8 @@ export interface UserProfileData {
   socials: {
     [key: string]: string;
   };
+  referral_count: number;
+  pronoun: string;
 }
 
 export interface UserData {
@@ -63,6 +65,8 @@ export interface SignInContent {
   signUpLink: string;
   forgotPassword: string;
   forgotPasswordLink: string;
+  resendVerificationLink: string;
+  resendVerification?: string;
   button: SigninFieldButtonContent[];
 }
 

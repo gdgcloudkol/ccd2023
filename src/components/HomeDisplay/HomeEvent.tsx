@@ -1,74 +1,59 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FeatureRule, HomeRule } from '../../assets/models/datatype';
+import FeatureRuleData from '../../assets/content/feature.rule.json';
+import HomeContentData from '../../assets/content/home/content.json';
+import { HomeRule } from '../../assets/models/datatype';
 import { HomeButtonContent, HomeEventContent } from '../../assets/models/home/datatype';
 import { CurrentTheme, randomTextGoogleColor } from '../../services/common.service';
-import { ACTIVE, DARK, HOME_CONTENT_KEY, HOME_ROUTE, INACTIVE, LOGO_ASSETS } from '../../services/constants';
-import { getContent } from '../../services/content.service';
-import { getFeature } from '../../services/feature.service';
+import { ACTIVE, DARK, HOME_ROUTE, INACTIVE, LOGO_ASSETS } from '../../services/constants';
 import { LoggedInContext } from '../../services/state.service';
 
 const HomeEvent = () => {
   const { loggedInState } = useContext(LoggedInContext);
-  const [homeContent, setContent] = useState<HomeEventContent>({} as HomeEventContent);
-  useEffect(() => {
-    getContent<HomeEventContent>(HOME_CONTENT_KEY).then(
-      (data: void | HomeEventContent) => {
-        if (data) setContent(data);
-      }
-    );
-  }, []);
-
-  const [homeRules, setHome] = useState<HomeRule>({} as HomeRule);
+  const [homeContent] = useState<HomeEventContent>(HomeContentData as HomeEventContent);
+  const [homeRules] = useState<HomeRule>(FeatureRuleData.home as HomeRule);
   const [ticketButtonRule, setTicketButton] = useState<HomeButtonContent>({} as HomeButtonContent);
   const [cfsButtonRule, setCfsButton] = useState<HomeButtonContent>({} as HomeButtonContent);
-  const [ticketButtonColor, setTicketButtonColor] = useState<string>(ticketButtonRule.color);
-  const [cfsButtonColor, setCfsButtonColor] = useState<string>(cfsButtonRule.color);
 
   useEffect(() => {
     if (!ticketButtonRule?.id || !cfsButtonRule?.id)
-      getFeature().then((data: FeatureRule) => {
-        if (data) {
-          setHome(data.home);
-          if (homeContent?.ticketButton)
-            for (let i of homeContent?.ticketButton) {
-              if (
-                (loggedInState.isLoggedIn &&
-                  i?.id === data.home?.ticketButtonStateLogin) ||
-                (!loggedInState.isLoggedIn &&
-                  i?.id === data.home?.ticketButtonStateNotLogin)
-              ) {
-                i.state = INACTIVE;
-                if (
-                  data.home?.disabledTicketButton.every(
-                    (item: string) => i.id !== item
-                  )
-                )
-                  i.state = ACTIVE;
-                setTicketButton(i);
-                setTicketButtonColor(i.color);
-              }
-            }
-          if (homeContent?.cfsButton)
-            for (let i of homeContent?.cfsButton) {
-              if (
-                (loggedInState.isLoggedIn && i.id === data.home?.cfsButtonStateLogin) ||
-                (!loggedInState.isLoggedIn && i.id === data.home?.cfsButtonStateNotLogin)
-              ) {
-                i.state = INACTIVE;
-                if (
-                  data.home?.disabledCfsButton.every(
-                    (item: string) => i.id !== item
-                  )
-                )
-                  i.state = ACTIVE;
-                setCfsButton(i);
-                setCfsButtonColor(i.color);
-              }
-            }
+      if (homeContent?.ticketButton)
+        for (let i of homeContent?.ticketButton) {
+          if (
+            (loggedInState.isLoggedIn && loggedInState.ticket &&
+              i?.id === FeatureRuleData.home?.ticketButtonBought) ||
+            (loggedInState.isLoggedIn &&
+              i?.id === FeatureRuleData.home?.ticketButtonStateLogin) ||
+            (!loggedInState.isLoggedIn &&
+              i?.id === FeatureRuleData.home?.ticketButtonStateNotLogin)
+          ) {
+            i.state = INACTIVE;
+            if (
+              FeatureRuleData.home?.disabledTicketButton.every(
+                (item: string) => i.id !== item
+              )
+            )
+              i.state = ACTIVE;
+            setTicketButton(i);
+          }
         }
-      });
-  }, [ticketButtonRule, cfsButtonRule, homeContent, loggedInState]);
+    if (homeContent?.cfsButton)
+      for (let i of homeContent?.cfsButton) {
+        if (
+          (loggedInState.isLoggedIn && i.id === FeatureRuleData.home?.cfsButtonStateLogin) ||
+          (!loggedInState.isLoggedIn && i.id === FeatureRuleData.home?.cfsButtonStateNotLogin)
+        ) {
+          i.state = INACTIVE;
+          if (
+            FeatureRuleData.home?.disabledCfsButton.every(
+              (item: string) => i.id !== item
+            )
+          )
+            i.state = ACTIVE;
+          setCfsButton(i);
+        }
+      }
+  }, [ticketButtonRule, cfsButtonRule, homeContent, loggedInState.isLoggedIn, loggedInState.ticket]);
 
   const [headingColor, setColor] = useState<string>('text-google-gray-3');
   useEffect(() => {

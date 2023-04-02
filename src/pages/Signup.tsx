@@ -1,36 +1,38 @@
 import { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link, useNavigate } from 'react-router-dom';
-import { FeatureRule } from '../assets/models/datatype';
+import FeatureRuleData from '../assets/content/feature.rule.json';
+import SignupContentData from '../assets/content/signup/content.json';
 import { SignUpPayload } from '../assets/models/login/datatype';
-import { InitialProfileContent, InputDataType, SignupContent } from '../assets/models/signup/datatype';
-import { BACKGROUND_ASSETS, PROFILE_ROUTE, SIGNUP_CONTENT_KEY, VERIFY_EMAIL_ROUTE } from '../services/constants';
-import { getContent } from '../services/content.service';
-import { getFeature } from '../services/feature.service';
+import {
+  InitialProfileContent,
+  InputDataType,
+  SignupContent
+} from '../assets/models/signup/datatype';
+import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
+import {
+  BACKGROUND_ASSETS,
+  PROFILE_ROUTE,
+  VERIFY_EMAIL_ROUTE
+} from '../services/constants';
 import { ApiSignup } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
-import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 
 const Signup = () => {
   const nav = useNavigate();
-  const [signupContent, setSignupContent] = useState<SignupContent>({} as SignupContent);
+  const [signupContent] = useState<SignupContent>(
+    SignupContentData as SignupContent
+  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { loggedInState } = useContext(LoggedInContext);
+  const [signupRule] = useState<string[]>(FeatureRuleData.signup as string[]);
+  const [initialProfileContentFileds, setInitialProfileContentFields] =
+    useState<InputDataType[]>([] as InputDataType[]);
 
   useEffect(() => {
     if (loggedInState.isLoggedIn) nav(PROFILE_ROUTE);
-    getContent<SignupContent>(SIGNUP_CONTENT_KEY).then((data: void | SignupContent) => {
-      if (data) setSignupContent(data);
-    });
   }, [loggedInState, nav]);
 
-  const [signupRule, setSignupRule] = useState<string[]>(['']);
-  useEffect(() => {
-    getFeature().then((data: FeatureRule) => {
-      if (data) setSignupRule(data.signup);
-    });
-  }, []);
-
-  const [initialProfileContentFileds, setInitialProfileContentFields] = useState<InputDataType[]>([] as InputDataType[]);
   useEffect(() => {
     if (signupContent?.initialProfile) {
       const order = signupContent?.initialProfile?.order;
@@ -126,6 +128,13 @@ const Signup = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Signup | Google Cloud Community Days Kolkata 2023</title>
+        <meta
+          name="description"
+          content="Register for Google Cloud Community Days Kolkata 2023. Get access to the latest Google Cloud technologies, learn from Google Cloud experts, and connect with the Google Cloud community."
+        />
+      </Helmet>
       {isLoading ? (
         <GoogleDotsLoader />
       ) : (
@@ -182,9 +191,10 @@ const Signup = () => {
                                 required={field.required}
                                 maxLength={field.maxLength}
                                 className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
-                          ${fieldErrors[field.name] &&
-                                  'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
-                                  }`}
+                          ${
+                            fieldErrors[field.name] &&
+                            'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
+                          }`}
                               />
                             </div>
                             {fieldErrors[field.name] && (
@@ -200,7 +210,7 @@ const Signup = () => {
                         <div className="text-sm">
                           <Link
                             to={signupContent?.signinLink}
-                            className="font-medium text-google-blue hover:text-google-blue"
+                            className="font-medium text-google-yellow hover:text-google-yellow transition ease-in-out hover:underline cursor-pointer"
                           >
                             {signupContent?.signin}
                           </Link>
@@ -210,7 +220,9 @@ const Signup = () => {
                       <div>
                         <button
                           type="submit"
-                          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue transition ease-in-out 
+                          hover:shadow-xl hover:scale-105 hover:ease-in 
+                          cursor-pointer"
                           onClick={handleSubmit}
                         >
                           {signupContent?.button?.submit}

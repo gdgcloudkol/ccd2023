@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
+import SpeakerContentData from '../assets/content/speakers/content.json';
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 import PeopleGrid from '../components/PeopleGrid/PeopleGrid';
-import { getContent } from '../services/content.service';
-import { getFeature } from '../services/feature.service';
 
 const Speakers = () => {
   const [speakersDetails, setSpeakersDetails] = useState([]);
+  const [speakerRule, setFeature] = useState(['']);
 
   useEffect(() => {
     fetch('https://sessionize.com/api/v2/kirmfltc/view/Speakers')
@@ -13,31 +14,22 @@ const Speakers = () => {
       .then((data) => {
         setSpeakersDetails(data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   }, []);
 
-  const [speakerContent, setContent] = useState(
-    {} as { title: string; description: string }
+  const [speakerContent] = useState(
+    SpeakerContentData as { title: string; description: string }
   );
-  useEffect(() => {
-    getContent<{ title: string; description: string }>('navbar').then(
-      (data: void | { title: string; description: string }) => {
-        if (data) setContent(data);
-      }
-    );
-  }, []);
-
-  const [speakerRule, setFeature] = useState(['']);
-  useEffect(() => {
-    getFeature().then((data) => {
-      if (data) {
-        setFeature(data.disabledSpeakers);
-      }
-    });
-  }, []);
 
   return (
     <>
+      <Helmet>
+        <title>Speakers | Google Cloud Community Days Kolkata 2023</title>
+        <meta
+          name="description"
+          content="Meet the speakers of Google Cloud Community Days Kolkata 2023"
+        />
+      </Helmet>
       {!speakersDetails.length ? (
         <GoogleDotsLoader />
       ) : (

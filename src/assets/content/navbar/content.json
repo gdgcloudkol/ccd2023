@@ -44,5 +44,19 @@
       "title": "Login",
       "link": "/login"
     }
+  ],
+  "navbarSpatialLoggedInBT":[
+    {
+      "title": "Profile",
+      "link": "/profile"
+    },
+    {
+      "title": "View Tickets",
+      "link": "/tickets"
+    },
+    {
+      "title": "Dashboard",
+      "link": "/dashboard"
+    }
   ]
 }

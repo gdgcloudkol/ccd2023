@@ -3,6 +3,7 @@ import { NavigateFunction } from 'react-router-dom';
 import { LoginData, SignInPayload, SignUpPayload, UserData } from '../assets/models/login/datatype';
 import { ACCESS_TOKEN_KEY, BASE_AUTH_USER_URI, BASE_EMAIL_RESEND_URL, BASE_EMAIL_VERIFICATION_URL, BASE_LOGIN_URI, BASE_LOGOUT_URI, BASE_PASSWORD_RESET, BASE_PASSWORD_RESET_CONFIRM, BASE_REGISTRATION_URI, BASE_USERS_UPDATE_URI, HOME_ROUTE, LOGGED_IN_KEY } from './constants';
 import { LoggedInState } from './state.service';
+import { ApiViewTickets } from './ticket.service';
 
 export async function ApiSignIn(
   payload: SignInPayload,
@@ -10,15 +11,16 @@ export async function ApiSignIn(
 ): Promise<AxiosResponse> {
   try {
     const res = await axios.post(BASE_LOGIN_URI, payload);
-
     if (res?.status === 200) {
       const data = res.data as LoginData;
       localStorage.setItem(ACCESS_TOKEN_KEY, data.access_token);
+      const ticket = await ApiViewTickets()
       setLoggedInState({
         accessToken: data.access_token,
         refreshToken: data.refresh_token,
         isLoggedIn: true,
-        user: data.user
+        user: data.user,
+        ticket: ticket.data[0]
       });
     }
     return res;
