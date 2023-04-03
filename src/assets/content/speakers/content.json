@@ -3,6 +3,18 @@
   "description": "Hear from the Professionals who are building the future of cloud. Our speakers are influential folks & allies who have been associated with communities within their organisations, cities, country and beyond.",
   "speakers": [
     {
+      "fullName": "Anu Kumari Gupta",
+      "bio": "Software Developer with a curious head having 3+ years of work experience. On the technology side, I am currently responsible for end-to-end consumer facing Application Development, Scaling softwares and Deployment using Cloud Technology at Paytm. I have prior experience developing platform security with Harman International. Beyond work, I love playing Guitar, travelling & reading books. You will also find me writing & learning new things in my spare time. My area of interest also covers exploring new technologies, arenas and experiences.",
+      "profilePicture": "/ccd2023/images/speakers/Anu.jpg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "https://twitter.com/khusianu"
+        }
+      ],
+      "tagLine": "Software Engineer at Paytm"
+    },
+    {
       "fullName": "Avijit Patra",
       "bio": "Avijit Patra is Director IT- Security working for PwC India. He has 23+ years of experience in Unix infrastructure management and Information Security. He is currently leading a Global team of Security Engineers who manage security tool's infrastructure for the organization. He has been an information security evangelist spreading awareness about information security risks and mitigation approaches.",
       "profilePicture": "/ccd2023/images/speakers/Avijit.jpeg",
@@ -25,6 +37,18 @@
         }
       ],
       "tagLine": "Solutions Architect - Prisma Cloud at PaloAlto Networks"
+    },
+    {
+      "fullName": "Haimantika Mitra",
+      "bio": "Haimantika Mitra is a Developer Advocate at Appwrite. She is a community builder and a product of the community herself. She believes that technology is for everyone and is heavily involved in learning, sharing, and building with the community. So far, she has helped over 1000 students and is a huge advocate of women in tech, she has also helped women early in their careers find a way to tech.",
+      "profilePicture": "/ccd2023/images/speakers/Haimantika.jpg",
+      "links": [
+        {
+          "title": "Twitter",
+          "url": "twitter.com/HaimantikaM"
+        }
+      ],
+      "tagLine": "Developer Advocate at Appwrite"
     },
     {
       "fullName": "Kamesh Sampath",
