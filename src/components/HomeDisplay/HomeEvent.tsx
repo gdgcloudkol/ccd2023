@@ -4,7 +4,7 @@ import FeatureRuleData from '../../assets/content/feature.rule.json';
 import HomeContentData from '../../assets/content/home/content.json';
 import { HomeRule } from '../../assets/models/datatype';
 import { HomeButtonContent, HomeEventContent } from '../../assets/models/home/datatype';
-import { CurrentTheme, randomTextGoogleColor } from '../../services/common.service';
+import { CurrentTheme } from '../../services/common.service';
 import { ACTIVE, DARK, HOME_ROUTE, INACTIVE, LOGO_ASSETS } from '../../services/constants';
 import { LoggedInContext } from '../../services/state.service';
 
@@ -54,11 +54,6 @@ const HomeEvent = () => {
         }
       }
   }, [ticketButtonRule, cfsButtonRule, homeContent, loggedInState.isLoggedIn, loggedInState.ticket]);
-
-  const [headingColor, setColor] = useState<string>('text-google-gray-3');
-  useEffect(() => {
-    return setColor(randomTextGoogleColor());
-  }, []);
 
   return (
     <div className="w-full lg:w-1/2 m-w-1/2">

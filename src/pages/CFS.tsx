@@ -24,6 +24,7 @@ import {
   ApiTechnologies
 } from '../services/speaker.service';
 import { LoggedInContext } from '../services/state.service';
+import FeatureRule from '../assets/content/feature.rule.json';
 
 const CFS = () => {
   const { loggedInState } = useContext(LoggedInContext);
@@ -43,6 +44,7 @@ const CFS = () => {
   const [speakers, setSpeakerData] = useState<number[]>([]);
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
   const [submittedTalks, setSubmittedTalks] = useState<TalkData[]>([]);
+  const [cfsState] = useState<'cfsc' | 'cfs' | 'cfscs'>(FeatureRule.home.cfsButtonStateLogin as 'cfsc')
 
   useEffect(() => {
     if (!loggedInState.isLoggedIn) nav(PROFILE_ROUTE);
@@ -240,7 +242,7 @@ const CFS = () => {
       {isLoading ? (
         <GoogleDotsLoader />
       ) : (
-        <div className="max-w-7xl mx-auto" data-aos="fade-up">
+        <div className={`max-w-7xl mx-auto ${cfsState === 'cfsc' && !isSubmitted ? 'lg:h-72' : ''}`} data-aos="fade-up">
           <div className="min-h-full w-full flex">
             <div className="flex-1 flex flex-col justify-center m-5 ">
               {isSpeaker ? (
@@ -263,8 +265,7 @@ const CFS = () => {
                     <div className="flex space-x-4 mt-8 lg:mt-10  items-center justify-center ">
                       <button
                         type="submit"
-                        className=" flex px-8 justify-center p-2 border border-transparent rounded-md shadow-sm text-lg lg:text-xl font-medium text-white bg-google-blue
-                                     hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                        className=" flex px-8 justify-center p-2 border border-transparent rounded-md shadow-sm text-lg lg:text-xl font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
                         onClick={() => {
                           nav(PROFILE_ROUTE);
                         }}
@@ -273,8 +274,8 @@ const CFS = () => {
                       </button>
                       <button
                         type="submit"
-                        className=" flex px-5 lg:px-10 justify-center p-2 border border-transparent rounded-md shadow-sm text-lg lg:text-xl font-medium text-white bg-google-blue
-                                     hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue"
+                        disabled={cfsState === 'cfsc'}
+                        className={`flex px-5 lg:px-10 justify-center p-2 border border-transparent rounded-md shadow-sm text-lg lg:text-xl font-medium text-white bg-google-blue hover:bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-google-blue ${cfsState === 'cfsc' ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
                         onClick={() => {
                           setSubmitted(false);
                         }}
@@ -283,7 +284,7 @@ const CFS = () => {
                       </button>
                     </div>
                   </div>
-                ) : (
+                ) : cfsState !== 'cfsc' ? (
                   <div className="mx-auto w-full max-w-sm lg:w-96">
                     <div>
                       <h2 className="flex mt-6 text-2xl text-gray-900 dark:text-gray-100 items-center justify-center tracking-tight">
@@ -325,9 +326,8 @@ const CFS = () => {
                                 id="title"
                                 placeholder="Title of the talk"
                                 className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
-                                  ${
-                                    fieldErrors['title'] &&
-                                    'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
+                                  ${fieldErrors['title'] &&
+                                  'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
                                   }`}
                               />
                             </div>
@@ -353,9 +353,8 @@ const CFS = () => {
                                 id="description"
                                 placeholder="This will be used for internal analysis"
                                 className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
-                                  ${
-                                    fieldErrors['description'] &&
-                                    'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
+                                  ${fieldErrors['description'] &&
+                                  'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
                                   }`}
                               />
                             </div>
@@ -381,9 +380,8 @@ const CFS = () => {
                                 id="overview"
                                 placeholder="This will be displayed to the public after talk is selected"
                                 className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
-                                  ${
-                                    fieldErrors['overview'] &&
-                                    'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
+                                  ${fieldErrors['overview'] &&
+                                  'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
                                   }`}
                               />
                             </div>
@@ -492,6 +490,12 @@ const CFS = () => {
                       </div>
                     </div>
                   </div>
+                ) : (
+                  <div>
+                    <h2 className="flex mt-6 text-2xl text-gray-900 dark:text-gray-100 items-center justify-center tracking-tight">
+                      CFS Closed
+                    </h2>
+                  </div>
                 )
               ) : isSubmitted ? (
                 <div className="mx-auto flex items-center flex-col w-full max-w-sm lg:w-96 text-center">
@@ -519,7 +523,7 @@ const CFS = () => {
                     </button>
                   </div>
                 </div>
-              ) : (
+              ) : cfsState !== 'cfsc' ? (
                 <div className=" mx-auto w-full max-w-sm lg:w-96 dark:text-black text-white">
                   <div>
                     <h2 className="mt-6 text-2xl text-gray-900 dark:text-gray-100 tracking-tight">
@@ -560,10 +564,9 @@ const CFS = () => {
                               required
                               id="previous_talk_links"
                               className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-google-blue focus:border-google-blue sm:text-sm                          
-                          ${
-                            fieldErrors['previous_talk_links'] &&
-                            'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
-                          }`}
+                          ${fieldErrors['previous_talk_links'] &&
+                                'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500'
+                                }`}
                             />
                           </div>
                           {!isSpeaker && (
@@ -638,19 +641,17 @@ const CFS = () => {
                             id="has_spoken_previously"
                             checked={has_spoken_previously}
                             onChange={setHasSpokenPreviously}
-                            className={`${
-                              has_spoken_previously
-                                ? 'bg-google-blue'
-                                : 'bg-gray-200'
-                            } relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-google-blue focus:ring-offset-2`}
+                            className={`${has_spoken_previously
+                              ? 'bg-google-blue'
+                              : 'bg-gray-200'
+                              } relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-google-blue focus:ring-offset-2`}
                           >
                             <span
                               aria-hidden="true"
-                              className={`${
-                                has_spoken_previously
-                                  ? 'translate-x-5'
-                                  : 'translate-x-0'
-                              } pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
+                              className={`${has_spoken_previously
+                                ? 'translate-x-5'
+                                : 'translate-x-0'
+                                } pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
                             />
                           </Switch>
                         </Switch.Group>
@@ -672,7 +673,14 @@ const CFS = () => {
                     </div>
                   </div>
                 </div>
-              )}
+              ) : (
+                <div>
+                  <h2 className="flex mt-6 text-2xl text-gray-900 dark:text-gray-100 items-center justify-center tracking-tight">
+                    CFS Closed
+                  </h2>
+                </div>
+              )
+              }
             </div>
             {!isLoading && !isSubmitted && (
               <div className="hidden lg:block relative w-0 flex-1">

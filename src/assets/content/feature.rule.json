@@ -42,11 +42,9 @@
     "disabledTicketButton": [
       "rt"
     ],
-    "cfsButtonStateNotLogin": "cfsgs",
-    "cfsButtonStateLogin": "cfs",
-    "disabledCfsButton": [
-      "cfsc"
-    ],
+    "cfsButtonStateNotLogin": "cfsc",
+    "cfsButtonStateLogin": "cfsc",
+    "disabledCfsButton": [],
     "timer": true,
     "cfs": true,
     "location": true,
@@ -65,7 +63,7 @@
       {
         "title": "Resources",
         "hide": false,
-        "nOI": 2
+        "nOI": 1
       },
       {
         "title": "Legal",

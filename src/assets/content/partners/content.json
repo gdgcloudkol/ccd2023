@@ -12,6 +12,17 @@
           "imgSrc": "GoogleDevelopers.svg"
         }
       ]
+    },
+    {
+      "title": "Media Partner",
+      "sponsors": [
+        {
+          "sponsorId": "edugraph",
+          "sponsorName": "The Telegraph Online Edugraph",
+          "hyperlink": "https://www.telegraphindia.com/edugraph",
+          "imgSrc": "edugraph.png"
+        }
+      ]
     }
   ],
   "community_partners": {
