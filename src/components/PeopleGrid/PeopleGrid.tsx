@@ -33,15 +33,15 @@ const PeopleGrid = ({ peopleGrid, rule = [''], tagline = true, modelAllowed = tr
   const [modalData, setModalData]: any = useState<[]>([]);
 
   return (
-    <div
-      className="grid sm:grid-cols-1 md:grid-cols-3 grid-flow-row place-items-center lg:grid-cols-4 gap-4 max-w-7xl mx-auto"
+    < div
+      className={`grid sm:grid-cols-1 md:grid-cols-${peopleGrid.length > 3 ? 3 : peopleGrid.length} lg:grid-cols-${peopleGrid.length > 4 ? 4 : peopleGrid.length} grid-flow-row place-items-center gap-4 max-w-7xl mx-auto`}
       id="speakers-grid"
     >
       {peopleGrid?.map((data: PeopleData, i: number) =>
         rule?.every((i) => i !== data?.fullName) ? (
           <div
             key={i}
-            className="flex w-full h-full dark:text-white flex-col rounded-2xl items-center p-4 transform hover:-translate-y-2 hover:shadow-xl cursor-pointer transition duration-300 border border-g-gray-8"
+            className={`flex ${peopleGrid.length > 1 ? 'w-full' : 'w-max-2xl'} h-full dark:text-white flex-col rounded-2xl items-center p-4 transform hover:-translate-y-2 hover:shadow-xl cursor-pointer transition duration-300 border border-g-gray-8`}
             onClick={() => {
               setModalData(data);
               modelAllowed && setShowModal(true);
@@ -58,11 +58,11 @@ const PeopleGrid = ({ peopleGrid, rule = [''], tagline = true, modelAllowed = tr
             </div>
             {
               tagline ?
-                <div className='mt-2 ml-5 mr-5 h-12 text-md text-center'>
+                <div className='mt-2 ml-5 mr-5 lg:h-10 text-md text-center'>
                   {data?.tagLine}
                 </div> : null
             }
-            <div className="flex mt-5">
+            <div className="flex mt-7">
               {data?.links?.map((social: LinkType, j: number) => {
                 return (
                   <a
