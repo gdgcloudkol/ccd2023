@@ -201,7 +201,7 @@ const PeopleGrid = ({ peopleGrid, rule = [''], tagline = true, modelAllowed = tr
                 </div>
 
                 <div className="px-6 py-2 flex-auto">
-                  <p className="my-2 text-g-gray-5 dark:text-white font-light text-base leading-relaxed">
+                  <p className="my-2 max-h-72 overflow-y-scroll text-g-gray-5 dark:text-white font-light text-base leading-relaxed">
                     {modalData?.bio}
                   </p>
                 </div>
