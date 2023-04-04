@@ -201,9 +201,17 @@ const PeopleGrid = ({ peopleGrid, rule = [''], tagline = true, modelAllowed = tr
                 </div>
 
                 <div className="px-6 py-2 flex-auto">
-                  <p className="my-2 max-h-72 overflow-y-scroll text-g-gray-5 dark:text-white font-light text-base leading-relaxed">
-                    {modalData?.bio}
-                  </p>
+                  {!modalData?.bio?.startsWith('~!~') ?
+                    (
+                      <p className="my-2 max-h-72 overflow-y-scroll text-g-gray-5 dark:text-white font-light text-base leading-relaxed">
+                        {modalData?.bio}
+                      </p>
+                    ) : (
+                      <p
+                        className="my-2 max-h-72 overflow-y-scroll text-g-gray-5 dark:text-white font-light text-base leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: modalData?.bio?.substring(3) }}
+                      ></p>
+                    )}
                 </div>
                 <div className="flex items-center justify-end px-6 py-2 border-t border-solid border-slate-200 rounded-b">
                   <button
