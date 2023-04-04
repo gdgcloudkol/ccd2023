@@ -68,7 +68,7 @@ const PeopleGrid = ({ peopleGrid, rule = [''], tagline = true, modelAllowed = tr
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="//"+{social?.url}
+                    href={social?.url}
                     key={j}
                   >
                     <RandomColorWrapper defaultColor="text-white">
@@ -145,7 +145,7 @@ const PeopleGrid = ({ peopleGrid, rule = [''], tagline = true, modelAllowed = tr
                             <a
                               target="_blank"
                               rel="noopener noreferrer"
-                              href="//"+{social.url}
+                              href={social.url}
                               key={j}
                             >
                               {social?.title === 'Facebook' ? (
