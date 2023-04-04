@@ -34,7 +34,7 @@ const PeopleGrid = ({ peopleGrid, rule = [''], tagline = true, modelAllowed = tr
 
   return (
     < div
-      className={`grid sm:grid-cols-1 md:grid-cols-${peopleGrid.length > 3 ? 3 : peopleGrid.length} lg:grid-cols-${peopleGrid.length > 4 ? 4 : peopleGrid.length} grid-flow-row place-items-center gap-4 max-w-7xl mx-auto`}
+      className={`grid sm:grid-cols-1 md:grid-cols-${peopleGrid.length > 2 ? 4 : peopleGrid.length} lg:grid-cols-${peopleGrid.length > 2 ? 4 : peopleGrid.length} grid-flow-row place-items-center gap-4 max-w-7xl mx-auto`}
       id="speakers-grid"
     >
       {peopleGrid?.map((data: PeopleData, i: number) =>
