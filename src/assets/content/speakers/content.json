@@ -59,6 +59,18 @@
     "description": "Hear from the Professionals who are building the future of cloud. Our speakers are influential folks & allies who have been associated with communities within their organisations, cities, country and beyond.",
     "speakers": [
       {
+        "fullName": "Ankit Sharma",
+        "bio": "Ankit Sharma is a Software Engineer, working with Cisco Systems and staying with his family at Samastipur, Bihar, India. He acquired a Bachelor’s degree in Computer Science from Siddaganga Institute of Technology, Tumkur (Karnataka) in 2014. He has over 7 years of extensive experience in Microsoft technologies including C#, ASP.NET, SQL Server, and UI technologies such as JQuery, Angular, and Blazor. Ankit is a technical author and speaker and loves to contribute to the open-source community. He writes articles for multiple platforms, which include c-sharpcorner, Medium, and freeCodeCamp. He has been recognized as the Google Developer Expert for Angular and a Microsoft MVP for Developer Technologies for his dedicated contribution to the developer community. He is the author of Blazor Quick Start Guide and Learn C# Programming",
+        "profilePicture": "/ccd2023/images/speakers/Ankit.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/AnkitSharma-007"
+          }
+        ],
+        "tagLine": "SDE at Cisco Systems"
+      },
+      {
         "fullName": "Anu Kumari Gupta",
         "bio": "Software Developer with a curious head having 3+ years of work experience. On the technology side, I am currently responsible for end-to-end consumer facing Application Development, Scaling softwares and Deployment using Cloud Technology at Paytm. I have prior experience developing platform security with Harman International. Beyond work, I love playing Guitar, travelling & reading books. You will also find me writing & learning new things in my spare time. My area of interest also covers exploring new technologies, arenas and experiences.",
         "profilePicture": "/ccd2023/images/speakers/Anu.jpg",
@@ -93,6 +105,18 @@
           }
         ],
         "tagLine": "Developer Advocate at Appwrite"
+      },
+      {
+        "fullName": "Joinal Ahmed",
+        "bio": "Joinal is a AI Consultant at Google, experienced in building end to end ML systems in CV, NLP, RecSys and MLOps. He is also a teacher and mentor, associawith Upgrad, Great Learning and Scalar and also a adjunct faculty at IIITB. He is passionate about sharing his journey and knowledge around AI/ML, Kubernetes, Cloud and Security with the community via various meetup and conference talks, workshops and webinars.",
+        "profilePicture": "/ccd2023/images/speakers/Joinal.jpeg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://linkedin.com/in/joinalahmed"
+          }
+        ],
+        "tagLine": "AI Consultant at Google"
       },
       {
         "fullName": "Kamesh Sampath",
