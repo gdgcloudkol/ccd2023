@@ -10,7 +10,7 @@ const SponsorCard = ({ title, sponsors }: PartnerContent) => {
 
   return disabledPartnerTitles.every((i) => i !== title) ? (
     <div className="flex flex-col items-center justify-center space-y-4 max-w-s">
-      <p className="text-4xl font-bold text-gray-900 dark:text-black uppercase tracking-widest leading-loose">
+      <p className="text-4xl font-bold text-center text-gray-900 dark:text-black uppercase tracking-widest leading-snug">
         {title}
       </p>
       {sponsors?.map((sponsor: SponsorContent, i: number) => {
