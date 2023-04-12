@@ -1,4 +1,323 @@
-{
-  "title": "Our Amazing Speakers",
-  "description": "Hear from the Professionals who are building the future of cloud. Our speakers are influential folks & allies who have been associated with communities within their organisations, cities, country and beyond."
-}
+[
+  {
+    "type": "chiefguest",
+    "title": "Chief Guest",
+    "description": "Hear from our esteemed Chief Guest",
+    "speakers": [
+      {
+        "fullName": "Sri Sanjay Kumar Das",
+        "bio": "Sri Sanjay Kumar Das is a National Cyber Security Scholar, Certified Cybersecurity Governance Professional, Certified Cybersecurity Strategist; Joint Secretary, IT&E Department and State Information Security Officer, West Bengal, India.",
+        "profilePicture": "/ccd2023/images/speakers/Sanjay.jpg",
+        "links": [
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/sanjaykumardas/"
+          }
+        ],
+        "tagLine": "Joint Secretary, Department of IT&E and State Information Security Officer, West Bengal, India."
+      }
+    ]
+  },
+  {
+    "type": "keynote",
+    "title": "Keynote Speakers",
+    "description": "Hear from the Industry Leaders and Google Developer Advocate Leader about the latest tech in Cloud",
+    "speakers": [
+      {
+        "fullName": "Avijit Patra",
+        "bio": "Avijit Patra is Director IT- Security working for PwC India. He has 23+ years of experience in Unix infrastructure management and Information Security. He is currently leading a Global team of Security Engineers who manage security tool's infrastructure for the organization. He has been an information security evangelist spreading awareness about information security risks and mitigation approaches.",
+        "profilePicture": "/ccd2023/images/speakers/Avijit.jpeg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/avis_shouts"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/avipatra/"
+          }
+        ],
+        "tagLine": "Director IT - Security at PWC India Pvt Ltd"
+      },
+      {
+        "fullName": "Abirami Sukumaran",
+        "bio": "As a Developer Advocate in Google specializing in Google Cloud Databases and Storage, Abi's priorities are to : Develop, research and implement products and applications to advocate and elevate developer experience with Google Cloud and to Engage with technology community, tech-talks and Google Developer forums to enable Google Cloud development and product experience Pursuing Doctorate in Business Administration with specialization in Machine Learning. A Certified Yoga Instructor / Practitioner, Blogger, Speaker and enjoy Reading & Learning to become a Licensed Private Pilot",
+        "profilePicture": "/ccd2023/images/speakers/Abirami.png",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/AbiramiSukumara"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/abiramisukumaran/"
+          }
+        ],
+        "tagLine": "Developer Advocacy Leader"
+      }
+    ]
+  },
+  {
+    "type": "speakers",
+    "title": "Our Amazing Speakers",
+    "description": "Hear from the Professionals who are building the future of cloud. Our speakers are influential folks & allies who have been associated with communities within their organisations, cities, country and beyond.",
+    "speakers": [
+      {
+        "fullName": "Ankit Sharma",
+        "bio": "Ankit Sharma is a Software Engineer, working with Cisco Systems and staying with his family at Samastipur, Bihar, India. He acquired a Bachelor’s degree in Computer Science from Siddaganga Institute of Technology, Tumkur (Karnataka) in 2014. He has over 7 years of extensive experience in Microsoft technologies including C#, ASP.NET, SQL Server, and UI technologies such as JQuery, Angular, and Blazor. Ankit is a technical author and speaker and loves to contribute to the open-source community. He writes articles for multiple platforms, which include c-sharpcorner, Medium, and freeCodeCamp. He has been recognized as the Google Developer Expert for Angular and a Microsoft MVP for Developer Technologies for his dedicated contribution to the developer community. He is the author of Blazor Quick Start Guide and Learn C# Programming",
+        "profilePicture": "/ccd2023/images/speakers/Ankit.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/AnkitSharma-007"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/ankitsharma-007"
+          }
+        ],
+        "tagLine": "SDE at Cisco Systems"
+      },
+      {
+        "fullName": "Anu Kumari Gupta",
+        "bio": "Software Developer with a curious head having 3+ years of work experience. On the technology side, I am currently responsible for end-to-end consumer facing Application Development, Scaling softwares and Deployment using Cloud Technology at Paytm. I have prior experience developing platform security with Harman International. Beyond work, I love playing Guitar, travelling & reading books. You will also find me writing & learning new things in my spare time. My area of interest also covers exploring new technologies, arenas and experiences.",
+        "profilePicture": "/ccd2023/images/speakers/Anu.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/khusianu"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/anukgupta/"
+          }
+        ],
+        "tagLine": "Software Engineer at Paytm"
+      },
+      {
+        "fullName": "Dharmesh Vaya",
+        "bio": "I am a technologist known for my abilities of developing enterprise applications on Cloud Platforms and fostering a spirit of innovation among teams, with a diverse experience around Banking, -Commerce, Media/Entertainment to name a few. In my professional journey I have close to 16 years of IT experience and I work as a Solutions Architect at PaloAlto Networks where I specialize into Prisma Cloud for securing Cloud Workloads. I am a Google Developer Expert for Google Cloud Platform & Payments category and also actively manage the Google Cloud Developers Community, Mumbai.",
+        "profilePicture": "/ccd2023/images/speakers/Dharmesh.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/DRVaya"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/dharmeshvaya"
+          }
+        ],
+        "tagLine": "Solutions Architect - Prisma Cloud at PaloAlto Networks"
+      },
+      {
+        "fullName": "Haimantika Mitra",
+        "bio": "Haimantika Mitra is a Developer Advocate at Appwrite. She is a community builder and a product of the community herself. She believes that technology is for everyone and is heavily involved in learning, sharing, and building with the community. So far, she has helped over 1000 students and is a huge advocate of women in tech, she has also helped women early in their careers find a way to tech.",
+        "profilePicture": "/ccd2023/images/speakers/Haimantika.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/HaimantikaM"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/haimantika-mitra"
+          }
+        ],
+        "tagLine": "Developer Advocate at Appwrite"
+      },
+      {
+        "fullName": "Joinal Ahmed",
+        "bio": "Joinal is a AI Consultant at Google, experienced in building end to end ML systems in CV, NLP, RecSys and MLOps. He is also a teacher and mentor, associawith Upgrad, Great Learning and Scalar and also a adjunct faculty at IIITB. He is passionate about sharing his journey and knowledge around AI/ML, Kubernetes, Cloud and Security with the community via various meetup and conference talks, workshops and webinars.",
+        "profilePicture": "/ccd2023/images/speakers/Joinal.jpeg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://linkedin.com/in/joinalahmed"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/joinalahmed"
+          }
+        ],
+        "tagLine": "AI Consultant at Google"
+      },
+      {
+        "fullName": "Kamesh Sampath",
+        "bio": "Kamesh is a multi-faceted professional who combines his roles as an author, consultant, and developer advocate to deliver exceptional results. As Director, Developer Advocate at Harness.io, he is dedicated to educating developers on cutting-edge technologies such as Kubernetes/OpenShift, Cloud Native CI/CD, Servicemesh, and Serverless. With a career spanning nearly two decades in the services industry, Kamesh has a proven track record of helping enterprise customers design and build robust enterprise applications.",
+        "profilePicture": "/ccd2023/images/speakers/Kamesh.jpeg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/kamesh_sampath"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/kameshsampath"
+          }
+        ],
+        "tagLine": "Director, Developer Advocate at Harness.io"
+      },
+      {
+        "fullName": "Krupa Galiya",
+        "bio": "A PyGirl, working as a Senior Data Scientist at PatternAI, specializing in the development and research of advanced algorithms, Natural Language Processing (NLP), Machine Learning, Deep Learning, statistical analysis, and Data science methodologies. With a strong passion for continuous learning and development, She focuses on creating innovative AI-driven products and refining algorithmic approaches. As an active participant in the Google Developer Groups, Krupa contributes her expertise and serves as a facilitator for Google's Explore ML program, fostering knowledge sharing and collaboration within the data science community.",
+        "profilePicture": "/ccd2023/images/speakers/Krupa.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/krupagaliya"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/krupagaliya"
+          }
+        ],
+        "tagLine": "Senior Data Scientist at PatternAI"
+      },
+      {
+        "fullName": "Nilay Chauhan",
+        "bio": "Nilay is a Data Scientist and freelancer. He is living in Ahmedabad and in his free time he likes watching tv-series, guiding and supporting Data Science aspirants, and networking with new people around the globe.",
+        "profilePicture": "/ccd2023/images/speakers/Nilay.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/chauhan_nilay16"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/nilay-chauhan"
+          }
+        ],
+        "tagLine": "Data Scientist and Freelancer."
+      },
+      {
+        "fullName": "Rahul Singh",
+        "bio": "Rahul is a Technical Architect at BlueVector AI and specialises in the end to end technical implementation of projects. He holds several cloud certifications and is an expert in all things Cloud. With years of experience in the field, Rahul is a key member of BlueVector AI's technical team, providing expert guidance and leadership in the development of new products and solutions. Rahul's expertise lies in his strong skills in Google Cloud. Rahul is passionate about using technology to solve real-world problems, and he has a track record of delivering innovative and effective solutions that have had a major impact on the success of his clients and employers. Outside of work, Rahul is an avid technology enthusiast, explorer, and a nerd.",
+        "profilePicture": "/ccd2023/images/speakers/Rahul.jpeg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/the_thappy"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/thappy"
+          }
+        ],
+        "tagLine": "Technical Architect at BlueVector AI"
+      },
+      {
+        "fullName": "Rohit Ghumare",
+        "bio": "I am a Platform Advocate at solo.io, and a Community evangelist running Keep Up as well as the DevOps community to empower students and professionals to achieve success in their careers. I am actively participating in various conferences as a speaker and panelist to bring awareness around DevOps, Security, and Application networking.",
+        "profilePicture": "/ccd2023/images/speakers/Rohit.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/ghumare64"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/rohit-ghumare/"
+          }
+        ],
+        "tagLine": "Platform Advocate at solo.io"
+      },
+      {
+        "fullName": "Sayak Paul",
+        "bio": "Sayak works at Hugging Face focusing on Diffusers, TensorFlow, and other Computer Vision related things. He is ridiculously interested in open-source. Off work, you can catch him binge-watching Suits for the nth time on Netflix.",
+        "profilePicture": "/ccd2023/images/speakers/Sayak.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/RisingSayak"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/sayak-paul"
+          }
+        ],
+        "tagLine": "Batman at Hugging Face"
+      },
+      {
+        "fullName": "Stuti Verma",
+        "bio": "I have 6.5 years of experience as a software developer. I have worked with MNC, startups and nonprofits wherein I contributed to building products from scratch to scale and also to existing products which include end-to-end features. For the past 5 years, I've been building a community called Women Who Code Delhi, which has helped me strengthen my network and given me a place to share my knowledge with people from diverse backgrounds.",
+        "profilePicture": "/ccd2023/images/speakers/Stuti.jpeg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/StutiVerma284"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/vermastuti/"
+          }
+        ],
+        "tagLine": "SSE at PlateIQ | Ex Tech Lead at Shiprocket | Director at Women Who Code Delhi"
+      },
+      {
+        "fullName": "Tuhin Roychowdhury",
+        "bio": "Experience on data security, CASB with problem management. Experienced Solutions Architect, with good understanding of a customer security environment assessment.",
+        "profilePicture": "/ccd2023/images/speakers/Tuhin.jpeg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/baban013?s=21&t=AT7P9Kl_Jlg2-xAMaZZ4EQ"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/tuhinroyc"
+          }
+        ],
+        "tagLine": "Manager at Pricewaterhouse Coopers Pvt Ltd (PwC)"
+      },
+      {
+        "fullName": "Vaibhav Malpani",
+        "bio": "I am Google Developer Expert for GCP and Senior Software Engineer with 6+ years of expertise working with Cloud Technologies. I work in designing architecture for projects using cloud services. Organizer of GDG Cloud Mumbai.",
+        "profilePicture": "/ccd2023/images/speakers/Vaibhav.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/IVaibhavMalpani"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/ivaibhavmalpani"
+          }
+        ],
+        "tagLine": "Senior Software Engineer"
+      },
+      {
+        "fullName": "Vasundhara Shukla",
+        "bio": "Vasundhara is a Member of Technical Staff - 2 at VMWare where she works as the core developer and maintainer of the Open-source projects of the Tanzu Mission Control portfolio. She is the Founder and Lead Organiser of Google Developers Group, LUCKNOW and a Women Techmakers Ambassador. She has been awarded the Economic Times Campus Stars-2021 which accolades the brightest engineering minds of the country. She enjoys moving around the geography mostly for her community ventures that include conducting workshops and speaking in events. She is a trained Bharatnatyam dancer and enjoys her artistic ventures when she isn't on her system.",
+        "profilePicture": "/ccd2023/images/speakers/Vasundhara.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/vasundharaas"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/vasundhara-shukla/"
+          }
+        ],
+        "tagLine": "Member of Technical Staff - 2 at VMWare"
+      },
+      {
+        "fullName": "Vrijraj Singh",
+        "bio": "Vrijraj is a Full Stack Developer & Tech Lead at agprop by profession and a community champion by passion. He is an organizer for TechFerment and a Google Developers Expert for Firebase and Web Technologies. He has given 200+ talks and workshops for communities over the past 5 years. His areas of expertise are around Web, Firebase, Google Cloud Platform, and UI/UX Design. He is always eager to learn new technologies and develop solutions based on them. He enjoys mentoring people and nurturing communities. Outside work, he is a foodie and enjoys watching YouTube videos.",
+        "profilePicture": "/ccd2023/images/speakers/Vrijraj.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/SVrijraj"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/vrijrajsingh"
+          }
+        ],
+        "tagLine": "Full Stack Developer & Tech Lead at agprop"
+      }
+    ]
+  }
+]

@@ -12,11 +12,22 @@
           "imgSrc": "GoogleDevelopers.svg"
         }
       ]
+    },
+    {
+      "title": "Digital Media Partner",
+      "sponsors": [
+        {
+          "sponsorId": "edugraph",
+          "sponsorName": "The Telegraph Online Edugraph",
+          "hyperlink": "https://www.telegraphindia.com/edugraph",
+          "imgSrc": "edugraph.png"
+        }
+      ]
     }
   ],
   "community_partners": {
     "title": "Community Partners",
-    "description": "~!~We're are glad to present our Community Partners. Join us and <a style=\"color:#4285f4\" href=\"https://bit.ly/gccdkol-community-partners\">Become a Community Partner</a>",
+    "description": "~!~We're are glad to present our Community Partners.",
     "sponsors": [
       {
         "sponsorId": "wtm",

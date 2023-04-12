@@ -24,23 +24,24 @@ export interface PeopleData {
 export interface PeopleGridProp {
   peopleGrid: PeopleData[];
   rule?: string[];
+  tagline?: boolean;
   modelAllowed?: boolean;
 }
 
-const PeopleGrid = ({ peopleGrid, rule = [''], modelAllowed = true }: PeopleGridProp) => {
+const PeopleGrid = ({ peopleGrid, rule = [''], tagline = true, modelAllowed = true }: PeopleGridProp) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalData, setModalData]: any = useState<[]>([]);
 
   return (
-    <div
-      className="grid sm:grid-cols-1 md:grid-cols-3 grid-flow-row place-items-center lg:grid-cols-4 gap-4 max-w-7xl mx-auto"
+    < div
+      className={`grid sm:grid-cols-1 md:grid-cols-${peopleGrid.length > 2 ? 4 : peopleGrid.length} lg:grid-cols-${peopleGrid.length > 2 ? 4 : peopleGrid.length} grid-flow-row place-items-center gap-4 max-w-7xl mx-auto`}
       id="speakers-grid"
     >
       {peopleGrid?.map((data: PeopleData, i: number) =>
         rule?.every((i) => i !== data?.fullName) ? (
           <div
             key={i}
-            className="flex w-full h-full dark:text-white flex-col rounded-2xl items-center p-4 transform hover:-translate-y-2 hover:shadow-xl cursor-pointer transition duration-300 border border-g-gray-8"
+            className={`flex ${peopleGrid.length > 1 ? 'w-full' : 'w-max-2xl'} h-full dark:text-white flex-col rounded-2xl items-center p-4 transform hover:-translate-y-2 hover:shadow-xl cursor-pointer transition duration-300 border border-g-gray-8`}
             onClick={() => {
               setModalData(data);
               modelAllowed && setShowModal(true);
@@ -52,11 +53,16 @@ const PeopleGrid = ({ peopleGrid, rule = [''], modelAllowed = true }: PeopleGrid
               src={data?.profilePicture}
               alt=""
             />
-            <div className="text-lg font-light mt-4 text-center">
+            <div className="text-2xl font-light mt-8 text-center mb-2">
               {data?.fullName}
             </div>
-
-            <div className="flex mt-5">
+            {
+              tagline ?
+                <div className='mt-2 ml-5 mr-5 lg:h-10 text-md text-center'>
+                  {data?.tagLine}
+                </div> : null
+            }
+            <div className="flex mt-7">
               {data?.links?.map((social: LinkType, j: number) => {
                 return (
                   <a
@@ -123,11 +129,11 @@ const PeopleGrid = ({ peopleGrid, rule = [''], modelAllowed = true }: PeopleGrid
           {/* Full-screen container to center the panel */}
           <div className="fixed inset-0 flex items-center justify-center p-4">
             <Dialog.Panel>
-              <div className="border-0 rounded-lg shadow-lg flex flex-col bg-white dark:bg-black outline-none focus:outline-none max-w-lg">
+              <div className="border-2 rounded-lg shadow-lg flex flex-col bg-white dark:bg-black outline-none focus:outline-none max-w-lg">
                 <div className="flex items-center p-4 lg:flex-row flex-col-reverse justify-between border-b border-solid border-slate-200 ">
                   <div className="w-fit rounded-t">
                     <div className="text-3xl lg:w-fit w-full dark:text-white font-normal text-center">
-                      {modalData?.name}
+                      {modalData?.fullName}
                     </div>
                     <div className="text-sm w-full max-w-sm text-g-gray-7 dark:text-white mt-2">
                       {modalData?.tagLine}
@@ -195,9 +201,17 @@ const PeopleGrid = ({ peopleGrid, rule = [''], modelAllowed = true }: PeopleGrid
                 </div>
 
                 <div className="px-6 py-2 flex-auto">
-                  <p className="my-2 text-g-gray-5 dark:text-white font-light text-base leading-relaxed">
-                    {modalData?.bio}
-                  </p>
+                  {!modalData?.bio?.startsWith('~!~') ?
+                    (
+                      <p className="my-2 max-h-72 overflow-y-scroll text-g-gray-5 dark:text-white font-light text-base leading-relaxed">
+                        {modalData?.bio}
+                      </p>
+                    ) : (
+                      <p
+                        className="my-2 max-h-72 overflow-y-scroll text-g-gray-5 dark:text-white font-light text-base leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: modalData?.bio?.substring(3) }}
+                      ></p>
+                    )}
                 </div>
                 <div className="flex items-center justify-end px-6 py-2 border-t border-solid border-slate-200 rounded-b">
                   <button

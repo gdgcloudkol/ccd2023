@@ -28,7 +28,6 @@
   "disabledRoutes": [
     "/dashboard",
     "/termsAndCondition",
-    "/speakers",
     "/schedule"
   ],
   "disabledPartnerTitles": [],
@@ -43,11 +42,9 @@
     "disabledTicketButton": [
       "rt"
     ],
-    "cfsButtonStateNotLogin": "cfsgs",
-    "cfsButtonStateLogin": "cfs",
-    "disabledCfsButton": [
-      "cfsc"
-    ],
+    "cfsButtonStateNotLogin": "cfsc",
+    "cfsButtonStateLogin": "cfsc",
+    "disabledCfsButton": [],
     "timer": true,
     "cfs": true,
     "location": true,
@@ -62,6 +59,16 @@
         "title": "About",
         "hide": false,
         "nOI": 3
+      },
+      {
+        "title": "Resources",
+        "hide": false,
+        "nOI": 1
+      },
+      {
+        "title": "Legal",
+        "hide": false,
+        "nOI": 2
       }
     ]
   },

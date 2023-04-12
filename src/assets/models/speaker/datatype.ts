@@ -1,3 +1,5 @@
+import { PeopleData } from "../../../components/PeopleGrid/PeopleGrid";
+
 export interface SpeakerData {
     profilePicture: string;
     fullName: string;
@@ -61,4 +63,11 @@ export interface EventData {
     technologies: number[];
     volunteers: number[];
     ts_event_code: string;
+}
+
+export interface SpeakerContentData {
+    type: 'chiefguest' | 'keynote' | 'speaker',
+    title: string;
+    description: string;
+    speakers: PeopleData[];
 }

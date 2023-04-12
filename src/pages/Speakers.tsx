@@ -1,25 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import SpeakerContentData from '../assets/content/speakers/content.json';
+import SpeakerContent from '../assets/content/speakers/content.json';
+import { SpeakerContentData } from '../assets/models/speaker/datatype';
 import GoogleDotsLoader from '../components/Loader/GoogleDotsLoader';
 import PeopleGrid from '../components/PeopleGrid/PeopleGrid';
 
 const Speakers = () => {
-  const [speakersDetails, setSpeakersDetails] = useState([]);
-  const [speakerRule, setFeature] = useState(['']);
-
-  useEffect(() => {
-    fetch('https://sessionize.com/api/v2/kirmfltc/view/Speakers')
-      .then((response) => response.json())
-      .then((data) => {
-        setSpeakersDetails(data);
-      })
-      .catch((error) => console.error(error));
-  }, []);
-
-  const [speakerContent] = useState(
-    SpeakerContentData as { title: string; description: string }
-  );
+  const [speakersDetails] = useState<SpeakerContentData[]>(SpeakerContent as SpeakerContentData[]);
 
   return (
     <>
@@ -33,17 +20,23 @@ const Speakers = () => {
       {!speakersDetails.length ? (
         <GoogleDotsLoader />
       ) : (
-        <>
-          <div className="flex justify-center items-center flex-col px-5 pt-5">
-            <div className="text-2xl lg:text-3xl font-normal text-g-gray-8 dark:text-white">
-              {speakerContent?.title}
-            </div>
-            <div className="text-base max-w-2xl w-fit text-center font-light text-g-gray-5 dark:text-white mt-2">
-              {speakerContent?.description}
-            </div>
-          </div>
-          <PeopleGrid peopleGrid={speakersDetails} rule={speakerRule} />
-        </>
+        speakersDetails.map((speakerType: SpeakerContentData) => {
+          return (
+            <>
+              <div className="flex justify-center items-center flex-col px-5 pt-5">
+                <div className="text-4xl lg:text-5xl font-normal text-g-gray-8 mb-5 dark:text-white text-center">
+                  {speakerType?.title}
+                </div>
+                <div className="hidden lg:block text-xl lg:text-2xl max-w-6xl w-fit text-center font-light text-g-gray-5 dark:text-white mt-2 mb-10">
+                  {speakerType?.description}
+                </div>
+              </div>
+              <div className='ml-5 mr-5 mb-20'>
+                <PeopleGrid peopleGrid={speakerType.speakers} />
+              </div>
+            </>
+          )
+        })
       )}
     </>
   );

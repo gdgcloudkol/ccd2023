@@ -8,7 +8,7 @@ import GdscBanner from '../GdscBanner/GdscBanner';
 
 const CommunityPartners = () => {
   const [content] = useState<PartnerSponsorContent>(PartnerSponsorContentData as PartnerSponsorContent);
-  const [disabledCommunityPartners, setdisabledCommunityPartners] = useState<string[]>(FeatureRuleData.disabledCommunityPartners);
+  const [disabledCommunityPartners] = useState<string[]>(FeatureRuleData.disabledCommunityPartners);
 
   return (
     <section

@@ -37,7 +37,7 @@ const Team = () => {
                 <h1 className="text-center text-4xl md:text-left font-extrabold leading-none md:text-5xl text-white w-fit pb-2">
                   {teams?.team}
                 </h1>
-                <PeopleGrid peopleGrid={teams?.data} modelAllowed={false} />
+                <PeopleGrid peopleGrid={teams?.data} tagline={false} modelAllowed={false} />
               </div>
             );
           })}
