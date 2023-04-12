@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.css": "/ccd2023/static/css/main.f7c4358c.css",
-    "main.js": "/ccd2023/static/js/main.d5291fac.js",
+    "main.css": "/ccd2023/static/css/main.a4dfee71.css",
+    "main.js": "/ccd2023/static/js/main.fdb2ef33.js",
     "static/js/27.b3a9f5de.chunk.js": "/ccd2023/static/js/27.b3a9f5de.chunk.js",
     "static/media/GoogleSans-Regular_0.ttf": "/ccd2023/static/media/GoogleSans-Regular_0.0d01ceaea2903216c4ee.ttf",
     "static/media/GoogleSans-Bold-v1.27.ttf": "/ccd2023/static/media/GoogleSans-Bold-v1.27.18cab8ca4b802f600b69.ttf",
+    "static/media/sizechart.jpeg": "/ccd2023/static/media/sizechart.05aa741646653f893c71.jpeg",
     "static/media/website.svg": "/ccd2023/static/media/website.bb85f546fc68cf8c6c47d4440b837c42.svg",
     "index.html": "/ccd2023/index.html",
     "static/media/twitter.svg": "/ccd2023/static/media/twitter.bbd6b6eddbaf89ac6bc7ae20bdb473d8.svg",
@@ -15,7 +16,7 @@
     "static/media/instagram.svg": "/ccd2023/static/media/instagram.0c5ec250d222fdc311eee862ef927854.svg"
   },
   "entrypoints": [
-    "static/css/main.f7c4358c.css",
-    "static/js/main.d5291fac.js"
+    "static/css/main.a4dfee71.css",
+    "static/js/main.fdb2ef33.js"
   ]
 }
