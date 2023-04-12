@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { RiInformationLine } from "react-icons/ri";
 import { Link, useNavigate } from 'react-router-dom';
 import { UserData } from '../assets/models/login/datatype';
+import Sizegrid from '../components/SizeGrid/Sizegrid';
 import SocialProfile from '../components/SocialProfile/SocialProfile';
 import Spinner from '../components/Spinner/Spinner';
 import {
@@ -9,8 +11,8 @@ import {
   CFS_ROUTE,
   DP_ASSETS,
   LOGIN_ROUTE,
-  TICKET_ROUTE,
-  TICKET_PURCHASED_KEY
+  TICKET_PURCHASED_KEY,
+  TICKET_ROUTE
 } from '../services/constants';
 import { countryCodeChoices } from '../services/countryCodes';
 import { ApiLogout, ApiPostProfile } from '../services/signin.service';
@@ -32,6 +34,7 @@ const Profile = () => {
   const [buyTicket, setBuyTicket] = useState<boolean>(true);
   const [dp, setDp] = useState<1 | 2 | 3 | 4>(1);
   const [fieldErrors, setFieldErrors] = useState<any>({});
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   useEffect(() => {
     if (!loggedInState.isLoggedIn) nav(LOGIN_ROUTE);
@@ -448,9 +451,12 @@ const Profile = () => {
                       >
                         <label
                           htmlFor="name"
-                          className="block text-lg lg:text-xl font-medium"
+                          className="flex w-full justify-between items-center text-lg lg:text-xl font-medium"
                         >
                           {field.label}
+                          <span className=" flex">{field.name === "tsize" && (
+                            <RiInformationLine onClick={() => setIsOpen(true)} size={24} />
+                          )}</span>
                         </label>
                         <select
                           name={field.name}
@@ -560,6 +566,9 @@ const Profile = () => {
             </div>
           </div>
         </section>
+      </div>
+      <div className='ml-5 mr-5 mb-20'>
+        <Sizegrid setIsOpen={setIsOpen} isOpen={isOpen} />
       </div>
     </>
   );
