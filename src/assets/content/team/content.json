@@ -332,6 +332,26 @@
         "tagLine": "Design Team"
       },
       {
+        "fullName": "Srishti Manna",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Srishti Manna.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/Swisss_tea"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/srishti-manna-628b3b20b"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://www.instagram.com/sugar_.sparkles_/"
+          }
+        ],
+        "tagLine": "Photography Team"
+      },
+      {
         "fullName": "Tithi Bose",
         "bio": "",
         "profilePicture": "/ccd2023/images/team/Tithi B.png",
@@ -854,26 +874,6 @@
           {
             "title": "Instagram",
             "url": "https://instagram.com/ss_cuber2?igshid=ZDdkNTZiNTM="
-          }
-        ],
-        "tagLine": "Photography Team"
-      },
-      {
-        "fullName": "Srishti Manna",
-        "bio": "",
-        "profilePicture": "/ccd2023/images/team/Srishti Manna.jpg",
-        "links": [
-          {
-            "title": "Twitter",
-            "url": "https://twitter.com/Swisss_tea"
-          },
-          {
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/in/srishti-manna-628b3b20b"
-          },
-          {
-            "title": "Instagram",
-            "url": "https://www.instagram.com/sugar_.sparkles_/"
           }
         ],
         "tagLine": "Photography Team"
