@@ -23,6 +23,7 @@ export interface UserData {
   last_name: string;
   profile: UserProfileData;
   username: string;
+  profile_lock: boolean;
 }
 
 export interface LoginData {
@@ -70,7 +71,9 @@ export interface SignInContent {
   button: SigninFieldButtonContent[];
 }
 
-export interface GenericJson { [key: string]: string | undefined | number }
+export interface GenericJson {
+  [key: string]: string | undefined | number;
+}
 
 export interface TownscriptProfileData extends GenericJson {
   firstname: string;
