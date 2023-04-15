@@ -95,7 +95,7 @@ const Schedule = () => {
                 return (
                   <div key={key} className="flex w-full lg:w-auto ">
                     <div className="w-3/10 lg:w-1/5 border-b-[1px]  lg:border-r-[1px] border-g-gray-3 flex flex-col items-end px-3 py-3 text-right lg:text-start">
-                      <div className="text-base lg:text-2xl"> {startTime}</div>
+                      <div className="text-base text-sm lg:text-2xl"> {startTime}</div>
                       <div className="text-xs lg:text-xl font-light">
                         {endTime}
                       </div>
@@ -115,10 +115,10 @@ const Schedule = () => {
                             data-aos="fade-right"
                             data-aos-delay="50"
                           >
-                            <div className={`text-md ${index !== 0 ? 'mt-10' : 'mt-5'} bg-${color[index]} ${index == 4 ? 'text-black' : 'text-white'} px-2 py-1 mb-2 w-fit`}>
+                            <div className={`text-sm lg:text-md ${index !== 0 ? 'mt-10' : 'lg:mt-5'} bg-${color[index]} ${index == 4 ? 'text-black' : 'text-white'} px-2 py-1 mb-2 w-fit`}>
                               {room.session.room}
                             </div>
-                            <div className="text-3xl font-light">{name}</div>
+                            <div className="text-xl lg:text-3xl font-light">{name}</div>
                             {info.speakers && (
                               <div className="flex items-center gap-2 cursor-pointer" onClick={() => { nav('/speakers') }}>
                                 {info.speakers?.map(
@@ -136,7 +136,7 @@ const Schedule = () => {
                                             src={speakerImage}
                                             alt=""
                                           />
-                                          <span className="text-xl ml-2  ">
+                                          <span className="text-lg lg:text-xl ml-2  ">
                                             {speakerName}
                                           </span>
                                         </div>

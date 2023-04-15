@@ -68,7 +68,7 @@ const Router = () => {
         <Notification
           title={NotificationContent.locked.title}
           message={NotificationContent.locked.message}
-          color='red'
+          color='yellow'
           show={show}
           setShow={setShow}
         />
