@@ -332,9 +332,8 @@ const Profile = () => {
               <div className=" flex flex-col lg:flex-row md:flex-row items-end w-full justify-end">
                 <Link to={TICKET_ROUTE}>
                   <button
-                    className={`${
-                      editMode ? 'hidden' : null
-                    } mr-5 mb-4 lg:mb-0 md:mb-0  py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
+                    className={`${editMode ? 'hidden' : null
+                      } mr-5 mb-4 lg:mb-0 md:mb-0  py-2 bg-google-green px-10 rounded-3xl h-fit w-fit 
                 text-white border font-medium text-1xl lg:text-2xl
                 transition ease-in-out 
                 hover:shadow-xl hover:scale-105 hover:ease-in 
@@ -345,11 +344,11 @@ const Profile = () => {
                 </Link>
                 <button
                   onClick={handleEdit}
-                  className="mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
+                  className={`mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
                 text-white bg-transparent border font-medium text-1xl lg:text-2xl
                 transition ease-in-out duration-300
                 hover:shadow-xl hover:scale-105 hover:ease-in
-                cursor-pointer disabled:opacity-50"
+                cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed`}
                   disabled={loggedInState.user?.profile?.profile_lock}
                 >
                   {!editMode ? 'Edit Profile' : 'Cancel'}
@@ -418,11 +417,10 @@ const Profile = () => {
               <div className="mr-2 mb-5">
                 <div className="animate-border inline-block rounded-md bg-white bg-gradient-to-r from-google-red via-google-blue to-google-green bg-[length:400%_400%] p-1">
                   <span
-                    className={`block rounded-md whitespace-nowrap bg-slate-900 px-2 lg:px-5 py-3 lg:font-bold ${
-                      loggedInState.user?.profile.referral_count
-                        ? 'text-white'
-                        : 'text-g-gray-5'
-                    }`}
+                    className={`block rounded-md whitespace-nowrap bg-slate-900 px-2 lg:px-5 py-3 lg:font-bold ${loggedInState.user?.profile.referral_count
+                      ? 'text-white'
+                      : 'text-g-gray-5'
+                      }`}
                   >
                     Total referral :{' '}
                     {loggedInState.user?.profile?.referral_count}
@@ -471,9 +469,8 @@ const Profile = () => {
                     <Fragment key={field.name + '-' + i}>
                       <div
                         key={field.name + '-' + i}
-                        className={`rounded-md px-3 py-2 shadow-sm dark:bg-[#1c1c1c] dark:text-white ${
-                          editMode ? EDIT_MODE_CLASS : ''
-                        }`}
+                        className={`rounded-md px-3 py-2 shadow-sm dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
+                          }`}
                       >
                         <label
                           htmlFor="name"
@@ -536,9 +533,8 @@ const Profile = () => {
                   return (
                     <div
                       key={field.name + '-' + i}
-                      className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${
-                        editMode ? EDIT_MODE_CLASS : ''
-                      }`}
+                      className={`rounded-md px-3 py-2 shadow-sm focus-within:ring-1 dark:bg-[#1c1c1c] dark:text-white focus:outline-none ${editMode ? EDIT_MODE_CLASS : ''
+                        }`}
                     >
                       <label
                         htmlFor="name"
@@ -554,9 +550,8 @@ const Profile = () => {
                         defaultValue={field.value}
                         readOnly={!editMode}
                         disabled={!editMode}
-                        className={`block w-full border-0 px-4 focus:ring-0 sm:text-base h-16 dark:bg-[#1c1c1c] dark:text-white ${
-                          editMode ? 'text-left' : 'text-right'
-                        } text-xl`}
+                        className={`block w-full border-0 px-4 focus:ring-0 sm:text-base h-16 dark:bg-[#1c1c1c] dark:text-white ${editMode ? 'text-left' : 'text-right'
+                          } text-xl`}
                         onChange={(e) => {
                           handleChange(e, 'profile', field.name);
                         }}
@@ -578,7 +573,8 @@ const Profile = () => {
             <div className="flex flex-row justify-center lg:justify-end space-x-4">
               <button
                 onClick={handleEdit}
-                className=" items-center px-4 py-2 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue"
+                className=" items-center px-4 py-2 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={loggedInState.user?.profile?.profile_lock}
               >
                 {editMode ? 'Cancel' : 'Edit Profile'}
               </button>
@@ -587,11 +583,10 @@ const Profile = () => {
                 <button
                   disabled={submitButtonDisabled}
                   onClick={() => handleSubmit()}
-                  className={` ${editMode ? '' : 'hidden'} ${
-                    submitButtonDisabled
-                      ? 'cursor-not-allowed opacity-60 '
-                      : 'cursor-pointer'
-                  } 
+                  className={` ${editMode ? '' : 'hidden'} ${submitButtonDisabled
+                    ? 'cursor-not-allowed opacity-60 '
+                    : 'cursor-pointer'
+                    } 
                   items-center px-4 py-2 border border-transparent shadow-sm text-mg font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue`}
                 >
                   {editMode ? submitButtonText : ''}
@@ -601,9 +596,8 @@ const Profile = () => {
               )}
               <button
                 onClick={() => nav(CFS_ROUTE)}
-                className={` ${
-                  editMode ? 'hidden' : ''
-                } items-center px-4 py-2 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue`}
+                className={` ${editMode ? 'hidden' : ''
+                  } items-center px-4 py-2 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue`}
               >
                 {editMode ? '' : 'Speaker Profile'}
               </button>

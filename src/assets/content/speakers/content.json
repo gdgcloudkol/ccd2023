@@ -227,6 +227,22 @@
         "tagLine": "Data Scientist and Freelancer."
       },
       {
+        "fullName": "Nirav Kothari",
+        "bio": "A solution architect with 18+ years of overall experience having strong hold on solutioning in the areas of data engineering, big data processing, web applications and data science solutions related to data mining, search engines, NLP Applications, IoT, Chatbots, integration of enterprise applications, RPA etc. Deep expertise in designing system architecture and development using Cloud services as well as On-Premise infra, considering the industry best practices and complying with business drivers like performance, scalability, flexibility and security. Co-organizer of GDG Cloud Mumbai community since its inception (Jun-2018). A frequent speaker at conferences and likes to share his knowledge by writing technicals blogs",
+        "profilePicture": "/ccd2023/images/speakers/Nirav.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/iNiravKothari"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/iniravkothari"
+          }
+        ],
+        "tagLine": "Senior Technical Architect at Quantiphi Analytics Pvt. Ltd."
+      },
+      {
         "fullName": "Rahul Singh",
         "bio": "Rahul is a Technical Architect at BlueVector AI and specialises in the end to end technical implementation of projects. He holds several cloud certifications and is an expert in all things Cloud. With years of experience in the field, Rahul is a key member of BlueVector AI's technical team, providing expert guidance and leadership in the development of new products and solutions. Rahul's expertise lies in his strong skills in Google Cloud. Rahul is passionate about using technology to solve real-world problems, and he has a track record of delivering innovative and effective solutions that have had a major impact on the success of his clients and employers. Outside of work, Rahul is an avid technology enthusiast, explorer, and a nerd.",
         "profilePicture": "/ccd2023/images/speakers/Rahul.jpeg",

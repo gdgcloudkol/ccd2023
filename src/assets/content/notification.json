@@ -1,4 +1,10 @@
 {
-  "title": "Action Required",
-  "message": "If you want to update your profile, please do it before 15th of April."
+  "reminder": {
+    "title": "Action Required",
+    "message": "If you want to update your profile, please do it before 15th of April."
+  },
+  "locked": {
+    "title": "Profile Locked",
+    "message": "No further changes in profile allowed till the event gets over. For editing requests please write to gdgcloudkol@gmail.com"
+  }
 }

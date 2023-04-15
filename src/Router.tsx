@@ -27,7 +27,7 @@ import Tickets from './pages/Tickets';
 import VerifyEmail from './pages/VerifyEmail';
 import { LoggedInContext } from './services/state.service';
 import Notification from './components/Notification/Notification';
-import notificationContent from './assets/content/notification.json';
+import NotificationContent from './assets/content/notification.json';
 
 const ScrollToTop = ({ children }: { children: ReactElement }) => {
   const location = useLocation();
@@ -46,8 +46,7 @@ const Router = () => {
 
   useEffect(() => {
     if (
-      loggedInState.isLoggedIn &&
-      !loggedInState?.user?.profile.profile_lock
+      loggedInState.isLoggedIn
     ) {
       setShow(true);
     }
@@ -58,12 +57,22 @@ const Router = () => {
       <nav className="sticky top-0 z-30 w-full bg-white dark:bg-black dark:bg-opacity-0 backdrop-filter backdrop-blur-md bg-opacity-30 ">
         <NavbarPage />
       </nav>
-      <Notification
-        title={notificationContent.title}
-        message={notificationContent.message}
-        show={show}
-        setShow={setShow}
-      />
+      {!loggedInState?.user?.profile?.profile_lock ?
+        <Notification
+          title={NotificationContent.reminder.title}
+          message={NotificationContent.reminder.message}
+          show={show}
+          setShow={setShow}
+        />
+        :
+        <Notification
+          title={NotificationContent.locked.title}
+          message={NotificationContent.locked.message}
+          color='red'
+          show={show}
+          setShow={setShow}
+        />
+      }
       <ScrollToTop>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -111,15 +120,15 @@ const Router = () => {
             />
           ) : null}
           {navRule?.every((item) => '/profile' !== item) &&
-          loggedInState.isLoggedIn ? (
+            loggedInState.isLoggedIn ? (
             <Route path="/profile" element={<Profile />} />
           ) : null}
           {navRule?.every((item) => '/tickets' !== item) &&
-          loggedInState.isLoggedIn ? (
+            loggedInState.isLoggedIn ? (
             <Route path="/tickets" element={<Tickets />} />
           ) : null}
           {navRule?.every((item) => '/dashboard' !== item) &&
-          loggedInState.isLoggedIn ? (
+            loggedInState.isLoggedIn ? (
             <Route path="/dashboard" element={<Dashboard />} />
           ) : null}
           <Route path="/:route" element={<NotFound />} />

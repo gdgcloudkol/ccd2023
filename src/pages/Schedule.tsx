@@ -10,6 +10,7 @@ import {
   SpeakerData,
   TimeSlot
 } from '../assets/models/schedule/datatype';
+import { useNavigate } from 'react-router-dom';
 
 const Schedule = () => {
   const [day, setDay] = useState(1);
@@ -25,14 +26,17 @@ const Schedule = () => {
     (_, i) => i + 1
   );
 
+  const color = ['google-red', 'google-green', 'google-yellow', 'google-blue', 'white'];
+  const nav = useNavigate();
+
   const getTime = (_time: string) => {
     const d = new Date(_time);
     const hour =
       d.getHours() === 0
         ? 12
         : d.getHours() > 12
-        ? d.getHours() - 12
-        : d.getHours();
+          ? d.getHours() - 12
+          : d.getHours();
     const min = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();
     const ampm = d.getHours() < 12 ? 'AM' : 'PM';
     const time = hour + ':' + min + ' ' + ampm;
@@ -58,25 +62,28 @@ const Schedule = () => {
           <div className="text-5xl font-medium text-g-gray-8 dark:text-white mb-8">
             Schedule
           </div>
-          <div className="h-10 flex lg:h-14 w-full border-b-[1px] border-g-gray-3  gap-5 my-5">
-            {eventLength.map((i: number, key: number) => {
+          {eventLength.map((i: number, key: number) => {
+            if (i > 1)
               return (
-                <div
-                  key={key}
-                  className={
-                    'text-xl lg:text-2xl font-light px-8 h-full cursor-pointer' +
-                    (day === i ? ' border-b-[2px] border-g-blue-3' : '')
-                  }
-                  onClick={() => {
-                    setDay(i);
-                    setData(sessionData[i - 1]);
-                  }}
-                >
-                  {`Day ${i}`}
+                <div className="h-10 flex lg:h-14 w-full border-b-[1px] border-g-gray-3 gap-5 my-5">
+                  <div
+                    key={key}
+                    className={
+                      'text-xl lg:text-2xl font-light px-8 h-full cursor-pointer' +
+                      (day === i ? ' border-b-[2px] border-g-blue-3' : '')
+                    }
+                    onClick={() => {
+                      setDay(i);
+                      setData(sessionData[i - 1]);
+                    }}
+                  >
+                    {`Day ${i}`}
+                  </div>
                 </div>
               );
-            })}
-          </div>
+            else
+              return null
+          })}
 
           <div>
             <div>
@@ -88,8 +95,8 @@ const Schedule = () => {
                 return (
                   <div key={key} className="flex w-full lg:w-auto ">
                     <div className="w-3/10 lg:w-1/5 border-b-[1px]  lg:border-r-[1px] border-g-gray-3 flex flex-col items-end px-3 py-3 text-right lg:text-start">
-                      <div className="text-base lg:text-xl"> {startTime}</div>
-                      <div className="text-xs lg:text-sm font-light">
+                      <div className="text-base lg:text-2xl"> {startTime}</div>
+                      <div className="text-xs lg:text-xl font-light">
                         {endTime}
                       </div>
                     </div>
@@ -106,16 +113,14 @@ const Schedule = () => {
                           <div
                             key={index}
                             data-aos="fade-right"
-                            data-aos-delay="100"
+                            data-aos-delay="50"
                           >
-                            <div className="text-xs bg-green-100 dark:bg-red-100 dark:text-black px-2 py-1 mb-2 w-fit">
-                              {name === 'Lunch'
-                                ? 'Cafeteria'
-                                : room.session.room}
+                            <div className={`text-md ${index !== 0 ? 'mt-10' : 'mt-5'} bg-${color[index]} ${index == 4 ? 'text-black' : 'text-white'} px-2 py-1 mb-2 w-fit`}>
+                              {room.session.room}
                             </div>
-                            <div className="text-2xl font-light">{name}</div>
+                            <div className="text-3xl font-light">{name}</div>
                             {info.speakers && (
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-2 cursor-pointer" onClick={() => { nav('/speakers') }}>
                                 {info.speakers?.map(
                                   (speaker: SpeakerData, key: number) => {
                                     const speakerName = speaker.name;
@@ -127,11 +132,11 @@ const Schedule = () => {
                                           className="flex items-center my-2 p-1 border-1 border-g-blue-3 w-fit rounded-full bg-g-blue-3 text-white"
                                         >
                                           <img
-                                            className="inline-block h-5 w-5 rounded-full ring-2 ring-white"
+                                            className="inline-block h-16 w-16 rounded-full ring-2 ring-white"
                                             src={speakerImage}
                                             alt=""
                                           />
-                                          <span className="text-xs ml-2  ">
+                                          <span className="text-xl ml-2  ">
                                             {speakerName}
                                           </span>
                                         </div>
@@ -143,7 +148,7 @@ const Schedule = () => {
                             )}
 
                             {description && (
-                              <div className="text-sm lg:text-base font-light">
+                              <div className="text-md lg:text-base font-light">
                                 {description}
                               </div>
                             )}

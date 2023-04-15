@@ -6,11 +6,13 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 export default function Notification({
   title,
   message,
+  color = 'yellow',
   show,
   setShow
 }: {
   title: string;
   message: string;
+  color?: string;
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
@@ -32,7 +34,7 @@ export default function Notification({
             leaveTo="opacity-0"
           >
             <div
-              className="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden dark:bg-google-yellow"
+              className={`max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden dark:bg-google-${color}`}
               role="alert"
             >
               <div className="p-4">
@@ -41,17 +43,18 @@ export default function Notification({
                     <InformationCircleIcon
                       className="h-6 w-6"
                       aria-hidden="true"
+                      color={color === 'red' ? 'white' : 'black'}
                     />
                   </div>
                   <div className="ml-3 w-0 flex-1 pt-0.5">
-                    <p className="text-sm font-medium">{title}</p>
-                    <p className="mt-1 text-sm text-gray-500 dark:text-black">
+                    <p className={`text-md font-medium dark:${color === 'red' ? 'text-white' : 'text-black'}`}>{title}</p>
+                    <p className={`mt-1 text-sm text-gray-500 dark:${color === 'red' ? 'text-white' : 'text-black'}`}>
                       {message}
                     </p>
                   </div>
                   <div className="ml-4 flex-shrink-0 flex">
                     <button
-                      className="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-google-yellow dark:text-black"
+                      className={`rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-google-${color} dark:${color === 'red' ? 'text-white' : 'text-black'}`}
                       onClick={() => {
                         setShow(false);
                       }}
