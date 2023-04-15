@@ -61,13 +61,22 @@ const CFSSettings: FC<TalkProps> = ({ talkData, technologiesList, refreshTalkLis
                                                         <span className="font-bold">Overview: </span>{i.overview.substring(0, 30) + "..."}
                                                     </span>
                                                 </div>
-                                                <div className='flex flex-row space-x-2'>
+                                                <div className='flex flex-col lg:flex-row lg:space-x-2'>
                                                     <span className={`inline-flex gap-2 justify-between mt-2 
                                                                         bg-google-${i.status === 'review' ? 'yellow' : i.status === 'accepted' ? 'green' : 'red'} items-center py-1.5 px-5 font-normal text-black p-1 rounded-md`}>
                                                         <p className='font-bold text-lg capitalize'>
-                                                            {i.status}
+                                                            {i.status === 'rejected' ? 'Not Accepted' : i.status}
                                                         </p>
                                                     </span>
+                                                    {
+                                                        i.status === 'rejected' &&
+                                                        <span className={`inline-flex gap-2 justify-between mt-2 
+                                                                        bg-google-yellow items-center py-1.5 px-5 font-normal text-black p-1 rounded-md`}>
+                                                            <p className='font-bold text-lg capitalize'>
+                                                                {i.reason}
+                                                            </p>
+                                                        </span>
+                                                    }
                                                     {
                                                         i.status === 'review' && i.added_at && parseInt(new Intl.DateTimeFormat('en-IN', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(Date.parse(Date())).split('/')[0]) - parseInt(new Intl.DateTimeFormat('en-IN', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(Date.parse(i.added_at)).split('/')[0]) < 4 &&
                                                         <>
