@@ -1,4 +1,10 @@
-import { ReactElement, useContext, useLayoutEffect, useState } from 'react';
+import {
+  ReactElement,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState
+} from 'react';
 import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import FeatureRuleData from '../src/assets/content/feature.rule.json';
 import Footer from './components/Footer/Footer';
@@ -20,6 +26,8 @@ import Team from './pages/Team';
 import Tickets from './pages/Tickets';
 import VerifyEmail from './pages/VerifyEmail';
 import { LoggedInContext } from './services/state.service';
+import Notification from './components/Notification/Notification';
+import notificationContent from './assets/content/notification.json';
 
 const ScrollToTop = ({ children }: { children: ReactElement }) => {
   const location = useLocation();
@@ -31,13 +39,31 @@ const ScrollToTop = ({ children }: { children: ReactElement }) => {
 
 const Router = () => {
   const { loggedInState } = useContext(LoggedInContext);
-  const [navRule] = useState<string[]>(FeatureRuleData.disabledRoutes as string[]);
+  const [navRule] = useState<string[]>(
+    FeatureRuleData.disabledRoutes as string[]
+  );
+  const [show, setShow] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (
+      loggedInState.isLoggedIn &&
+      !loggedInState?.user?.profile.profile_lock
+    ) {
+      setShow(true);
+    }
+  }, [loggedInState]);
 
   return (
     <HashRouter>
       <nav className="sticky top-0 z-30 w-full bg-white dark:bg-black dark:bg-opacity-0 backdrop-filter backdrop-blur-md bg-opacity-30 ">
         <NavbarPage />
       </nav>
+      <Notification
+        title={notificationContent.title}
+        message={notificationContent.message}
+        show={show}
+        setShow={setShow}
+      />
       <ScrollToTop>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -79,15 +105,21 @@ const Router = () => {
             <Route path="/reset-password/" element={<ResetPassword />} />
           ) : null}
           {navRule?.every((item) => '/resetPassword' !== item) ? (
-            <Route path="/reset-password/:uid/:token" element={<ResetPassword />} />
+            <Route
+              path="/reset-password/:uid/:token"
+              element={<ResetPassword />}
+            />
           ) : null}
-          {navRule?.every((item) => '/profile' !== item) && loggedInState.isLoggedIn ? (
+          {navRule?.every((item) => '/profile' !== item) &&
+          loggedInState.isLoggedIn ? (
             <Route path="/profile" element={<Profile />} />
           ) : null}
-          {navRule?.every((item) => '/tickets' !== item) && loggedInState.isLoggedIn ? (
+          {navRule?.every((item) => '/tickets' !== item) &&
+          loggedInState.isLoggedIn ? (
             <Route path="/tickets" element={<Tickets />} />
           ) : null}
-          {navRule?.every((item) => '/dashboard' !== item) && loggedInState.isLoggedIn ? (
+          {navRule?.every((item) => '/dashboard' !== item) &&
+          loggedInState.isLoggedIn ? (
             <Route path="/dashboard" element={<Dashboard />} />
           ) : null}
           <Route path="/:route" element={<NotFound />} />

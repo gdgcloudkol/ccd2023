@@ -15,6 +15,7 @@ export interface UserProfileData {
   };
   referral_count: number;
   pronoun: string;
+  profile_lock: boolean;
 }
 
 export interface UserData {
@@ -70,7 +71,9 @@ export interface SignInContent {
   button: SigninFieldButtonContent[];
 }
 
-export interface GenericJson { [key: string]: string | undefined | number }
+export interface GenericJson {
+  [key: string]: string | undefined | number;
+}
 
 export interface TownscriptProfileData extends GenericJson {
   firstname: string;
