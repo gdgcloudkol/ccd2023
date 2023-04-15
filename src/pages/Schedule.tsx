@@ -1,5 +1,7 @@
+import { Dialog, Transition } from '@headlessui/react';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
 import ScheduleContentData from '../assets/content/schedule/content.json';
 import {
   CategoryData,
@@ -10,7 +12,6 @@ import {
   SpeakerData,
   TimeSlot
 } from '../assets/models/schedule/datatype';
-import { useNavigate } from 'react-router-dom';
 
 const Schedule = () => {
   const [day, setDay] = useState(1);
@@ -42,6 +43,9 @@ const Schedule = () => {
     const time = hour + ':' + min + ' ' + ampm;
     return time;
   };
+
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalData, setModalData]: any = useState<{ speakerName: string; title: string; description: string; speakerImage: string; }>();
 
   return (
     <>
@@ -119,8 +123,8 @@ const Schedule = () => {
                               {room.session.room}
                             </div>
                             <div className="text-xl lg:text-3xl font-light">{name}</div>
-                            {info.speakers && (
-                              <div className="flex items-center gap-2 cursor-pointer" onClick={() => { nav('/speakers') }}>
+                            {info.speakers && info.speakers?.length > 0 && (
+                              <div className="flex items-center gap-2 cursor-pointer" >
                                 {info.speakers?.map(
                                   (speaker: SpeakerData, key: number) => {
                                     const speakerName = speaker.name;
@@ -130,6 +134,12 @@ const Schedule = () => {
                                         <div
                                           key={key}
                                           className="flex items-center my-2 p-1 border-1 border-g-blue-3 w-fit rounded-full bg-g-blue-3 text-white"
+                                          onClick={() => {
+                                            if (name && name !== '' && description && description !== '') {
+                                              setModalData({ speakerName: speakerName, title: name, description: description, speakerImage: speakerImage });
+                                              setShowModal(true)
+                                            }
+                                          }}
                                         >
                                           <img
                                             className="inline-block h-16 w-16 rounded-full ring-2 ring-white"
@@ -144,12 +154,6 @@ const Schedule = () => {
                                     );
                                   }
                                 )}
-                              </div>
-                            )}
-
-                            {description && (
-                              <div className="text-md lg:text-base font-light">
-                                {description}
                               </div>
                             )}
                             {technologies && (
@@ -178,7 +182,69 @@ const Schedule = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div >
+      <Transition
+        show={showModal}
+        enter="transition-opacity duration-300"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-300"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        <Dialog open={showModal} onClose={() => setShowModal(false)}>
+          <div className="fixed inset-0 bg-black/75" aria-hidden="true" />
+
+          {/* Full-screen container to center the panel */}
+          <div className="fixed inset-0 flex items-center justify-center p-4">
+            <Dialog.Panel>
+              <div className="min-h-[25rem] lg:max-w-[40rem] border-2 rounded-lg shadow-lg flex flex-col bg-white dark:bg-black outline-none focus:outline-none">
+                <div className="flex min-items-center lg:items-start p-4 lg:flex-row flex-col border-b border-solid border-slate-200 lg:space-x-4">
+                  <div className='min-w-[7rem]'>
+                    <img
+                      loading="lazy"
+                      className="rounded-full mx-auto w-28 h-28 border-4 border-b-google-blue border-t-google-red border-r-google-yellow border-l-google-green"
+                      src={modalData?.speakerImage}
+                      alt="profile"
+                    />
+                  </div>
+                  <div className="rounded-t flex flex-col w-full">
+                    <div className="text-xl text-center lg:text-left lg:text-2xl mb-3 text-g-gray-7 dark:text-white mt-2">
+                      {modalData?.title}
+                    </div>
+                    <div className="text-2xl w-full dark:text-white font-normal text-right">
+                      ~{modalData?.speakerName}
+                    </div>
+                  </div>
+                </div>
+                <div className="px-6 py-2">
+                  {!modalData?.description?.startsWith('~!~') ?
+                    (
+                      <p className="my-2 max-h-72 overflow-y-scroll text-g-gray-5 dark:text-white font-light text-xl lg:text-2xl leading-relaxed text-justify">
+                        {modalData?.description}
+                      </p>
+                    ) : (
+                      <p
+                        className="my-2 max-h-72 overflow-y-scroll text-g-gray-5 dark:text-white font-light text-base leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: modalData?.description?.substring(3) }}
+                      ></p>
+                    )}
+                </div>
+
+                <div className="flex items-center justify-end px-6 py-2 border-t border-solid border-slate-200 rounded-b">
+                  <button
+                    className="text-google-red background-transparent font-bold uppercase px-6 py-2 text-xl outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </Dialog.Panel>
+          </div>
+        </Dialog>
+      </Transition>
     </>
   );
 };

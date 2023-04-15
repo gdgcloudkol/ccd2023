@@ -44,14 +44,6 @@ const Router = () => {
   );
   const [show, setShow] = useState<boolean>(true);
 
-  // useEffect(() => {
-  //   if (
-  //     loggedInState.isLoggedIn
-  //   ) {
-  //     setShow(true);
-  //   }
-  // }, [loggedInState]);
-
   return (
     <HashRouter>
       <nav className="sticky top-0 z-30 w-full bg-white dark:bg-black dark:bg-opacity-0 backdrop-filter backdrop-blur-md bg-opacity-30 ">

@@ -36,8 +36,8 @@
         "rooms": [
           {
             "session": {
-              "title": "Event Keynote by Chief Guest",
-              "description": null,
+              "title": "Event Keynote",
+              "description": "Our Chief Guest who is a National Cyber Security Scholar, Certified Cybersecurity Governance Professional, Certified Cybersecurity Strategist; Joint Secretary, IT&E Department and State Information Security Officer, West Bengal, is here to grace us with his words regarding such events which are happening in West Bengal and how it will help with the growth of the community and state at large",
               "startsAt": "2023-05-07T10:30:00",
               "endsAt": "2023-05-07T10:50:00",
               "speakers": [
@@ -57,7 +57,7 @@
           {
             "session": {
               "title": "Community Keynote",
-              "description": null,
+              "description": "Our Program Manager and Developer Relations at Google will enlighten us with the developer relations Google has with various communites which are running across India",
               "startsAt": "2023-05-07T10:50:00",
               "endsAt": "2023-05-07T11:10:00",
               "speakers": [
@@ -77,7 +77,7 @@
           {
             "session": {
               "title": "Industry Keynote",
-              "description": null,
+              "description": "We have among us the Executive Director & Data Control Office Leader – PwC India who will enlighten us about the industry and how its progressing with respect to technology in recent times",
               "startsAt": "2023-05-07T11:10:00",
               "endsAt": "2023-05-07T11:30:00",
               "speakers": [
@@ -97,7 +97,7 @@
           {
             "session": {
               "title": "Security Keynote",
-              "description": null,
+              "description": "Hear from our very own Director IT- Security working for PwC India about Key Cloud Security Issues and its impact to the organizations. Main areas that need conscious attention. Future of Cloud security in Multi-Cloud and Hybrid Cloud.",
               "startsAt": "2023-05-07T11:30:00",
               "endsAt": "2023-05-07T11:50:00",
               "speakers": [
@@ -117,7 +117,7 @@
           {
             "session": {
               "title": "Digital Transformation for Early Stage Startups with Google Cloud",
-              "description": null,
+              "description": "Hear from Developer Advocacy Leader at Google, the latest digital transformation happening across startups and how they come up with their transformation process by using Google Cloud as one of their solutions.",
               "startsAt": "2023-05-07T11:50:00",
               "endsAt": "2023-05-07T12:30:00",
               "speakers": [
@@ -168,7 +168,7 @@
           {
             "session": {
               "title": "Build, Train and Deploy a Classification Model for Image Data using only SQL",
-              "description": "",
+              "description": "In this talk, we will discuss how to use Google Cloud BigQuery's unstructured data analysis feature and combine structured and unstructured formats of data with no-code SQL only steps. The demo covers the use case of storing and analysing images, , creating a classification model, run inference against images and label the postures with BigQuery ML using only SQL. Finally, we will also deploy the model in just a few point-and-click steps to a REST endpoint using Vertex AI.",
               "startsAt": "2023-05-07T12:50:00",
               "endsAt": "2023-05-07T13:30:00",
               "speakers": [
@@ -220,7 +220,7 @@
           {
             "session": {
               "title": "Workload Identity A Keyless Way To Invoke Google APIs",
-              "description": "",
+              "description": "Awesomeness of using Cloud and its ecosystem is that we don't need to reinvent the wheel, in other words no need to build/deploy services e.g. database,message queue,AI/ML etc. For any service need the APIs are just a click away. Google Cloud provides a rich set of services as API e.g. Translation, Pub/Sub, Analytics etc., which can cater most of the distributed application needs with less or no effort. To invoke any API we need credentials; a common way is using static keys. Though using static keys is quick and easy, it adds lots of operational overhead. In this session let us explore what those are and how Workload Identity can help avoid those operational issues.",
               "startsAt": "2023-05-07T13:30:00",
               "endsAt": "2023-05-07T14:10:00",
               "speakers": [
@@ -236,12 +236,12 @@
           {
             "session": {
               "title": "Build your Career with Data Engineering using GCP",
-              "description": "",
+              "description": "The talk is going to take audience through various facets of data engineering, how Google cloud makes the life of a data engineer easy, and what are the roles and responsibilities of data engineers and how can they quickly get started using Google Cloud",
               "startsAt": "2023-05-07T13:30:00",
               "endsAt": "2023-05-07T14:10:00",
               "speakers": [
                 {
-                  "name": "Nirav",
+                  "name": "Nirav Kothari",
                   "profilePicture": "/ccd2023/images/speakers/Nirav.jpg"
                 }
               ],
@@ -252,7 +252,7 @@
           {
             "session": {
               "title": "getSaaSy() - Building Your Own SaaS in GCP",
-              "description": "",
+              "description": "Have you ever wondered what it takes to build a scalable SaaS in GCP? This talk will walk you through the details covering everything from scaling your service, security, networking, DevOps, and more...",
               "startsAt": "2023-05-07T13:30:00",
               "endsAt": "2023-05-07T14:10:00",
               "speakers": [
@@ -268,7 +268,7 @@
           {
             "session": {
               "title": "Creating Massive Communities",
-              "description": "",
+              "description": "Working with developers, a significant part of our work is to measure the success of the community and build programs that are a win-win, both for the product and for the community. Ensuring participation, context switching, inconsistent updates are some of the common problems while building a community. While planning and launching a community program is exciting, making it valuable and building it in a way to make it scalable is a considerable challenge. In this talk, we will cover: Best practices for building programs Community strategy that you can replicate to other programs Keeping value and also retaining community members How team work can do the dream work Case Studies - Taking inspiration from other communities",
               "startsAt": "2023-05-07T13:30:00",
               "endsAt": "2023-05-07T14:10:00",
               "speakers": [
@@ -303,7 +303,7 @@
           {
             "session": {
               "title": "Security & observability for all apps - combining the Cilium & Kernel powers",
-              "description": "",
+              "description": "Securing your applications with a defense in depth architecture and gaining visibility in your application behavior are the two key requirements to be successful in any modern cloud native deployment. While service meshes like Istio provide these capabilities via a user space proxy mechanism it's not always feasible to inject sidecars proxies for all your applications. On the other hand Kernel technologies like eBPF when used in a CNI like Cilium provides security and metrics transparently but lacks the richness of information and policy capabilities provided by a layer 7 proxy with strong identities. In this session, I will present how we can leverage capabilities provided by both these technologies and achieve better security and observability ensuring all your applications can have uniform policy and visibility irrespective of whether they are in the mesh or not or if they are running as a container in Kubernetes or long running VM where making privileged changes are often not possible.",
               "startsAt": "2023-05-07T16:00:00",
               "endsAt": "2023-05-07T16:40:00",
               "speakers": [
@@ -319,7 +319,7 @@
           {
             "session": {
               "title": "Build ready to deploy models using Kaggle",
-              "description": "",
+              "description": "In this talk, I'll demonstrate how to use transfer learning to build ready-to-deploy models and perform various machine learning tasks including image classification, text classification, object detention, etc.",
               "startsAt": "2023-05-07T16:00:00",
               "endsAt": "2023-05-07T16:40:00",
               "speakers": [
@@ -335,7 +335,7 @@
           {
             "session": {
               "title": "Building Web Solution using Firebase",
-              "description": "",
+              "description": "Session on Building Web Solutions using Firebase",
               "startsAt": "2023-05-07T16:00:00",
               "endsAt": "2023-05-07T16:40:00",
               "speakers": [
@@ -382,7 +382,7 @@
           {
             "session": {
               "title": "Where should I run my stuff? Choosing Compute options",
-              "description": "",
+              "description": "Here are many different ways to run your code. And the tradeoffs are different when you're working with existing systems as opposed to designing an entirely new system. Google Cloud Platform (GCP) offers solid support for the full spectrum of compute models, whether you are using managed GCP offerings or open-source technologies. The talk will help you decide which models are the best fit for your systems as well as how the models map to Google Cloud services — whether Compute Engine, Container Engine, Cloud Run, App Engine, and/or Cloud Functions.",
               "startsAt": "2023-05-07T16:40:00",
               "endsAt": "2023-05-07T17:20:00",
               "speakers": [
@@ -398,7 +398,7 @@
           {
             "session": {
               "title": "Low-code Machine Learning",
-              "description": "",
+              "description": "For any ML practitioner, Selecting the best data features, Comparing all the feasible ML Algorithms, and finding the best combinations out of all available options is a very time-consuming but Important step. Worry not here with Low-Code ML platforms.",
               "startsAt": "2023-05-07T16:40:00",
               "endsAt": "2023-05-07T17:20:00",
               "speakers": [
@@ -414,7 +414,7 @@
           {
             "session": {
               "title": "Building Modern Systems with Event Driven Architecture",
-              "description": "",
+              "description": "Practical insights on applying key principles and benefits of EDA to design and build scalable systems , along with the challenges and architectural patterns such as event sourcing, CQRS and the tools and frameworks in place to implement the patterns. Special mention about the approaches and tradeoffs of Distributed Transactions in Event Driven Systems.",
               "startsAt": "2023-05-07T16:40:00",
               "endsAt": "2023-05-07T17:20:00",
               "speakers": [
@@ -477,7 +477,7 @@
           {
             "session": {
               "title": "Ship faster TensorFlow models with XLA",
-              "description": "",
+              "description": "In this session, we will talk about XLA, a compiler for linear algebra aimed at optimizing TensorFlow models with no or minimal source code changes. We will start by discussing what XLA is and what purpose does it solve. We will then learn how to optimize TensorFlow models by using a single line of code. We will conclude by discussing some cons of XLA and some edge cases. If you are an ML Practitioner that cares about delivering optimized ML models improving their latency and throughput trade-offs, this session is for you :)",
               "startsAt": "2023-05-07T17:20:00",
               "endsAt": "2023-05-07T18:00:00",
               "speakers": [
@@ -493,7 +493,7 @@
           {
             "session": {
               "title": "Exploring .Net on Google Cloud with Angular",
-              "description": "",
+              "description": "We will create a SQL server using Cloud SQL. We will then create a full-stack web app with .NET & Angular using Cloud SQL as our database.",
               "startsAt": "2023-05-07T17:20:00",
               "endsAt": "2023-05-07T18:00:00",
               "speakers": [
