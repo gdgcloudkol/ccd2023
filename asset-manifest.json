@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ccd2023/static/css/main.d4b62ae4.css",
-    "main.js": "/ccd2023/static/js/main.ce39cc5f.js",
+    "main.css": "/ccd2023/static/css/main.981add51.css",
+    "main.js": "/ccd2023/static/js/main.59019448.js",
     "static/js/27.b3a9f5de.chunk.js": "/ccd2023/static/js/27.b3a9f5de.chunk.js",
     "static/media/GoogleSans-Regular_0.ttf": "/ccd2023/static/media/GoogleSans-Regular_0.0d01ceaea2903216c4ee.ttf",
     "static/media/GoogleSans-Bold-v1.27.ttf": "/ccd2023/static/media/GoogleSans-Bold-v1.27.18cab8ca4b802f600b69.ttf",
@@ -16,7 +16,7 @@
     "static/media/instagram.svg": "/ccd2023/static/media/instagram.0c5ec250d222fdc311eee862ef927854.svg"
   },
   "entrypoints": [
-    "static/css/main.d4b62ae4.css",
-    "static/js/main.ce39cc5f.js"
+    "static/css/main.981add51.css",
+    "static/js/main.59019448.js"
   ]
 }
