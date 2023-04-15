@@ -45,7 +45,10 @@ const Router = () => {
   const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
-    if (loggedInState.isLoggedIn && !loggedInState.user.profile_lock) {
+    if (
+      loggedInState.isLoggedIn &&
+      !loggedInState?.user?.profile.profile_lock
+    ) {
       setShow(true);
     }
   }, [loggedInState]);

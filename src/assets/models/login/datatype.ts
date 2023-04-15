@@ -15,6 +15,7 @@ export interface UserProfileData {
   };
   referral_count: number;
   pronoun: string;
+  profile_lock: boolean;
 }
 
 export interface UserData {
@@ -23,7 +24,6 @@ export interface UserData {
   last_name: string;
   profile: UserProfileData;
   username: string;
-  profile_lock: boolean;
 }
 
 export interface LoginData {

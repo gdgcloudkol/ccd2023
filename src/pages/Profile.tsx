@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { RiInformationLine } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
@@ -94,7 +94,7 @@ const Profile = () => {
   }
 
   function handleEdit() {
-    if (loggedInState.user?.profile_lock) return;
+    if (loggedInState.user?.profile.profile_lock) return;
     if (editMode) {
       setFormData(loggedInState.user as UserData);
       setSocials(loggedInState.user?.profile?.socials);
@@ -350,7 +350,7 @@ const Profile = () => {
                 transition ease-in-out duration-300
                 hover:shadow-xl hover:scale-105 hover:ease-in
                 cursor-pointer disabled:opacity-50"
-                  disabled={loggedInState.user.profile_lock}
+                  disabled={loggedInState.user?.profile?.profile_lock}
                 >
                   {!editMode ? 'Edit Profile' : 'Cancel'}
                 </button>
@@ -468,7 +468,7 @@ const Profile = () => {
               {profileFields.map((field: any, i: number) => {
                 if (field.type === 'select') {
                   return (
-                    <>
+                    <Fragment key={field.name + '-' + i}>
                       <div
                         key={field.name + '-' + i}
                         className={`rounded-md px-3 py-2 shadow-sm dark:bg-[#1c1c1c] dark:text-white ${
@@ -530,7 +530,7 @@ const Profile = () => {
                           </div>
                         )}
                       </div>
-                    </>
+                    </Fragment>
                   );
                 } else {
                   return (
