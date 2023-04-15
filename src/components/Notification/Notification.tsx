@@ -34,7 +34,7 @@ export default function Notification({
             leaveTo="opacity-0"
           >
             <div
-              className={`max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden dark:bg-google-${color}`}
+              className={`max-w-sm w-full shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden bg-google-${color}`}
               role="alert"
             >
               <div className="p-4">
@@ -54,7 +54,7 @@ export default function Notification({
                   </div>
                   <div className="ml-4 flex-shrink-0 flex">
                     <button
-                      className={`rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-google-${color} dark:${color === 'red' ? 'text-white' : 'text-black'}`}
+                      className={`rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 bg-google-${color} dark:${color === 'red' ? 'text-white' : 'text-black'}`}
                       onClick={() => {
                         setShow(false);
                       }}

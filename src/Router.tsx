@@ -42,15 +42,15 @@ const Router = () => {
   const [navRule] = useState<string[]>(
     FeatureRuleData.disabledRoutes as string[]
   );
-  const [show, setShow] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(true);
 
-  useEffect(() => {
-    if (
-      loggedInState.isLoggedIn
-    ) {
-      setShow(true);
-    }
-  }, [loggedInState]);
+  // useEffect(() => {
+  //   if (
+  //     loggedInState.isLoggedIn
+  //   ) {
+  //     setShow(true);
+  //   }
+  // }, [loggedInState]);
 
   return (
     <HashRouter>
@@ -68,7 +68,7 @@ const Router = () => {
         <Notification
           title={NotificationContent.locked.title}
           message={NotificationContent.locked.message}
-          color='yellow'
+          color='red'
           show={show}
           setShow={setShow}
         />

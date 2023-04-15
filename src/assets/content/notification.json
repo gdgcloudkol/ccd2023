@@ -1,10 +1,10 @@
 {
   "reminder": {
     "title": "Action Required",
-    "message": "If you want to update your profile, please do it before 15th of April."
+    "message": "Please ensure to update your profile with the correct details to receive the correct T-shirt size. Refer to the chart while filling up."
   },
   "locked": {
     "title": "Profile Locked",
-    "message": "No further changes in profile allowed till the event gets over. For editing requests please write to gdgcloudkol@gmail.com"
+    "message": "No further changes in profile allowed. For editing requests please write to gdgcloudkol@gmail.com"
   }
 }
