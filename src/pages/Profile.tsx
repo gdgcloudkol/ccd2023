@@ -259,7 +259,7 @@ const Profile = () => {
         { label: 'M', value: 'M' },
         { label: 'L', value: 'L' },
         { label: 'XL', value: 'XL' },
-        { label: 'XXL', value: 'XXL' },
+        { label: '2XL', value: '2XL' },
         { label: '3XL', value: '3XL' },
         { label: '4XL', value: '4XL' },
         { label: '5XL', value: '5XL' }
