@@ -196,22 +196,6 @@
               "categories": [],
               "room": "Web Mobile Track"
             }
-          },
-          {
-            "session": {
-              "title": "",
-              "description": "",
-              "startsAt": "2023-05-07T12:50:00",
-              "endsAt": "2023-05-07T13:30:00",
-              "speakers": [
-                {
-                  "name": "Stuti Verma",
-                  "profilePicture": "/ccd2023/images/speakers/Stuti.jpeg"
-                }
-              ],
-              "categories": [],
-              "room": "Community Track"
-            }
           }
         ]
       },
