@@ -682,6 +682,30 @@
         "tagLine": "Outreach Team"
       },
       {
+        "fullName": "Sayan Mukherjee",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Sayan Mukherjee.png",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/Sayanm_16"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/sayanm16"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/sayanm16"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/_sayan_16"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
         "fullName": "Shubham Tribedi",
         "bio": "",
         "profilePicture": "/ccd2023/images/team/Shubham Tribedi.png",
@@ -733,6 +757,30 @@
           {
             "title": "Instagram",
             "url": "https://www.instagram.com/sitammeur3/"
+          }
+        ],
+        "tagLine": "Outreach Team"
+      },
+      {
+        "fullName": "Varun Doshi",
+        "bio": "",
+        "profilePicture": "/ccd2023/images/team/Varun Doshi.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/Varunx10"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/varunxdoshi/"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/varun-doshi"
+          },
+          {
+            "title": "Instagram",
+            "url": "https://instagram.com/_varunx_/"
           }
         ],
         "tagLine": "Outreach Team"
