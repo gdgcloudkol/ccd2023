@@ -64,6 +64,10 @@
                 {
                   "name": "Harsh Dattani",
                   "profilePicture": "/ccd2023/images/speakers/Harsh.jpg"
+                },
+                {
+                  "name": "Manoranjan Padhy",
+                  "profilePicture": "/ccd2023/images/speakers/Manoranjan.jpg"
                 }
               ],
               "categories": [],
@@ -151,8 +155,8 @@
         "rooms": [
           {
             "session": {
-              "title": "",
-              "description": "",
+              "title": "Anthos 101",
+              "description": "101 in Anthos is 301 for Kubernetes !! You got it, it's a deployment mechanism for Kubernetes but by eliminating complexity- Anthos enables you to manage GKE clusters and workloads running on virtual machines across environments - on-prem or public clouds. In this talk we shall understand key use-cases around Modernization & Migration, while understanding the features and benefits of Anthos.",
               "startsAt": "2023-05-07T12:50:00",
               "endsAt": "2023-05-07T13:30:00",
               "speakers": [

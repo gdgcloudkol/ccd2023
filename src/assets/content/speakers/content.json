@@ -78,6 +78,18 @@
           }
         ],
         "tagLine": "Program Manager at Google | Developer Relations"
+      },
+      {
+        "fullName": "Manoranjan Padhy",
+        "bio": "Manoranjan works as a PgM at Google and leads the GDG and Women Techmakers program along with scaled Android outreach.",
+        "profilePicture": "/ccd2023/images/speakers/Manoranjan.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://www.twitter.com/_manoranjanp"
+          }
+        ],
+        "tagLine": "Program Manager at Google"
       }
     ]
   },
