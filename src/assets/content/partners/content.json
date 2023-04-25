@@ -12,6 +12,17 @@
           "imgSrc": "GoogleDevelopers.svg"
         }
       ]
+    },    
+    {
+      "title": "Silver Sponsor",
+      "sponsors": [
+        {
+          "sponsorId": "dynopii",
+          "sponsorName": "Dynopii",
+          "hyperlink": "https://dynopii.com/",
+          "imgSrc": "Dynopii.svg"
+        }
+      ]
     },
     {
       "title": "Digital Media Partner",
