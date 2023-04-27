@@ -90,6 +90,18 @@
           }
         ],
         "tagLine": "Program Manager at Google"
+      },
+      {
+        "fullName": "Sohail Pathan",
+        "bio": "Developer Advocate at Apyhub",
+        "profilePicture": "/ccd2023/images/speakers/Sohail.jpg",
+        "links": [
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/iamspathan"
+          }
+        ],
+        "tagLine": "Developer Advocate at Apyhub"
       }
     ]
   },
