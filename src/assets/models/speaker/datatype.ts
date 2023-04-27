@@ -53,6 +53,7 @@ export interface TalkData {
     status?: string;
     technologies: number[];
     title: string;
+    reason?: string;
 }
 
 export interface EventData {

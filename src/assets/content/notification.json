@@ -1,0 +1,10 @@
+{
+  "reminder": {
+    "title": "Action Required",
+    "message": "Please ensure to update your profile with the correct details to receive the correct T-shirt size. Refer to the chart while filling up."
+  },
+  "locked": {
+    "title": "Profile Locked",
+    "message": "No further changes in profile allowed. For editing requests please write to gdgcloudkol@gmail.com"
+  }
+}

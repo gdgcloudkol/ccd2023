@@ -24,6 +24,18 @@
     "description": "Hear from the Industry Leaders and Google Developer Advocate Leader about the latest tech in Cloud",
     "speakers": [
       {
+        "fullName": "Dipankar Chakrabarti",
+        "bio": "Dipankar has a PhD degree from Indian Institute of Management, Ranchi and MTech from Indian Institute of Technology, Kanpur, India. He was Nuclear Power Corporation Scholar at IIT Kanpur. Dipankar had completed Management Development Program on Corporate Creativity from Indian Institute of Management, Kolkata.  He had also successfully completed Certificate on Disruptive Strategy from Harvard Business School, Certificate in Data Based Decision from Cambridge Judges School and Certificate in Introduction in Quantum Computing from Massachusetts Institute of Technology",
+        "profilePicture": "/ccd2023/images/speakers/Dipankar.jpg",
+        "links": [
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/dipankar-chakrabarti-3865705/"
+          }
+        ],
+        "tagLine": "Executive Director & Data Control Office Leader – PwC India"
+      },
+      {
         "fullName": "Avijit Patra",
         "bio": "Avijit Patra is Director IT- Security working for PwC India. He has 23+ years of experience in Unix infrastructure management and Information Security. He is currently leading a Global team of Security Engineers who manage security tool's infrastructure for the organization. He has been an information security evangelist spreading awareness about information security risks and mitigation approaches.",
         "profilePicture": "/ccd2023/images/speakers/Avijit.jpeg",
@@ -53,7 +65,31 @@
             "url": "https://www.linkedin.com/in/abiramisukumaran/"
           }
         ],
-        "tagLine": "Developer Advocacy Leader"
+        "tagLine": "Developer Advocacy Leader at Google"
+      },
+      {
+        "fullName": "Harsh Dattani",
+        "bio": "8 Years of professional experience in managing and running scaled developer outreach programs for Google.",
+        "profilePicture": "/ccd2023/images/speakers/Harsh.jpg",
+        "links": [
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/harshdattani/"
+          }
+        ],
+        "tagLine": "Program Manager at Google | Developer Relations"
+      },
+      {
+        "fullName": "Manoranjan Padhy",
+        "bio": "Manoranjan works as a PgM at Google and leads the GDG and Women Techmakers program along with scaled Android outreach.",
+        "profilePicture": "/ccd2023/images/speakers/Manoranjan.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://www.twitter.com/_manoranjanp"
+          }
+        ],
+        "tagLine": "Program Manager at Google"
       }
     ]
   },
@@ -62,6 +98,18 @@
     "title": "Our Amazing Speakers",
     "description": "Hear from the Professionals who are building the future of cloud. Our speakers are influential folks & allies who have been associated with communities within their organisations, cities, country and beyond.",
     "speakers": [
+      {
+        "fullName": "Aloke Majumder",
+        "bio": "A passionate open-source advocate, GNU/Linux enthusiast, and privacy defender with over a decade of experience in the technology industry. With a strong background in cloud computing and video technology, Aloke has contributed to numerous projects that help empower organizations to leverage cutting-edge solutions. As an active participant in the global privacy movement, he has made significant strides in promoting secure, private, and decentralized protocols like Nostr. By continuously driving innovation and sharing knowledge, he is dedicated to enhancing digital experiences and protecting user rights in the ever-evolving technological landscape.",
+        "profilePicture": "/ccd2023/images/speakers/Aloke.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/alokemajumder"
+          }
+        ],
+        "tagLine": "VP-Technology at Hoichoi Technologies Pvt Ltd"
+      },
       {
         "fullName": "Ankit Sharma",
         "bio": "Ankit Sharma is a Software Engineer, working with Cisco Systems and staying with his family at Samastipur, Bihar, India. He acquired a Bachelor’s degree in Computer Science from Siddaganga Institute of Technology, Tumkur (Karnataka) in 2014. He has over 7 years of extensive experience in Microsoft technologies including C#, ASP.NET, SQL Server, and UI technologies such as JQuery, Angular, and Blazor. Ankit is a technical author and speaker and loves to contribute to the open-source community. He writes articles for multiple platforms, which include c-sharpcorner, Medium, and freeCodeCamp. He has been recognized as the Google Developer Expert for Angular and a Microsoft MVP for Developer Technologies for his dedicated contribution to the developer community. He is the author of Blazor Quick Start Guide and Learn C# Programming",
@@ -191,6 +239,22 @@
         "tagLine": "Data Scientist and Freelancer."
       },
       {
+        "fullName": "Nirav Kothari",
+        "bio": "A solution architect with 18+ years of overall experience having strong hold on solutioning in the areas of data engineering, big data processing, web applications and data science solutions related to data mining, search engines, NLP Applications, IoT, Chatbots, integration of enterprise applications, RPA etc. Deep expertise in designing system architecture and development using Cloud services as well as On-Premise infra, considering the industry best practices and complying with business drivers like performance, scalability, flexibility and security. Co-organizer of GDG Cloud Mumbai community since its inception (Jun-2018). A frequent speaker at conferences and likes to share his knowledge by writing technicals blogs",
+        "profilePicture": "/ccd2023/images/speakers/Nirav.jpg",
+        "links": [
+          {
+            "title": "Twitter",
+            "url": "https://twitter.com/iNiravKothari"
+          },
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/iniravkothari"
+          }
+        ],
+        "tagLine": "Senior Technical Architect at Quantiphi Analytics Pvt. Ltd."
+      },
+      {
         "fullName": "Rahul Singh",
         "bio": "Rahul is a Technical Architect at BlueVector AI and specialises in the end to end technical implementation of projects. He holds several cloud certifications and is an expert in all things Cloud. With years of experience in the field, Rahul is a key member of BlueVector AI's technical team, providing expert guidance and leadership in the development of new products and solutions. Rahul's expertise lies in his strong skills in Google Cloud. Rahul is passionate about using technology to solve real-world problems, and he has a track record of delivering innovative and effective solutions that have had a major impact on the success of his clients and employers. Outside of work, Rahul is an avid technology enthusiast, explorer, and a nerd.",
         "profilePicture": "/ccd2023/images/speakers/Rahul.jpeg",
@@ -239,22 +303,6 @@
         "tagLine": "Batman at Hugging Face"
       },
       {
-        "fullName": "Stuti Verma",
-        "bio": "I have 6.5 years of experience as a software developer. I have worked with MNC, startups and nonprofits wherein I contributed to building products from scratch to scale and also to existing products which include end-to-end features. For the past 5 years, I've been building a community called Women Who Code Delhi, which has helped me strengthen my network and given me a place to share my knowledge with people from diverse backgrounds.",
-        "profilePicture": "/ccd2023/images/speakers/Stuti.jpeg",
-        "links": [
-          {
-            "title": "Twitter",
-            "url": "https://twitter.com/StutiVerma284"
-          },
-          {
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/in/vermastuti/"
-          }
-        ],
-        "tagLine": "SSE at PlateIQ | Ex Tech Lead at Shiprocket | Director at Women Who Code Delhi"
-      },
-      {
         "fullName": "Tuhin Roychowdhury",
         "bio": "Experience on data security, CASB with problem management. Experienced Solutions Architect, with good understanding of a customer security environment assessment.",
         "profilePicture": "/ccd2023/images/speakers/Tuhin.jpeg",
@@ -285,22 +333,6 @@
           }
         ],
         "tagLine": "Senior Software Engineer"
-      },
-      {
-        "fullName": "Vasundhara Shukla",
-        "bio": "Vasundhara is a Member of Technical Staff - 2 at VMWare where she works as the core developer and maintainer of the Open-source projects of the Tanzu Mission Control portfolio. She is the Founder and Lead Organiser of Google Developers Group, LUCKNOW and a Women Techmakers Ambassador. She has been awarded the Economic Times Campus Stars-2021 which accolades the brightest engineering minds of the country. She enjoys moving around the geography mostly for her community ventures that include conducting workshops and speaking in events. She is a trained Bharatnatyam dancer and enjoys her artistic ventures when she isn't on her system.",
-        "profilePicture": "/ccd2023/images/speakers/Vasundhara.jpg",
-        "links": [
-          {
-            "title": "Twitter",
-            "url": "https://twitter.com/vasundharaas"
-          },
-          {
-            "title": "LinkedIn",
-            "url": "https://www.linkedin.com/in/vasundhara-shukla/"
-          }
-        ],
-        "tagLine": "Member of Technical Staff - 2 at VMWare"
       },
       {
         "fullName": "Vrijraj Singh",

@@ -12,6 +12,28 @@
           "imgSrc": "GoogleDevelopers.svg"
         }
       ]
+    },    
+    {
+      "title": "Gold Sponsor",
+      "sponsors": [
+        {
+          "sponsorId": "apuhyb",
+          "sponsorName": "Apyhub",
+          "hyperlink": "https://apyhub.com/",
+          "imgSrc": "apyhub.png"
+        }
+      ]
+    },    
+    {
+      "title": "Silver Sponsor",
+      "sponsors": [
+        {
+          "sponsorId": "dynopii",
+          "sponsorName": "Dynopii",
+          "hyperlink": "https://dynopii.com/",
+          "imgSrc": "Dynopii.svg"
+        }
+      ]
     },
     {
       "title": "Digital Media Partner",

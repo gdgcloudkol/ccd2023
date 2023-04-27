@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { RiInformationLine } from "react-icons/ri";
+import { RiInformationLine } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserData } from '../assets/models/login/datatype';
 import Sizegrid from '../components/SizeGrid/Sizegrid';
@@ -19,13 +19,15 @@ import { ApiLogout, ApiPostProfile } from '../services/signin.service';
 import { ApiSpeakerList } from '../services/speaker.service';
 import { LoggedInContext } from '../services/state.service';
 import { ApiViewTickets } from '../services/ticket.service';
+// import ConfirmationDialog from '../components/ConfirmationDialog/ConfirmationDialog';
 
 const Profile = () => {
   const nav = useNavigate();
   const { loggedInState, setLoggedInState } = useContext(LoggedInContext);
   const [editMode, setEditMode] = useState<boolean>(false);
   const [submitButtonText, setSubmitButtonText] = useState<string>('Submit');
-  const [submitButtonDisabled, setSubmitButtonDisabled] = useState<boolean>(true);
+  const [submitButtonDisabled, setSubmitButtonDisabled] =
+    useState<boolean>(true);
   const [submitButton, setSubmitButton] = useState<boolean>(true);
   const [formData, setFormData] = useState<UserData>(
     loggedInState.user as UserData
@@ -34,7 +36,8 @@ const Profile = () => {
   const [buyTicket, setBuyTicket] = useState<boolean>(true);
   const [dp, setDp] = useState<1 | 2 | 3 | 4>(1);
   const [fieldErrors, setFieldErrors] = useState<any>({});
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  // const [isOpenConfirmation, setIsOpenConfirmation] = useState<boolean>(false);
 
   useEffect(() => {
     if (!loggedInState.isLoggedIn) nav(LOGIN_ROUTE);
@@ -84,15 +87,14 @@ const Profile = () => {
         fieldErrors[field.name] = field.validation.message;
       }
     });
-    if (Object.keys(fieldErrors).length === 0)
-      setSubmitButtonDisabled(false);
-    else
-      setSubmitButtonDisabled(true);
+    if (Object.keys(fieldErrors).length === 0) setSubmitButtonDisabled(false);
+    else setSubmitButtonDisabled(true);
 
     setFieldErrors(fieldErrors);
   }
 
   function handleEdit() {
+    if (loggedInState.user?.profile.profile_lock) return;
     if (editMode) {
       setFormData(loggedInState.user as UserData);
       setSocials(loggedInState.user?.profile?.socials);
@@ -257,7 +259,7 @@ const Profile = () => {
         { label: 'M', value: 'M' },
         { label: 'L', value: 'L' },
         { label: 'XL', value: 'XL' },
-        { label: 'XXL', value: 'XXL' },
+        { label: '2XL', value: '2XL' },
         { label: '3XL', value: '3XL' },
         { label: '4XL', value: '4XL' },
         { label: '5XL', value: '5XL' }
@@ -342,11 +344,12 @@ const Profile = () => {
                 </Link>
                 <button
                   onClick={handleEdit}
-                  className={` mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
+                  className={`mr-5 py-2 px-10 rounded-3xl h-fit w-fit 
                 text-white bg-transparent border font-medium text-1xl lg:text-2xl
                 transition ease-in-out duration-300
                 hover:shadow-xl hover:scale-105 hover:ease-in
-                cursor-pointer`}
+                cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed`}
+                  disabled={loggedInState.user?.profile?.profile_lock}
                 >
                   {!editMode ? 'Edit Profile' : 'Cancel'}
                 </button>
@@ -409,9 +412,7 @@ const Profile = () => {
               </span>
             </div>
           </div>
-          <div
-            className={`flex flex-row justify-between`}
-          >
+          <div className={`flex flex-row justify-between`}>
             {!editMode && (
               <div className="mr-2 mb-5">
                 <div className="animate-border inline-block rounded-md bg-white bg-gradient-to-r from-google-red via-google-blue to-google-green bg-[length:400%_400%] p-1">
@@ -421,7 +422,8 @@ const Profile = () => {
                       : 'text-g-gray-5'
                       }`}
                   >
-                    Total referral : {loggedInState.user?.profile?.referral_count}
+                    Total referral :{' '}
+                    {loggedInState.user?.profile?.referral_count}
                   </span>
                 </div>
               </div>
@@ -432,6 +434,24 @@ const Profile = () => {
               editMode={editMode}
             />
           </div>
+
+          {/* <p className="text-sm text-white opacity-60">
+            Please confirm your details{' '}
+            <button
+              type="button"
+              className="text-white underline cursor-pointer"
+              onClick={() => {
+                setIsOpenConfirmation(true);
+              }}
+            >
+              here
+            </button>
+            . No change can be made after 15 April, 2023.
+          </p> */}
+          {/* <ConfirmationDialog
+            open={isOpenConfirmation}
+            setOpen={setIsOpenConfirmation}
+          /> */}
 
           <div className="flex flex-col items-center justify-center border-2 border-l-google-blue border-t-google-red border-b-google-yellow border-r-google-green rounded-lg p-4">
             <div className="mt-2 mb-8 w-full">
@@ -446,7 +466,7 @@ const Profile = () => {
               {profileFields.map((field: any, i: number) => {
                 if (field.type === 'select') {
                   return (
-                    <>
+                    <Fragment key={field.name + '-' + i}>
                       <div
                         key={field.name + '-' + i}
                         className={`rounded-md px-3 py-2 shadow-sm dark:bg-[#1c1c1c] dark:text-white ${editMode ? EDIT_MODE_CLASS : ''
@@ -457,9 +477,14 @@ const Profile = () => {
                           className="flex w-full justify-between items-center text-lg lg:text-xl font-medium"
                         >
                           {field.label}
-                          <span className=" flex">{field.name === "tsize" && (
-                            <RiInformationLine onClick={() => setIsOpen(true)} size={24} />
-                          )}</span>
+                          <span className=" flex">
+                            {field.name === 'tsize' && (
+                              <RiInformationLine
+                                onClick={() => setIsOpen(true)}
+                                className="w-5 h-5 text-white cursor-pointer"
+                              />
+                            )}
+                          </span>
                         </label>
                         <select
                           name={field.name}
@@ -473,12 +498,23 @@ const Profile = () => {
                           onBlur={handleBlur}
                         >
                           <>
-                            <option value="null" defaultChecked unselectable='on'>Select</option>
+                            <option
+                              value="null"
+                              defaultChecked
+                              unselectable="on"
+                            >
+                              Select
+                            </option>
                             {field &&
                               field.options &&
                               field?.options.map((option: any, j: number) => {
                                 return (
-                                  <option value={option.value} key={field.name + '-' + option.value + '-' + j}>
+                                  <option
+                                    value={option.value}
+                                    key={
+                                      field.name + '-' + option.value + '-' + j
+                                    }
+                                  >
                                     {option.label}
                                   </option>
                                 );
@@ -491,7 +527,7 @@ const Profile = () => {
                           </div>
                         )}
                       </div>
-                    </>
+                    </Fragment>
                   );
                 } else {
                   return (
@@ -514,7 +550,8 @@ const Profile = () => {
                         defaultValue={field.value}
                         readOnly={!editMode}
                         disabled={!editMode}
-                        className={`block w-full border-0 px-4 focus:ring-0 sm:text-base h-16 dark:bg-[#1c1c1c] dark:text-white ${editMode ? 'text-left' : 'text-right'} text-xl`}
+                        className={`block w-full border-0 px-4 focus:ring-0 sm:text-base h-16 dark:bg-[#1c1c1c] dark:text-white ${editMode ? 'text-left' : 'text-right'
+                          } text-xl`}
                         onChange={(e) => {
                           handleChange(e, 'profile', field.name);
                         }}
@@ -536,7 +573,8 @@ const Profile = () => {
             <div className="flex flex-row justify-center lg:justify-end space-x-4">
               <button
                 onClick={handleEdit}
-                className=" items-center px-4 py-2 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue"
+                className=" items-center px-4 py-2 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-google-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={loggedInState.user?.profile?.profile_lock}
               >
                 {editMode ? 'Cancel' : 'Edit Profile'}
               </button>
@@ -545,7 +583,10 @@ const Profile = () => {
                 <button
                   disabled={submitButtonDisabled}
                   onClick={() => handleSubmit()}
-                  className={` ${editMode ? '' : 'hidden'} ${submitButtonDisabled ? "cursor-not-allowed opacity-60 " : "cursor-pointer"} 
+                  className={` ${editMode ? '' : 'hidden'} ${submitButtonDisabled
+                    ? 'cursor-not-allowed opacity-60 '
+                    : 'cursor-pointer'
+                    } 
                   items-center px-4 py-2 border border-transparent shadow-sm text-mg font-medium rounded-md text-white bg-google-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-google-blue focus:border-google-blue`}
                 >
                   {editMode ? submitButtonText : ''}
@@ -570,7 +611,7 @@ const Profile = () => {
           </div>
         </section>
       </div>
-      <div className='ml-5 mr-5 mb-20'>
+      <div className="ml-5 mr-5 mb-20">
         <Sizegrid setIsOpen={setIsOpen} isOpen={isOpen} />
       </div>
     </>

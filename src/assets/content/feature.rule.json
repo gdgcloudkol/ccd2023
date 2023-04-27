@@ -27,8 +27,7 @@
   },
   "disabledRoutes": [
     "/dashboard",
-    "/termsAndCondition",
-    "/schedule"
+    "/termsAndCondition"
   ],
   "disabledPartnerTitles": [],
   "disabledPartners": [],
@@ -73,8 +72,6 @@
     ]
   },
   "disabledSocial": [],
-  "disabledSpeakers": [
-    "Md Nasirul Haque"
-  ],
+  "disabledSpeakers": [],
   "referral": true
 }
