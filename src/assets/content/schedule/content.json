@@ -135,7 +135,8 @@
             }
           }
         ]
-      },{
+      },
+      {
         "rooms": [
           {
             "session": {
@@ -190,8 +191,8 @@
           },
           {
             "session": {
-              "title": "Build, Train and Deploy a Classification Model for Image Data using only SQL",
-              "description": "In this talk, we will discuss how to use Google Cloud BigQuery's unstructured data analysis feature and combine structured and unstructured formats of data with no-code SQL only steps. The demo covers the use case of storing and analysing images, , creating a classification model, run inference against images and label the postures with BigQuery ML using only SQL. Finally, we will also deploy the model in just a few point-and-click steps to a REST endpoint using Vertex AI.",
+              "title": "On-device machine learning for everyone with Mediapipe",
+              "description": "This talk will demonstrate how developers can leverage Mediapipe to easily customize and deploy computer vision and natural language processing applications to various platforms. The talk will cover the features of Mediapipe and showcase Vision and NLP APIs. The demo will include building an image segmentation solution using Mediapipe for deployment on mobile, web, desktop, edge devices, and IoT. Attendees will gain a better understanding of Mediapipe's potential to streamline the development and deployment of machine learning models.",
               "startsAt": "2023-05-07T13:20:00",
               "endsAt": "2023-05-07T14:00:00",
               "speakers": [
