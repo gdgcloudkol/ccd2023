@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ccd2023/static/css/main.09bd34bb.css",
-    "main.js": "/ccd2023/static/js/main.6e402ffa.js",
+    "main.js": "/ccd2023/static/js/main.8f6fd59a.js",
     "static/js/27.b3a9f5de.chunk.js": "/ccd2023/static/js/27.b3a9f5de.chunk.js",
     "static/media/GoogleSans-Regular_0.ttf": "/ccd2023/static/media/GoogleSans-Regular_0.0d01ceaea2903216c4ee.ttf",
     "static/media/GoogleSans-Bold-v1.27.ttf": "/ccd2023/static/media/GoogleSans-Bold-v1.27.18cab8ca4b802f600b69.ttf",
@@ -17,6 +17,6 @@
   },
   "entrypoints": [
     "static/css/main.09bd34bb.css",
-    "static/js/main.6e402ffa.js"
+    "static/js/main.8f6fd59a.js"
   ]
 }
