@@ -547,7 +547,7 @@
         "rooms": [
           {
             "session": {
-              "title": "Tea Break",
+              "title": "Break",
               "description": null,
               "startsAt": "2023-05-07T18:40:00",
               "endsAt": "2023-05-07T19:00:00",
