@@ -140,8 +140,8 @@
         "rooms": [
           {
             "session": {
-              "title": "Apyhub Session",
-              "description": "Session by Sohail Pathan, Developer Advocate at Apyhub",
+              "title": "Build Leaner Applications using Utilities as a Service",
+              "description": "Utilities as a Service is an emerging paradigm that is carving its place in the cloud provisioning models. In this talk, we explain what utility services are and how they can help you build leaner and more scalable applications. Furthermore, we present the current challenges in adopting utility services and finally explain how ApyHub aims to solve these challenges",
               "startsAt": "2023-05-07T12:30:00",
               "endsAt": "2023-05-07T13:00:00",
               "speakers": [
@@ -207,7 +207,7 @@
           },
           {
             "session": {
-              "title": "",
+              "title": "Data Security and Web Security",
               "description": "",
               "startsAt": "2023-05-07T13:20:00",
               "endsAt": "2023-05-07T13:55:00",
@@ -218,7 +218,7 @@
                 }
               ],
               "categories": [],
-              "room": "Web Mobile Track"
+              "room": "Web/Mobile Track"
             }
           },
           {
