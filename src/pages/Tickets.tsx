@@ -33,15 +33,15 @@ interface EditFormData {
 
 const identification = {
   student: [
-    "Id card provided by college with photo",
-    "Library card provided by college with photo",
+    "College Id card with photo",
+    "College Library card with photo",
+    "Fee Receipt - Semester or Admission",
     "Semester Marksheet",
-    "Fee receipt recieved at the time of admission"
+    "Original bonafied Letter from College"
   ],
   professional: [
-    "Govt. Id card with valid photo",
-    "Digilocker documents at the time of registration",
-    "Your Company id card with photo"
+    "Government Photo Id card",
+    "Digilocker Govenment Photo Id card"
   ]
 }
 
@@ -70,7 +70,7 @@ const Tickets = () => {
     : 'text-black text-lg lg:text-2xl appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400';
 
 
-  let trimmedStr = (ticket?.ts_ticket_name as string)?.substring(0, (ticket?.ts_ticket_name as string)?.indexOf("Student Tickets") + "Student Tickets".length).trim();
+  let trimmedStr = (ticket?.ts_ticket_name as string)?.toLocaleLowerCase()?.includes("student") ? "Student Ticket" : "General/Professional Ticket";
   const handleEdit = async () => {
     validateFields();
     setEditFormData({ ...editFormdata });
@@ -459,7 +459,7 @@ const Tickets = () => {
           >
             Ticket Bought
           </div>
-          <div className="flex flex-col lg:flex-row lg:space-y-4 space-x-4 justify-center items-center">
+          <div className="flex flex-col lg:flex-row lg:space-y-4 lg:space-x-6 justify-center items-center">
             <div id="ticket-container">
               <div id="ticket" className="mt-10" style={{ height: '458px' }}>
                 <img
@@ -475,19 +475,39 @@ const Tickets = () => {
                 className="text-xs w-full inline-flex flex-col font-bold leading-sm uppercase  py-3 bg-blue-200 text-blue-700 rounded-lg"
               >
                 <div className=''>
-                  <span className="px-2 flex items-center justify-start w-full"><HiOutlineIdentification color='' size={24} />Documents required at the time of registration</span>
+                  <span className="px-2 flex items-center justify-start w-full"><HiOutlineIdentification color='' size={24} />Documents required during registration</span>
+                  <span className="px-2 flex items-center justify-center text-google-red w-full">Any one from 
+                    {
+                      (ticket?.ts_ticket_name as string).toLocaleLowerCase().includes("student") ? " both the " : " the "
+                    }
+                    list</span>
                   <ol className="pl-5 px-3 mt-2 flex flex-col items-center justify-start w-full space-y-1 list-decimal list-inside">
                     <div>
                       {
-                        identification[(ticket?.ts_ticket_name as string).toLocaleLowerCase().includes("student") ? "student" : "professional"].map((el, key) => {
+                        identification["professional"].map((el, key) => {
                           return <li className=' align-top' key={key}>{el}</li>
                         })
                       }
                     </div>
                   </ol>
+                  {
+                    (ticket?.ts_ticket_name as string).toLocaleLowerCase().includes("student") ?
+                      <>
+                        <hr className='mt-1 mb-1 h-2 block bg-black'/>
+                        <ol className="pl-5 px-3 mt-2 flex flex-col items-center justify-start w-full space-y-1 list-decimal list-inside">
+                          <div>
+                            {
+                              identification["student"].map((el, key) => {
+                                return <li className=' align-top' key={key}>{el}</li>
+                              })
+                            }
+                          </div>
+                        </ol>
+                      </> : null
+                  }
                 </div>
               </div>
-              <div className="flex flex-row text-white justify-center mt-10 space-x-4 ml-12">
+              <div className="flex flex-row text-white justify-center mt-10 lg:space-x-4">
                 <div className="flex flex-col items-start space-y-4 ">
                   <div>Ticket Type: &nbsp;</div>
                   <div>Booking Id: &nbsp;</div>
