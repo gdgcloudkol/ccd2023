@@ -478,10 +478,10 @@ const Tickets = () => {
                   <span className="px-2 flex items-center justify-start w-full"><HiOutlineIdentification color='' size={24} />&nbsp; Documents required during registration</span>
                   <span className="px-2 flex items-center justify-center w-full">Any one from
                     {
-                      (ticket?.ts_ticket_name as string).toLocaleLowerCase().includes("student") ? " both the " : " the "
+                      (ticket?.ts_ticket_name as string).toLocaleLowerCase().includes("student") ? " each " : " the "
                     }
                     list</span>
-                  <ol className="pl-5 px-3 mt-2 flex flex-col items-center justify-start w-full space-y-1 list-decimal list-inside">
+                  <ol className="pl-5 px-3 my-2 flex flex-col items-center justify-start w-full space-y-1 list-decimal list-inside">
                     <div>
                       {
                         identification["professional"].map((el, key) => {
@@ -493,7 +493,7 @@ const Tickets = () => {
                   {
                     (ticket?.ts_ticket_name as string).toLocaleLowerCase().includes("student") ?
                       <>
-                        <hr className='mt-1 mb-1 h-2 block bg-black' />
+                        <div className=' border border-gray-900' />
                         <ol className="pl-5 px-3 mt-2 flex flex-col items-center justify-start w-full space-y-1 list-decimal list-inside">
                           <div>
                             {
