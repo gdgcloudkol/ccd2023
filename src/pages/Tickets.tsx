@@ -472,11 +472,11 @@ const Tickets = () => {
             </div>
             <div className="mt-20">
               <div
-                className="text-xs w-full inline-flex flex-col font-bold leading-sm uppercase  py-3 bg-blue-200 text-blue-700 rounded-lg"
+                className="text-sm font-semibold w-full inline-flex flex-col leading-sm uppercase py-3 px-2 bg-[#FFCCD2] rounded-lg"
               >
                 <div className=''>
-                  <span className="px-2 flex items-center justify-start w-full"><HiOutlineIdentification color='' size={24} />Documents required during registration</span>
-                  <span className="px-2 flex items-center justify-center text-google-red w-full">Any one from 
+                  <span className="px-2 flex items-center justify-start w-full"><HiOutlineIdentification color='' size={24} />&nbsp; Documents required during registration</span>
+                  <span className="px-2 flex items-center justify-center w-full">Any one from
                     {
                       (ticket?.ts_ticket_name as string).toLocaleLowerCase().includes("student") ? " both the " : " the "
                     }
@@ -493,7 +493,7 @@ const Tickets = () => {
                   {
                     (ticket?.ts_ticket_name as string).toLocaleLowerCase().includes("student") ?
                       <>
-                        <hr className='mt-1 mb-1 h-2 block bg-black'/>
+                        <hr className='mt-1 mb-1 h-2 block bg-black' />
                         <ol className="pl-5 px-3 mt-2 flex flex-col items-center justify-start w-full space-y-1 list-decimal list-inside">
                           <div>
                             {
