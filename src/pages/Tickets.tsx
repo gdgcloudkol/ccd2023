@@ -17,6 +17,7 @@ import {
 import { ApiPostProfile } from '../services/signin.service';
 import { LoggedInContext } from '../services/state.service';
 import { ApiReferral, ApiViewTickets } from '../services/ticket.service';
+import { HiOutlineIdentification } from "react-icons/hi"
 
 declare global {
   interface Window {
@@ -29,6 +30,21 @@ interface EditFormData {
   last_name: string | undefined;
   phone: string | undefined;
 }
+
+const identification = {
+  student: [
+    "College Id card with photo",
+    "College Library card with photo",
+    "Fee Receipt - Semester or Admission",
+    "Semester Marksheet",
+    "Original bonafied Letter from College"
+  ],
+  professional: [
+    "Government Photo Id card",
+    "Digilocker Govenment Photo Id card"
+  ]
+}
+
 
 const Tickets = () => {
   const { loggedInState } = useContext(LoggedInContext);
@@ -53,6 +69,8 @@ const Tickets = () => {
     ? 'bg-transparent text-lg lg:text-xl w-full'
     : 'text-black text-lg lg:text-2xl appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400';
 
+
+  let trimmedStr = (ticket?.ts_ticket_name as string)?.toLocaleLowerCase()?.includes("student") ? "Student Ticket" : "General/Professional Ticket";
   const handleEdit = async () => {
     validateFields();
     setEditFormData({ ...editFormdata });
@@ -186,6 +204,7 @@ const Tickets = () => {
       }
       setLoader(false);
     });
+    console.log(ticket)
   }, [buyTicket && ticket]);
 
   useEffect(() => {
@@ -254,11 +273,10 @@ const Tickets = () => {
       {buyTicket ? (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-            className={`block text-center pt-[16px] lg:pl-32 lg:pr-32 font-bold text-3xl leading-normal lg:text-6xl lg:leading-normal ${
-              CurrentTheme() === DARK
-                ? 'stroke-w-1px lg:stroke-w-2px text-black'
-                : 'stroke-b-1px lg:stroke-b-2px text-white'
-            }`}
+            className={`block text-center pt-[16px] lg:pl-32 lg:pr-32 font-bold text-3xl leading-normal lg:text-6xl lg:leading-normal ${CurrentTheme() === DARK
+              ? 'stroke-w-1px lg:stroke-w-2px text-black'
+              : 'stroke-b-1px lg:stroke-b-2px text-white'
+              }`}
           >
             Buy Ticket
           </div>
@@ -313,9 +331,8 @@ const Tickets = () => {
                       disabled={!isApplied}
                       value={referralEmail}
                       onChange={(e) => setReferralEmail(e.target.value)}
-                      className={`appearance-none ${
-                        isApplied && 'focus:text-white'
-                      } bg-transparent border-none w-full text-g-gray-4 mr-3 py-1 px-2 leading-tight focus:outline-none`}
+                      className={`appearance-none ${isApplied && 'focus:text-white'
+                        } bg-transparent border-none w-full text-g-gray-4 mr-3 py-1 px-2 leading-tight focus:outline-none`}
                       type="email"
                       placeholder="Referrer Email ID"
                       aria-label="Referral Email"
@@ -379,11 +396,10 @@ const Tickets = () => {
                   }}
                   disabled={isDisabled}
                   type="button"
-                  className={`py-2 ${
-                    isDisabled
-                      ? 'cursor-not-allowed opacity-60 '
-                      : 'cursor-pointer'
-                  } mt-5 px-10 rounded-3xl h-fit w-fit 
+                  className={`py-2 ${isDisabled
+                    ? 'cursor-not-allowed opacity-60 '
+                    : 'cursor-pointer'
+                    } mt-5 px-10 rounded-3xl h-fit w-fit 
                     text-white border font-medium text-1xl lg:text-xl
                     transition ease-in-out duration-300
                     hover:shadow-xl hover:scale-105 hover:ease-in
@@ -417,13 +433,11 @@ const Tickets = () => {
                     !isDisabled && handleEdit();
                   }}
                   disabled={isDisabled}
-                  className={` ${
-                    isDisabled
-                      ? 'cursor-not-allowed opacity-60 '
-                      : 'cursor-pointer'
-                  } ${
-                    editMode ? '' : 'hidden'
-                  } py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
+                  className={` ${isDisabled
+                    ? 'cursor-not-allowed opacity-60 '
+                    : 'cursor-pointer'
+                    } ${editMode ? '' : 'hidden'
+                    } py-2 mt-5 px-10 rounded-3xl h-fit w-fit 
                     text-white bg-transparent border font-medium text-1xl lg:text-xl
                     transition ease-in-out duration-300
                     hover:shadow-xl hover:scale-105 hover:ease-in
@@ -438,15 +452,14 @@ const Tickets = () => {
       ) : (
         <div>
           <div
-            className={`block text-center pt-[16px] lg:pl-32 lg:pr-32 font-bold text-3xl leading-normal lg:text-6xl lg:leading-normal ${
-              CurrentTheme() === DARK
-                ? 'stroke-w-1px lg:stroke-w-2px text-black'
-                : 'stroke-b-1px lg:stroke-b-2px text-white'
-            }`}
+            className={`block text-center pt-[16px] lg:pl-32 lg:pr-32 font-bold text-3xl leading-normal lg:text-6xl lg:leading-normal ${CurrentTheme() === DARK
+              ? 'stroke-w-1px lg:stroke-w-2px text-black'
+              : 'stroke-b-1px lg:stroke-b-2px text-white'
+              }`}
           >
             Ticket Bought
           </div>
-          <div className="flex flex-col lg:flex-row lg:space-y-4 space-x-4 justify-center items-center">
+          <div className="flex flex-col lg:flex-row lg:space-y-4 lg:space-x-6 justify-center items-center">
             <div id="ticket-container">
               <div id="ticket" className="mt-10" style={{ height: '458px' }}>
                 <img
@@ -458,7 +471,53 @@ const Tickets = () => {
               </div>
             </div>
             <div className="mt-20">
-              <div className="flex flex-col text-white items-center justify-center text-xl">
+              <div
+                className="text-xs w-full inline-flex flex-col font-bold leading-sm uppercase  py-3 bg-blue-200 text-blue-700 rounded-lg"
+              >
+                <div className=''>
+                  <span className="px-2 flex items-center justify-start w-full"><HiOutlineIdentification color='' size={24} />Documents required during registration</span>
+                  <span className="px-2 flex items-center justify-center text-google-red w-full">Any one from 
+                    {
+                      (ticket?.ts_ticket_name as string).toLocaleLowerCase().includes("student") ? " both the " : " the "
+                    }
+                    list</span>
+                  <ol className="pl-5 px-3 mt-2 flex flex-col items-center justify-start w-full space-y-1 list-decimal list-inside">
+                    <div>
+                      {
+                        identification["professional"].map((el, key) => {
+                          return <li className=' align-top' key={key}>{el}</li>
+                        })
+                      }
+                    </div>
+                  </ol>
+                  {
+                    (ticket?.ts_ticket_name as string).toLocaleLowerCase().includes("student") ?
+                      <>
+                        <hr className='mt-1 mb-1 h-2 block bg-black'/>
+                        <ol className="pl-5 px-3 mt-2 flex flex-col items-center justify-start w-full space-y-1 list-decimal list-inside">
+                          <div>
+                            {
+                              identification["student"].map((el, key) => {
+                                return <li className=' align-top' key={key}>{el}</li>
+                              })
+                            }
+                          </div>
+                        </ol>
+                      </> : null
+                  }
+                </div>
+              </div>
+              <div className="flex flex-row text-white justify-center mt-10 lg:space-x-4">
+                <div className="flex flex-col items-start space-y-4 ">
+                  <div>Ticket Type: &nbsp;</div>
+                  <div>Booking Id: &nbsp;</div>
+                </div>
+                <div className="flex flex-col items-start space-y-4 ">
+                  <div>{trimmedStr ? trimmedStr : ticket?.ts_ticket_name}</div>
+                  <div>{ticket?.ts_booking_id}</div>
+                </div>
+              </div>
+              <div className="flex flex-col text-white pt-10 items-center justify-center text-xl">
                 Please contact &nbsp;
                 <a
                   className="text-google-blue"
@@ -474,20 +533,6 @@ const Tickets = () => {
                 >
                   Refund Policy and Terms and Conditions
                 </a>
-              </div>
-              <div className="flex flex-row text-white justify-center mt-10 space-x-4 ml-12">
-                <div className="flex flex-col items-start space-y-4 w-2/3">
-                  <div>Ticket Type: &nbsp;</div>
-                  <div>Email Id: &nbsp;</div>
-                  <div>Amount Paid: &nbsp;</div>
-                  <div>Booking Id: &nbsp;</div>
-                </div>
-                <div className="flex flex-col items-start space-y-4 w-2/3">
-                  <div>{ticket?.ts_ticket_name}</div>
-                  <div>{ticket?.ts_user_email_id}</div>
-                  <div>₹ {ticket?.amount}</div>
-                  <div>{ticket?.ts_booking_id}</div>
-                </div>
               </div>
             </div>
           </div>
