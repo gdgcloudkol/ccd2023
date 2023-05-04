@@ -24,8 +24,8 @@
     "description": "Hear from our esteemed Guest of Honour",
     "speakers": [
       {
-        "fullName": "Shri Debasis Sen",
-        "bio": "Shri Debasis Sen is an Alumni of Ecole Nationale d'Administration, France, IAS officer (1985 batch, now on contract, former ACS). He is also an experienced administrator with a demonstrated history of working in senior government positions. Skilled in Policy Formulation, Governance, Smart Cities, Information Technology Policy, Start Up Policy, Strategic Planning, and Public Administration. Strong professional expertise in city development, urban analysis and democracy. Trained at Harvard Business School and IMF Institute.",
+        "fullName": "Shri Debashis Sen",
+        "bio": "Shri Debashis Sen is an Alumni of Ecole Nationale d'Administration, France, IAS officer (1985 batch, now on contract, former ACS). He is also an experienced administrator with a demonstrated history of working in senior government positions. Skilled in Policy Formulation, Governance, Smart Cities, Information Technology Policy, Start Up Policy, Strategic Planning, and Public Administration. Strong professional expertise in city development, urban analysis and democracy. Trained at Harvard Business School and IMF Institute.",
         "profilePicture": "/ccd2023/images/speakers/Debasis.jpg",
         "links": [
           {
@@ -37,7 +37,7 @@
             "url":"https://twitter.com/debashis_"
           }
         ],
-        "tagLine": "Managing Director of West Bengal Housing Infrastructure Development Corporation Ltd. HIDCO - India"
+        "tagLine": "IAS(R), Chairman @ Newtown"
       }
     ]
   },
