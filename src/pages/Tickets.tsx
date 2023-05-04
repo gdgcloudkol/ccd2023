@@ -41,7 +41,7 @@ const identification = {
   ],
   professional: [
     "Government Photo Id card",
-    "Digilocker Govenment Photo Id card"
+    "Digilocker Government Photo Id card"
   ]
 }
 
