@@ -96,6 +96,10 @@
         "profilePicture": "/ccd2023/images/speakers/Harsh.jpg",
         "links": [
           {
+            "title": "Twitter",
+            "url": "https://www.twitter.com/dattaniharsh"
+          },
+          {
             "title": "LinkedIn",
             "url": "https://www.linkedin.com/in/harshdattani/"
           }
@@ -267,7 +271,7 @@
             "url": "https://www.linkedin.com/in/nilay-chauhan"
           }
         ],
-        "tagLine": "Data Scientist and Freelancer."
+        "tagLine": "Data Scientist and Freelancer"
       },
       {
         "fullName": "Nirav Kothari",
@@ -340,7 +344,7 @@
         "links": [
           {
             "title": "Twitter",
-            "url": "https://twitter.com/baban013?s=21&t=AT7P9Kl_Jlg2-xAMaZZ4EQ"
+            "url": "https://twitter.com/baban013"
           },
           {
             "title": "LinkedIn",
