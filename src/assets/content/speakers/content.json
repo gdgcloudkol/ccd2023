@@ -138,6 +138,18 @@
     "description": "Hear from the Professionals who are building the future of cloud. Our speakers are influential folks & allies who have been associated with communities within their organisations, cities, country and beyond.",
     "speakers": [
       {
+        "fullName": "Abhishek Nandy",
+        "bio": "Abhishek Nandy is the co-founder of Dynopii, a driven and innovative individual who has presented at Siggraph 2018 on Unity ML and Intel Optimized Python, and is also a co-founder of Geek Monkey Studios. With full experience in reinforcement learning and deep learning, Abhishek is passionate about chasing their dreams and bringing the PC world to people's hands without touch. As an Intel Black Belt Developer 2nd from India, they have collaborated with 30+ premier colleges in India to drive AI learning through workshops on basics to advanced topics. Additionally, Abhishek has won several awards such as the Intel Perceptual Computing Phase 2 Early Demo Submission Winner, Microsoft Virtual Academy Fast Track Challenge Global Winner, and TopCoder Amazon AppStream Checkpoint Winner. Overall, Abhishek Nandy has much more to explore and share in the field of technology and innovation.",
+        "profilePicture": "/ccd2023/images/team/Abhishek Nandy.jpg",
+        "links": [
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/abhishek-nandy/"
+          }
+        ],
+        "tagLine": "Co-founder at Dynopii"
+      },
+      {
         "fullName": "Aloke Majumder",
         "bio": "A passionate open-source advocate, GNU/Linux enthusiast, and privacy defender with over a decade of experience in the technology industry. With a strong background in cloud computing and video technology, Aloke has contributed to numerous projects that help empower organizations to leverage cutting-edge solutions. As an active participant in the global privacy movement, he has made significant strides in promoting secure, private, and decentralized protocols like Nostr. By continuously driving innovation and sharing knowledge, he is dedicated to enhancing digital experiences and protecting user rights in the ever-evolving technological landscape.",
         "profilePicture": "/ccd2023/images/speakers/Aloke.jpg",
@@ -240,6 +252,18 @@
           }
         ],
         "tagLine": "Director, Developer Advocate at Harness.io"
+      },
+      {
+        "fullName": "Kazi Haque",
+        "bio": "Kazi brings a tremendous breadth of skills and experience to High Output. He is a founder, coach, teacher, productivity junkie, and so much more. He has worked in the trenches, led teams, supported founders, taught students, and built and shipped products. With a unique combination of tech and industry experience in the domains of Ed-tech, Manufacturing, Health, Automation, and Audio/Media, Kazi has co-founded multiple companies that have had successful exits.",
+        "profilePicture": "/ccd2023/images/team/Kazi Haque.jpg",
+        "links": [
+          {
+            "title": "LinkedIn",
+            "url": "https://www.linkedin.com/in/haquekazi/"
+          }
+        ],
+        "tagLine": "Co-founder at Dynopii"
       },
       {
         "fullName": "Krupa Galiya",
