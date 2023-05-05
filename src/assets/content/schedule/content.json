@@ -326,14 +326,14 @@
         "rooms": [
           {
             "session": {
-              "title": "Security & observability for all apps - combining the Cilium & Kernel powers",
-              "description": "Securing your applications with a defense in depth architecture and gaining visibility in your application behavior are the two key requirements to be successful in any modern cloud native deployment. While service meshes like Istio provide these capabilities via a user space proxy mechanism it's not always feasible to inject sidecars proxies for all your applications. On the other hand Kernel technologies like eBPF when used in a CNI like Cilium provides security and metrics transparently but lacks the richness of information and policy capabilities provided by a layer 7 proxy with strong identities. In this session, I will present how we can leverage capabilities provided by both these technologies and achieve better security and observability ensuring all your applications can have uniform policy and visibility irrespective of whether they are in the mesh or not or if they are running as a container in Kubernetes or long running VM where making privileged changes are often not possible.",
+              "title": "Where should I run my stuff? Choosing Compute options",
+              "description": "Here are many different ways to run your code. And the tradeoffs are different when you're working with existing systems as opposed to designing an entirely new system. Google Cloud Platform (GCP) offers solid support for the full spectrum of compute models, whether you are using managed GCP offerings or open-source technologies. The talk will help you decide which models are the best fit for your systems as well as how the models map to Google Cloud services — whether Compute Engine, Container Engine, Cloud Run, App Engine, and/or Cloud Functions.",
               "startsAt": "2023-05-07T17:00:00",
               "endsAt": "2023-05-07T17:35:00",
               "speakers": [
                 {
-                  "name": "Rohit Ghumare",
-                  "profilePicture": "/ccd2023/images/speakers/Rohit.jpg"
+                  "name": "Vaibhav Malpani",
+                  "profilePicture": "/ccd2023/images/speakers/Vaibhav.jpg"
                 }
               ],
               "categories": [],
@@ -403,16 +403,17 @@
       },
       {
         "rooms": [
+          
           {
             "session": {
-              "title": "Where should I run my stuff? Choosing Compute options",
-              "description": "Here are many different ways to run your code. And the tradeoffs are different when you're working with existing systems as opposed to designing an entirely new system. Google Cloud Platform (GCP) offers solid support for the full spectrum of compute models, whether you are using managed GCP offerings or open-source technologies. The talk will help you decide which models are the best fit for your systems as well as how the models map to Google Cloud services — whether Compute Engine, Container Engine, Cloud Run, App Engine, and/or Cloud Functions.",
+              "title": "Security & observability for all apps - combining the Cilium & Kernel powers",
+              "description": "Securing your applications with a defense in depth architecture and gaining visibility in your application behavior are the two key requirements to be successful in any modern cloud native deployment. While service meshes like Istio provide these capabilities via a user space proxy mechanism it's not always feasible to inject sidecars proxies for all your applications. On the other hand Kernel technologies like eBPF when used in a CNI like Cilium provides security and metrics transparently but lacks the richness of information and policy capabilities provided by a layer 7 proxy with strong identities. In this session, I will present how we can leverage capabilities provided by both these technologies and achieve better security and observability ensuring all your applications can have uniform policy and visibility irrespective of whether they are in the mesh or not or if they are running as a container in Kubernetes or long running VM where making privileged changes are often not possible.",
               "startsAt": "2023-05-07T17:35:00",
               "endsAt": "2023-05-07T18:10:00",
               "speakers": [
                 {
-                  "name": "Vaibhav Malpani",
-                  "profilePicture": "/ccd2023/images/speakers/Vaibhav.jpg"
+                  "name": "Rohit Ghumare",
+                  "profilePicture": "/ccd2023/images/speakers/Rohit.jpg"
                 }
               ],
               "categories": [],
