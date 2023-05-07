@@ -50,7 +50,7 @@ const Timer = () => {
       </p>
       <div className="w-full flex lg:flex-col justify-center items-center font-bold">
         <div className="mr-1 lg:mr-0 py-1 text-4xl lg:text-6xl">
-          {parsedTime.day}
+          00
         </div>
         <div className="mr-3 lg:mr-0 text-xl lg:text-4xl lg:pb-10">d</div>
         <div className="mr-1 lg:mr-0 py-1 text-4xl lg:text-6xl">
