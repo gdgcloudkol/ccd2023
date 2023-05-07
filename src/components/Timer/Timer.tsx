@@ -54,15 +54,15 @@ const Timer = () => {
         </div>
         <div className="mr-3 lg:mr-0 text-xl lg:text-4xl lg:pb-10">d</div>
         <div className="mr-1 lg:mr-0 py-1 text-4xl lg:text-6xl">
-          {parsedTime.hour}
+          00
         </div>
         <div className="mr-3 lg:mr-0 text-xl lg:text-4xl lg:pb-10">h</div>
         <div className="mr-1 lg:mr-0 py-1 text-4xl lg:text-6xl">
-          {parsedTime.minute}
+          00
         </div>
         <div className="mr-3 lg:mr-0 text-xl lg:text-4xl lg:pb-10">m</div>
         <div className="mr-1 lg:mr-0 py-1 text-4xl lg:text-6xl">
-          {parsedTime.second}
+          00
         </div>
         <div className="mr-3 lg:mr-0 text-xl lg:text-4xl lg:pb-5">s</div>
       </div>
