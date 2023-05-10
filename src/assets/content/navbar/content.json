@@ -31,12 +31,12 @@
       "link": "/profile"
     },
     {
-      "title": "Buy Tickets",
-      "link": "/tickets"
-    },
-    {
       "title": "Dashboard",
       "link": "/dashboard"
+    },
+    {
+      "title": "Feedback",
+      "link": "/feedback"
     }
   ],
   "navbarSpatialNotLoggedIn": [
@@ -51,12 +51,12 @@
       "link": "/profile"
     },
     {
-      "title": "View Tickets",
-      "link": "/tickets"
-    },
-    {
       "title": "Dashboard",
       "link": "/dashboard"
+    },
+    {
+      "title": "Feedback",
+      "link": "/feedback"
     }
   ]
 }

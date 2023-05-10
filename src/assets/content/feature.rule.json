@@ -27,7 +27,9 @@
   },
   "disabledRoutes": [
     "/dashboard",
-    "/termsAndCondition"
+    "/termsAndCondition",
+    "/schedule",
+    "/cfs"
   ],
   "disabledPartnerTitles": [],
   "disabledPartners": [],

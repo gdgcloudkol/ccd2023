@@ -24,6 +24,7 @@ export const BASE_EMAIL_RESEND_URL = BASE_REGISTRATION_URI + 'resend-email/';
 // user
 export const BASE_USERS_UPDATE_URI = BASE_USERS_URI + 'profile/';
 export const BASE_REFERRAL_URI = BASE_USERS_URI + 'add_referrer/';
+export const BASE_USERS_FEEDBACK = BASE_USERS_URI + 'feedback/';
 
 // local api
 export const BASE_CONTENT_URI = 'content';

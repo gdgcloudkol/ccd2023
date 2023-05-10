@@ -28,6 +28,7 @@ import VerifyEmail from './pages/VerifyEmail';
 import { LoggedInContext } from './services/state.service';
 import Notification from './components/Notification/Notification';
 import NotificationContent from './assets/content/notification.json';
+import Feedback from './pages/Feedback';
 
 const ScrollToTop = ({ children }: { children: ReactElement }) => {
   const location = useLocation();
@@ -51,16 +52,17 @@ const Router = () => {
       </nav>
       {!loggedInState?.user?.profile?.profile_lock ?
         <Notification
-          title={NotificationContent.reminder.title}
-          message={NotificationContent.reminder.message}
+          title={NotificationContent.information.title}
+          message={NotificationContent.information.message}
+          color='green'
           show={show}
           setShow={setShow}
         />
         :
         <Notification
-          title={NotificationContent.locked.title}
-          message={NotificationContent.locked.message}
-          color='red'
+          title={NotificationContent.information.title}
+          message={NotificationContent.information.message}
+          color='green'
           show={show}
           setShow={setShow}
         />
@@ -106,10 +108,7 @@ const Router = () => {
             <Route path="/reset-password/" element={<ResetPassword />} />
           ) : null}
           {navRule?.every((item) => '/resetPassword' !== item) ? (
-            <Route
-              path="/reset-password/:uid/:token"
-              element={<ResetPassword />}
-            />
+            <Route path="/reset-password/:uid/:token" element={<ResetPassword />} />
           ) : null}
           {navRule?.every((item) => '/profile' !== item) &&
             loggedInState.isLoggedIn ? (
@@ -122,6 +121,10 @@ const Router = () => {
           {navRule?.every((item) => '/dashboard' !== item) &&
             loggedInState.isLoggedIn ? (
             <Route path="/dashboard" element={<Dashboard />} />
+          ) : null}
+          {navRule?.every((item) => '/feedback' !== item) &&
+            loggedInState.isLoggedIn ? (
+            <Route path="/feedback" element={<Feedback />} />
           ) : null}
           <Route path="/:route" element={<NotFound />} />
         </Routes>

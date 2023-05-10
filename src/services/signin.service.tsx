@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { NavigateFunction } from 'react-router-dom';
 import { LoginData, SignInPayload, SignUpPayload, UserData } from '../assets/models/login/datatype';
-import { ACCESS_TOKEN_KEY, BASE_AUTH_USER_URI, BASE_EMAIL_RESEND_URL, BASE_EMAIL_VERIFICATION_URL, BASE_LOGIN_URI, BASE_LOGOUT_URI, BASE_PASSWORD_RESET, BASE_PASSWORD_RESET_CONFIRM, BASE_REGISTRATION_URI, BASE_USERS_UPDATE_URI, HOME_ROUTE, LOGGED_IN_KEY } from './constants';
+import { ACCESS_TOKEN_KEY, BASE_AUTH_USER_URI, BASE_EMAIL_RESEND_URL, BASE_EMAIL_VERIFICATION_URL, BASE_LOGIN_URI, BASE_LOGOUT_URI, BASE_PASSWORD_RESET, BASE_PASSWORD_RESET_CONFIRM, BASE_REGISTRATION_URI, BASE_USERS_FEEDBACK, BASE_USERS_UPDATE_URI, HOME_ROUTE, LOGGED_IN_KEY } from './constants';
 import { LoggedInState } from './state.service';
 import { ApiViewTickets } from './ticket.service';
 
@@ -147,6 +147,21 @@ export async function ApiResetPasswordConfirmLink(
     if (res?.status !== 200) {
       throw new Error('Password Reset Error');
     }
+    return res;
+  } catch (e: any) {
+    return e.response;
+  }
+}
+
+export async function ApiPostFeedback(
+  payload: {
+    title: string;
+    description: string;
+  }
+): Promise<AxiosResponse> {
+  try {
+    const headers = { Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN_KEY)}` };
+    const res = await axios.post(BASE_USERS_FEEDBACK, { ...payload }, { headers });
     return res;
   } catch (e: any) {
     return e.response;

@@ -6,5 +6,9 @@
   "locked": {
     "title": "Profile Locked",
     "message": "No further changes in profile allowed. For editing requests please write to gdgcloudkol@gmail.com"
+  },
+  "information": {
+    "title": "Submit Feedback",
+    "message": "Please submit feedback of your experience of GCCD 23"
   }
 }
