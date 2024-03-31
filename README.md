@@ -1,3 +1,3 @@
 # Cloud Community Days 2023
 
-An event website for upcoming event.
+Event website for Google Cloud Community Days Kolkata 2024
